@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Divider, Drawer, Dropdown, Empty, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Switch, Tag, Tooltip } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Descriptions, Divider, Drawer, Dropdown, Empty, Image, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Steps, Switch, Tag, Timeline, Tooltip } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb' | 'Image' | 'Steps' | 'Timeline' | 'Descriptions'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -264,6 +264,23 @@ export const renders: Record<string, { component: VueCase['component']; actions?
   'ref-breadcrumb-basic': {
     component: 'Breadcrumb',
     render: () => h(Breadcrumb, { items: [{ title: '首页' }, { title: '列表' }] }),
+  },
+
+  'ref-image-basic': {
+    component: 'Image',
+    render: () => h(Image, { src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', width: 40, alt: '' }),
+  },
+  'ref-steps-basic': {
+    component: 'Steps',
+    render: () => h(Steps, { current: 1, items: [{ title: '第一步' }, { title: '第二步' }] }),
+  },
+  'ref-timeline-basic': {
+    component: 'Timeline',
+    render: () => h(Timeline, { items: [{ content: '事件一' }, { content: '事件二' }] }),
+  },
+  'ref-descriptions-basic': {
+    component: 'Descriptions',
+    render: () => h(Descriptions, { items: [{ label: '标签', content: '内容' }] }),
   },
 }
 

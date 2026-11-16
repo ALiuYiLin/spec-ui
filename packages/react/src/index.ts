@@ -58,6 +58,18 @@ export type { StatisticProps } from './statistic'
 export { Breadcrumb } from './breadcrumb'
 export type { BreadcrumbProps, BreadcrumbItem } from './breadcrumb'
 
+export { Image } from './image'
+export type { ImageProps } from './image'
+
+export { Steps } from './steps'
+export type { StepsProps, StepsItem, StepStatus } from './steps'
+
+export { Timeline } from './timeline'
+export type { TimelineProps, TimelineItem, TimelineTone } from './timeline'
+
+export { Descriptions } from './descriptions'
+export type { DescriptionsProps, DescriptionsItem } from './descriptions'
+
 export { Divider } from './divider'
 export type { DividerProps, DividerOrientation, DividerVariant } from './divider'
 

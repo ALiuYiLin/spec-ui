@@ -1,0 +1,31 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Image",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "图片。一个带圆角与占位底色的图片容器。",
+  "anatomy": {
+    "root": {
+      "class": "sm-image",
+      "tag": "div",
+      "required": true
+    },
+    "parts": {
+      "img": {
+        "class": "sm-image__img",
+        "tag": "img",
+        "required": true,
+        "order": 1,
+        "attrs": { "src": "必填" },
+        "aria": { "alt": "必填；装饰性图片用 alt=\"\"" }
+      }
+    }
+  },
+  "invariants": [
+    "img 必须存在且只出现一次，且必须是 root 的直接子节点。",
+    "img 必须带 alt（装饰性图片用空字符串）。",
+    "圆角与底色在 root 上，不在 img 上。"
+  ],
+  "a11y": ["alt 必填：内容图片给描述，装饰图片给空字符串。"],
+  "notes": "第一个使用真实 img 元素的组件。"
+}

@@ -56,6 +56,10 @@
 - [x] Result —— 展示类铺开
 - [x] Statistic —— 展示类铺开
 - [x] Breadcrumb —— 展示类铺开
+- [x] Image —— 展示类收尾
+- [x] Steps —— 展示类收尾
+- [x] Timeline —— 展示类收尾
+- [x] Descriptions —— 展示类收尾
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）

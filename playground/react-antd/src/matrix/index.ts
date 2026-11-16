@@ -27,6 +27,10 @@ import { cases as skeletonCases } from './skeleton'
 import { cases as resultCases } from './result'
 import { cases as statisticCases } from './statistic'
 import { cases as breadcrumbCases } from './breadcrumb'
+import { cases as imageCases } from './image'
+import { cases as stepsCases } from './steps'
+import { cases as timelineCases } from './timeline'
+import { cases as descriptionsCases } from './descriptions'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -57,4 +61,8 @@ export const cases: Case[] = [
   ...resultCases.map((c) => ({ ...c, component: 'Result' })),
   ...statisticCases.map((c) => ({ ...c, component: 'Statistic' })),
   ...breadcrumbCases.map((c) => ({ ...c, component: 'Breadcrumb' })),
+  ...imageCases.map((c) => ({ ...c, component: 'Image' })),
+  ...stepsCases.map((c) => ({ ...c, component: 'Steps' })),
+  ...timelineCases.map((c) => ({ ...c, component: 'Timeline' })),
+  ...descriptionsCases.map((c) => ({ ...c, component: 'Descriptions' })),
 ]

@@ -52,6 +52,17 @@ export { Statistic } from './statistic'
 export { Breadcrumb } from './breadcrumb'
 export type { BreadcrumbItem } from './breadcrumb'
 
+export { Image } from './image'
+
+export { Steps } from './steps'
+export type { StepsItem, StepStatus } from './steps'
+
+export { Timeline } from './timeline'
+export type { TimelineItem, TimelineTone } from './timeline'
+
+export { Descriptions } from './descriptions'
+export type { DescriptionsItem } from './descriptions'
+
 export { Divider } from './divider'
 export type { DividerOrientation, DividerVariant } from './divider'
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Divider, Drawer, Dropdown, Empty, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Switch, Tag, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Descriptions, Divider, Drawer, Dropdown, Empty, Image, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Steps, Switch, Tag, Timeline, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb' | 'Image' | 'Steps' | 'Timeline' | 'Descriptions'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -993,6 +993,56 @@ export const cases: RefCase[] = [
       { k: 'part', name: 'separator' },
       { k: 'attr', on: 'root', key: 'aria-label' },
       { k: 'attr', on: 'separator', key: 'aria-hidden', value: 'true' },
+    ],
+  },
+
+  // ---------------- Image ----------------
+  {
+    id: 'ref-image-basic',
+    component: 'Image',
+    render: () => <Image src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width={40} alt="" />,
+    assert: [
+      { k: 'part', name: 'img' },
+      { k: 'attr', on: 'img', key: 'src' },
+      { k: 'attr', on: 'img', key: 'alt' },
+    ],
+  },
+
+  // ---------------- Steps ----------------
+  {
+    id: 'ref-steps-basic',
+    component: 'Steps',
+    render: () => <Steps current={1} items={[{ title: '第一步' }, { title: '第二步' }]} />,
+    assert: [
+      { k: 'data', key: 'direction', value: 'horizontal' },
+      { k: 'part', name: 'item' },
+      { k: 'part', name: 'title' },
+    ],
+  },
+
+  // ---------------- Timeline ----------------
+  {
+    id: 'ref-timeline-basic',
+    component: 'Timeline',
+    render: () => <Timeline items={[{ content: '事件一' }, { content: '事件二' }]} />,
+    assert: [
+      { k: 'part', name: 'item' },
+      { k: 'part', name: 'dot' },
+      { k: 'part', name: 'content' },
+      { k: 'attr', on: 'item', key: 'data-tone', value: 'default' },
+    ],
+  },
+
+  // ---------------- Descriptions ----------------
+  {
+    id: 'ref-descriptions-basic',
+    component: 'Descriptions',
+    render: () => <Descriptions items={[{ label: '标签', content: '内容' }]} />,
+    assert: [
+      { k: 'part', name: 'item' },
+      { k: 'part', name: 'label' },
+      { k: 'part', name: 'content' },
+      { k: 'order', before: 'label', after: 'content' },
     ],
   },
 ]

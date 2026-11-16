@@ -1,0 +1,52 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Steps",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "步骤条。一串编号步骤，当前步骤由 data-status 表达。",
+  "anatomy": {
+    "root": {
+      "class": "sm-steps",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "direction": {
+          "kind": "config",
+          "enum": ["horizontal", "vertical"],
+          "required": true,
+          "default": "horizontal"
+        }
+      }
+    },
+    "parts": {
+      "item": {
+        "class": "sm-steps__item",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "data": {
+          "status": {
+            "kind": "state",
+            "domain": "selection",
+            "enum": ["wait", "process", "finish", "error"],
+            "required": true,
+            "default": "wait"
+          }
+        }
+      },
+      "title": {
+        "class": "sm-steps__title",
+        "tag": "div",
+        "required": true,
+        "order": 1
+      }
+    }
+  },
+  "invariants": [
+    "item 必须是 root 的直接子节点；title 必须是 item 的直接子节点。",
+    "当前步骤必须恰好有一个 item 带 data-status=\"process\"。",
+    "已完成步骤带 data-status=\"finish\"，未开始为 wait。"
+  ],
+  "a11y": ["当前步骤要通过 aria-current=\"step\" 表达，不能只靠颜色。"],
+  "notes": "第一个在部件（item）上使用状态值域的组件。"
+}

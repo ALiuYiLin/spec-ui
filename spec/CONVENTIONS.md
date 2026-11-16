@@ -173,3 +173,13 @@ L2 是这套方案能否成立的关键：没有它，"协议"只是一份会过
 | Descriptions | `sm-descriptions` | Timeline | `sm-timeline` |
 | Result | `sm-result` | Image | `sm-image` |
 | Statistic | `sm-statistic` | Transfer | `sm-transfer` |
+
+## 盒模型
+
+所有 `sm-*` 元素必须显式声明 `box-sizing: border-box`。
+
+组件库**不加载 preflight**（不能覆盖宿主页面的基础样式），浏览器默认是 `content-box`，
+而设计稿与对照实现（antd）都按 `border-box` 计算。漏掉这一条会让宽度、内边距、
+`transform-origin` 一连串属性同时偏掉。
+
+这条规则是在 B 档第三批组件上一次性踩中 6 个部件之后补的。

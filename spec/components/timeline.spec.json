@@ -1,0 +1,50 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Timeline",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "时间轴。一个圆点、一条竖线、一段内容。",
+  "anatomy": {
+    "root": {
+      "class": "sm-timeline",
+      "tag": "div",
+      "required": true
+    },
+    "parts": {
+      "item": {
+        "class": "sm-timeline__item",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "data": {
+          "tone": {
+            "kind": "variant",
+            "enum": ["default", "success", "warning", "danger"],
+            "required": true,
+            "default": "default"
+          }
+        }
+      },
+      "dot": {
+        "class": "sm-timeline__dot",
+        "tag": "span",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "content": {
+        "class": "sm-timeline__content",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      }
+    }
+  },
+  "invariants": [
+    "item 必须是 root 的直接子节点；dot 与 content 必须是 item 的直接子节点。",
+    "dot 必须 aria-hidden。",
+    "竖线用伪元素绘制，不占 DOM。"
+  ],
+  "a11y": ["时间轴本身不需要 role；语义由内容承担。"],
+  "notes": "第一个「圆点 + 伪元素竖线」的列表。"
+}

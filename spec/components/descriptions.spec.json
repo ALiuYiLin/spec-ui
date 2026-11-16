@@ -1,0 +1,40 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Descriptions",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "描述列表。一组成对的「标签 / 内容」。",
+  "anatomy": {
+    "root": {
+      "class": "sm-descriptions",
+      "tag": "div",
+      "required": true
+    },
+    "parts": {
+      "item": {
+        "class": "sm-descriptions__item",
+        "tag": "div",
+        "required": true,
+        "order": 1
+      },
+      "label": {
+        "class": "sm-descriptions__label",
+        "tag": "div",
+        "required": true,
+        "order": 1
+      },
+      "content": {
+        "class": "sm-descriptions__content",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      }
+    }
+  },
+  "invariants": [
+    "item 必须是 root 的直接子节点；label 与 content 必须是 item 的直接子节点，且 label 在前。",
+    "每个 item 必须有 label 与 content。"
+  ],
+  "a11y": ["成对信息建议用 dl/dt/dd 语义；本版为简化使用 div，后续可升级。"],
+  "notes": "antd 用 table 实现，我们用 div + flex；L3 只比根节点，理由写在文档里。"
+}

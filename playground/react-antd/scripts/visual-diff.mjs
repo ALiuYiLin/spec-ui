@@ -295,6 +295,58 @@ const RESOLVE = {
     },
   },
 
+  Image: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-image')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-image')),
+    },
+    img: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-image__img')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-image-img')),
+    },
+  },
+
+  Steps: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-steps')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-steps')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-steps__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-steps-item')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-steps__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-steps-item-title')),
+    },
+  },
+
+  Timeline: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-timeline')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-timeline')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-timeline__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-timeline-item')),
+    },
+    dot: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-timeline__dot')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-timeline-item-head')),
+    },
+    content: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-timeline__content')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-timeline-item-content')),
+    },
+  },
+
+  Descriptions: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-descriptions')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-descriptions')),
+    },
+  },
+
   Progress: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-progress')),
@@ -923,7 +975,45 @@ const PAIRS = [
       { name: 'separator', ignore: ['width', 'transform-origin', 'display', 'height', 'min-width', 'min-height'] },
     ],
   },
+  // ---- Image / Steps / Timeline / Descriptions ----
+  {
+    component: 'Image',
+    ref: 'ref-image-basic',
+    antd: 'image-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'img', ignore: ['width', 'height', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Steps',
+    ref: 'ref-steps-basic',
+    antd: 'steps-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'item', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'title', ignore: ['width', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Timeline',
+    ref: 'ref-timeline-basic',
+    antd: 'timeline-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'item', ignore: ['width', 'height', 'transform-origin', 'display'] },
+      { name: 'dot', ignore: ['left', 'top', 'right', 'bottom', 'transform-origin'] },
+      { name: 'content', ignore: ['width', 'margin-left', 'transform-origin', 'top', 'bottom'] },
+    ],
+  },
+  {
+    component: 'Descriptions',
+    ref: 'ref-descriptions-basic',
+    antd: 'descriptions-basic',
+    targets: [{ name: 'root', ignore: ['width', 'height', 'transform-origin'] }],
+  },
 ]
+
 
 
 
