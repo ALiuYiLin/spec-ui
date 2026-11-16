@@ -28,6 +28,18 @@ export type { SliderProps, SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './popover'
 
+export { Divider } from './divider'
+export type { DividerProps, DividerOrientation, DividerVariant } from './divider'
+
+export { Tag } from './tag'
+export type { TagProps, TagTone } from './tag'
+
+export { Avatar } from './avatar'
+export type { AvatarProps, AvatarShape, AvatarSize } from './avatar'
+
+export { Badge } from './badge'
+export type { BadgeProps, BadgeStatus } from './badge'
+
 export { Dropdown } from './dropdown'
 export type { DropdownProps, DropdownItem } from './dropdown'
 

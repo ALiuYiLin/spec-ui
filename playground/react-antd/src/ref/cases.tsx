@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Dropdown, Modal, Slider, Switch, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Avatar, Badge, Divider, Drawer, Dropdown, Modal, Slider, Switch, Tag, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -789,5 +789,70 @@ export const cases: RefCase[] = [
       { k: 'attr', on: 'menu', key: 'role', value: 'menu' },
       { k: 'attr', on: 'item', key: 'role', value: 'menuitem' },
     ],
+  },
+
+  // ---------------- Divider ----------------
+  {
+    id: 'ref-divider-basic',
+    component: 'Divider',
+    render: () => <Divider />,
+    assert: [
+      { k: 'data', key: 'orientation', value: 'horizontal' },
+      { k: 'data', key: 'variant', value: 'solid' },
+      { k: 'absent', name: 'text' },
+    ],
+  },
+  {
+    id: 'ref-divider-text',
+    component: 'Divider',
+    render: () => <Divider>文本</Divider>,
+    assert: [{ k: 'part', name: 'text' }],
+  },
+
+  // ---------------- Tag ----------------
+  {
+    id: 'ref-tag-basic',
+    component: 'Tag',
+    render: () => <Tag>标签</Tag>,
+    assert: [{ k: 'data', key: 'tone', value: 'default' }, { k: 'absent', name: 'close' }],
+  },
+  {
+    id: 'ref-tag-closable',
+    component: 'Tag',
+    render: () => <Tag closable>标签</Tag>,
+    assert: [
+      { k: 'part', name: 'close' },
+      { k: 'attr', on: 'close', key: 'type', value: 'button' },
+    ],
+  },
+
+  // ---------------- Avatar ----------------
+  {
+    id: 'ref-avatar-basic',
+    component: 'Avatar',
+    render: () => <Avatar label="用户">U</Avatar>,
+    assert: [
+      { k: 'data', key: 'shape', value: 'circle' },
+      { k: 'data', key: 'size', value: 'md' },
+      { k: 'attr', on: 'root', key: 'role', value: 'img' },
+    ],
+  },
+  {
+    id: 'ref-avatar-square',
+    component: 'Avatar',
+    render: () => <Avatar shape="square">U</Avatar>,
+    assert: [{ k: 'data', key: 'shape', value: 'square' }],
+  },
+
+  // ---------------- Badge ----------------
+  {
+    id: 'ref-badge-basic',
+    component: 'Badge',
+    render: () => (
+      <Badge count={5}>
+        <span style={{ display: 'inline-block', width: 40, height: 40 }} />
+      </Badge>
+    ),
+    assert: [{ k: 'part', name: 'count' }],
   },
 ]

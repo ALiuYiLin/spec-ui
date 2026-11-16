@@ -1,0 +1,37 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Avatar",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "头像。正方形或圆形的小容器，内容可以是文字或图标；没有内部槽位，只有一个根节点。",
+  "anatomy": {
+    "root": {
+      "class": "sm-avatar",
+      "tag": "span",
+      "required": true,
+      "data": {
+        "shape": {
+          "kind": "config",
+          "enum": ["circle", "square"],
+          "required": true,
+          "default": "circle"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md", "lg"],
+          "required": true,
+          "default": "md"
+        }
+      },
+      "attrs": { "role": { "required": false, "default": "img" } },
+      "aria": { "aria-label": "含图片或图标时建议提供" }
+    }
+  },
+  "invariants": [
+    "Avatar 没有部件，内容直接作为 root 的子节点。",
+    "尺寸只由 data-size 决定，不得靠内联样式或额外类名。",
+    "圆形与方形只由 data-shape 决定。"
+  ],
+  "a11y": ["承载信息时提供 aria-label；纯装饰时用 aria-hidden。"],
+  "notes": "第一个“无部件”组件，用来验证校验器对空 parts 的处理。"
+}

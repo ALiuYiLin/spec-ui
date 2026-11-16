@@ -26,6 +26,18 @@ export type { SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverSide, PopoverAlign } from './popover'
 
+export { Divider } from './divider'
+export type { DividerOrientation, DividerVariant } from './divider'
+
+export { Tag } from './tag'
+export type { TagTone } from './tag'
+
+export { Avatar } from './avatar'
+export type { AvatarShape, AvatarSize } from './avatar'
+
+export { Badge } from './badge'
+export type { BadgeStatus } from './badge'
+
 export { Dropdown } from './dropdown'
 export type { DropdownItem } from './dropdown'
 

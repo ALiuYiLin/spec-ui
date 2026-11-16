@@ -13,6 +13,10 @@ import { cases as popoverCases } from './popover'
 import { cases as modalCases } from './modal'
 import { cases as drawerCases } from './drawer'
 import { cases as dropdownCases } from './dropdown'
+import { cases as dividerCases } from './divider'
+import { cases as tagCases } from './tag'
+import { cases as avatarCases } from './avatar'
+import { cases as badgeCases } from './badge'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -29,4 +33,8 @@ export const cases: Case[] = [
   ...modalCases.map((c) => ({ ...c, component: 'Modal' })),
   ...drawerCases.map((c) => ({ ...c, component: 'Drawer' })),
   ...dropdownCases.map((c) => ({ ...c, component: 'Dropdown' })),
+  ...dividerCases.map((c) => ({ ...c, component: 'Divider' })),
+  ...tagCases.map((c) => ({ ...c, component: 'Tag' })),
+  ...avatarCases.map((c) => ({ ...c, component: 'Avatar' })),
+  ...badgeCases.map((c) => ({ ...c, component: 'Badge' })),
 ]

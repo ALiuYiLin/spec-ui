@@ -295,6 +295,38 @@ const RESOLVE = {
     },
   },
 
+  Divider: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-divider')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-divider')),
+    },
+  },
+
+  Tag: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-tag')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-tag')),
+    },
+  },
+
+  Avatar: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-avatar')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-avatar')),
+    },
+  },
+
+  Badge: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-badge')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-badge')),
+    },
+    count: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-badge__count')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-badge-count')),
+    },
+  },
+
   Dropdown: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-dropdown')),
@@ -663,7 +695,13 @@ const PAIRS = [
       'item',
     ],
   },
+  // ---- Divider / Tag / Avatar / Badge ----
+  { component: 'Divider', ref: 'ref-divider-basic', antd: 'divider-basic', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }] },
+  { component: 'Tag', ref: 'ref-tag-basic', antd: 'tag-basic', targets: ['root'] },
+  { component: 'Avatar', ref: 'ref-avatar-basic', antd: 'avatar-basic', targets: ['root'] },
+  { component: 'Badge', ref: 'ref-badge-basic', antd: 'badge-basic', targets: ['root', { name: 'count', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'position'] }] },
 ]
+
 
 
 

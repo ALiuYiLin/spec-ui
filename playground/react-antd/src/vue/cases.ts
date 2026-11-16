@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Dropdown, Modal, Slider, Switch, Tooltip } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Avatar, Badge, Divider, Drawer, Dropdown, Modal, Slider, Switch, Tag, Tooltip } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -230,6 +230,18 @@ export const renders: Record<string, { component: VueCase['component']; actions?
         },
         { default: () => h('button', { type: 'button' }, '更多') },
       ),
+  },
+
+  'ref-divider-basic': { component: 'Divider', render: () => h(Divider) },
+  'ref-divider-text': { component: 'Divider', render: () => h(Divider, null, { default: () => '文本' }) },
+  'ref-tag-basic': { component: 'Tag', render: () => h(Tag, null, { default: () => '标签' }) },
+  'ref-tag-closable': { component: 'Tag', render: () => h(Tag, { closable: true }, { default: () => '标签' }) },
+  'ref-avatar-basic': { component: 'Avatar', render: () => h(Avatar, { label: '用户' }, { default: () => 'U' }) },
+  'ref-avatar-square': { component: 'Avatar', render: () => h(Avatar, { shape: 'square' }, { default: () => 'U' }) },
+  'ref-badge-basic': {
+    component: 'Badge',
+    render: () =>
+      h(Badge, { count: 5 }, { default: () => h('span', { style: 'display:inline-block;width:40px;height:40px' }) }),
   },
 }
 

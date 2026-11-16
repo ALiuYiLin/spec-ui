@@ -41,7 +41,11 @@
 
 
 
-- [x] Dropdown —— menu/menuitem 最小语义；aria-expanded
+
+- [x] Divider —— 展示类铺开
+- [x] Tag —— 展示类铺开
+- [x] Avatar —— 展示类铺开
+- [x] Badge —— 展示类铺开
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）

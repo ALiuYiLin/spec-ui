@@ -1,0 +1,40 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Tag",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "标签。行内小色块，可关闭。语义靠 data-tone，不靠颜色类名。",
+  "anatomy": {
+    "root": {
+      "class": "sm-tag",
+      "tag": "span",
+      "required": true,
+      "data": {
+        "tone": {
+          "kind": "variant",
+          "enum": ["default", "primary", "success", "warning", "danger"],
+          "required": true,
+          "default": "default"
+        }
+      }
+    },
+    "parts": {
+      "close": {
+        "class": "sm-tag__close",
+        "tag": "button",
+        "required": false,
+        "order": 2,
+        "condition": "closable",
+        "attrs": { "type": { "required": true, "default": "button" } },
+        "aria": { "aria-label": "必填，例如「移除」" }
+      }
+    }
+  },
+  "invariants": [
+    "close 若存在，必须是 root 的直接子节点且位于文本之后。",
+    "颜色只由 data-tone 决定，不得通过额外类名表达。",
+    "关闭按钮必须是 button，不能是 span 加点击事件。"
+  ],
+  "a11y": ["关闭按钮必须有可访问名称；标签文本本身不需要 role。"],
+  "notes": "第一个使用 data-tone 的展示类组件。"
+}
