@@ -2,6 +2,16 @@
 
 图片。一个带圆角与占位底色的图片容器。
 
+## 演示
+
+<Demo>
+  <SmImage
+    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    :width="40"
+    alt=""
+  />
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

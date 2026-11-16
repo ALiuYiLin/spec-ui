@@ -2,6 +2,15 @@
 
 进度条。一条轨道加一段填充，填充宽度由百分比算出。
 
+## 演示
+
+<Demo>
+  <div style="width: 200px">
+    <SmProgress :percent="40" />
+    <SmProgress :percent="100" status="success" />
+  </div>
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

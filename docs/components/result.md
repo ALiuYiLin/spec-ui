@@ -2,6 +2,12 @@
 
 结果页。一个状态图标加标题与副标题。
 
+## 演示
+
+<Demo>
+  <SmResult status="info" title="标题" subtitle="这是副标题" />
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

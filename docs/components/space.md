@@ -2,6 +2,16 @@
 
 间距容器。给一组子元素加统一间距。
 
+## 演示
+
+<Demo>
+  <SmSpace>
+    <SmTag>一</SmTag>
+    <SmTag>二</SmTag>
+    <SmTag>三</SmTag>
+  </SmSpace>
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

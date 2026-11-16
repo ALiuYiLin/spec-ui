@@ -2,6 +2,14 @@
 
 警告提示。一条带语义色彩的横幅，可关闭。
 
+## 演示
+
+<Demo>
+  <SmAlert type="info" message="这是一条提示信息" />
+  <SmAlert type="success" message="操作成功" />
+  <SmAlert type="warning" message="请检查输入" />
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

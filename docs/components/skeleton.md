@@ -2,6 +2,14 @@
 
 骨架屏。几条灰色占位条，表示内容正在加载。
 
+## 演示
+
+<Demo>
+  <div style="width: 200px">
+    <SmSkeleton />
+  </div>
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

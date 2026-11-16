@@ -2,6 +2,14 @@
 
 卡片。带边框的容器，可选标题区。
 
+## 演示
+
+<Demo>
+  <div style="width: 240px">
+    <SmCard title="标题">卡片内容</SmCard>
+  </div>
+</Demo>
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |
