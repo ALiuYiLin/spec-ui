@@ -40,7 +40,8 @@
 
 
 
-- [x] Drawer —— 遮罩 + 侧滑面板；面板宽度走几何内联样式
+
+- [x] Dropdown —— menu/menuitem 最小语义；aria-expanded
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）

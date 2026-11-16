@@ -295,6 +295,21 @@ const RESOLVE = {
     },
   },
 
+  Dropdown: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-dropdown')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-dropdown')),
+    },
+    menu: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-dropdown__menu')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-dropdown-menu')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-dropdown__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-dropdown-menu-item')),
+    },
+  },
+
   Drawer: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-drawer')),
@@ -637,7 +652,19 @@ const PAIRS = [
       'body',
     ],
   },
+  // ---- Dropdown ----
+  {
+    component: 'Dropdown',
+    ref: 'ref-dropdown-basic',
+    antd: 'dropdown-basic',
+    targets: [
+      { name: 'root', ignore: ['left', 'top', 'right', 'bottom', 'transform', 'transform-origin', 'width', 'height', 'min-width'] },
+      'menu',
+      'item',
+    ],
+  },
 ]
+
 
 
 

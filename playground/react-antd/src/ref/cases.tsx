@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Modal, Slider, Switch, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Dropdown, Modal, Slider, Switch, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -762,6 +762,32 @@ export const cases: RefCase[] = [
       { k: 'attr', on: 'panel', key: 'role', value: 'dialog' },
       { k: 'attr', on: 'panel', key: 'aria-modal', value: 'true' },
       { k: 'order', before: 'mask', after: 'panel' },
+    ],
+  },
+
+  // ---------------- Dropdown ----------------
+  {
+    id: 'ref-dropdown-basic',
+    component: 'Dropdown',
+    render: () => (
+      <Dropdown
+        open
+        items={[
+          { key: '1', label: '选项一' },
+          { key: '2', label: '选项二' },
+        ]}
+      >
+        <button type="button">更多</button>
+      </Dropdown>
+    ),
+    assert: [
+      { k: 'data', key: 'state', value: 'open' },
+      { k: 'part', name: 'trigger' },
+      { k: 'part', name: 'menu' },
+      { k: 'part', name: 'item' },
+      { k: 'attr', on: 'trigger', key: 'aria-haspopup', value: 'menu' },
+      { k: 'attr', on: 'menu', key: 'role', value: 'menu' },
+      { k: 'attr', on: 'item', key: 'role', value: 'menuitem' },
     ],
   },
 ]

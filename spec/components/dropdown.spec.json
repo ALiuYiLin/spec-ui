@@ -1,0 +1,72 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Dropdown",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "下拉菜单。触发器 + 浮层菜单，与 Popover 共用定位机制，但内容是可键盘导航的菜单列表。",
+  "anatomy": {
+    "root": {
+      "class": "sm-dropdown",
+      "tag": "div",
+      "required": true,
+      "portal": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        }
+      },
+      "notes": "root 是浮层容器，portal 到 body；定位用几何内联样式。"
+    },
+    "parts": {
+      "trigger": {
+        "class": "sm-dropdown__trigger",
+        "tag": "span",
+        "required": true,
+        "order": 0,
+        "aria": { "aria-haspopup": "必填，值 menu", "aria-expanded": "与 state 同步" }
+      },
+      "menu": {
+        "class": "sm-dropdown__menu",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "attrs": { "role": { "required": true, "default": "menu" } }
+      },
+      "item": {
+        "class": "sm-dropdown__item",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "menu 中有条目",
+        "attrs": { "role": { "required": true, "default": "menuitem" } },
+        "data": { "disabled": { "kind": "boolean" } }
+      },
+      "divider": {
+        "class": "sm-dropdown__divider",
+        "tag": "div",
+        "required": false,
+        "order": 2,
+        "condition": "items 中含分隔符",
+        "aria": { "aria-hidden": "true" }
+      }
+    }
+  },
+  "invariants": [
+    "root 必须 portal 到 body，且只在 state=open 时渲染。",
+    "trigger 必须留在文档流，并带 aria-haspopup=\"menu\" 与 aria-expanded。",
+    "menu 必须是 root 的直接子节点，角色为 menu。",
+    "item 必须是 menu 的直接子节点，角色为 menuitem。",
+    "分隔符不得参与键盘导航，也不得带 menuitem 角色。",
+    "定位只允许几何内联样式。"
+  ],
+  "a11y": [
+    "触发器必须可聚焦，且 aria-expanded 反映真实开关状态。",
+    "键盘契约：上下键移动焦点到 menuitem，Esc 关闭。",
+    "禁用条目必须带 data-disabled 与 aria-disabled，且跳过键盘导航。"
+  ],
+  "notes": "C 档最后一个；menu / item 的最小语义在这里先立起来，完整的 Menu 组件（多级、分组、子菜单）仍属 D 档。"
+}

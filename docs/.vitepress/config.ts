@@ -39,6 +39,7 @@ export default defineConfig({
             { text: 'Popover', link: '/components/popover' },
             { text: 'Modal', link: '/components/modal' },
             { text: 'Drawer', link: '/components/drawer' },
+            { text: 'Dropdown', link: '/components/dropdown' },
           ],
         },
       ],

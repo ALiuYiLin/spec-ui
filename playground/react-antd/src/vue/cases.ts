@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Modal, Slider, Switch, Tooltip } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Dropdown, Modal, Slider, Switch, Tooltip } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -214,6 +214,22 @@ export const renders: Record<string, { component: VueCase['component']; actions?
   'ref-drawer-basic': {
     component: 'Drawer',
     render: () => h(Drawer, { open: true, title: '标题' }, { default: () => '内容文字' }),
+  },
+
+  'ref-dropdown-basic': {
+    component: 'Dropdown',
+    render: () =>
+      h(
+        Dropdown,
+        {
+          open: true,
+          items: [
+            { key: '1', label: '选项一' },
+            { key: '2', label: '选项二' },
+          ],
+        },
+        { default: () => h('button', { type: 'button' }, '更多') },
+      ),
   },
 }
 

@@ -26,6 +26,9 @@ export type { SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverSide, PopoverAlign } from './popover'
 
+export { Dropdown } from './dropdown'
+export type { DropdownItem } from './dropdown'
+
 export { Drawer } from './drawer'
 export type { DrawerSide } from './drawer'
 
