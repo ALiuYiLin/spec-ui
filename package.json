@@ -8,7 +8,8 @@
     "docs:preview": "vitepress preview docs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "typecheck:docs": "tsc -p docs/tsconfig.json --noEmit",
-    "verify": "pnpm typecheck && pnpm typecheck:docs && pnpm --filter @specmark/playground-react-antd run verify"
+    "verify:docs": "pnpm docs:build && node playground/react-antd/scripts/docs-check.mjs",
+    "verify": "pnpm typecheck && pnpm typecheck:docs && pnpm --filter @specmark/playground-react-antd run verify && pnpm verify:docs"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.5",
