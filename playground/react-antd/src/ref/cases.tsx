@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Slider, Switch, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -686,5 +686,37 @@ export const cases: RefCase[] = [
       </Tooltip>
     ),
     assert: [{ k: 'data', key: 'side', value: 'bottom' }],
+  },
+
+  // ---------------- Popover ----------------
+  {
+    id: 'ref-popover-basic',
+    component: 'Popover',
+    render: () => (
+      <Popover title="标题" content="内容文字" open side="top">
+        <button type="button">悬停</button>
+      </Popover>
+    ),
+    assert: [
+      { k: 'data', key: 'state', value: 'open' },
+      { k: 'data', key: 'side', value: 'top' },
+      { k: 'data', key: 'align', value: 'center' },
+      { k: 'part', name: 'trigger' },
+      { k: 'part', name: 'inner' },
+      { k: 'part', name: 'title' },
+      { k: 'part', name: 'content' },
+      { k: 'childOf', on: 'title', of: 'inner' },
+      { k: 'order', before: 'title', after: 'content' },
+    ],
+  },
+  {
+    id: 'ref-popover-notitle',
+    component: 'Popover',
+    render: () => (
+      <Popover content="只有内容" open side="top">
+        <button type="button">悬停</button>
+      </Popover>
+    ),
+    assert: [{ k: 'absent', name: 'title' }, { k: 'part', name: 'content' }],
   },
 ]

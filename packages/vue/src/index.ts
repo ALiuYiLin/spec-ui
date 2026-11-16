@@ -23,6 +23,9 @@ export type { InputNumberSize, InputNumberStatus } from './input-number'
 export { Slider } from './slider'
 export type { SliderOrientation } from './slider'
 
+export { Popover } from './popover'
+export type { PopoverSide, PopoverAlign } from './popover'
+
 export { Tooltip } from './tooltip'
 export type { TooltipSide } from './tooltip'
 

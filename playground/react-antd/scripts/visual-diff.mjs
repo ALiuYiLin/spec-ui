@@ -262,6 +262,25 @@ const RESOLVE = {
     },
   },
 
+  Popover: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-popover')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-popover')),
+    },
+    inner: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-popover__inner')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-popover-inner')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-popover__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-popover-title')),
+    },
+    content: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-popover__content')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-popover-inner-content')),
+    },
+  },
+
   Tooltip: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-tooltip')),
@@ -509,6 +528,29 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
       'inner',
+    ],
+  },
+
+  // ---- Popover ----
+  {
+    component: 'Popover',
+    ref: 'ref-popover-basic',
+    antd: 'popover-basic',
+    targets: [
+      { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
+      'inner',
+      'title',
+      'content',
+    ],
+  },
+  {
+    component: 'Popover',
+    ref: 'ref-popover-notitle',
+    antd: 'popover-notitle',
+    targets: [
+      { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
+      'inner',
+      'content',
     ],
   },
 ]

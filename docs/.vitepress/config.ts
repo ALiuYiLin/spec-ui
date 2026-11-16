@@ -36,6 +36,7 @@ export default defineConfig({
             { text: 'InputNumber', link: '/components/input-number' },
             { text: 'Slider', link: '/components/slider' },
             { text: 'Tooltip', link: '/components/tooltip' },
+            { text: 'Popover', link: '/components/popover' },
           ],
         },
       ],

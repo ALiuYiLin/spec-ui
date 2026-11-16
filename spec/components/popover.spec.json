@@ -1,0 +1,86 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Popover",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "气泡卡片。与 Tooltip 同构，但内容是白底卡片、可包含交互元素，因此多了 title 槽位与 align 维度。",
+  "anatomy": {
+    "root": {
+      "class": "sm-popover",
+      "tag": "div",
+      "required": true,
+      "portal": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        },
+        "side": {
+          "kind": "config",
+          "enum": ["top", "right", "bottom", "left"],
+          "required": true,
+          "default": "top"
+        },
+        "align": {
+          "kind": "config",
+          "enum": ["start", "center", "end"],
+          "required": true,
+          "default": "center"
+        }
+      },
+      "notes": "root 本身就是浮层，portal 到 body；定位用几何内联样式。"
+    },
+    "parts": {
+      "trigger": {
+        "class": "sm-popover__trigger",
+        "tag": "span",
+        "required": true,
+        "order": 0,
+        "aria": { "aria-describedby": "浮层存在时必填" }
+      },
+      "inner": {
+        "class": "sm-popover__inner",
+        "tag": "div",
+        "required": true,
+        "order": 1
+      },
+      "title": {
+        "class": "sm-popover__title",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "传入 title"
+      },
+      "content": {
+        "class": "sm-popover__content",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      },
+      "arrow": {
+        "class": "sm-popover__arrow",
+        "tag": "div",
+        "required": true,
+        "order": 3,
+        "aria": { "aria-hidden": "true" }
+      }
+    }
+  },
+  "invariants": [
+    "root 必须 portal 到 document.body，且只在 state=open 时渲染。",
+    "trigger 必须留在原地，并在浮层存在时持有 aria-describedby。",
+    "inner 必须是 root 的直接子节点；title 与 content 必须是 inner 的直接子节点，且 title 在 content 之前。",
+    "content 必须存在且只出现一次，即使内容为空。",
+    "定位只允许几何内联样式（left / top / transform）。",
+    "内容含交互元素时，浮层必须保持可键盘访问（不得设置 pointer-events: none）。"
+  ],
+  "a11y": [
+    "触发器必须可聚焦。",
+    "内容可交互时，建议使用 role=\"dialog\"（本版未强制）。",
+    "关闭后 aria-describedby 必须移除。"
+  ],
+  "notes": "与 Tooltip 共用浮层机制；data-align 第一次被使用。"
+}
