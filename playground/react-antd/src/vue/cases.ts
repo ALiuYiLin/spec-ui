@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Card, Divider, Drawer, Dropdown, Empty, Modal, Slider, Space, Spin, Switch, Tag, Tooltip } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Divider, Drawer, Dropdown, Empty, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Switch, Tag, Tooltip } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -256,6 +256,15 @@ export const renders: Record<string, { component: VueCase['component']; actions?
   'ref-alert-info': { component: 'Alert', render: () => h(Alert, { type: 'info', message: '提示信息' }) },
   'ref-spin-basic': { component: 'Spin', render: () => h(Spin) },
   'ref-empty-basic': { component: 'Empty', render: () => h(Empty) },
+
+  'ref-progress-basic': { component: 'Progress', render: () => h(Progress, { percent: 40 }) },
+  'ref-skeleton-basic': { component: 'Skeleton', render: () => h(Skeleton) },
+  'ref-result-info': { component: 'Result', render: () => h(Result, { status: 'info', title: '标题' }) },
+  'ref-statistic-basic': { component: 'Statistic', render: () => h(Statistic, { title: '标题', value: 1234 }) },
+  'ref-breadcrumb-basic': {
+    component: 'Breadcrumb',
+    render: () => h(Breadcrumb, { items: [{ title: '首页' }, { title: '列表' }] }),
+  },
 }
 
 export const caseIds = Object.keys(renders)

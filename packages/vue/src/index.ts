@@ -39,6 +39,19 @@ export type { SpinSize } from './spin'
 
 export { Empty } from './empty'
 
+export { Progress } from './progress'
+export type { ProgressStatus } from './progress'
+
+export { Skeleton } from './skeleton'
+
+export { Result } from './result'
+export type { ResultStatus } from './result'
+
+export { Statistic } from './statistic'
+
+export { Breadcrumb } from './breadcrumb'
+export type { BreadcrumbItem } from './breadcrumb'
+
 export { Divider } from './divider'
 export type { DividerOrientation, DividerVariant } from './divider'
 

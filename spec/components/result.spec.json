@@ -1,0 +1,51 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Result",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "结果页。一个状态图标加标题与副标题。",
+  "anatomy": {
+    "root": {
+      "class": "sm-result",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "status": {
+          "kind": "variant",
+          "enum": ["success", "info", "warning", "error"],
+          "required": true,
+          "default": "info"
+        }
+      }
+    },
+    "parts": {
+      "icon": {
+        "class": "sm-result__icon",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "title": {
+        "class": "sm-result__title",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      },
+      "subtitle": {
+        "class": "sm-result__subtitle",
+        "tag": "div",
+        "required": false,
+        "order": 3,
+        "condition": "传入 subtitle"
+      }
+    }
+  },
+  "invariants": [
+    "icon 与 title 必须存在且各出现一次，顺序为 icon → title。",
+    "subtitle 若存在必须位于 title 之后。",
+    "状态只由 data-status 决定。"
+  ],
+  "a11y": ["图标是装饰性的，必须 aria-hidden；语义由标题文字承担。"],
+  "notes": "第一个「图标 + 标题 + 副标题」的静态页。"
+}

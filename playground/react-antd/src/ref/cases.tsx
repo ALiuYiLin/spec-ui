@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Card, Divider, Drawer, Dropdown, Empty, Modal, Slider, Space, Spin, Switch, Tag, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Divider, Drawer, Dropdown, Empty, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Switch, Tag, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty' | 'Progress' | 'Skeleton' | 'Result' | 'Statistic' | 'Breadcrumb'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -926,6 +926,73 @@ export const cases: RefCase[] = [
       { k: 'part', name: 'image' },
       { k: 'part', name: 'description' },
       { k: 'order', before: 'image', after: 'description' },
+    ],
+  },
+
+  // ---------------- Progress ----------------
+  {
+    id: 'ref-progress-basic',
+    component: 'Progress',
+    render: () => <Progress percent={40} />,
+    assert: [
+      { k: 'attr', on: 'root', key: 'role', value: 'progressbar' },
+      { k: 'part', name: 'rail' },
+      { k: 'part', name: 'bar' },
+      { k: 'order', before: 'rail', after: 'bar' },
+      { k: 'data', key: 'status', value: 'normal' },
+    ],
+  },
+
+  // ---------------- Skeleton ----------------
+  {
+    id: 'ref-skeleton-basic',
+    component: 'Skeleton',
+    render: () => <Skeleton />,
+    assert: [
+      { k: 'attr', on: 'root', key: 'aria-busy', value: 'true' },
+      { k: 'part', name: 'title' },
+      { k: 'part', name: 'paragraph' },
+      { k: 'part', name: 'item' },
+      { k: 'order', before: 'title', after: 'paragraph' },
+    ],
+  },
+
+  // ---------------- Result ----------------
+  {
+    id: 'ref-result-info',
+    component: 'Result',
+    render: () => <Result status="info" title="标题" />,
+    assert: [
+      { k: 'data', key: 'status', value: 'info' },
+      { k: 'part', name: 'icon' },
+      { k: 'part', name: 'title' },
+      { k: 'absent', name: 'subtitle' },
+      { k: 'order', before: 'icon', after: 'title' },
+    ],
+  },
+
+  // ---------------- Statistic ----------------
+  {
+    id: 'ref-statistic-basic',
+    component: 'Statistic',
+    render: () => <Statistic title="标题" value={1234} />,
+    assert: [
+      { k: 'part', name: 'title' },
+      { k: 'part', name: 'value' },
+      { k: 'order', before: 'title', after: 'value' },
+    ],
+  },
+
+  // ---------------- Breadcrumb ----------------
+  {
+    id: 'ref-breadcrumb-basic',
+    component: 'Breadcrumb',
+    render: () => <Breadcrumb items={[{ title: '首页' }, { title: '列表' }]} />,
+    assert: [
+      { k: 'part', name: 'item' },
+      { k: 'part', name: 'separator' },
+      { k: 'attr', on: 'root', key: 'aria-label' },
+      { k: 'attr', on: 'separator', key: 'aria-hidden', value: 'true' },
     ],
   },
 ]

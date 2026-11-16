@@ -43,6 +43,21 @@ export type { SpinProps, SpinSize } from './spin'
 export { Empty } from './empty'
 export type { EmptyProps } from './empty'
 
+export { Progress } from './progress'
+export type { ProgressProps, ProgressStatus } from './progress'
+
+export { Skeleton } from './skeleton'
+export type { SkeletonProps } from './skeleton'
+
+export { Result } from './result'
+export type { ResultProps, ResultStatus } from './result'
+
+export { Statistic } from './statistic'
+export type { StatisticProps } from './statistic'
+
+export { Breadcrumb } from './breadcrumb'
+export type { BreadcrumbProps, BreadcrumbItem } from './breadcrumb'
+
 export { Divider } from './divider'
 export type { DividerProps, DividerOrientation, DividerVariant } from './divider'
 

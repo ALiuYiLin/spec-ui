@@ -295,6 +295,85 @@ const RESOLVE = {
     },
   },
 
+  Progress: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-progress')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-progress')),
+    },
+    rail: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-progress__rail')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-progress-inner')),
+    },
+    bar: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-progress__bar')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-progress-bg')),
+    },
+    text: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-progress__text')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-progress-text')),
+    },
+  },
+
+  Skeleton: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-skeleton')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-skeleton')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-skeleton__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-skeleton-title')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-skeleton__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-skeleton-paragraph-li')),
+    },
+  },
+
+  Result: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-result')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-result')),
+    },
+    icon: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-result__icon')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-result-icon')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-result__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-result-title')),
+    },
+  },
+
+  Statistic: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-statistic')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-statistic')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-statistic__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-statistic-title')),
+    },
+    value: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-statistic__value')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-statistic-content')),
+    },
+  },
+
+  Breadcrumb: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-breadcrumb')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-breadcrumb')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-breadcrumb__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-breadcrumb-link')),
+    },
+    separator: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-breadcrumb__separator')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-breadcrumb-separator')),
+    },
+  },
+
   Space: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-space')),
@@ -793,7 +872,59 @@ const PAIRS = [
     antd: 'empty-basic',
     targets: [{ name: 'root', ignore: ['height', 'transform-origin'] }, 'description'],
   },
+  // ---- Progress / Skeleton / Result / Statistic / Breadcrumb ----
+  {
+    component: 'Progress',
+    ref: 'ref-progress-basic',
+    antd: 'progress-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'min-width', 'transform-origin', 'display', 'align-items'] },
+      { name: 'rail', ignore: ['width', 'min-width', 'transform-origin', 'flex-basis', 'vertical-align'] },
+      { name: 'bar', ignore: ['width', 'transform-origin'] },
+      { name: 'text', ignore: ['width', 'height', 'min-width', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Skeleton',
+    ref: 'ref-skeleton-basic',
+    antd: 'skeleton-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'min-width', 'transform-origin', 'display'] },
+      { name: 'title', ignore: ['width', 'margin-top', 'margin-bottom', 'font-size', 'line-height', 'font-weight', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Result',
+    ref: 'ref-result-info',
+    antd: 'result-info',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'icon', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'title', ignore: ['width', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Statistic',
+    ref: 'ref-statistic-basic',
+    antd: 'statistic-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'title', ignore: ['width', 'transform-origin'] },
+      { name: 'value', ignore: ['width', 'height', 'transform-origin'] },
+    ],
+  },
+  {
+    component: 'Breadcrumb',
+    ref: 'ref-breadcrumb-basic',
+    antd: 'breadcrumb-basic',
+    targets: [
+      { name: 'root', ignore: ['width', 'transform-origin'] },
+      { name: 'item', ignore: ['width', 'height', 'transform-origin'] },
+      { name: 'separator', ignore: ['width', 'transform-origin', 'display', 'height', 'min-width', 'min-height'] },
+    ],
+  },
 ]
+
 
 
 

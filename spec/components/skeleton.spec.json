@@ -1,0 +1,44 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Skeleton",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "骨架屏。几条灰色占位条，表示内容正在加载。",
+  "anatomy": {
+    "root": {
+      "class": "sm-skeleton",
+      "tag": "div",
+      "required": true,
+      "aria": { "aria-busy": "必填，值 true" }
+    },
+    "parts": {
+      "title": {
+        "class": "sm-skeleton__title",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "有标题占位"
+      },
+      "paragraph": {
+        "class": "sm-skeleton__paragraph",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      },
+      "item": {
+        "class": "sm-skeleton__item",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "paragraph 内的每一行"
+      }
+    }
+  },
+  "invariants": [
+    "paragraph 必须存在且只出现一次。",
+    "item 必须是 paragraph 的直接子节点，数量与行数一致。",
+    "title 若存在必须位于 paragraph 之前。"
+  ],
+  "a11y": ["root 必须带 aria-busy=\"true\"，让辅助技术知道内容未就绪。"],
+  "notes": "第一个「重复占位行」组件。"
+}

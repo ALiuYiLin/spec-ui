@@ -1,0 +1,54 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Progress",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "进度条。一条轨道加一段填充，填充宽度由百分比算出。",
+  "anatomy": {
+    "root": {
+      "class": "sm-progress",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "status": {
+          "kind": "variant",
+          "enum": ["normal", "success", "exception"],
+          "required": true,
+          "default": "normal"
+        }
+      }
+    },
+    "parts": {
+      "rail": {
+        "class": "sm-progress__rail",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "bar": {
+        "class": "sm-progress__bar",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "geometry": true,
+        "aria": { "aria-hidden": "true" },
+        "notes": "宽度由 percent 决定，走几何内联样式。"
+      },
+      "text": {
+        "class": "sm-progress__text",
+        "tag": "span",
+        "required": false,
+        "order": 3,
+        "condition": "showInfo"
+      }
+    }
+  },
+  "invariants": [
+    "rail 与 bar 必须存在且各出现一次，顺序为 rail → bar。",
+    "bar 的宽度只能通过几何内联样式设置。",
+    "root 必须带 role=\"progressbar\"、aria-valuenow、aria-valuemin、aria-valuemax。"
+  ],
+  "a11y": ["进度必须通过 aria-valuenow 播报，不能只靠视觉宽度。"],
+  "notes": "第二个使用 geometry 的组件。"
+}

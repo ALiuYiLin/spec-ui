@@ -51,6 +51,11 @@
 - [x] Alert —— 展示类铺开
 - [x] Spin —— 展示类铺开
 - [x] Empty —— 展示类铺开
+- [x] Progress —— 展示类铺开
+- [x] Skeleton —— 展示类铺开
+- [x] Result —— 展示类铺开
+- [x] Statistic —— 展示类铺开
+- [x] Breadcrumb —— 展示类铺开
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）

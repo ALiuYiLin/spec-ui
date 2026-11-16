@@ -22,6 +22,11 @@ import { cases as cardCases } from './card'
 import { cases as alertCases } from './alert'
 import { cases as spinCases } from './spin'
 import { cases as emptyCases } from './empty'
+import { cases as progressCases } from './progress'
+import { cases as skeletonCases } from './skeleton'
+import { cases as resultCases } from './result'
+import { cases as statisticCases } from './statistic'
+import { cases as breadcrumbCases } from './breadcrumb'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -47,4 +52,9 @@ export const cases: Case[] = [
   ...alertCases.map((c) => ({ ...c, component: 'Alert' })),
   ...spinCases.map((c) => ({ ...c, component: 'Spin' })),
   ...emptyCases.map((c) => ({ ...c, component: 'Empty' })),
+  ...progressCases.map((c) => ({ ...c, component: 'Progress' })),
+  ...skeletonCases.map((c) => ({ ...c, component: 'Skeleton' })),
+  ...resultCases.map((c) => ({ ...c, component: 'Result' })),
+  ...statisticCases.map((c) => ({ ...c, component: 'Statistic' })),
+  ...breadcrumbCases.map((c) => ({ ...c, component: 'Breadcrumb' })),
 ]
