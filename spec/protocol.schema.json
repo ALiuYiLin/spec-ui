@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://actview.dev/spec/protocol.schema.json",
+  "title": "ActView Component Protocol",
+  "description": "框架无关组件协议文件的结构定义。每个组件一份，位于 spec/components/<Component>.spec.json。",
+  "type": "object",
+  "required": ["component", "protocol", "anatomy", "invariants"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "component": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]*$",
+      "description": "PascalCase 组件名，与文件名一致。"
+    },
+    "protocol": {
+      "type": "integer",
+      "const": 1,
+      "description": "协议格式版本。"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "stable", "deprecated"],
+      "default": "draft"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "anatomy": {
+      "type": "object",
+      "required": ["root"],
+      "additionalProperties": false,
+      "properties": {
+        "root": { "$ref": "#/$defs/part" },
+        "parts": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/part" }
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "可机器校验的结构断言，写法见 CONVENTIONS.md 第 5 节。"
+    },
+    "a11y": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "part": {
+      "type": "object",
+      "required": ["class", "tag", "required"],
+      "additionalProperties": false,
+      "properties": {
+        "class": {
+          "type": "string",
+          "pattern": "^av-[a-z0-9]+(__[a-z0-9-]+)?$"
+        },
+        "tag": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" }
+            }
+          ],
+          "description": "允许的标签名。数组表示实现可在其中选择，是实现自由度的显式声明。"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "true 表示该槽位必须渲染；false 表示条件渲染，需给出 condition。"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "同级槽位顺序，由小到大。相同 order 视为互斥占位。"
+        },
+        "condition": {
+          "type": "string",
+          "description": "required=false 时的渲染条件，须可判定。"
+        },
+        "attrs": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/attrRule" }
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/dataRule" }
+        },
+        "interaction": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["hover", "active", "focus", "focus-visible", "focus-within"]
+          },
+          "description": "该部件支持的交互态，必须由伪类实现。"
+        },
+        "aria": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "该部件必须携带的 aria 属性。"
+        },
+        "mirror": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "需要从根节点镜像的状态键。仅用于 portal 到 body、脱离根子树的部件。"
+        },
+        "portal": {
+          "type": "boolean",
+          "description": "true 表示该部件 portal 到 body。此类部件允许携带仅含几何属性的内联样式（宽高与定位）。"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "attrRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enum": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "default": {
+          "type": "string"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "dataRule": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["variant", "boolean", "state", "config"]
+        },
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "domain": {
+          "type": "string",
+          "description": "引用 STATE-VOCAB.md 第 5 节的值域名。kind=state 时必填。"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "default": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

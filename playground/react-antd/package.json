@@ -1,0 +1,29 @@
+{
+  "name": "@actview/playground-react-antd",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "extract": "node scripts/extract.mjs",
+    "summarize": "node scripts/summarize.mjs",
+    "report": "node scripts/report.mjs",
+    "conformance": "node scripts/conformance.mjs",
+    "selftest": "node scripts/conformance.mjs --selftest",
+    "diff": "node scripts/visual-diff.mjs",
+    "verify": "node scripts/conformance.mjs && node scripts/conformance.mjs --selftest && node scripts/visual-diff.mjs"
+  },
+  "dependencies": {
+    "antd": "5.29.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "playwright-core": "^1.65.1",
+    "tailwindcss": "^4.3.5",
+    "vite": "^6.0.5"
+  }
+}

@@ -1,0 +1,371 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* ------------------------------------------------------------------
+   说明：不引入 Tailwind 的 preflight。
+   antd 的 reset 只把 border-box 给控件根节点，子部件保持 content-box、
+   border-style 保持 none。引入 preflight 会让所有子部件变成
+   border-box + solid，与证据天然不一致，diff 永远过不了。
+   ------------------------------------------------------------------ */
+
+@theme {
+  --font-av: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-av-primary: #1677ff;
+  --color-av-primary-hover: #4096ff;
+  --color-av-primary-active: #0958d9;
+  --color-av-primary-bg: #e6f4ff;
+  --color-av-danger: #ff4d4f;
+  --color-av-warning: #faad14;
+  --color-av-text: rgba(0, 0, 0, 0.88);
+  --color-av-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-av-border: #d9d9d9;
+  --color-av-fill: rgba(0, 0, 0, 0.04);
+  --color-av-bg: #ffffff;
+  --color-av-ring: #91caff;
+}
+
+@layer components {
+  /* ================= Button ================= */
+  .av-btn {
+    @apply relative inline-flex items-center justify-center box-border select-none;
+    min-width: 0;
+    height: 32px;
+    padding: 0 15px;
+    gap: 8px;
+    border: 1px solid var(--color-av-border);
+    border-radius: 6px;
+    background: var(--color-av-bg);
+    color: var(--color-av-text);
+    font-family: var(--font-av);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  }
+
+  .av-btn[data-size='xs'] {
+    height: 16px;
+    padding-inline: 7px;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+  .av-btn[data-size='sm'] {
+    height: 24px;
+    padding-inline: 7px;
+    border-radius: 4px;
+  }
+  .av-btn[data-size='lg'] {
+    height: 40px;
+    padding-inline: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .av-btn[data-size='xl'] {
+    height: 48px;
+    padding-inline: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .av-btn[data-variant='primary'] {
+    color: #fff;
+    background: var(--color-av-primary);
+    border-color: transparent;
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  }
+  .av-btn[data-variant='dashed'] {
+    border-style: dashed;
+  }
+  .av-btn[data-variant='text'],
+  .av-btn[data-variant='link'] {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  .av-btn[data-variant='link'] {
+    color: var(--color-av-primary);
+  }
+
+  .av-btn[data-danger='true'][data-variant='primary'] {
+    background: var(--color-av-danger);
+    box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
+  }
+  .av-btn[data-danger='true'][data-variant='default'],
+  .av-btn[data-danger='true'][data-variant='dashed'] {
+    color: var(--color-av-danger);
+    border-color: var(--color-av-danger);
+  }
+  .av-btn[data-danger='true'][data-variant='text'],
+  .av-btn[data-danger='true'][data-variant='link'] {
+    color: var(--color-av-danger);
+  }
+
+  .av-btn[data-shape='circle'] {
+    min-width: 32px;
+    width: 32px;
+    padding-inline: 0;
+    border-radius: 50%;
+  }
+  .av-btn[data-shape='circle'][data-size='sm'] {
+    min-width: 24px;
+    width: 24px;
+  }
+  .av-btn[data-shape='circle'][data-size='lg'] {
+    min-width: 40px;
+    width: 40px;
+  }
+  .av-btn[data-shape='round'] {
+    border-radius: 9999px;
+  }
+
+  .av-btn[data-block='true'] {
+    display: flex;
+    width: 100%;
+  }
+
+  /* 交互态：一律伪类，不依赖任何状态类名 */
+  .av-btn[data-variant='primary']:hover {
+    background: var(--color-av-primary-hover);
+  }
+  .av-btn[data-variant='primary']:active {
+    background: var(--color-av-primary-active);
+  }
+  .av-btn[data-variant='default']:hover,
+  .av-btn[data-variant='dashed']:hover {
+    color: var(--color-av-primary-hover);
+    border-color: var(--color-av-primary-hover);
+  }
+  .av-btn[data-variant='default']:active,
+  .av-btn[data-variant='dashed']:active {
+    color: var(--color-av-primary-active);
+    border-color: var(--color-av-primary-active);
+  }
+  .av-btn[data-variant='text']:hover {
+    background: var(--color-av-fill);
+  }
+  .av-btn[data-variant='link']:hover {
+    color: #69b1ff;
+  }
+  .av-btn:focus-visible {
+    outline: 3px solid var(--color-av-ring);
+    outline-offset: 1px;
+  }
+
+  /* 加载态：antd 用整体透明度 + default 光标 */
+  .av-btn[data-loading='true'] {
+    opacity: 0.65;
+    cursor: default;
+  }
+
+  /* 禁用态：中性覆盖，写在最后压住变体色 */
+  .av-btn[data-disabled='true'][data-variant] {
+    color: var(--color-av-text-disabled);
+    background: var(--color-av-fill);
+    border-color: var(--color-av-border);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  /* 子部件：antd 的 reset 不覆盖它们，保持 content-box / border none */
+  .av-btn__label {
+    display: block;
+    box-sizing: content-box;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  .av-btn__icon {
+    display: block;
+    box-sizing: border-box;
+    line-height: normal;
+  }
+  .av-btn__spinner {
+    display: block;
+    box-sizing: border-box;
+    width: 14px;
+    height: 19px;
+    line-height: normal;
+  }
+
+  /* ================= Select ================= */
+  .av-select {
+    @apply relative inline-flex box-border;
+    min-width: 0;
+    height: 32px;
+    font-family: var(--font-av);
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-av-text);
+    cursor: pointer;
+  }
+  .av-select[data-size='sm'] {
+    height: 24px;
+  }
+  .av-select[data-size='lg'] {
+    height: 40px;
+  }
+
+  .av-select__control {
+    @apply relative flex items-center box-border;
+    flex: 1 1 auto;
+    height: 100%;
+    padding: 0 11px;
+    border: 1px solid var(--color-av-border);
+    border-radius: 6px;
+    background: var(--color-av-bg);
+    line-height: 22px;
+  }
+  .av-select[data-size='sm'] .av-select__control {
+    border-radius: 4px;
+    padding-inline: 7px;
+  }
+  .av-select[data-size='lg'] .av-select__control {
+    border-radius: 8px;
+  }
+
+  .av-select__search {
+    @apply absolute inset-y-0;
+    inset-inline: 11px;
+  }
+  .av-select__input {
+    @apply m-0 h-full w-full border-0 bg-transparent p-0;
+    font: inherit;
+    color: inherit;
+  }
+
+  .av-select__value,
+  .av-select__placeholder {
+    display: block;
+    box-sizing: border-box;
+    flex: 1 1 0%;
+    align-self: center;
+    height: 30px;
+    padding-inline-end: 18px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 0;
+  }
+  .av-select__value {
+    position: relative;
+    user-select: none;
+  }
+  .av-select__placeholder {
+    pointer-events: none;
+  }
+  .av-select[data-size='sm'] .av-select__value,
+  .av-select[data-size='sm'] .av-select__placeholder {
+    height: 22px;
+    line-height: 22px;
+  }
+  .av-select[data-size='lg'] .av-select__value,
+  .av-select[data-size='lg'] .av-select__placeholder {
+    height: 38px;
+    line-height: 38px;
+  }
+  .av-select__placeholder {
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+  .av-select__arrow {
+    @apply pointer-events-none absolute top-1/2 flex items-center justify-center;
+    inset-inline-end: 11px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    color: var(--color-av-text-disabled);
+  }
+  .av-select__clear {
+    @apply absolute top-1/2 cursor-pointer;
+    inset-inline-end: 11px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    color: var(--color-av-text-disabled);
+    background: var(--color-av-bg);
+  }
+
+  .av-select[data-status='error'] .av-select__control {
+    border-color: var(--color-av-danger);
+  }
+  .av-select[data-status='warning'] .av-select__control {
+    border-color: var(--color-av-warning);
+  }
+  .av-select[data-variant='filled'] .av-select__control {
+    background: var(--color-av-fill);
+    border-color: transparent;
+  }
+  .av-select[data-variant='borderless'] .av-select__control {
+    background: transparent;
+    border-color: transparent;
+  }
+  .av-select[data-disabled='true'] .av-select__control {
+    background: var(--color-av-fill);
+    color: var(--color-av-text-disabled);
+    cursor: not-allowed;
+  }
+  .av-select:not([data-disabled='true']):hover .av-select__control {
+    border-color: var(--color-av-primary-hover);
+  }
+  .av-select__control:focus-within {
+    border-color: var(--color-av-primary);
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  }
+
+  .av-select__dropdown {
+    @apply absolute box-border;
+    z-index: 1050;
+    overflow: hidden;
+    padding: 4px;
+    border: 0;
+    background: var(--color-av-bg);
+    color: var(--color-av-text);
+    font-family: var(--font-av);
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    line-height: 22px;
+    cursor: auto;
+  }
+
+  .av-select__listbox {
+    @apply flex flex-col;
+  }
+
+  .av-select__option {
+    @apply relative flex box-border;
+    min-height: 32px;
+    height: 32px;
+    padding: 5px 12px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-av-text);
+    cursor: pointer;
+  }
+  .av-select__option[data-highlighted='true'] {
+    background: var(--color-av-fill);
+  }
+  .av-select__option[data-selected='true'] {
+    background: var(--color-av-primary-bg);
+    font-weight: 600;
+  }
+  .av-select__option[data-disabled='true'] {
+    color: var(--color-av-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .av-select__empty {
+    @apply flex items-center justify-center;
+    padding: 8px;
+    font-size: 14px;
+    color: var(--color-av-text-disabled);
+  }
+}

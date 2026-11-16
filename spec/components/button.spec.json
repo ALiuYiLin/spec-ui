@@ -1,0 +1,91 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Button",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "触发单一动作的按钮。叶子组件：无浮层、无内部状态机，全部状态由 props 与交互伪类决定。",
+  "anatomy": {
+    "root": {
+      "class": "av-btn",
+      "tag": "button",
+      "required": true,
+      "attrs": {
+        "type": {
+          "enum": ["button", "submit", "reset"],
+          "required": true,
+          "default": "button",
+          "notes": "必须显式设置，避免在 form 内意外提交。"
+        }
+      },
+      "data": {
+        "variant": {
+          "kind": "variant",
+          "enum": ["default", "primary", "dashed", "text", "link"],
+          "required": true,
+          "default": "default"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "required": true,
+          "default": "md"
+        },
+        "shape": {
+          "kind": "variant",
+          "enum": ["default", "round", "circle"],
+          "required": true,
+          "default": "default"
+        },
+        "danger": { "kind": "boolean" },
+        "block": { "kind": "boolean" },
+        "loading": { "kind": "boolean" },
+        "disabled": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "active", "focus", "focus-visible"],
+      "aria": {
+        "aria-busy": "loading 为 true 时必填 true"
+      }
+    },
+    "parts": {
+      "icon": {
+        "class": "av-btn__icon",
+        "tag": "span",
+        "required": false,
+        "order": 1,
+        "condition": "传入图标且 loading 不为 true",
+        "aria": { "aria-hidden": "true" }
+      },
+      "label": {
+        "class": "av-btn__label",
+        "tag": "span",
+        "required": true,
+        "order": 2
+      },
+      "spinner": {
+        "class": "av-btn__spinner",
+        "tag": "span",
+        "required": false,
+        "order": 1,
+        "condition": "loading 为 true",
+        "aria": { "aria-hidden": "true" }
+      }
+    }
+  },
+  "invariants": [
+    "icon 与 spinner 互斥：不同时存在，二者占据同一槽位（order=1）。",
+    "label 必须存在且只出现一次，且顺序晚于 icon 或 spinner。",
+    "icon 与 spinner 若存在，必须是 root 的直接子节点。",
+    "loading 为 true 时 root 必须同时带 aria-busy=\"true\"。",
+    "disabled 为 true 时 root 必须同时带原生 disabled 属性。",
+    "shape 为 circle 且 label 视觉隐藏时，root 必须有 aria-label。",
+    "loading 不等于 disabled：loading 期间不得输出原生 disabled。",
+    "禁止用 a 标签或 div+role=\"button\" 模拟按钮，导航语义请使用 Link 组件。"
+  ],
+  "a11y": [
+    "使用原生 button，以获得原生键盘激活、焦点与表单行为。",
+    "icon 与 spinner 对辅助技术不可见（aria-hidden）。",
+    "danger 只是视觉语义，不得改变可访问名称。",
+    "circle 形状保留 label 槽位并做视觉隐藏，不用 display:none 移除。"
+  ],
+  "notes": "size 取全局合法值 xs..xl 的子集；组件可进一步收窄，不得扩展（见 STATE-VOCAB 第 6 节）。"
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Select",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "单选下拉选择器。本版覆盖 portal 浮层、键盘高亮、选中态与清除；多选 / tags / 虚拟滚动不在范围内。",
+  "anatomy": {
+    "root": {
+      "class": "av-select",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "variant": {
+          "kind": "variant",
+          "enum": ["outlined", "filled", "borderless"],
+          "required": true,
+          "default": "outlined"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md", "lg"],
+          "required": true,
+          "default": "md"
+        },
+        "status": {
+          "kind": "config",
+          "enum": ["default", "error", "warning"],
+          "required": true,
+          "default": "default"
+        },
+        "disabled": { "kind": "boolean" },
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        }
+      },
+      "interaction": ["hover"]
+    },
+    "parts": {
+      "control": {
+        "class": "av-select__control",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "interaction": ["hover", "active", "focus-within"],
+        "notes": "视觉边框盒。焦点反馈走 :focus-within，不允许用 JS 类名。"
+      },
+      "search": {
+        "class": "av-select__search",
+        "tag": "span",
+        "required": true,
+        "order": 1,
+        "notes": "input 的定位容器，负责把 input 叠在 value 上而不占额外宽度。"
+      },
+      "input": {
+        "class": "av-select__input",
+        "tag": "input",
+        "required": true,
+        "order": 1,
+        "attrs": {
+          "role": { "required": true, "default": "combobox" },
+          "type": { "required": true, "default": "text" },
+          "autocomplete": { "required": true, "default": "off" },
+          "readonly": {
+            "required": true,
+            "notes": "非搜索模式必须 readonly：输入框只用于接收焦点与键盘事件，不承载文字。"
+          }
+        },
+        "aria": {
+          "aria-expanded": "与根节点 state 同步",
+          "aria-controls": "state=open 时为 listbox 的 id",
+          "aria-activedescendant": "存在 highlighted 选项时为该 option 的 id",
+          "aria-autocomplete": "list",
+          "aria-label": "无关联 label 时必填"
+        },
+        "notes": "整个控件唯一的可访问入口；根节点不加 role。"
+      },
+      "value": {
+        "class": "av-select__value",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "存在选中项",
+        "attrs": { "title": { "required": false } }
+      },
+      "placeholder": {
+        "class": "av-select__placeholder",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "无选中项"
+      },
+      "clear": {
+        "class": "av-select__clear",
+        "tag": "span",
+        "required": false,
+        "order": 3,
+        "condition": "allowClear 且存在选中项",
+        "notes": "不可聚焦、不进入 Tab 序列；键盘清除走 Delete / Backspace。"
+      },
+      "arrow": {
+        "class": "av-select__arrow",
+        "tag": "span",
+        "required": false,
+        "order": 4,
+        "condition": "showArrow 且非 loading",
+        "aria": { "aria-hidden": "true" }
+      },
+      "dropdown": {
+        "class": "av-select__dropdown",
+        "tag": "div",
+        "required": false,
+        "order": 0,
+        "condition": "state=open",
+        "mirror": ["state"],
+        "portal": true,
+        "notes": "逻辑上是 root 的子节点，物理上必须 portal 到 document.body；宽度需与根节点一致。"
+      },
+      "listbox": {
+        "class": "av-select__listbox",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "state=open",
+        "attrs": { "role": { "required": true, "default": "listbox" } },
+        "aria": { "id": "供 input 的 aria-controls 引用" }
+      },
+      "option": {
+        "class": "av-select__option",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "state=open 且存在选项",
+        "attrs": { "role": { "required": true, "default": "option" } },
+        "data": {
+          "selected": { "kind": "boolean" },
+          "highlighted": { "kind": "boolean" },
+          "disabled": { "kind": "boolean" }
+        },
+        "aria": {
+          "aria-selected": "与 data-selected 同步",
+          "id": "供 input 的 aria-activedescendant 引用，不得用于样式"
+        },
+        "notes": "selected 与 highlighted 正交：选中是持久态，高亮是键盘游标，两者可同时成立。"
+      },
+      "empty": {
+        "class": "av-select__empty",
+        "tag": "div",
+        "required": false,
+        "order": 2,
+        "condition": "state=open 且无选项"
+      }
+    }
+  },
+  "invariants": [
+    "dropdown 必须 portal 到 document.body，且必须镜像根节点的 state。",
+    "input 必须始终存在（含只读展示态），并持有 role=\"combobox\"、type=\"text\"、autocomplete=\"off\"。",
+    "state=open 时 input 的 aria-expanded=\"true\"，且 aria-controls 指向 listbox 的 id。",
+    "存在 data-highlighted=\"true\" 的 option 时，input 必须带 aria-activedescendant 指向它；同一时刻最多一个。",
+    "不存在 highlighted 选项时必须移除 aria-activedescendant，禁止输出指向不存在节点或 index=-1 的值。",
+    "option 必须是单一节点，同时承担 role=\"option\" 与视觉呈现；禁止为无障碍再渲染一份不可见的 option。若实现因虚拟滚动必须保留 a11y 镜像，镜像节点必须 aria-hidden=\"true\" 且不得使用 av-select__option 类名。",
+    "单选模式下最多一个 option 带 data-selected=\"true\"；data-selected 与 data-highlighted 正交，可同时成立。",
+    "value 与 placeholder 互斥：有选中项渲染 value，否则渲染 placeholder。",
+    "disabled 时 input 必须带原生 disabled，且根节点不得出现 state=open。",
+    "无选项时渲染 empty，且 empty 文案必须能被辅助技术读到。",
+    "clear 在 allowClear 且有值时始终渲染（可见性由样式层控制，不作为 DOM 契约）。",
+    "clear 与 arrow 共用右侧槽位，同一时刻只允许一个可见（样式层约束，见 notes）。",
+    "control 的焦点反馈只能由 :focus-within 驱动；任何节点不得出现 focus / hover / active 等状态类名（通用规则已禁止未声明类名）。"
+  ],
+  "a11y": [
+    "键盘契约：ArrowDown / ArrowUp 移动 highlighted，Enter 选中，Esc 关闭并把焦点还给 input，Delete 清除。",
+    "disabled 的 option 必须跳过键盘游标，不能被 highlighted。",
+    "empty 文案需要能被辅助技术读到（放在 listbox 内）。",
+    "列表项 id 由实现生成，只需在 input 与 option 之间保持一致。"
+  ],
+  "notes": "多选（multiple / tags）会引入 tag 列表与 backspace 删除逻辑，结构差异过大，另立协议。样式层约束（不参与 L2 校验）：clear 默认 opacity:0，根节点 hover 或 focus-within 时 opacity:1，同时 arrow 必须隐藏；二者共用右侧槽位，禁止并排。"
+}
