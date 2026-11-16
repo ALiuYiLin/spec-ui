@@ -204,6 +204,36 @@ const RESOLVE = {
       antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-label')),
     },
   },
+
+  Radio: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-radio')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-radio-wrapper')),
+    },
+    control: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-radio__control')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-radio')),
+    },
+    box: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-radio__box')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-radio-inner')),
+    },
+    label: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-radio__label')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-radio-label')),
+    },
+  },
+
+  Switch: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-switch')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-switch')),
+    },
+    handle: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-switch__handle')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-switch-handle')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -355,6 +385,21 @@ const PAIRS = [
   { component: 'Checkbox', ref: 'ref-checkbox-disabled', antd: 'checkbox-disabled', targets: ['root', 'box'] },
   { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-hover', pseudo: ['hover'], targets: ['box'] },
   { component: 'Checkbox', ref: 'ref-checkbox-focus', antd: 'checkbox-focus', targets: ['box'] },
+
+  // ---- Radio ----
+  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-unchecked', targets: ['root', 'control', 'box', 'label'] },
+  { component: 'Radio', ref: 'ref-radio-checked', antd: 'radio-checked', targets: ['box'] },
+  { component: 'Radio', ref: 'ref-radio-disabled', antd: 'radio-disabled', targets: ['root', 'box'] },
+  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-hover', pseudo: ['hover'], targets: ['box'] },
+  { component: 'Radio', ref: 'ref-radio-focus', antd: 'radio-focus', targets: ['box'] },
+
+  // ---- Switch ----
+  { component: 'Switch', ref: 'ref-switch-off', antd: 'switch-off', targets: ['root', 'handle'] },
+  { component: 'Switch', ref: 'ref-switch-on', antd: 'switch-on', targets: ['root', 'handle'] },
+  { component: 'Switch', ref: 'ref-switch-disabled', antd: 'switch-disabled', targets: ['root'] },
+  { component: 'Switch', ref: 'ref-switch-off', antd: 'switch-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'Switch', ref: 'ref-switch-focus', antd: 'switch-focus', targets: ['root'] },
+  { component: 'Switch', ref: 'ref-switch-small', antd: 'switch-small', targets: ['root', 'handle'] },
 ]
 
 async function main() {

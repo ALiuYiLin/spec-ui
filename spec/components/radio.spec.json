@@ -1,0 +1,75 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Radio",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "单选框。结构与 Checkbox 同构：原生 input 承担语义与键盘，视觉圆点是独立部件；选中态由 radio 值域表达。",
+  "anatomy": {
+    "root": {
+      "class": "sm-radio",
+      "tag": "label",
+      "required": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "radio",
+          "enum": ["checked", "unchecked"],
+          "required": true,
+          "default": "unchecked"
+        },
+        "disabled": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "focus-within"]
+    },
+    "parts": {
+      "control": {
+        "class": "sm-radio__control",
+        "tag": "span",
+        "required": true,
+        "order": 1,
+        "notes": "定位容器，input 绝对定位在其中，视觉圆点也在里面。"
+      },
+      "input": {
+        "class": "sm-radio__input",
+        "tag": "input",
+        "required": true,
+        "order": 1,
+        "attrs": {
+          "type": { "required": true, "default": "radio" },
+          "name": { "required": false, "notes": "同一组单选框必须共享 name，互斥由浏览器保证。" }
+        },
+        "notes": "视觉上不可见但必须可聚焦。"
+      },
+      "box": {
+        "class": "sm-radio__box",
+        "tag": "span",
+        "required": true,
+        "order": 2,
+        "aria": { "aria-hidden": "true" },
+        "notes": "纯视觉圆点，选中标记由样式层绘制。"
+      },
+      "label": {
+        "class": "sm-radio__label",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "存在文本内容"
+      }
+    }
+  },
+  "invariants": [
+    "根节点必须是 label，且恰好包含一个 type=radio 的原生 input。",
+    "control 必须是 root 的直接子节点；input 与 box 必须是 control 的直接子节点，且 input 在 box 之前。",
+    "data-state 必须与 input 的 checked 属性一致。",
+    "同一组单选框必须共享同一个 name，互斥由浏览器保证，不得用 JS 模拟。",
+    "disabled 时 input 必须带原生 disabled，且根节点同时带 data-disabled。",
+    "box 必须 aria-hidden，不得作为可访问名称的来源。",
+    "禁止用 div + 图标模拟单选框。"
+  ],
+  "a11y": [
+    "可访问名称来自 label 文本或 aria-label。",
+    "焦点环由 input 的 :focus 驱动，样式作用在 box 上（相邻兄弟选择器）。",
+    "方向键在组内切换由浏览器原生行为提供，实现不得拦截。"
+  ],
+  "notes": "这是 data-state 的 radio 值域第一次被使用。"
+}

@@ -9,5 +9,10 @@ export type { InputVariant, InputSize, InputStatus } from './input'
 
 export { Checkbox } from './checkbox'
 
+export { Radio } from './radio'
+
+export { Switch } from './switch'
+export type { SwitchSize } from './switch'
+
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'
 export { normalizeLabel } from './text'

@@ -1,0 +1,72 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Switch",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "开关。与 Checkbox / Radio 不同，它没有原生 input：根节点是 button[role=switch]，开关状态同时体现在 data-state 与 aria-checked 上。",
+  "anatomy": {
+    "root": {
+      "class": "sm-switch",
+      "tag": "button",
+      "required": true,
+      "attrs": {
+        "type": { "required": true, "default": "button" }
+      },
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "toggle",
+          "enum": ["on", "off"],
+          "required": true,
+          "default": "off"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md"],
+          "required": true,
+          "default": "md"
+        },
+        "disabled": { "kind": "boolean" },
+        "loading": { "kind": "boolean" }
+      },
+      "aria": {
+        "role": "switch",
+        "aria-checked": "与 data-state 同步：on → true，off → false"
+      },
+      "interaction": ["hover", "focus", "focus-visible"]
+    },
+    "parts": {
+      "handle": {
+        "class": "sm-switch__handle",
+        "tag": "span",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" },
+        "notes": "滑动的圆点；位移由样式层根据 data-state 决定。"
+      },
+      "inner": {
+        "class": "sm-switch__inner",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "存在轨道内文本",
+        "notes": "轨道内的状态文案，可省略。"
+      }
+    }
+  },
+  "invariants": [
+    "根节点必须是 button，type=\"button\"，role=\"switch\"。",
+    "aria-checked 必须与 data-state 严格对应：on → \"true\"，off → \"false\"。",
+    "handle 必须是 root 的直接子节点，且只有这一个。",
+    "loading 为 true 时 root 必须带 aria-busy=\"true\"，且不得同时输出原生 disabled。",
+    "disabled 时根节点必须带原生 disabled 与 data-disabled。",
+    "禁止用 checkbox 伪装开关；开关是二态动作控件，不是表单勾选。",
+    "键盘契约：Space / Enter 切换，由原生 button 提供，实现不得拦截。"
+  ],
+  "a11y": [
+    "可访问名称来自轨道内文本或 aria-label。",
+    "焦点环由 :focus-visible 驱动，作用在 root 上。",
+    "切换结果必须同时改变 aria-checked，不能只改样式。"
+  ],
+  "notes": "这是 data-state 的 toggle 值域第一次被使用，也是第一个没有原生 input 的表单类控件——语义完全靠 role + aria 承载。"
+}

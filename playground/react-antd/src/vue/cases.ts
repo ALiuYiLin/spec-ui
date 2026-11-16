@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Input, Select } from '@specmark/vue'
+import { Button, Checkbox, Input, Radio, Select, Switch } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -137,6 +137,25 @@ export const renders: Record<string, { component: VueCase['component']; actions?
     actions: [{ type: 'focus', selector: '.sm-checkbox__input' }],
     render: () => h(Checkbox, { label: '同意' }),
   },
+
+  'ref-radio-unchecked': { component: 'Radio', render: () => h(Radio, { label: '同意' }) },
+  'ref-radio-checked': { component: 'Radio', render: () => h(Radio, { modelValue: true, label: '同意' }) },
+  'ref-radio-disabled': { component: 'Radio', render: () => h(Radio, { disabled: true, label: '同意' }) },
+  'ref-radio-focus': {
+    component: 'Radio',
+    actions: [{ type: 'focus', selector: '.sm-radio__input' }],
+    render: () => h(Radio, { label: '同意' }),
+  },
+
+  'ref-switch-off': { component: 'Switch', render: () => h(Switch) },
+  'ref-switch-on': { component: 'Switch', render: () => h(Switch, { modelValue: true }) },
+  'ref-switch-disabled': { component: 'Switch', render: () => h(Switch, { disabled: true }) },
+  'ref-switch-focus': {
+    component: 'Switch',
+    actions: [{ type: 'focus', selector: '.sm-switch' }],
+    render: () => h(Switch),
+  },
+  'ref-switch-small': { component: 'Switch', render: () => h(Switch, { size: 'sm' }) },
 }
 
 export const caseIds = Object.keys(renders)

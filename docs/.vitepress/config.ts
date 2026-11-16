@@ -8,7 +8,7 @@ const here = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   lang: 'zh-CN',
   title: 'SpecMark',
-  description: '框架无关的组件协议：一份 DOM 契约，多套实现，一套样式',
+  description: 'Spec first, mark drives UI',
 
   themeConfig: {
     nav: [
@@ -30,6 +30,8 @@ export default defineConfig({
             { text: 'Select', link: '/components/select' },
             { text: 'Input', link: '/components/input' },
             { text: 'Checkbox', link: '/components/checkbox' },
+            { text: 'Radio', link: '/components/radio' },
+            { text: 'Switch', link: '/components/switch' },
           ],
         },
       ],
