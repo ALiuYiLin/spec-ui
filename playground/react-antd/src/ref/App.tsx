@@ -11,7 +11,7 @@ const active = cases.find((c) => c.id === params.get('case')) ?? cases[0]
   pseudo: pseudo ?? [],
   assert,
 }))
-;(window as any).__ACTVIEW_ACTIVE__ = active.id
+;(window as any).__SPECMARK_ACTIVE__ = active.id
 
 export default function App() {
   return (

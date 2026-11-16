@@ -1,6 +1,6 @@
 # 状态词汇表
 
-> 版本 v0.1 · 适用于所有 ActView 组件协议
+> 版本 v0.1 · 适用于所有 SpecMark 组件协议
 > 本文档是**封闭词汇表**：协议文件只能使用这里出现的词条与值域。新增词条需走第 10 节流程。
 
 ## 0. 为什么需要它
@@ -15,8 +15,8 @@ A 实现用 `:hover`、B 实现用 `.is-hover`，样式层就无法写一份通�
 
 | 术语 | 含义 |
 |---|---|
-| 根（root） | 组件对外唯一入口节点，持有 `av-<component>` 类名 |
-| 部件（part） | 根内部的具名槽位，持有 `av-<component>__<part>` 类名 |
+| 根（root） | 组件对外唯一入口节点，持有 `sm-<component>` 类名 |
+| 部件（part） | 根内部的具名槽位，持有 `sm-<component>__<part>` 类名 |
 | 语义所有者（owner） | 状态的语义归属方，状态属性只挂在它身上 |
 | 镜像（mirror） | portal 脱离根子树时，从根复制过来的状态属性 |
 | 值域（domain） | `data-state` 允许取值的封闭集合 |
@@ -109,7 +109,7 @@ A 实现用 `:hover`、B 实现用 `.is-hover`，样式层就无法写一份通�
 - 后代部件不重复标注，样式层用"所有者 → 后代"的后代选择器继承：
 
   ```css
-  .av-select[data-state="open"] .av-select__arrow { transform: rotate(180deg); }
+  .sm-select[data-state="open"] .sm-select__arrow { transform: rotate(180deg); }
   ```
 
 - **例外（portal 镜像）**：渲染到 `body` 的浮层脱离了根子树，后代选择器够不到，

@@ -1,9 +1,9 @@
 /* 仅用于 L3 比对台的布局约束，不属于组件库样式。
    与 antd 证据台保持一致：Select 在 200px 容器里渲染。 */
-[data-case-root] > .av-select {
+[data-case-root] > .sm-select {
   inline-size: 200px;
 }
 
-[data-case-root] > .av-input {
+[data-case-root] > .sm-input {
   inline-size: 200px;
 }

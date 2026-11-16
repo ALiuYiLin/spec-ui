@@ -20,12 +20,12 @@
     "noEmit": true,
 
     "paths": {
-      "@actview/react": ["./packages/av-react/src/index.ts"]
+      "@specmark/react": ["./packages/sm-react/src/index.ts"]
     }
   },
   "include": [
-    "packages/av-react/src/**/*.ts",
-    "packages/av-react/src/**/*.tsx",
+    "packages/sm-react/src/**/*.ts",
+    "packages/sm-react/src/**/*.tsx",
     "playground/react-antd/src/**/*.ts",
     "playground/react-antd/src/**/*.tsx"
   ],

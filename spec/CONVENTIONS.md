@@ -6,17 +6,17 @@
 
 | 层级 | 形式 | 例子 |
 |---|---|---|
-| 根 | `av-<component>` | `av-btn` `av-select` `av-input` |
-| 部件 | `av-<component>__<part>` | `av-btn__label` `av-select__option` |
+| 根 | `sm-<component>` | `sm-btn` `sm-select` `sm-input` |
+| 部件 | `sm-<component>__<part>` | `sm-btn__label` `sm-select__option` |
 
 类名**只**承担结构钩子：不承载状态、不承载变体、不承载尺寸。
 
 禁止：
 
-- `av-btn-primary`（变体进类名 → 组合爆炸）
-- `av-btn--primary`（BEM modifier，同上）
+- `sm-btn-primary`（变体进类名 → 组合爆炸）
+- `sm-btn--primary`（BEM modifier，同上）
 - `is-loading` / `has-error`（状态进类名）
-- 同一节点挂两个组件域（`av-btn av-link`）
+- 同一节点挂两个组件域（`sm-btn sm-link`）
 
 ## 2. `data-*` 的命名与取值
 
@@ -44,14 +44,14 @@
 
 ```css
 /* ✅ 允许 */
-.av-btn__label { line-height: 1.5715; }
-.av-btn[data-loading="true"] .av-btn__label { opacity: .65; }
-.av-select[data-state="open"] .av-select__arrow { transform: rotate(180deg); }
-.av-select__option[data-highlighted="true"] { background: var(--av-color-fill-secondary); }
+.sm-btn__label { line-height: 1.5715; }
+.sm-btn[data-loading="true"] .sm-btn__label { opacity: .65; }
+.sm-select[data-state="open"] .sm-select__arrow { transform: rotate(180deg); }
+.sm-select__option[data-highlighted="true"] { background: var(--sm-color-fill-secondary); }
 
 /* ❌ 禁止 */
-.av-btn > span { }              /* 依赖层级与标签 */
-.av-btn span:nth-child(2) { }   /* 依赖节点顺序 */
+.sm-btn > span { }              /* 依赖层级与标签 */
+.sm-btn span:nth-child(2) { }   /* 依赖节点顺序 */
 .ant-btn { }                    /* 依赖特定实现的内部分支 */
 ```
 
@@ -88,10 +88,10 @@
 **默认态**
 
 ```html
-<button type="button" class="av-btn"
+<button type="button" class="sm-btn"
         data-variant="primary" data-size="md" data-shape="default">
-  <span class="av-btn__icon" aria-hidden="true"><!-- svg --></span>
-  <span class="av-btn__label">提交</span>
+  <span class="sm-btn__icon" aria-hidden="true"><!-- svg --></span>
+  <span class="sm-btn__label">提交</span>
 </button>
 ```
 
@@ -103,32 +103,32 @@ DOM 与默认态**完全一致**，零新增属性、零新增类名。差异只
 **加载态**
 
 ```html
-<button type="button" class="av-btn"
+<button type="button" class="sm-btn"
         data-variant="primary" data-size="md" data-loading="true"
         aria-busy="true">
-  <span class="av-btn__spinner" aria-hidden="true"><!-- spinner --></span>
-  <span class="av-btn__label">提交</span>
+  <span class="sm-btn__spinner" aria-hidden="true"><!-- spinner --></span>
+  <span class="sm-btn__label">提交</span>
 </button>
 ```
 
 **禁用态**
 
 ```html
-<button type="button" class="av-btn"
+<button type="button" class="sm-btn"
         data-variant="primary" data-size="md" data-disabled="true"
         disabled>
-  <span class="av-btn__label">提交</span>
+  <span class="sm-btn__label">提交</span>
 </button>
 ```
 
 **圆形（无可见文本）**
 
 ```html
-<button type="button" class="av-btn"
+<button type="button" class="sm-btn"
         data-variant="text" data-size="md" data-shape="circle"
         aria-label="搜索">
-  <span class="av-btn__icon" aria-hidden="true"><!-- svg --></span>
-  <span class="av-btn__label">搜索</span>  <!-- 视觉隐藏，非 display:none -->
+  <span class="sm-btn__icon" aria-hidden="true"><!-- svg --></span>
+  <span class="sm-btn__label">搜索</span>  <!-- 视觉隐藏，非 display:none -->
 </button>
 ```
 
@@ -152,24 +152,24 @@ L2 是这套方案能否成立的关键：没有它，"协议"只是一份会过
 
 | 组件 | 前缀 | 组件 | 前缀 |
 |---|---|---|---|
-| Button | `av-btn` | Table | `av-table` |
-| Input | `av-input` | Tabs | `av-tabs` |
-| InputNumber | `av-input-number` | Modal | `av-modal` |
-| Select | `av-select` | Drawer | `av-drawer` |
-| Checkbox | `av-checkbox` | Tooltip | `av-tooltip` |
-| Radio | `av-radio` | Popover | `av-popover` |
-| Switch | `av-switch` | Dropdown | `av-dropdown` |
-| Slider | `av-slider` | Menu | `av-menu` |
-| Form | `av-form` | Tree | `av-tree` |
-| Field | `av-field` | Upload | `av-upload` |
-| DatePicker | `av-date-picker` | Pagination | `av-pagination` |
-| Alert | `av-alert` | Tag | `av-tag` |
-| Badge | `av-badge` | Card | `av-card` |
-| Space | `av-space` | Spin | `av-spin` |
-| Progress | `av-progress` | Skeleton | `av-skeleton` |
-| Breadcrumb | `av-breadcrumb` | Steps | `av-steps` |
-| Collapse | `av-collapse` | Avatar | `av-avatar` |
-| Divider | `av-divider` | Empty | `av-empty` |
-| Descriptions | `av-descriptions` | Timeline | `av-timeline` |
-| Result | `av-result` | Image | `av-image` |
-| Statistic | `av-statistic` | Transfer | `av-transfer` |
+| Button | `sm-btn` | Table | `sm-table` |
+| Input | `sm-input` | Tabs | `sm-tabs` |
+| InputNumber | `sm-input-number` | Modal | `sm-modal` |
+| Select | `sm-select` | Drawer | `sm-drawer` |
+| Checkbox | `sm-checkbox` | Tooltip | `sm-tooltip` |
+| Radio | `sm-radio` | Popover | `sm-popover` |
+| Switch | `sm-switch` | Dropdown | `sm-dropdown` |
+| Slider | `sm-slider` | Menu | `sm-menu` |
+| Form | `sm-form` | Tree | `sm-tree` |
+| Field | `sm-field` | Upload | `sm-upload` |
+| DatePicker | `sm-date-picker` | Pagination | `sm-pagination` |
+| Alert | `sm-alert` | Tag | `sm-tag` |
+| Badge | `sm-badge` | Card | `sm-card` |
+| Space | `sm-space` | Spin | `sm-spin` |
+| Progress | `sm-progress` | Skeleton | `sm-skeleton` |
+| Breadcrumb | `sm-breadcrumb` | Steps | `sm-steps` |
+| Collapse | `sm-collapse` | Avatar | `sm-avatar` |
+| Divider | `sm-divider` | Empty | `sm-empty` |
+| Descriptions | `sm-descriptions` | Timeline | `sm-timeline` |
+| Result | `sm-result` | Image | `sm-image` |
+| Statistic | `sm-statistic` | Transfer | `sm-transfer` |

@@ -46,7 +46,7 @@ export function Select({
   'aria-label': ariaLabel,
 }: SelectProps) {
   const idRef = useRef<string | null>(null)
-  if (idRef.current === null) idRef.current = `av-select-${++seq}`
+  if (idRef.current === null) idRef.current = `sm-select-${++seq}`
   const listId = `${idRef.current}-list`
 
   const [openState, setOpenState] = useState(false)
@@ -162,7 +162,7 @@ export function Select({
   return (
     <div
       ref={rootRef}
-      className="av-select"
+      className="sm-select"
       style={style}
       data-variant={variant}
       data-size={size}
@@ -173,11 +173,11 @@ export function Select({
         if (!disabled) setOpen(!open)
       }}
     >
-      <div className="av-select__control">
-        <span className="av-select__search">
+      <div className="sm-select__control">
+        <span className="sm-select__search">
           <input
             ref={inputRef}
-            className="av-select__input"
+            className="sm-select__input"
             role="combobox"
             type="text"
             autoComplete="off"
@@ -193,19 +193,19 @@ export function Select({
         </span>
         {selectedOption ? (
           <span
-            className="av-select__value"
+            className="sm-select__value"
             title={typeof selectedOption.label === 'string' ? selectedOption.label : undefined}
           >
             {selectedOption.label}
           </span>
         ) : (
-          <span className="av-select__placeholder">{placeholder}</span>
+          <span className="sm-select__placeholder">{placeholder}</span>
         )}
       </div>
 
       {allowClear && selectedOption && !disabled ? (
         <span
-          className="av-select__clear"
+          className="sm-select__clear"
           aria-hidden="true"
           onMouseDown={(e) => {
             e.preventDefault()
@@ -219,7 +219,7 @@ export function Select({
       ) : null}
 
       {showArrow ? (
-        <span className="av-select__arrow" aria-hidden="true">
+        <span className="sm-select__arrow" aria-hidden="true">
           <DownIcon />
         </span>
       ) : null}
@@ -227,17 +227,17 @@ export function Select({
       {open
         ? createPortal(
             <div
-              className="av-select__dropdown"
+              className="sm-select__dropdown"
               data-state={open ? 'open' : 'closed'}
               style={popupStyle}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="av-select__listbox" role="listbox" id={listId}>
-                {options.length === 0 ? <div className="av-select__empty">暂无数据</div> : null}
+              <div className="sm-select__listbox" role="listbox" id={listId}>
+                {options.length === 0 ? <div className="sm-select__empty">暂无数据</div> : null}
                 {options.map((o, i) => (
                   <div
                     key={o.value}
-                    className="av-select__option"
+                    className="sm-select__option"
                     role="option"
                     id={`${listId}-opt-${i}`}
                     aria-selected={o.value === value}

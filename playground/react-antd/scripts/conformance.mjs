@@ -85,7 +85,7 @@ const snapshotFn = () => {
   }
 
   const tree = walk(el)
-  const portals = Array.from(document.querySelectorAll('.av-select__dropdown'))
+  const portals = Array.from(document.querySelectorAll('.sm-select__dropdown'))
     .filter((p) => !el.contains(p))
     .map((p) => ({ tree: walk(p), parentTag: (p.parentElement && p.parentElement.tagName.toLowerCase()) || null }))
   return { tree, portals }
@@ -230,38 +230,38 @@ const SELFTEST_FIXTURES = [
   {
     name: '状态类名',
     component: 'Button',
-    html: `<button class="av-btn is-loading" data-variant="default" data-size="md" data-shape="default"><span class="av-btn__label">x</span></button>`,
+    html: `<button class="sm-btn is-loading" data-variant="default" data-size="md" data-shape="default"><span class="sm-btn__label">x</span></button>`,
     expect: ['is-loading'],
   },
   {
     name: '未声明的 data',
     component: 'Button',
-    html: `<button class="av-btn" data-variant="default" data-size="md" data-shape="default" data-foo="1"><span class="av-btn__label">x</span></button>`,
+    html: `<button class="sm-btn" data-variant="default" data-size="md" data-shape="default" data-foo="1"><span class="sm-btn__label">x</span></button>`,
     expect: ['data-foo'],
   },
   {
     name: '内联 style',
     component: 'Button',
-    html: `<button class="av-btn" style="color:red" data-variant="default" data-size="md" data-shape="default"><span class="av-btn__label">x</span></button>`,
+    html: `<button class="sm-btn" style="color:red" data-variant="default" data-size="md" data-shape="default"><span class="sm-btn__label">x</span></button>`,
     expect: ['内联 style'],
   },
   {
     name: 'loading 缺 aria-busy',
     component: 'Button',
-    html: `<button class="av-btn" data-variant="default" data-size="md" data-shape="default" data-loading="true"><span class="av-btn__label">x</span></button>`,
+    html: `<button class="sm-btn" data-variant="default" data-size="md" data-shape="default" data-loading="true"><span class="sm-btn__label">x</span></button>`,
     expect: ['aria-busy'],
   },
   {
     name: 'ARIA 镜像 option + 悬空引用',
     component: 'Select',
-    html: `<div class="av-select" data-variant="outlined" data-size="md" data-status="default" data-state="open">
-      <div class="av-select__control">
-        <span class="av-select__search"><input class="av-select__input" role="combobox" aria-expanded="true" aria-controls="missing-id" /></span>
+    html: `<div class="sm-select" data-variant="outlined" data-size="md" data-status="default" data-state="open">
+      <div class="sm-select__control">
+        <span class="sm-select__search"><input class="sm-select__input" role="combobox" aria-expanded="true" aria-controls="missing-id" /></span>
       </div>
-      <div class="av-select__dropdown" data-state="open">
-        <div class="av-select__listbox" role="listbox" id="lb">
+      <div class="sm-select__dropdown" data-state="open">
+        <div class="sm-select__listbox" role="listbox" id="lb">
           <div role="option" aria-selected="false" id="mirror-1"></div>
-          <div class="av-select__option" role="option" aria-selected="false" id="opt-1"></div>
+          <div class="sm-select__option" role="option" aria-selected="false" id="opt-1"></div>
         </div>
       </div>
     </div>`,
@@ -270,19 +270,19 @@ const SELFTEST_FIXTURES = [
   {
     name: 'icon 嵌在 label 内部',
     component: 'Button',
-    html: `<button class="av-btn" data-variant="default" data-size="md" data-shape="default"><span class="av-btn__label"><span class="av-btn__icon" aria-hidden="true"></span>提交</span></button>`,
+    html: `<button class="sm-btn" data-variant="default" data-size="md" data-shape="default"><span class="sm-btn__label"><span class="sm-btn__icon" aria-hidden="true"></span>提交</span></button>`,
     assert: [{ k: 'childOf', on: 'icon', of: 'root' }],
     expect: ['直接子节点'],
   },
   {
     name: '浮层未 portal 到 body',
     component: 'Select',
-    html: `<div class="av-select" data-variant="outlined" data-size="md" data-status="default" data-state="open">
-      <div class="av-select__control">
-        <span class="av-select__search"><input class="av-select__input" role="combobox" aria-expanded="true" aria-controls="lb" /></span>
+    html: `<div class="sm-select" data-variant="outlined" data-size="md" data-status="default" data-state="open">
+      <div class="sm-select__control">
+        <span class="sm-select__search"><input class="sm-select__input" role="combobox" aria-expanded="true" aria-controls="lb" /></span>
       </div>
-      <div class="av-select__dropdown" data-state="open">
-        <div class="av-select__listbox" role="listbox" id="lb"></div>
+      <div class="sm-select__dropdown" data-state="open">
+        <div class="sm-select__listbox" role="listbox" id="lb"></div>
       </div>
     </div>`,
     assert: [{ k: 'parentIsBody', on: 'dropdown' }],

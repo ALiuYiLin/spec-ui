@@ -9,36 +9,36 @@
    ------------------------------------------------------------------ */
 
 @theme {
-  --font-av: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  --font-sm: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  --color-av-primary: #1677ff;
-  --color-av-primary-hover: #4096ff;
-  --color-av-primary-active: #0958d9;
-  --color-av-primary-bg: #e6f4ff;
-  --color-av-danger: #ff4d4f;
-  --color-av-warning: #faad14;
-  --color-av-text: rgba(0, 0, 0, 0.88);
-  --color-av-text-disabled: rgba(0, 0, 0, 0.25);
-  --color-av-border: #d9d9d9;
-  --color-av-fill: rgba(0, 0, 0, 0.04);
-  --color-av-bg: #ffffff;
-  --color-av-ring: #91caff;
+  --color-sm-primary: #1677ff;
+  --color-sm-primary-hover: #4096ff;
+  --color-sm-primary-active: #0958d9;
+  --color-sm-primary-bg: #e6f4ff;
+  --color-sm-danger: #ff4d4f;
+  --color-sm-warning: #faad14;
+  --color-sm-text: rgba(0, 0, 0, 0.88);
+  --color-sm-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-sm-border: #d9d9d9;
+  --color-sm-fill: rgba(0, 0, 0, 0.04);
+  --color-sm-bg: #ffffff;
+  --color-sm-ring: #91caff;
 }
 
 @layer components {
   /* ================= Button ================= */
-  .av-btn {
+  .sm-btn {
     @apply relative inline-flex items-center justify-center box-border select-none;
     min-width: 0;
     height: 32px;
     padding: 0 15px;
     gap: 8px;
-    border: 1px solid var(--color-av-border);
+    border: 1px solid var(--color-sm-border);
     border-radius: 6px;
-    background: var(--color-av-bg);
-    color: var(--color-av-text);
-    font-family: var(--font-av);
+    background: var(--color-sm-bg);
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
     font-size: 14px;
     font-weight: 400;
     line-height: normal;
@@ -48,142 +48,142 @@
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
   }
 
-  .av-btn[data-size='xs'] {
+  .sm-btn[data-size='xs'] {
     height: 16px;
     padding-inline: 7px;
     border-radius: 2px;
     font-size: 12px;
   }
-  .av-btn[data-size='sm'] {
+  .sm-btn[data-size='sm'] {
     height: 24px;
     padding-inline: 7px;
     border-radius: 4px;
   }
-  .av-btn[data-size='lg'] {
+  .sm-btn[data-size='lg'] {
     height: 40px;
     padding-inline: 15px;
     border-radius: 8px;
     font-size: 16px;
   }
-  .av-btn[data-size='xl'] {
+  .sm-btn[data-size='xl'] {
     height: 48px;
     padding-inline: 15px;
     border-radius: 8px;
     font-size: 16px;
   }
 
-  .av-btn[data-variant='primary'] {
+  .sm-btn[data-variant='primary'] {
     color: #fff;
-    background: var(--color-av-primary);
+    background: var(--color-sm-primary);
     border-color: transparent;
     box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
   }
-  .av-btn[data-variant='dashed'] {
+  .sm-btn[data-variant='dashed'] {
     border-style: dashed;
   }
-  .av-btn[data-variant='text'],
-  .av-btn[data-variant='link'] {
+  .sm-btn[data-variant='text'],
+  .sm-btn[data-variant='link'] {
     background: transparent;
     border-color: transparent;
     box-shadow: none;
   }
-  .av-btn[data-variant='link'] {
-    color: var(--color-av-primary);
+  .sm-btn[data-variant='link'] {
+    color: var(--color-sm-primary);
   }
 
-  .av-btn[data-danger='true'][data-variant='primary'] {
-    background: var(--color-av-danger);
+  .sm-btn[data-danger='true'][data-variant='primary'] {
+    background: var(--color-sm-danger);
     box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
   }
-  .av-btn[data-danger='true'][data-variant='default'],
-  .av-btn[data-danger='true'][data-variant='dashed'] {
-    color: var(--color-av-danger);
-    border-color: var(--color-av-danger);
+  .sm-btn[data-danger='true'][data-variant='default'],
+  .sm-btn[data-danger='true'][data-variant='dashed'] {
+    color: var(--color-sm-danger);
+    border-color: var(--color-sm-danger);
   }
-  .av-btn[data-danger='true'][data-variant='text'],
-  .av-btn[data-danger='true'][data-variant='link'] {
-    color: var(--color-av-danger);
+  .sm-btn[data-danger='true'][data-variant='text'],
+  .sm-btn[data-danger='true'][data-variant='link'] {
+    color: var(--color-sm-danger);
   }
 
-  .av-btn[data-shape='circle'] {
+  .sm-btn[data-shape='circle'] {
     min-width: 32px;
     width: 32px;
     padding-inline: 0;
     border-radius: 50%;
   }
-  .av-btn[data-shape='circle'][data-size='sm'] {
+  .sm-btn[data-shape='circle'][data-size='sm'] {
     min-width: 24px;
     width: 24px;
   }
-  .av-btn[data-shape='circle'][data-size='lg'] {
+  .sm-btn[data-shape='circle'][data-size='lg'] {
     min-width: 40px;
     width: 40px;
   }
-  .av-btn[data-shape='round'] {
+  .sm-btn[data-shape='round'] {
     border-radius: 9999px;
   }
 
-  .av-btn[data-block='true'] {
+  .sm-btn[data-block='true'] {
     display: flex;
     width: 100%;
   }
 
   /* 交互态：一律伪类，不依赖任何状态类名 */
-  .av-btn[data-variant='primary']:hover {
-    background: var(--color-av-primary-hover);
+  .sm-btn[data-variant='primary']:hover {
+    background: var(--color-sm-primary-hover);
   }
-  .av-btn[data-variant='primary']:active {
-    background: var(--color-av-primary-active);
+  .sm-btn[data-variant='primary']:active {
+    background: var(--color-sm-primary-active);
   }
-  .av-btn[data-variant='default']:hover,
-  .av-btn[data-variant='dashed']:hover {
-    color: var(--color-av-primary-hover);
-    border-color: var(--color-av-primary-hover);
+  .sm-btn[data-variant='default']:hover,
+  .sm-btn[data-variant='dashed']:hover {
+    color: var(--color-sm-primary-hover);
+    border-color: var(--color-sm-primary-hover);
   }
-  .av-btn[data-variant='default']:active,
-  .av-btn[data-variant='dashed']:active {
-    color: var(--color-av-primary-active);
-    border-color: var(--color-av-primary-active);
+  .sm-btn[data-variant='default']:active,
+  .sm-btn[data-variant='dashed']:active {
+    color: var(--color-sm-primary-active);
+    border-color: var(--color-sm-primary-active);
   }
-  .av-btn[data-variant='text']:hover {
-    background: var(--color-av-fill);
+  .sm-btn[data-variant='text']:hover {
+    background: var(--color-sm-fill);
   }
-  .av-btn[data-variant='link']:hover {
+  .sm-btn[data-variant='link']:hover {
     color: #69b1ff;
   }
-  .av-btn:focus-visible {
-    outline: 3px solid var(--color-av-ring);
+  .sm-btn:focus-visible {
+    outline: 3px solid var(--color-sm-ring);
     outline-offset: 1px;
   }
 
   /* 加载态：antd 用整体透明度 + default 光标 */
-  .av-btn[data-loading='true'] {
+  .sm-btn[data-loading='true'] {
     opacity: 0.65;
     cursor: default;
   }
 
   /* 禁用态：中性覆盖，写在最后压住变体色 */
-  .av-btn[data-disabled='true'][data-variant] {
-    color: var(--color-av-text-disabled);
-    background: var(--color-av-fill);
-    border-color: var(--color-av-border);
+  .sm-btn[data-disabled='true'][data-variant] {
+    color: var(--color-sm-text-disabled);
+    background: var(--color-sm-fill);
+    border-color: var(--color-sm-border);
     box-shadow: none;
     cursor: not-allowed;
   }
 
   /* 子部件：antd 的 reset 不覆盖它们，保持 content-box / border none */
-  .av-btn__label {
+  .sm-btn__label {
     display: block;
     box-sizing: content-box;
     line-height: normal;
     white-space: nowrap;
   }
-  .av-btn__icon {
+  .sm-btn__icon {
     display: block;
     box-sizing: border-box;
     line-height: normal;
   }
-  .av-btn__spinner {
+  .sm-btn__spinner {
     display: block;
     box-sizing: border-box;
     width: 14px;
@@ -191,61 +191,61 @@
     font-size: 14px;
     line-height: normal;
     text-align: center;
-    animation: av-spin 1s linear infinite;
+    animation: sm-spin 1s linear infinite;
   }
 
   /* ================= Select ================= */
-  .av-select {
+  .sm-select {
     @apply relative inline-flex box-border;
     min-width: 0;
     height: 32px;
-    font-family: var(--font-av);
+    font-family: var(--font-sm);
     font-size: 14px;
     line-height: 22px;
-    color: var(--color-av-text);
+    color: var(--color-sm-text);
     cursor: pointer;
   }
-  .av-select[data-size='sm'] {
+  .sm-select[data-size='sm'] {
     height: 24px;
   }
-  .av-select[data-size='lg'] {
+  .sm-select[data-size='lg'] {
     height: 40px;
   }
 
-  .av-select__control {
+  .sm-select__control {
     @apply relative flex items-center box-border;
     flex: 1 1 auto;
     height: 100%;
     padding: 0 11px;
-    border: 1px solid var(--color-av-border);
+    border: 1px solid var(--color-sm-border);
     border-radius: 6px;
-    background: var(--color-av-bg);
+    background: var(--color-sm-bg);
     line-height: 22px;
     /* antd 的 selector 常态是 UA 默认的 3px outline（style:none，不可见），聚焦时归零 */
     outline-style: none;
     outline-width: 3px;
   }
-  .av-select[data-size='sm'] .av-select__control {
+  .sm-select[data-size='sm'] .sm-select__control {
     border-radius: 4px;
     padding-inline: 7px;
   }
-  .av-select[data-size='lg'] .av-select__control {
+  .sm-select[data-size='lg'] .sm-select__control {
     border-radius: 8px;
   }
 
-  .av-select__search {
+  .sm-select__search {
     @apply absolute inset-y-0;
     inset-inline: 11px;
   }
-  .av-select__input {
+  .sm-select__input {
     @apply m-0 h-full w-full border-0 bg-transparent p-0;
     font: inherit;
     color: inherit;
     outline: none;
   }
 
-  .av-select__value,
-  .av-select__placeholder {
+  .sm-select__value,
+  .sm-select__placeholder {
     display: block;
     box-sizing: border-box;
     flex: 1 1 0%;
@@ -258,28 +258,28 @@
     white-space: nowrap;
     border: 0;
   }
-  .av-select__value {
+  .sm-select__value {
     position: relative;
     user-select: none;
   }
-  .av-select__placeholder {
+  .sm-select__placeholder {
     pointer-events: none;
   }
-  .av-select[data-size='sm'] .av-select__value,
-  .av-select[data-size='sm'] .av-select__placeholder {
+  .sm-select[data-size='sm'] .sm-select__value,
+  .sm-select[data-size='sm'] .sm-select__placeholder {
     height: 22px;
     line-height: 22px;
   }
-  .av-select[data-size='lg'] .av-select__value,
-  .av-select[data-size='lg'] .av-select__placeholder {
+  .sm-select[data-size='lg'] .sm-select__value,
+  .sm-select[data-size='lg'] .sm-select__placeholder {
     height: 38px;
     line-height: 38px;
   }
-  .av-select__placeholder {
+  .sm-select__placeholder {
     color: rgba(0, 0, 0, 0.25);
   }
 
-  .av-select__arrow {
+  .sm-select__arrow {
     @apply pointer-events-none absolute top-1/2 flex items-center;
     box-sizing: border-box;
     user-select: none;
@@ -291,9 +291,9 @@
     line-height: 12px;
     text-align: center;
     vertical-align: -1.5px;
-    color: var(--color-av-text-disabled);
+    color: var(--color-sm-text-disabled);
   }
-  .av-select__clear {
+  .sm-select__clear {
     @apply absolute top-1/2 cursor-pointer;
     display: block;
     box-sizing: border-box;
@@ -309,63 +309,63 @@
     /* antd 的 clear 带一个恒等 transform，保持一致 */
     transform: translate(0, 0);
     border-radius: 50%;
-    color: var(--color-av-text-disabled);
+    color: var(--color-sm-text-disabled);
     /* 常态不可见；hover / focus-within 时显现，并用不透明底遮住 arrow */
     opacity: 0;
     background: transparent;
     border-radius: 0;
   }
-  .av-select:hover .av-select__clear,
-  .av-select:focus-within .av-select__clear {
+  .sm-select:hover .sm-select__clear,
+  .sm-select:focus-within .sm-select__clear {
     opacity: 1;
-    background: var(--color-av-bg);
+    background: var(--color-sm-bg);
     border-radius: 50%;
   }
   /* 与 antd 的 .anticon 对齐：图标本体是按基线摆放的 */
-  .av-btn__spinner > svg,
-  .av-select__arrow > svg,
-  .av-select__clear > svg {
+  .sm-btn__spinner > svg,
+  .sm-select__arrow > svg,
+  .sm-select__clear > svg {
     display: inline-block;
     vertical-align: -1.75px;
   }
 
-  .av-select[data-status='error'] .av-select__control {
-    border-color: var(--color-av-danger);
+  .sm-select[data-status='error'] .sm-select__control {
+    border-color: var(--color-sm-danger);
   }
-  .av-select[data-status='warning'] .av-select__control {
-    border-color: var(--color-av-warning);
+  .sm-select[data-status='warning'] .sm-select__control {
+    border-color: var(--color-sm-warning);
   }
-  .av-select[data-variant='filled'] .av-select__control {
-    background: var(--color-av-fill);
+  .sm-select[data-variant='filled'] .sm-select__control {
+    background: var(--color-sm-fill);
     border-color: transparent;
   }
-  .av-select[data-variant='borderless'] .av-select__control {
+  .sm-select[data-variant='borderless'] .sm-select__control {
     background: transparent;
     border-color: transparent;
   }
-  .av-select[data-disabled='true'] .av-select__control {
-    background: var(--color-av-fill);
-    color: var(--color-av-text-disabled);
+  .sm-select[data-disabled='true'] .sm-select__control {
+    background: var(--color-sm-fill);
+    color: var(--color-sm-text-disabled);
     cursor: not-allowed;
   }
-  .av-select:not([data-disabled='true']):hover .av-select__control {
-    border-color: var(--color-av-primary-hover);
+  .sm-select:not([data-disabled='true']):hover .sm-select__control {
+    border-color: var(--color-sm-primary-hover);
   }
-  .av-select__control:focus-within {
-    border-color: var(--color-av-primary);
+  .sm-select__control:focus-within {
+    border-color: var(--color-sm-primary);
     box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
     outline-width: 0;
   }
 
-  .av-select__dropdown {
+  .sm-select__dropdown {
     @apply absolute box-border;
     z-index: 1050;
     overflow: hidden;
     padding: 4px;
     border: 0;
-    background: var(--color-av-bg);
-    color: var(--color-av-text);
-    font-family: var(--font-av);
+    background: var(--color-sm-bg);
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
     font-size: 14px;
     border-radius: 8px;
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
@@ -374,11 +374,11 @@
     cursor: auto;
   }
 
-  .av-select__listbox {
+  .sm-select__listbox {
     @apply flex flex-col;
   }
 
-  .av-select__option {
+  .sm-select__option {
     @apply relative flex box-border;
     min-height: 32px;
     height: 32px;
@@ -387,33 +387,33 @@
     border-radius: 4px;
     font-size: 14px;
     line-height: 22px;
-    color: var(--color-av-text);
+    color: var(--color-sm-text);
     cursor: pointer;
   }
-  .av-select__option[data-highlighted='true'] {
-    background: var(--color-av-fill);
+  .sm-select__option[data-highlighted='true'] {
+    background: var(--color-sm-fill);
   }
-  .av-select__option[data-selected='true'] {
-    background: var(--color-av-primary-bg);
+  .sm-select__option[data-selected='true'] {
+    background: var(--color-sm-primary-bg);
     font-weight: 600;
   }
-  .av-select__option[data-disabled='true'] {
-    color: var(--color-av-text-disabled);
+  .sm-select__option[data-disabled='true'] {
+    color: var(--color-sm-text-disabled);
     cursor: not-allowed;
   }
 
   /* ================= Input ================= */
-  .av-input {
+  .sm-input {
     position: relative;
     box-sizing: border-box;
     width: 100%;
     height: 32px;
     margin: 0;
     padding: 4px 11px;
-    border: 1px solid var(--color-av-border);
+    border: 1px solid var(--color-sm-border);
     border-radius: 6px;
-    background: var(--color-av-bg);
-    color: var(--color-av-text);
+    background: var(--color-sm-bg);
+    color: var(--color-sm-text);
     font-size: 14px;
     line-height: 22px;
     text-align: start;
@@ -428,68 +428,68 @@
     left: 0;
   }
   /* 形态一：根就是原生 input */
-  input.av-input {
+  input.sm-input {
     display: inline-block;
-    font-family: var(--font-av);
+    font-family: var(--font-sm);
   }
   /* 原生 input 有值才用 clip，展示占位符时 antd 用 ellipsis */
-  input.av-input:placeholder-shown {
+  input.sm-input:placeholder-shown {
     text-overflow: ellipsis;
   }
   /* 形态二：根是包裹元素，input 退为 __field；包裹层继承页面字体（与参考实现一致） */
-  span.av-input {
+  span.sm-input {
     display: inline-flex;
     cursor: auto;
   }
   /* 参考实现里 hover 时把包裹层提到同层之上 */
-  span.av-input:hover {
+  span.sm-input:hover {
     z-index: 1;
   }
 
-  .av-input[data-size='sm'] {
+  .sm-input[data-size='sm'] {
     height: 24px;
     padding: 0 7px;
     border-radius: 4px;
   }
-  .av-input[data-size='lg'] {
+  .sm-input[data-size='lg'] {
     height: 40px;
     padding: 7px 11px;
     border-radius: 8px;
     font-size: 16px;
     line-height: 24px;
   }
-  .av-input[data-status='error'] {
-    border-color: var(--color-av-danger);
+  .sm-input[data-status='error'] {
+    border-color: var(--color-sm-danger);
   }
-  .av-input[data-status='warning'] {
-    border-color: var(--color-av-warning);
+  .sm-input[data-status='warning'] {
+    border-color: var(--color-sm-warning);
   }
-  .av-input[data-variant='filled'] {
-    background: var(--color-av-fill);
+  .sm-input[data-variant='filled'] {
+    background: var(--color-sm-fill);
     border-color: transparent;
   }
-  .av-input[data-variant='borderless'] {
+  .sm-input[data-variant='borderless'] {
     height: 30px;
     border-width: 0;
     border-style: none;
     background: transparent;
   }
-  .av-input:not([data-disabled='true']):hover {
-    border-color: var(--color-av-primary-hover);
+  .sm-input:not([data-disabled='true']):hover {
+    border-color: var(--color-sm-primary-hover);
   }
-  .av-input:focus,
-  .av-input:focus-within {
-    border-color: var(--color-av-primary);
+  .sm-input:focus,
+  .sm-input:focus-within {
+    border-color: var(--color-sm-primary);
     box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
     outline-width: 0;
   }
-  .av-input[data-disabled='true'] {
-    background: var(--color-av-fill);
-    color: var(--color-av-text-disabled);
+  .sm-input[data-disabled='true'] {
+    background: var(--color-sm-fill);
+    color: var(--color-sm-text-disabled);
     cursor: not-allowed;
   }
 
-  .av-input__field {
+  .sm-input__field {
     display: block;
     flex: 1 1 auto;
     min-width: 0;
@@ -498,27 +498,27 @@
     border: 0;
     background: transparent;
     color: inherit;
-    font-family: var(--font-av);
+    font-family: var(--font-sm);
     font-size: 14px;
     line-height: 22px;
     outline: none;
     cursor: text;
   }
-  .av-input__prefix,
-  .av-input__suffix {
+  .sm-input__prefix,
+  .sm-input__suffix {
     display: flex;
     align-items: center;
     flex-shrink: 0;
     box-sizing: border-box;
-    color: var(--color-av-text);
+    color: var(--color-sm-text);
   }
-  .av-input__prefix {
+  .sm-input__prefix {
     margin-inline-end: 4px;
   }
-  .av-input__suffix {
+  .sm-input__suffix {
     margin-inline-start: 4px;
   }
-  .av-input__clear {
+  .sm-input__clear {
     display: block;
     box-sizing: border-box;
     width: 12px;
@@ -527,22 +527,22 @@
     line-height: 0;
     text-align: center;
     vertical-align: -1px;
-    color: var(--color-av-text-disabled);
+    color: var(--color-sm-text-disabled);
     cursor: pointer;
   }
 
   /* ================= Checkbox ================= */
-  .av-checkbox {
+  .sm-checkbox {
     display: inline-flex;
     align-items: baseline;
     box-sizing: border-box;
-    color: var(--color-av-text);
-    font-family: var(--font-av);
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
     font-size: 14px;
     line-height: 22px;
     cursor: pointer;
   }
-  .av-checkbox__control {
+  .sm-checkbox__control {
     position: relative;
     display: block;
     box-sizing: border-box;
@@ -555,7 +555,7 @@
     align-self: center;
     cursor: pointer;
   }
-  .av-checkbox__input {
+  .sm-checkbox__input {
     position: absolute;
     top: 0;
     left: 0;
@@ -565,27 +565,27 @@
     opacity: 0;
     cursor: pointer;
   }
-  .av-checkbox__box {
+  .sm-checkbox__box {
     display: block;
     box-sizing: border-box;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--color-av-border);
+    border: 1px solid var(--color-sm-border);
     border-radius: 4px;
-    background: var(--color-av-bg);
+    background: var(--color-sm-bg);
     font-size: 14px;
     line-height: 14px;
     white-space: nowrap;
     cursor: pointer;
   }
-  .av-checkbox__label {
+  .sm-checkbox__label {
     display: block;
     box-sizing: border-box;
     padding-inline: 8px;
   }
 
   /* 勾号与半选横线：画在 control 上，绝对定位不受 box 的 static 影响 */
-  .av-checkbox__control::after {
+  .sm-checkbox__control::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -599,56 +599,56 @@
     transform: translate(-50%, -60%) rotate(45deg);
   }
 
-  .av-checkbox:hover .av-checkbox__box {
-    border-color: var(--color-av-primary);
+  .sm-checkbox:hover .sm-checkbox__box {
+    border-color: var(--color-sm-primary);
   }
-  .av-checkbox[data-state='checked'] .av-checkbox__box {
-    background: var(--color-av-primary);
-    border-color: var(--color-av-primary);
+  .sm-checkbox[data-state='checked'] .sm-checkbox__box {
+    background: var(--color-sm-primary);
+    border-color: var(--color-sm-primary);
   }
-  .av-checkbox[data-state='checked']:hover .av-checkbox__box {
-    background: var(--color-av-primary-hover);
+  .sm-checkbox[data-state='checked']:hover .sm-checkbox__box {
+    background: var(--color-sm-primary-hover);
     border-color: transparent;
   }
-  .av-checkbox[data-state='checked'] .av-checkbox__control::after {
+  .sm-checkbox[data-state='checked'] .sm-checkbox__control::after {
     opacity: 1;
   }
-  .av-checkbox[data-state='indeterminate'] .av-checkbox__control::after {
+  .sm-checkbox[data-state='indeterminate'] .sm-checkbox__control::after {
     width: 8px;
     height: 0;
     border: 0;
-    border-top: 2px solid var(--color-av-primary);
+    border-top: 2px solid var(--color-sm-primary);
     opacity: 1;
     transform: translate(-50%, -50%);
   }
 
   /* 禁用态压住所有变体 */
-  .av-checkbox[data-disabled='true'] {
+  .sm-checkbox[data-disabled='true'] {
     cursor: not-allowed;
   }
-  .av-checkbox[data-disabled='true'] .av-checkbox__box {
-    background: var(--color-av-fill);
-    border-color: var(--color-av-border);
+  .sm-checkbox[data-disabled='true'] .sm-checkbox__box {
+    background: var(--color-sm-fill);
+    border-color: var(--color-sm-border);
     cursor: not-allowed;
     pointer-events: none;
   }
 
   /* 焦点环：antd 在 :focus 上直接给，不区分是否 focus-visible */
-  .av-checkbox__input:focus + .av-checkbox__box {
-    outline: 3px solid var(--color-av-ring);
+  .sm-checkbox__input:focus + .sm-checkbox__box {
+    outline: 3px solid var(--color-sm-ring);
     outline-offset: 1px;
   }
 
-  .av-select__empty {
+  .sm-select__empty {
     @apply flex items-center justify-center;
     padding: 8px;
     font-size: 14px;
-    color: var(--color-av-text-disabled);
+    color: var(--color-sm-text-disabled);
   }
 }
 
 /* 加载指示器的旋转。证据在 motion:false 下采集，动画本身不参与比对。 */
-@keyframes av-spin {
+@keyframes sm-spin {
   to {
     transform: rotate(360deg);
   }

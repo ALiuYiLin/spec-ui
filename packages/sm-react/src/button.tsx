@@ -40,7 +40,7 @@ export function Button({
     <button
       {...rest}
       type={htmlType}
-      className="av-btn"
+      className="sm-btn"
       data-variant={variant}
       data-size={size}
       data-shape={shape}
@@ -50,16 +50,16 @@ export function Button({
       {...(disabled ? { 'data-disabled': 'true', disabled: true } : null)}
     >
       {showSpinner ? (
-        <span className="av-btn__spinner" aria-hidden="true">
+        <span className="sm-btn__spinner" aria-hidden="true">
           <SpinnerIcon />
         </span>
       ) : null}
       {showIcon ? (
-        <span className="av-btn__icon" aria-hidden="true">
+        <span className="sm-btn__icon" aria-hidden="true">
           {icon}
         </span>
       ) : null}
-      <span className="av-btn__label">{label}</span>
+      <span className="sm-btn__label">{label}</span>
     </button>
   )
 }

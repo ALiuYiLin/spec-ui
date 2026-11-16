@@ -25,7 +25,7 @@ importers:
         specifier: ^1.6.4
         version: 1.6.4(@algolia/client-search@5.64.0)(@types/react@18.3.31)(lightningcss@1.33.0)(postcss@8.5.33)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.3)(typescript@7.0.2)
 
-  packages/av-react:
+  packages/sm-react:
     dependencies:
       react:
         specifier: '>=18'

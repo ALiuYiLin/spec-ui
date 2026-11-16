@@ -6,7 +6,7 @@
   "summary": "复选框。原生 input 承担全部语义与键盘行为，视觉方框是独立部件；勾选与半选由根节点的 data-state 表达。",
   "anatomy": {
     "root": {
-      "class": "av-checkbox",
+      "class": "sm-checkbox",
       "tag": "label",
       "required": true,
       "data": {
@@ -23,14 +23,14 @@
     },
     "parts": {
       "control": {
-        "class": "av-checkbox__control",
+        "class": "sm-checkbox__control",
         "tag": "span",
         "required": true,
         "order": 1,
         "notes": "16×16 的定位容器，input 绝对定位在其中，视觉方框也在里面。勾号由样式层绘制。"
       },
       "input": {
-        "class": "av-checkbox__input",
+        "class": "sm-checkbox__input",
         "tag": "input",
         "required": true,
         "order": 1,
@@ -40,7 +40,7 @@
         "notes": "视觉上不可见但必须可聚焦；indeterminate 是 JS 属性，不体现在 attribute 上。"
       },
       "box": {
-        "class": "av-checkbox__box",
+        "class": "sm-checkbox__box",
         "tag": "span",
         "required": true,
         "order": 2,
@@ -48,7 +48,7 @@
         "notes": "纯视觉方框。勾号与半选横线由样式层绘制，不占用 DOM。"
       },
       "label": {
-        "class": "av-checkbox__label",
+        "class": "sm-checkbox__label",
         "tag": "span",
         "required": false,
         "order": 2,

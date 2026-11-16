@@ -29,12 +29,12 @@ export function Checkbox({
   const state = indeterminate ? 'indeterminate' : isChecked ? 'checked' : 'unchecked'
 
   return (
-    <label className="av-checkbox" data-state={state} {...(disabled ? { 'data-disabled': 'true' } : null)}>
-      <span className="av-checkbox__control">
+    <label className="sm-checkbox" data-state={state} {...(disabled ? { 'data-disabled': 'true' } : null)}>
+      <span className="sm-checkbox__control">
         <input
           {...rest}
           ref={inputRef}
-          className="av-checkbox__input"
+          className="sm-checkbox__input"
           type="checkbox"
           checked={isChecked}
           disabled={disabled}
@@ -43,9 +43,9 @@ export function Checkbox({
             onChange?.(e.target.checked)
           }}
         />
-        <span className="av-checkbox__box" aria-hidden="true" />
+        <span className="sm-checkbox__box" aria-hidden="true" />
       </span>
-      {children != null ? <span className="av-checkbox__label">{children}</span> : null}
+      {children != null ? <span className="sm-checkbox__label">{children}</span> : null}
     </label>
   )
 }

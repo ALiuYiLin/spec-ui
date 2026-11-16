@@ -6,7 +6,7 @@
   "summary": "单选下拉选择器。本版覆盖 portal 浮层、键盘高亮、选中态与清除；多选 / tags / 虚拟滚动不在范围内。",
   "anatomy": {
     "root": {
-      "class": "av-select",
+      "class": "sm-select",
       "tag": "div",
       "required": true,
       "data": {
@@ -41,7 +41,7 @@
     },
     "parts": {
       "control": {
-        "class": "av-select__control",
+        "class": "sm-select__control",
         "tag": "div",
         "required": true,
         "order": 1,
@@ -49,14 +49,14 @@
         "notes": "视觉边框盒。焦点反馈走 :focus-within，不允许用 JS 类名。"
       },
       "search": {
-        "class": "av-select__search",
+        "class": "sm-select__search",
         "tag": "span",
         "required": true,
         "order": 1,
         "notes": "input 的定位容器，负责把 input 叠在 value 上而不占额外宽度。"
       },
       "input": {
-        "class": "av-select__input",
+        "class": "sm-select__input",
         "tag": "input",
         "required": true,
         "order": 1,
@@ -79,7 +79,7 @@
         "notes": "整个控件唯一的可访问入口；根节点不加 role。"
       },
       "value": {
-        "class": "av-select__value",
+        "class": "sm-select__value",
         "tag": "span",
         "required": false,
         "order": 2,
@@ -87,14 +87,14 @@
         "attrs": { "title": { "required": false } }
       },
       "placeholder": {
-        "class": "av-select__placeholder",
+        "class": "sm-select__placeholder",
         "tag": "span",
         "required": false,
         "order": 2,
         "condition": "无选中项"
       },
       "clear": {
-        "class": "av-select__clear",
+        "class": "sm-select__clear",
         "tag": "span",
         "required": false,
         "order": 3,
@@ -102,7 +102,7 @@
         "notes": "不可聚焦、不进入 Tab 序列；键盘清除走 Delete / Backspace。"
       },
       "arrow": {
-        "class": "av-select__arrow",
+        "class": "sm-select__arrow",
         "tag": "span",
         "required": false,
         "order": 4,
@@ -110,7 +110,7 @@
         "aria": { "aria-hidden": "true" }
       },
       "dropdown": {
-        "class": "av-select__dropdown",
+        "class": "sm-select__dropdown",
         "tag": "div",
         "required": false,
         "order": 0,
@@ -120,7 +120,7 @@
         "notes": "逻辑上是 root 的子节点，物理上必须 portal 到 document.body；宽度需与根节点一致。"
       },
       "listbox": {
-        "class": "av-select__listbox",
+        "class": "sm-select__listbox",
         "tag": "div",
         "required": false,
         "order": 1,
@@ -129,7 +129,7 @@
         "aria": { "id": "供 input 的 aria-controls 引用" }
       },
       "option": {
-        "class": "av-select__option",
+        "class": "sm-select__option",
         "tag": "div",
         "required": false,
         "order": 1,
@@ -147,7 +147,7 @@
         "notes": "selected 与 highlighted 正交：选中是持久态，高亮是键盘游标，两者可同时成立。"
       },
       "empty": {
-        "class": "av-select__empty",
+        "class": "sm-select__empty",
         "tag": "div",
         "required": false,
         "order": 2,
@@ -161,7 +161,7 @@
     "state=open 时 input 的 aria-expanded=\"true\"，且 aria-controls 指向 listbox 的 id。",
     "存在 data-highlighted=\"true\" 的 option 时，input 必须带 aria-activedescendant 指向它；同一时刻最多一个。",
     "不存在 highlighted 选项时必须移除 aria-activedescendant，禁止输出指向不存在节点或 index=-1 的值。",
-    "option 必须是单一节点，同时承担 role=\"option\" 与视觉呈现；禁止为无障碍再渲染一份不可见的 option。若实现因虚拟滚动必须保留 a11y 镜像，镜像节点必须 aria-hidden=\"true\" 且不得使用 av-select__option 类名。",
+    "option 必须是单一节点，同时承担 role=\"option\" 与视觉呈现；禁止为无障碍再渲染一份不可见的 option。若实现因虚拟滚动必须保留 a11y 镜像，镜像节点必须 aria-hidden=\"true\" 且不得使用 sm-select__option 类名。",
     "单选模式下最多一个 option 带 data-selected=\"true\"；data-selected 与 data-highlighted 正交，可同时成立。",
     "value 与 placeholder 互斥：有选中项渲染 value，否则渲染 placeholder。",
     "disabled 时 input 必须带原生 disabled，且根节点不得出现 state=open。",

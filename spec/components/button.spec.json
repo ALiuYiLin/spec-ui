@@ -6,7 +6,7 @@
   "summary": "触发单一动作的按钮。叶子组件：无浮层、无内部状态机，全部状态由 props 与交互伪类决定。",
   "anatomy": {
     "root": {
-      "class": "av-btn",
+      "class": "sm-btn",
       "tag": "button",
       "required": true,
       "attrs": {
@@ -48,7 +48,7 @@
     },
     "parts": {
       "icon": {
-        "class": "av-btn__icon",
+        "class": "sm-btn__icon",
         "tag": "span",
         "required": false,
         "order": 1,
@@ -56,13 +56,13 @@
         "aria": { "aria-hidden": "true" }
       },
       "label": {
-        "class": "av-btn__label",
+        "class": "sm-btn__label",
         "tag": "span",
         "required": true,
         "order": 2
       },
       "spinner": {
-        "class": "av-btn__spinner",
+        "class": "sm-btn__spinner",
         "tag": "span",
         "required": false,
         "order": 1,

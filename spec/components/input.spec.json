@@ -6,7 +6,7 @@
   "summary": "单行文本输入。根节点有两种形态：无前后缀时根就是原生 input；有前后缀或清除时根是包裹元素，原生 input 退为 __field。这是本协议第一次出现结构随模式变化。",
   "anatomy": {
     "root": {
-      "class": "av-input",
+      "class": "sm-input",
       "tag": ["input", "span"],
       "required": true,
       "data": {
@@ -35,14 +35,14 @@
     },
     "parts": {
       "prefix": {
-        "class": "av-input__prefix",
+        "class": "sm-input__prefix",
         "tag": "span",
         "required": false,
         "order": 1,
         "condition": "传入 prefix（仅 span 模式）"
       },
       "field": {
-        "class": "av-input__field",
+        "class": "sm-input__field",
         "tag": "input",
         "required": false,
         "order": 2,
@@ -55,7 +55,7 @@
         }
       },
       "clear": {
-        "class": "av-input__clear",
+        "class": "sm-input__clear",
         "tag": "span",
         "required": false,
         "order": 3,
@@ -63,7 +63,7 @@
         "aria": { "aria-hidden": "true" }
       },
       "suffix": {
-        "class": "av-input__suffix",
+        "class": "sm-input__suffix",
         "tag": "span",
         "required": false,
         "order": 3,

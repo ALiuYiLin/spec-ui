@@ -92,11 +92,11 @@ const snapFn = ({ props }) => {
   }
 
   const el = Array.from(holder.querySelectorAll('*')).find((n) =>
-    Array.from(n.classList).some((c) => c.startsWith('av-')),
+    Array.from(n.classList).some((c) => c.startsWith('sm-')),
   )
   if (!el) return null
 
-  const portals = Array.from(document.querySelectorAll('.av-select__dropdown'))
+  const portals = Array.from(document.querySelectorAll('.sm-select__dropdown'))
     .filter((p) => !el.contains(p))
     .map(walk)
 
@@ -123,30 +123,30 @@ const antdBtnLabel = (all) => {
 
 const RESOLVE = {
   Button: {
-    root: { ref: (all) => partByClass(all, 'av-btn'), antd: (all) => all.find((n) => n.classes.includes('ant-btn')) },
-    label: { ref: (all) => partByClass(all, 'av-btn__label'), antd: antdBtnLabel },
+    root: { ref: (all) => partByClass(all, 'sm-btn'), antd: (all) => all.find((n) => n.classes.includes('ant-btn')) },
+    label: { ref: (all) => partByClass(all, 'sm-btn__label'), antd: antdBtnLabel },
     icon: {
-      ref: (all) => partByClass(all, 'av-btn__icon'),
+      ref: (all) => partByClass(all, 'sm-btn__icon'),
       antd: (all) =>
         all.find((n) => n.classes.includes('ant-btn-icon') && !n.classes.includes('ant-btn-loading-icon')),
     },
     spinner: {
-      ref: (all) => partByClass(all, 'av-btn__spinner'),
+      ref: (all) => partByClass(all, 'sm-btn__spinner'),
       antd: (all) => all.find((n) => n.classes.includes('ant-btn-loading-icon')),
     },
   },
   Select: {
-    root: { ref: (all) => partByClass(all, 'av-select'), antd: (all) => all.find((n) => n.classes.includes('ant-select')) },
+    root: { ref: (all) => partByClass(all, 'sm-select'), antd: (all) => all.find((n) => n.classes.includes('ant-select')) },
     control: {
-      ref: (all) => partByClass(all, 'av-select__control'),
+      ref: (all) => partByClass(all, 'sm-select__control'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-selector')),
     },
     value: {
-      ref: (all) => partByClass(all, 'av-select__value'),
+      ref: (all) => partByClass(all, 'sm-select__value'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-selection-item')),
     },
     placeholder: {
-      ref: (all) => partByClass(all, 'av-select__placeholder'),
+      ref: (all) => partByClass(all, 'sm-select__placeholder'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-selection-placeholder')),
     },
     dropdown: {
@@ -154,11 +154,11 @@ const RESOLVE = {
       antd: (all, portals) => portals?.[0],
     },
     arrow: {
-      ref: (all) => partByClass(all, 'av-select__arrow'),
+      ref: (all) => partByClass(all, 'sm-select__arrow'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-arrow')),
     },
     clear: {
-      ref: (all) => partByClass(all, 'av-select__clear'),
+      ref: (all) => partByClass(all, 'sm-select__clear'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-clear')),
     },
     option: null, // 需要 index，见下方
@@ -166,38 +166,38 @@ const RESOLVE = {
 
   Input: {
     root: {
-      ref: (all) => all.find((n) => n.classes.includes('av-input')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-input')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-affix-wrapper') || n.classes.includes('ant-input')),
     },
     prefix: {
-      ref: (all) => all.find((n) => n.classes.includes('av-input__prefix')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-input__prefix')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-prefix')),
     },
     suffix: {
-      ref: (all) => all.find((n) => n.classes.includes('av-input__suffix')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-input__suffix')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-suffix')),
     },
     clear: {
-      ref: (all) => all.find((n) => n.classes.includes('av-input__clear')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-input__clear')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-clear-icon')),
     },
   },
 
   Checkbox: {
     root: {
-      ref: (all) => all.find((n) => n.classes.includes('av-checkbox')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-checkbox')),
       antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-wrapper')),
     },
     control: {
-      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__control')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-checkbox__control')),
       antd: (all) => all.find((n) => n.classes.includes('ant-checkbox')),
     },
     box: {
-      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__box')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-checkbox__box')),
       antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-inner')),
     },
     label: {
-      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__label')),
+      ref: (all) => all.find((n) => n.classes.includes('sm-checkbox__label')),
       antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-label')),
     },
   },
@@ -206,7 +206,7 @@ const RESOLVE = {
 function resolveTarget(component, name, side, refs) {
   if (component === 'Select' && name.startsWith('option')) {
     const index = Number(name.slice('option'.length) || 0)
-    if (side === 'ref') return refs.refAll.filter((n) => n.classes.includes('av-select__option'))[index]
+    if (side === 'ref') return refs.refAll.filter((n) => n.classes.includes('sm-select__option'))[index]
     return refs.antdAll.filter((n) => n.classes.includes('ant-select-item-option'))[index]
   }
   const spec = RESOLVE[component][name]

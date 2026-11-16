@@ -5,7 +5,7 @@ const requested = params.get('case')
 const active = cases.find((c) => c.id === requested) ?? cases[0]
 
 // 暴露给抓取脚本，保证"矩阵"只有一份定义
-;(window as any).__ACTVIEW_CASES__ = cases.map(({ id, component, state, pseudo, actions, portal }) => ({
+;(window as any).__SPECMARK_CASES__ = cases.map(({ id, component, state, pseudo, actions, portal }) => ({
   id,
   component,
   state,
@@ -13,7 +13,7 @@ const active = cases.find((c) => c.id === requested) ?? cases[0]
   actions: actions ?? [],
   portal: Boolean(portal),
 }))
-;(window as any).__ACTVIEW_ACTIVE__ = active.id
+;(window as any).__SPECMARK_ACTIVE__ = active.id
 
 export default function App() {
   return (

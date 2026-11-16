@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       // 直接指向源码：参考实现是 workspace 包，但这里不依赖 pnpm 链接的解析行为
-      '@actview/react': path.resolve(here, '../../packages/av-react/src/index.ts'),
+      '@specmark/react': path.resolve(here, '../../packages/sm-react/src/index.ts'),
     },
   },
   build: {

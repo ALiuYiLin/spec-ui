@@ -5,7 +5,7 @@
 | 页面 | 用途 |
 |---|---|
 | `index.html` | **antd 证据台**：按受控状态矩阵渲染 antd 组件，抓成快照 |
-| `ref.html` | **参考实现台**：渲染 `packages/av-react`（含 Tailwind 样式），供 L2 / L3 校验 |
+| `ref.html` | **参考实现台**：渲染 `packages/sm-react`（含 Tailwind 样式），供 L2 / L3 校验 |
 
 ## 命令
 
@@ -74,6 +74,6 @@ scripts/report.mjs      HTML 核对页
 - 元素上的 `css-xxxxxx` 类名是 cssinjs 的构建哈希，**不可作为协议依据**。
 - 样式层**不引入 Tailwind preflight**：preflight 会给所有元素加 `border-box` + `solid`，
   与 antd 的 reset（只有根节点 border-box、子部件 content-box）天然冲突。
-- `@actview/react` 通过 `vite.config.ts` 的 alias 指向 `packages/av-react/src`。
+- `@specmark/react` 通过 `vite.config.ts` 的 alias 指向 `packages/sm-react/src`。
 - `artifacts/` 与 `dist/` 已在 `.gitignore` 里，随时可用 `pnpm extract` / `pnpm build` 重建。
 - 证据必须可重放：`extract` 连续跑两次结果要一致；再改抓取逻辑后记得跑两遍验证。

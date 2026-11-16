@@ -172,8 +172,8 @@ async function main() {
 
   await page.goto(base, { waitUntil: 'load' })
   await page.waitForSelector('[data-case-root] > *', { state: 'attached', timeout: 20000 })
-  const cases = await page.evaluate(() => window.__ACTVIEW_CASES__)
-  if (!Array.isArray(cases) || !cases.length) throw new Error('页面没有暴露 __ACTVIEW_CASES__，检查 App.tsx')
+  const cases = await page.evaluate(() => window.__SPECMARK_CASES__)
+  if (!Array.isArray(cases) || !cases.length) throw new Error('页面没有暴露 __SPECMARK_CASES__，检查 App.tsx')
 
   const source = {
     lib: 'antd',

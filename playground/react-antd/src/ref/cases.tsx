@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Input, Select } from '@actview/react'
-import type { SelectOption } from '@actview/react'
+import { Button, Checkbox, Input, Select } from '@specmark/react'
+import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
 export type Assertion = {
@@ -46,7 +46,7 @@ const OPTIONS: SelectOption[] = [
   { value: 'c', label: '选项 C' },
 ]
 
-const INPUT = '.av-select__input'
+const INPUT = '.sm-select__input'
 
 export const cases: RefCase[] = [
   // ---------------- Button ----------------
@@ -377,7 +377,7 @@ export const cases: RefCase[] = [
   {
     id: 'ref-input-focus',
     component: 'Input',
-    actions: [{ type: 'focus', selector: '.av-input' }],
+    actions: [{ type: 'focus', selector: '.sm-input' }],
     render: () => <Input placeholder="请输入" />,
     assert: [{ k: 'data', key: 'variant', value: 'outlined' }],
   },
@@ -457,7 +457,7 @@ export const cases: RefCase[] = [
   {
     id: 'ref-checkbox-focus',
     component: 'Checkbox',
-    actions: [{ type: 'focus', selector: '.av-checkbox__input' }],
+    actions: [{ type: 'focus', selector: '.sm-checkbox__input' }],
     render: () => <Checkbox>同意</Checkbox>,
     assert: [{ k: 'data', key: 'state', value: 'unchecked' }],
   },

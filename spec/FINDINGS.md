@@ -119,7 +119,7 @@ v5.29 已经出现 `ant-btn-color-*` / `ant-btn-variant-*` / `ant-btn-icon-only`
 只按 `role` 抓，会抓到三个透明、无类名、高 0 的假节点——本轮第一次汇总就栽在这里。
 
 **协议结论**：一个 option 一个节点，同时承担 role 与视觉。若将来做虚拟滚动被迫保留镜像，
-镜像必须 `aria-hidden="true"` 且不得使用 `av-select__option` 类名。
+镜像必须 `aria-hidden="true"` 且不得使用 `sm-select__option` 类名。
 
 ### 2. `aria-activedescendant` 会指向不存在的节点
 
@@ -187,7 +187,7 @@ antd 的 arrow 始终 opacity 1，靠 clear 的实心圆图标几何遮挡住箭
 
 | 产物 | 说明 |
 |---|---|
-| `packages/av-react/` | 参考实现，Button + Select，**零样式**，只输出协议 DOM |
+| `packages/sm-react/` | 参考实现，Button + Select，**零样式**，只输出协议 DOM |
 | `playground/react-antd/ref.html` | 参考实现的受控用例台，用例自己声明断言 |
 | `playground/react-antd/scripts/conformance.mjs` | 通用规则 + 声明式断言 + 自检模式 |
 
@@ -198,7 +198,7 @@ antd 的 arrow 始终 opacity 1，靠 clear 的实心圆图标几何遮挡住箭
 ## 二、通用规则（从 spec 推导，实现无关）
 
 1. 根节点唯一，且标签符合 `spec.anatomy.root.tag`
-2. 协议类名封闭：出现未声明的 `av-*` 类即失败
+2. 协议类名封闭：出现未声明的 `sm-*` 类即失败
 3. 禁止 `is-*` / `has-*` 状态类，禁止 `ant-*` / `css-*` 外部类名
 4. 禁止内联 `style`（样式不许借 DOM 夹带）
 5. `data-*` 必须在协议中声明，布尔只能 `"true"`，枚举必须合法
@@ -252,7 +252,7 @@ ARIA 镜像 option、icon 嵌错层、浮层没 portal。每一个都必须被�
 
 # L3 视觉一致性（第四轮）
 
-> 目标：用 Tailwind 写 `av-btn` / `av-select`，证明"一份 CSS 能复刻 antd 的视觉"。
+> 目标：用 Tailwind 写 `sm-btn` / `sm-select`，证明"一份 CSS 能复刻 antd 的视觉"。
 
 ## 一、结果
 
@@ -335,7 +335,7 @@ ARIA 镜像 option、icon 嵌错层、浮层没 portal。每一个都必须被�
 
 ## 二、图标不是抄的，是从证据里生成的
 
-`packages/av-react/src/icons.tsx` 里的三个 `path d` 不是手写的，而是从 `artifacts/` 里
+`packages/sm-react/src/icons.tsx` 里的三个 `path d` 不是手写的，而是从 `artifacts/` 里
 antd 实际渲染出的 `<svg>` 节点提取后生成的。手抄一个路径少一位数字，就可能差半个像素，
 而这类差异在对比时表现为"莫名其妙对不上"。
 
@@ -397,8 +397,8 @@ spinner 的 `transform` 会随帧变化，不禁用的话每次跑出来的值�
 
 Input 有两种合法形态：
 
-- **无前后缀**：根就是 `<input class="av-input">`，边框和 padding 都在它身上。
-- **有前后缀 / 清除**：根是 `<span class="av-input">`，原生 input 退为 `__field`。
+- **无前后缀**：根就是 `<input class="sm-input">`，边框和 padding 都在它身上。
+- **有前后缀 / 清除**：根是 `<span class="sm-input">`，原生 input 退为 `__field`。
 
 一开始想统一成"永远套一层包裹"，被 L3 直接否掉：参考实现的裸 input 是 `inline-block`，
 包裹层最自然是 `inline-flex`，`display` 一差，后面 88 项全崩。而给纯文本输入凭空套一层，
@@ -414,7 +414,7 @@ Input 有两种合法形态：
 
 2. **affix 容器不设字体。**
    antd 只把字体挂在 input 上，包裹层继承页面默认（这里是 Times New Roman）。
-   所以字体规则必须写在 `input.av-input` 和 `__field` 上，不能写在 `.av-input` 上。
+   所以字体规则必须写在 `input.sm-input` 和 `__field` 上，不能写在 `.sm-input` 上。
 
 3. **antd 的 clear 是 `<button type="button" tabindex="-1">`。**
    它的 `font-family` 因此落到 UA 默认的 Arial。我们的 clear 是 span，

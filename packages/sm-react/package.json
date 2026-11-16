@@ -1,9 +1,9 @@
 {
-  "name": "@actview/react",
+  "name": "@specmark/react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "ActView 协议的参考实现：只输出协议 DOM，零样式。",
+  "description": "SpecMark 协议的参考实现：只输出协议 DOM，零样式。",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {

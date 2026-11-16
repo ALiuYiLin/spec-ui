@@ -58,7 +58,7 @@ export function Input({
   const field = (
     <input
       {...rest}
-      className={withAffix ? 'av-input__field' : 'av-input'}
+      className={withAffix ? 'sm-input__field' : 'sm-input'}
       {...(withAffix ? null : dataProps)}
       value={current}
       onChange={handleChange}
@@ -73,12 +73,12 @@ export function Input({
 
   // 形态二：有前后缀/清除，根是包裹元素，原生 input 退为 __field
   return (
-    <span className="av-input" style={style} {...dataProps}>
-      {prefix ? <span className="av-input__prefix">{prefix}</span> : null}
+    <span className="sm-input" style={style} {...dataProps}>
+      {prefix ? <span className="sm-input__prefix">{prefix}</span> : null}
       {field}
       {allowClear && hasValue && !disabled && !readOnly ? (
         <span
-          className="av-input__clear"
+          className="sm-input__clear"
           aria-hidden="true"
           onMouseDown={(e) => {
             e.preventDefault()
@@ -88,7 +88,7 @@ export function Input({
           <CloseIcon />
         </span>
       ) : null}
-      {suffix && !(allowClear && hasValue) ? <span className="av-input__suffix">{suffix}</span> : null}
+      {suffix && !(allowClear && hasValue) ? <span className="sm-input__suffix">{suffix}</span> : null}
     </span>
   )
 }

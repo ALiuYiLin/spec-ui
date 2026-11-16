@@ -98,9 +98,9 @@ for (const d of dirs) {
 }
 
 const hubHtml = `<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>ActView 证据</title>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>SpecMark 证据</title>
 <style>${STYLE}</style></head><body>
-<h1>ActView · 证据索引</h1>
+<h1>SpecMark · 证据索引</h1>
 <div class="grid">${hub
   .map(
     (h) => `<figure class="card"><div class="shot" style="min-height:60px"><b style="font-size:16px">${esc(

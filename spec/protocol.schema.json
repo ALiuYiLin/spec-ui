@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://actview.dev/spec/protocol.schema.json",
-  "title": "ActView Component Protocol",
+  "$id": "https://specmark.dev/spec/protocol.schema.json",
+  "title": "SpecMark Component Protocol",
   "description": "框架无关组件协议文件的结构定义。每个组件一份，位于 spec/components/<Component>.spec.json。",
   "type": "object",
   "required": ["component", "protocol", "anatomy", "invariants"],
@@ -62,7 +62,7 @@
       "properties": {
         "class": {
           "type": "string",
-          "pattern": "^av-[a-z0-9]+(__[a-z0-9-]+)?$"
+          "pattern": "^sm-[a-z0-9]+(__[a-z0-9-]+)?$"
         },
         "tag": {
           "oneOf": [
