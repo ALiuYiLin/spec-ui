@@ -34,7 +34,8 @@
 - [x] Switch —— toggle 值域落地
 - [x] InputNumber —— spinbutton 语义在 wrap 上，文本型 input + 步进按钮
 
-- [x] Tooltip —— 触发器/浮层分离；data-side 落地
+- [x] Slider —— geometry 字段落地；轨道与手柄走几何内联样式
+
 
 - [x] Popover —— 白底卡片；data-align 落地
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
