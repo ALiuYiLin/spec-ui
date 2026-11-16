@@ -3,12 +3,14 @@ import DefaultTheme from 'vitepress/theme'
 import '@specmark/css/styles.css'
 import './custom.css'
 import Demo from './Demo.vue'
+import ModalDemo from './ModalDemo.vue'
 import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch, Tooltip, Popover } from '@specmark/vue'
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.component('Demo', Demo)
+    app.component('ModalDemo', ModalDemo)
     app.component('SmButton', Button)
     app.component('SmSelect', Select)
     app.component('SmInput', Input)

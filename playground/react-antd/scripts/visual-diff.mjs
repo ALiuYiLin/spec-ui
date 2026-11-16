@@ -94,9 +94,12 @@ const snapFn = ({ props }) => {
     }
   }
 
-  const el = Array.from(holder.querySelectorAll('*')).find((n) =>
-    Array.from(n.classList).some((c) => c.startsWith('sm-')),
+  const isSm = (n) => Array.from(n.classList).some((c) => c.startsWith('sm-'))
+  const bodyRoots = Array.from(document.querySelectorAll('[class^="sm-"], [class*=" sm-"]')).filter(
+    (p) => p.parentElement === document.body,
   )
+  // 纯浮层组件没有留在文档流的根，回退到 body 下的浮层根
+  const el = Array.from(holder.querySelectorAll('*')).find(isSm) ?? bodyRoots[0]
   if (!el) return null
 
   // 浮层根：任何直接挂在 body 下的 sm-* 元素（Select 下拉、Tooltip 等）
@@ -289,6 +292,33 @@ const RESOLVE = {
     inner: {
       ref: (all) => all.find((n) => n.classes.includes('sm-tooltip__inner')),
       antd: (all) => all.find((n) => n.classes.includes('ant-tooltip-inner')),
+    },
+  },
+
+  Modal: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-wrap')),
+    },
+    mask: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal__mask')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-mask')),
+    },
+    dialog: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal__dialog')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-content')),
+    },
+    header: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal__header')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-header')),
+    },
+    body: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal__body')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-body')),
+    },
+    footer: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-modal__footer')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-footer')),
     },
   },
 
@@ -553,7 +583,24 @@ const PAIRS = [
       'content',
     ],
   },
+  // ---- Modal ----
+  {
+    component: 'Modal',
+    ref: 'ref-modal-basic',
+    antd: 'modal-basic',
+    targets: [
+      'mask',
+      {
+        name: 'dialog',
+        ignore: ['top', 'left', 'right', 'bottom', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'height', 'max-width', 'transform', 'transform-origin'],
+      },
+      'header',
+      'body',
+      { name: 'footer', ignore: ['height', 'transform-origin'] },
+    ],
+  },
 ]
+
 
 async function main() {
   const { server, port } = await startServer()
@@ -577,7 +624,7 @@ async function main() {
   await cdp.send('CSS.enable')
 
   await page.goto(`${base}${PAGE}`, { waitUntil: 'load' })
-  await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
+  await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
   const cases = await page.evaluate(() => window.__CONFORMANCE__)
   const caseById = new Map(cases.map((c) => [c.id, c]))
 
@@ -593,7 +640,7 @@ async function main() {
     }
 
     await page.goto(`${base}${PAGE}?case=${encodeURIComponent(pair.ref)}`, { waitUntil: 'load' })
-    await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
+    await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
     for (const a of rc.actions ?? []) {
       if (a.type === 'focus') await page.focus(a.selector)
       else if (a.type === 'press') await page.keyboard.press(a.key)

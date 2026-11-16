@@ -236,14 +236,20 @@ async function main() {
       })
       if (!snap) throw new Error('快照为空：找不到 [data-case-root] > *')
 
-      const rootHandle = await page.$('[data-case-root] > *')
-      await rootHandle.screenshot({ path: path.join(outDir, `${c.id}.png`), animations: 'disabled' })
-
+      // 截图失败不应丢掉证据：Modal 这类全屏浮层的根节点可能零尺寸
       let portalPng = null
-      const portalHandle = await page.$(PORTAL_SELECTOR)
-      if (portalHandle) {
-        portalPng = `${c.id}.portal.png`
-        await portalHandle.screenshot({ path: path.join(outDir, portalPng), animations: 'disabled' })
+      try {
+        const rootHandle = await page.$('[data-case-root] > *')
+        if (rootHandle) {
+          await rootHandle.screenshot({ path: path.join(outDir, `${c.id}.png`), animations: 'disabled' })
+        }
+        const portalHandle = await page.$(PORTAL_SELECTOR)
+        if (portalHandle) {
+          portalPng = `${c.id}.portal.png`
+          await portalHandle.screenshot({ path: path.join(outDir, portalPng), animations: 'disabled' })
+        }
+      } catch (err) {
+        console.warn(`  ! 截图失败（证据仍保留）：${c.id} ${err instanceof Error ? err.message.split('\n')[0] : err}`)
       }
 
       const record = {

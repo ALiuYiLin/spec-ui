@@ -38,7 +38,8 @@
 - [x] Tooltip —— 触发器/浮层分离；data-side 落地
 
 
-- [x] Popover —— 白底卡片；data-align 落地
+
+- [x] Modal —— 遮罩 + 对话框；纯浮层根的回退解析
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）
