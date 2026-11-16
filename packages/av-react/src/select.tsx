@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { CloseIcon, DownIcon } from './icons'
 
 export type SelectOption = { value: string; label: ReactNode; disabled?: boolean }
 export type SelectStatus = 'default' | 'error' | 'warning'
@@ -212,10 +213,16 @@ export function Select({
             clear()
           }}
           onClick={(e) => e.stopPropagation()}
-        />
+        >
+          <CloseIcon />
+        </span>
       ) : null}
 
-      {showArrow ? <span className="av-select__arrow" aria-hidden="true" /> : null}
+      {showArrow ? (
+        <span className="av-select__arrow" aria-hidden="true">
+          <DownIcon />
+        </span>
+      ) : null}
 
       {open
         ? createPortal(

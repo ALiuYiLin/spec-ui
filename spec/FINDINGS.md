@@ -316,3 +316,64 @@ ARIA 镜像 option、icon 嵌错层、浮层没 portal。每一个都必须被�
 
 而且这份 CSS 是**照着协议 DOM 写的**，不是从 antd 源码抄的。协议不变，换一个 Vue 实现，
 样式一行都不用改——这就是当初"协议先行"想要换到的东西。
+
+---
+
+# L3 补全：图标与交互态（第五轮）
+
+## 一、结果
+
+| 指标 | 上一轮 | 本轮 |
+|---|---|---|
+| L3 目标 | 27 | **46** |
+| 样式断言 | 2376 | **4048**（46 × 88） |
+| L2 用例 | 22 | 24 |
+| 不一致 | 0 | 0 |
+
+新增覆盖：spinner / arrow / clear 三个图标部件，以及 hover / active / focus-visible / focus-within
+共 15 个交互态目标。
+
+## 二、图标不是抄的，是从证据里生成的
+
+`packages/av-react/src/icons.tsx` 里的三个 `path d` 不是手写的，而是从 `artifacts/` 里
+antd 实际渲染出的 `<svg>` 节点提取后生成的。手抄一个路径少一位数字，就可能差半个像素，
+而这类差异在对比时表现为"莫名其妙对不上"。
+
+代价是图标与证据版本绑定：升级 antd 需要重新生成。这可以接受——图标的形状本来就该跟着基准走。
+
+## 三、交互态需要和证据同一套强制机制
+
+参考实现的 hover / active / focus-visible 是纯伪类，DOM 里没有任何痕迹。
+所以 `visual-diff` 也必须用 CDP 的 `CSS.forcePseudoState` 在 ref 页上强制，否则永远比的是默认态。
+
+顺带发现一个必须统一的前提：**比对页要和证据采集一样禁用动画**。
+spinner 的 `transform` 会随帧变化，不禁用的话每次跑出来的值都不一样。
+
+## 四、三件只有比对才会暴露的小事
+
+1. **auto-space 只对部分变体生效。**
+   实测宽度：primary / default / dashed 是 64px（"提 交"，插空格），
+   text / link 是 60px（"文本"，不插），带 icon 不插。这条已经写进 button 协议 notes。
+
+2. **clear 不只是改透明度。**
+   antd 的 clear 在 hover 时同时改变 `background`（transparent → #fff）和
+   `border-radius`（0 → 50%），常态与 hover 是两个不同的盒子。
+
+3. **control 的 outline 常态是 3px、聚焦归零。**
+   antd 的 selector 常态带着 UA 默认的 3px outline（style 为 none，不可见），
+   聚焦时归零。只比对 `outline-width` 字面值会误判。
+
+## 五、抓到一个真竞态
+
+`select-focused` 偶发丢焦点：从 focus 事件到 React 打上 `ant-select-focused` 类之间，
+只等两帧 rAF 不够。加了 80ms 的落地窗口后，连续两次抓取都稳定。
+
+**这说明"证据可重放"本身需要验证**——一次绿不代表下次还绿。现在 `extract` 跑两遍结果一致。
+
+## 六、剩下的缺口
+
+| 缺口 | 归属 |
+|---|---|
+| 空态插图（antd 的 Empty 带 SVG 插画） | 内容资产 |
+| 多选 / tags 的 tag 列表 | 协议未覆盖，需另立 |
+| 浮层翻转与碰撞检测 | 行为逻辑，当前只做了下方定位 |

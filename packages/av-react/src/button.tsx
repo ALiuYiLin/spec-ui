@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import { SpinnerIcon } from './icons'
 import { normalizeLabel } from './text'
 
 export type ButtonVariant = 'default' | 'primary' | 'dashed' | 'text' | 'link'
@@ -33,7 +34,7 @@ export function Button({
   const showSpinner = Boolean(loading)
   // 协议：icon 与 spinner 互斥，loading 时 icon 不渲染
   const showIcon = icon != null && !showSpinner
-  const label = typeof children === 'string' ? normalizeLabel(children, showIcon) : children
+  const label = typeof children === 'string' ? normalizeLabel(children, showIcon, variant) : children
 
   return (
     <button
@@ -48,7 +49,11 @@ export function Button({
       {...(showSpinner ? { 'data-loading': 'true', 'aria-busy': 'true' } : null)}
       {...(disabled ? { 'data-disabled': 'true', disabled: true } : null)}
     >
-      {showSpinner ? <span className="av-btn__spinner" aria-hidden="true" /> : null}
+      {showSpinner ? (
+        <span className="av-btn__spinner" aria-hidden="true">
+          <SpinnerIcon />
+        </span>
+      ) : null}
       {showIcon ? (
         <span className="av-btn__icon" aria-hidden="true">
           {icon}

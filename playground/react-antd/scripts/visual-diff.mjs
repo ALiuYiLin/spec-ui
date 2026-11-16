@@ -153,6 +153,14 @@ const RESOLVE = {
       ref: (all, portals) => portals?.[0],
       antd: (all, portals) => portals?.[0],
     },
+    arrow: {
+      ref: (all) => partByClass(all, 'av-select__arrow'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-select-arrow')),
+    },
+    clear: {
+      ref: (all) => partByClass(all, 'av-select__clear'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-select-clear')),
+    },
     option: null, // 需要 index，见下方
   },
 }
@@ -195,28 +203,84 @@ function sameValue(prop, a, b) {
   }
   const px = (v) => /^-?[\d.]+px$/.test(v)
   if (px(a) && px(b)) return Math.abs(parseFloat(a) - parseFloat(b)) <= 0.6
+  // background-position 的零值有两种等价序列化：0px 0px 与 0% 0%
+  if (prop === 'background-position') {
+    const zero = (v) => /^0(px|%) 0(px|%)$/.test(v.trim())
+    if (zero(a) && zero(b)) return true
+  }
   // box-shadow / transform 等列表值：规范化空白后比较
   const norm = (v) => v.replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim()
   return norm(a) === norm(b)
 }
 
 const PAIRS = [
+  // ---- Button：静止态 ----
   { component: 'Button', ref: 'ref-button-default', antd: 'button-default-md', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-primary', antd: 'button-primary-md', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label'] },
-  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root'] },
+  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner'] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },
 
-  { component: 'Select', ref: 'ref-select-closed', antd: 'select-closed-empty', targets: ['root', 'control', 'placeholder'] },
+  // ---- Button：交互态（CDP 强制伪类）----
+  { component: 'Button', ref: 'ref-button-primary', antd: 'button-primary-md-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'Button', ref: 'ref-button-primary', antd: 'button-primary-md-active', pseudo: ['active'], targets: ['root'] },
+  {
+    component: 'Button',
+    ref: 'ref-button-primary',
+    antd: 'button-primary-md-focus-visible',
+    pseudo: ['focus', 'focus-visible'],
+    targets: ['root'],
+  },
+  { component: 'Button', ref: 'ref-button-default', antd: 'button-default-md-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'Button', ref: 'ref-button-default', antd: 'button-default-md-active', pseudo: ['active'], targets: ['root'] },
+  {
+    component: 'Button',
+    ref: 'ref-button-default',
+    antd: 'button-default-md-focus-visible',
+    pseudo: ['focus', 'focus-visible'],
+    targets: ['root'],
+  },
+  { component: 'Button', ref: 'ref-button-text', antd: 'button-text-md-hover', pseudo: ['hover'], targets: ['root'] },
+  {
+    component: 'Button',
+    ref: 'ref-button-disabled',
+    antd: 'button-disabled-hover',
+    pseudo: ['hover'],
+    targets: ['root'],
+  },
+
+  // ---- Select：静止态 ----
+  {
+    component: 'Select',
+    ref: 'ref-select-closed',
+    antd: 'select-closed-empty',
+    targets: ['root', 'control', 'placeholder', 'arrow'],
+  },
   { component: 'Select', ref: 'ref-select-filled', antd: 'select-closed-filled', targets: ['root', 'control', 'value'] },
-  { component: 'Select', ref: 'ref-select-open', antd: 'select-open', targets: ['root', 'control', { name: 'dropdown', ignore: ['left', 'right', 'top', 'bottom', 'transform-origin'] }, 'option0'] },
+  { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: ['clear', 'arrow'] },
+  {
+    component: 'Select',
+    ref: 'ref-select-open',
+    antd: 'select-open',
+    targets: ['root', 'control', { name: 'dropdown', ignore: ['left', 'right', 'top', 'bottom', 'transform-origin'] }, 'option0'],
+  },
   { component: 'Select', ref: 'ref-select-open-selected', antd: 'select-open-filled', targets: ['option1'] },
-  // ref-select-open-empty 暂不比对：antd 的空态带插图（内容资产），不属于样式层
   { component: 'Select', ref: 'ref-select-disabled', antd: 'select-disabled', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-status-error', antd: 'select-status-error', targets: ['control'] },
   { component: 'Select', ref: 'ref-select-size-sm', antd: 'select-size-sm', targets: ['root', 'control'] },
+
+  // ---- Select：交互态 ----
+  {
+    component: 'Select',
+    ref: 'ref-select-clear',
+    antd: 'select-closed-filled-hover',
+    pseudo: ['hover'],
+    targets: ['root', 'control', 'clear', 'arrow'],
+  },
+  { component: 'Select', ref: 'ref-select-focused', antd: 'select-focused', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-open-highlighted', antd: 'select-open-highlighted', targets: ['option0'] },
 ]
 
 async function main() {
@@ -224,7 +288,21 @@ async function main() {
   const base = `http://127.0.0.1:${port}/`
   const browser = await chromium.launch({ channel: 'chrome', headless: true })
   const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: 1, locale: 'zh-CN' })
+  // 与证据采集保持同一前提：动画全部禁用。否则 spinner 的 transform 会随帧变化，
+  // 变成"每次跑都不一样"的假差异。
+  await context.addInitScript((css) => {
+    const inject = () => {
+      const style = document.createElement('style')
+      style.textContent = css
+      document.head && document.head.appendChild(style)
+    }
+    if (document.head) inject()
+    else document.addEventListener('DOMContentLoaded', inject)
+  }, '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important;}')
   const page = await context.newPage()
+  const cdp = await context.newCDPSession(page)
+  await cdp.send('DOM.enable')
+  await cdp.send('CSS.enable')
 
   await page.goto(`${base}ref.html`, { waitUntil: 'load' })
   await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
@@ -248,7 +326,17 @@ async function main() {
       if (a.type === 'focus') await page.focus(a.selector)
       else if (a.type === 'press') await page.keyboard.press(a.key)
     }
-    await page.waitForTimeout(60)
+
+    const forced = pair.pseudo ?? rc.pseudo ?? []
+    if (forced.length) {
+      const { root: doc } = await cdp.send('DOM.getDocument', { depth: 0 })
+      const { nodeId } = await cdp.send('DOM.querySelector', {
+        nodeId: doc.nodeId,
+        selector: '[data-case-root] > *',
+      })
+      if (nodeId) await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: forced })
+    }
+    await page.waitForTimeout(120)
 
     const refSnap = await page.evaluate(snapFn, { props: PROPS })
     const antdRecord = JSON.parse(

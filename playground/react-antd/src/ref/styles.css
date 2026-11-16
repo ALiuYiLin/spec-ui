@@ -188,7 +188,10 @@
     box-sizing: border-box;
     width: 14px;
     height: 19px;
+    font-size: 14px;
     line-height: normal;
+    text-align: center;
+    animation: av-spin 1s linear infinite;
   }
 
   /* ================= Select ================= */
@@ -218,6 +221,9 @@
     border-radius: 6px;
     background: var(--color-av-bg);
     line-height: 22px;
+    /* antd 的 selector 常态是 UA 默认的 3px outline（style:none，不可见），聚焦时归零 */
+    outline-style: none;
+    outline-width: 3px;
   }
   .av-select[data-size='sm'] .av-select__control {
     border-radius: 4px;
@@ -235,6 +241,7 @@
     @apply m-0 h-full w-full border-0 bg-transparent p-0;
     font: inherit;
     color: inherit;
+    outline: none;
   }
 
   .av-select__value,
@@ -273,21 +280,53 @@
   }
 
   .av-select__arrow {
-    @apply pointer-events-none absolute top-1/2 flex items-center justify-center;
+    @apply pointer-events-none absolute top-1/2 flex items-center;
+    box-sizing: border-box;
+    user-select: none;
     inset-inline-end: 11px;
     width: 12px;
     height: 12px;
     margin-top: -6px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    vertical-align: -1.5px;
     color: var(--color-av-text-disabled);
   }
   .av-select__clear {
     @apply absolute top-1/2 cursor-pointer;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    z-index: 1;
     inset-inline-end: 11px;
     width: 12px;
     height: 12px;
     margin-top: -6px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    /* antd 的 clear 带一个恒等 transform，保持一致 */
+    transform: translate(0, 0);
+    border-radius: 50%;
     color: var(--color-av-text-disabled);
+    /* 常态不可见；hover / focus-within 时显现，并用不透明底遮住 arrow */
+    opacity: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+  .av-select:hover .av-select__clear,
+  .av-select:focus-within .av-select__clear {
+    opacity: 1;
     background: var(--color-av-bg);
+    border-radius: 50%;
+  }
+  /* 与 antd 的 .anticon 对齐：图标本体是按基线摆放的 */
+  .av-btn__spinner > svg,
+  .av-select__arrow > svg,
+  .av-select__clear > svg {
+    display: inline-block;
+    vertical-align: -1.75px;
   }
 
   .av-select[data-status='error'] .av-select__control {
@@ -315,6 +354,7 @@
   .av-select__control:focus-within {
     border-color: var(--color-av-primary);
     box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    outline-width: 0;
   }
 
   .av-select__dropdown {
@@ -367,5 +407,12 @@
     padding: 8px;
     font-size: 14px;
     color: var(--color-av-text-disabled);
+  }
+}
+
+/* 加载指示器的旋转。证据在 motion:false 下采集，动画本身不参与比对。 */
+@keyframes av-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

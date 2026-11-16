@@ -46,6 +46,19 @@ scripts/report.mjs      HTML 核对页
 - **属性白名单只有一个来源**：`props.mjs`。采集没存的属性，比对时会变成 undefined，
   "看起来一致"其实是"根本没比"。
 
+## 当前覆盖
+
+| 项 | 数量 |
+|---|---|
+| 证据状态（antd） | 42 |
+| L2 用例（DOM 契约） | 24 |
+| L2 自检夹具 | 7 |
+| L3 目标（部件 × 状态） | 46 |
+| L3 断言（每目标 88 项属性） | 4048 |
+
+交互态（hover / active / focus-visible / focus-within）通过 CDP `CSS.forcePseudoState` 覆盖；
+图标（spinner / arrow / clear）的路径由 `artifacts/` 里的 svg 节点生成，不手写。
+
 ## 注意
 
 - antd 版本在 `package.json` 里精确锁定；升级版本等于基线漂移，需重跑 `extract` 并重新 `diff`。
@@ -54,3 +67,4 @@ scripts/report.mjs      HTML 核对页
   与 antd 的 reset（只有根节点 border-box、子部件 content-box）天然冲突。
 - `@actview/react` 通过 `vite.config.ts` 的 alias 指向 `packages/av-react/src`。
 - `artifacts/` 与 `dist/` 已在 `.gitignore` 里，随时可用 `pnpm extract` / `pnpm build` 重建。
+- 证据必须可重放：`extract` 连续跑两次结果要一致；再改抓取逻辑后记得跑两遍验证。

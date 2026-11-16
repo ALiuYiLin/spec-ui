@@ -87,5 +87,5 @@
     "danger 只是视觉语义，不得改变可访问名称。",
     "circle 形状保留 label 槽位并做视觉隐藏，不用 display:none 移除。"
   ],
-  "notes": "size 取全局合法值 xs..xl 的子集；组件可进一步收窄，不得扩展（见 STATE-VOCAB 第 6 节）。"
+  "notes": "size 取全局合法值 xs..xl 的子集；组件可进一步收窄，不得扩展（见 STATE-VOCAB 第 6 节）。文案规范化：label 恰为两个 CJK 字符、且无 icon、且 variant 不为 text/link 时，在两个字之间插入一个 U+0020——这是 DOM 文本改写，不是样式。"
 }

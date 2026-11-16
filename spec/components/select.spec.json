@@ -176,5 +176,5 @@
     "empty 文案需要能被辅助技术读到（放在 listbox 内）。",
     "列表项 id 由实现生成，只需在 input 与 option 之间保持一致。"
   ],
-  "notes": "多选（multiple / tags）会引入 tag 列表与 backspace 删除逻辑，结构差异过大，另立协议。样式层约束（不参与 L2 校验）：clear 默认 opacity:0，根节点 hover 或 focus-within 时 opacity:1，同时 arrow 必须隐藏；二者共用右侧槽位，禁止并排。"
+  "notes": "多选（multiple / tags）会引入 tag 列表与 backspace 删除逻辑，结构差异过大，另立协议。样式层约束（不参与 L2 校验）：clear 常态 opacity:0 且背景透明；根节点 hover 或 focus-within 时 opacity:1 并转为不透明底色，借此完全遮住同槽位的 arrow（实测 antd 即为此行为，arrow 始终 opacity:1）。"
 }

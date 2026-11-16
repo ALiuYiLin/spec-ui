@@ -205,6 +205,9 @@ async function main() {
         else if (a.type === 'press') await page.keyboard.press(a.key)
         else if (a.type === 'click') await page.click(a.selector)
       }
+      // 交互后给 React 一个确定的落地窗口：focus 事件 → 状态更新 → 类名/DOM 变更
+      // 只等 rAF 会偶发抓不到 ant-select-focused（实测过一次丢焦点）。
+      if ((c.actions ?? []).length) await page.waitForTimeout(80)
       if (c.portal) {
         await page.waitForSelector(PORTAL_SELECTOR, { state: 'attached', timeout: 10000 })
       }

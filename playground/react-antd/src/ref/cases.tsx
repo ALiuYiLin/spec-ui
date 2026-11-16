@@ -172,6 +172,14 @@ export const cases: RefCase[] = [
     ],
   },
   {
+    id: 'ref-button-text',
+    component: 'Button',
+    render: () => (
+      <Button variant="text">文本</Button>
+    ),
+    assert: [{ k: 'data', key: 'variant', value: 'text' }],
+  },
+  {
     id: 'ref-button-autospace',
     component: 'Button',
     render: () => <Button>提交</Button>,
@@ -289,6 +297,13 @@ export const cases: RefCase[] = [
     component: 'Select',
     render: () => <Select options={OPTIONS} status="error" value="b" />,
     assert: [{ k: 'data', key: 'status', value: 'error' }],
+  },
+  {
+    id: 'ref-select-focused',
+    component: 'Select',
+    actions: [{ type: 'focus', selector: INPUT }],
+    render: () => <Select options={OPTIONS} />,
+    assert: [{ k: 'data', key: 'state', value: 'closed' }],
   },
   {
     id: 'ref-select-size-sm',
