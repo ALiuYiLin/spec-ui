@@ -1,0 +1,75 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Checkbox",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "复选框。原生 input 承担全部语义与键盘行为，视觉方框是独立部件；勾选与半选由根节点的 data-state 表达。",
+  "anatomy": {
+    "root": {
+      "class": "av-checkbox",
+      "tag": "label",
+      "required": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "selection",
+          "enum": ["checked", "unchecked", "indeterminate"],
+          "required": true,
+          "default": "unchecked"
+        },
+        "disabled": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "focus-within"]
+    },
+    "parts": {
+      "control": {
+        "class": "av-checkbox__control",
+        "tag": "span",
+        "required": true,
+        "order": 1,
+        "notes": "16×16 的定位容器，input 绝对定位在其中，视觉方框也在里面。勾号由样式层绘制。"
+      },
+      "input": {
+        "class": "av-checkbox__input",
+        "tag": "input",
+        "required": true,
+        "order": 1,
+        "attrs": {
+          "type": { "required": true, "default": "checkbox" }
+        },
+        "notes": "视觉上不可见但必须可聚焦；indeterminate 是 JS 属性，不体现在 attribute 上。"
+      },
+      "box": {
+        "class": "av-checkbox__box",
+        "tag": "span",
+        "required": true,
+        "order": 2,
+        "aria": { "aria-hidden": "true" },
+        "notes": "纯视觉方框。勾号与半选横线由样式层绘制，不占用 DOM。"
+      },
+      "label": {
+        "class": "av-checkbox__label",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "存在文本内容"
+      }
+    }
+  },
+  "invariants": [
+    "根节点必须是 label，且恰好包含一个 type=checkbox 的原生 input。",
+    "control 必须是 root 的直接子节点；input 与 box 必须是 control 的直接子节点，且 input 在 box 之前。",
+    "data-state 必须与 input 的真实状态一致：checked 对应 checked 属性，indeterminate 对应 input.indeterminate 属性。",
+    "indeterminate 时 input 仍可被点击，点击后回到 checked / unchecked——状态机由使用者决定。",
+    "disabled 时 input 必须带原生 disabled，且根节点同时带 data-disabled。",
+    "box 必须 aria-hidden，不得作为可访问名称的来源。",
+    "label 若存在，必须是 root 的直接子节点，且位于 control 之后。",
+    "禁止用 div + 图标模拟复选框；键盘与表单行为必须由原生 input 提供。"
+  ],
+  "a11y": [
+    "可访问名称来自 label 文本或 aria-label，不能只靠视觉方框。",
+    "焦点环必须由 input 的 :focus-visible 驱动，样式作用在 box 上（相邻兄弟选择器）。",
+    "半选状态必须通过 input.indeterminate = true 告知辅助技术，仅改 data-state 不够。"
+  ],
+  "notes": "data-state 使用 STATE-VOCAB 的 selection 值域（checked / unchecked / indeterminate），这是该值域第一次被组件使用。"
+}

@@ -182,6 +182,25 @@ const RESOLVE = {
       antd: (all) => all.find((n) => n.classes.includes('ant-input-clear-icon')),
     },
   },
+
+  Checkbox: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('av-checkbox')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-wrapper')),
+    },
+    control: {
+      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__control')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-checkbox')),
+    },
+    box: {
+      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__box')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-inner')),
+    },
+    label: {
+      ref: (all) => all.find((n) => n.classes.includes('av-checkbox__label')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-checkbox-label')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -325,6 +344,14 @@ const PAIRS = [
     pseudo: ['hover'],
     targets: ['root', { name: 'clear', ignore: ['font-family'] }],
   },
+
+  // ---- Checkbox ----
+  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-unchecked', targets: ['root', 'control', 'box', 'label'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-checked', antd: 'checkbox-checked', targets: ['box'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-indeterminate', antd: 'checkbox-indeterminate', targets: ['box'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-disabled', antd: 'checkbox-disabled', targets: ['root', 'box'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-hover', pseudo: ['hover'], targets: ['box'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-focus', antd: 'checkbox-focus', targets: ['box'] },
 ]
 
 async function main() {

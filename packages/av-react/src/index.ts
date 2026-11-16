@@ -7,5 +7,8 @@ export type { SelectProps, SelectOption, SelectStatus, SelectVariant, SelectSize
 export { Input } from './input'
 export type { InputProps, InputVariant, InputSize, InputStatus } from './input'
 
+export { Checkbox } from './checkbox'
+export type { CheckboxProps } from './checkbox'
+
 export { normalizeLabel } from './text'
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'

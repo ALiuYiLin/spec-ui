@@ -50,11 +50,11 @@ scripts/report.mjs      HTML 核对页
 
 | 项 | 数量 |
 |---|---|
-| 证据状态（antd） | 58 |
-| L2 用例（DOM 契约） | 34 |
+| 证据状态（antd） | 67 |
+| L2 用例（DOM 契约） | 40 |
 | L2 自检夹具 | 7 |
-| L3 目标（部件 × 状态） | 60 |
-| L3 断言（每目标 88 项属性） | 5280 |
+| L3 目标（部件 × 状态） | 70 |
+| L3 断言（每目标 88 项属性） | 6160 |
 
 交互态（hover / active / focus-visible / focus-within）通过 CDP `CSS.forcePseudoState` 覆盖；
 图标（spinner / arrow / clear）的路径由 `artifacts/` 里的 svg 节点生成，不手写。

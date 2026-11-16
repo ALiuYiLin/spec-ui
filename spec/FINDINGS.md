@@ -430,3 +430,56 @@ Input 有两种合法形态：
 | Button | 26 | 12 | 20 |
 | Select | 16 | 12 | 26 |
 | Input | 16 | 10 | 14 |
+
+---
+
+# 扩组件：Checkbox（第七轮）
+
+## 一、结果
+
+| 指标 | 上轮 | 本轮 |
+|---|---|---|
+| 证据状态 | 58 | **67** |
+| L2 用例 | 34 | **40** |
+| L3 目标 | 60 | **70** |
+| L3 断言 | 5280 | **6160** |
+
+conformance 40/40、自检 7/7、visual diff 70/70。
+
+## 二、`selection` 值域第一次被使用
+
+`data-state="checked | unchecked | indeterminate"` 来自 STATE-VOCAB 第 5 节，
+这是它第一次真正落地。三个状态都由同一个属性表达，样式层用
+`[data-state='checked']` 切换，不需要额外的 `data-checked` 布尔。
+
+## 三、协议被实现倒逼改了一次
+
+最初把 `input` 和 `box` 平铺在 root 下。写样式时发现：原生 input 必须
+`position: absolute` 才能盖在方框上，而绝对定位需要一个定位祖先——antd 的
+`.ant-checkbox` 正是这个角色。
+
+于是协议加了 `control` 部件（16×16、`position: relative`），input 与 box 成为它的子节点。
+**结构不只是语义分组，还得承载定位上下文。** 这条以后每加一个组件都要先想一遍。
+
+## 四、四个比对出来的细节
+
+1. **indeterminate 时方框外观不变。**
+   antd 的半选盒子仍是白底灰边，横线由 `::after` 画。只比对 DOM 会误以为它和未选一样。
+
+2. **label 的 padding 是两侧各 8px。**
+   不是只有左侧——右侧那 8px 让根宽度变成 60 而不是 52。
+
+3. **control 有自己的 `border-radius: 4px` 和 `line-height: 14px`。**
+   它不从 box 继承，必须单独写。
+
+4. **焦点环挂在 `:focus` 而不是 `:focus-visible`。**
+   程序化聚焦也会出现环。这与 Button 的 `:focus-visible` 不一致，但证据如此，照抄。
+
+## 五、当前组件矩阵
+
+| 组件 | 证据 | L2 | L3 |
+|---|---|---|---|
+| Button | 26 | 12 | 20 |
+| Select | 16 | 12 | 26 |
+| Input | 16 | 10 | 14 |
+| Checkbox | 9 | 6 | 10 |
