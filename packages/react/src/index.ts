@@ -25,5 +25,8 @@ export type { InputNumberProps, InputNumberSize, InputNumberStatus } from './inp
 export { Slider } from './slider'
 export type { SliderProps, SliderOrientation } from './slider'
 
+export { Tooltip } from './tooltip'
+export type { TooltipProps, TooltipSide } from './tooltip'
+
 export { normalizeLabel } from './text'
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'

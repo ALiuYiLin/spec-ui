@@ -99,8 +99,9 @@ const snapFn = ({ props }) => {
   )
   if (!el) return null
 
-  const portals = Array.from(document.querySelectorAll('.sm-select__dropdown'))
-    .filter((p) => !el.contains(p))
+  // 浮层根：任何直接挂在 body 下的 sm-* 元素（Select 下拉、Tooltip 等）
+  const portals = Array.from(document.querySelectorAll('[class^="sm-"], [class*=" sm-"]'))
+    .filter((p) => p.parentElement === document.body && !el.contains(p))
     .map(walk)
 
   return { tree: walk(el), portals }
@@ -258,6 +259,17 @@ const RESOLVE = {
     input: {
       ref: (all) => all.find((n) => n.classes.includes('sm-input-number__input')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-number-input')),
+    },
+  },
+
+  Tooltip: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-tooltip')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-tooltip')),
+    },
+    inner: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-tooltip__inner')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-tooltip-inner')),
     },
   },
 
@@ -478,6 +490,27 @@ const PAIRS = [
   // ---- Slider ----
   { component: 'Slider', ref: 'ref-slider-basic', antd: 'slider-basic', targets: ['root', 'rail', 'track', 'handle'] },
   { component: 'Slider', ref: 'ref-slider-disabled', antd: 'slider-disabled', targets: ['root', 'handle'] },
+
+  // ---- Tooltip ----
+  // 只比视觉属性：位置由 placement 与实测几何决定，不可比
+  {
+    component: 'Tooltip',
+    ref: 'ref-tooltip-top',
+    antd: 'tooltip-top',
+    targets: [
+      { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
+      'inner',
+    ],
+  },
+  {
+    component: 'Tooltip',
+    ref: 'ref-tooltip-bottom',
+    antd: 'tooltip-bottom',
+    targets: [
+      { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
+      'inner',
+    ],
+  },
 ]
 
 async function main() {

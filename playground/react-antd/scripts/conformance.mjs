@@ -89,8 +89,9 @@ const snapshotFn = () => {
   }
 
   const tree = walk(el)
-  const portals = Array.from(document.querySelectorAll('.sm-select__dropdown'))
-    .filter((p) => !el.contains(p))
+  // 浮层根：任何直接挂在 body 下的 sm-* 元素（Select 下拉、Tooltip 等）
+  const portals = Array.from(document.querySelectorAll('[class^="sm-"], [class*=" sm-"]'))
+    .filter((p) => p.parentElement === document.body && !el.contains(p))
     .map((p) => ({ tree: walk(p), parentTag: (p.parentElement && p.parentElement.tagName.toLowerCase()) || null }))
   return { tree, portals }
 }

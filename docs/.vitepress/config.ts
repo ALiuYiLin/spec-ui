@@ -35,6 +35,7 @@ export default defineConfig({
             { text: 'Field', link: '/components/field' },
             { text: 'InputNumber', link: '/components/input-number' },
             { text: 'Slider', link: '/components/slider' },
+            { text: 'Tooltip', link: '/components/tooltip' },
           ],
         },
       ],

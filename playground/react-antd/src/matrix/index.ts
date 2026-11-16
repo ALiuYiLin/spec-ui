@@ -8,6 +8,7 @@ import { cases as switchCases } from './switch'
 import { cases as fieldCases } from './field'
 import { cases as inputNumberCases } from './input-number'
 import { cases as sliderCases } from './slider'
+import { cases as tooltipCases } from './tooltip'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -19,4 +20,5 @@ export const cases: Case[] = [
   ...fieldCases.map((c) => ({ ...c, component: 'Field' })),
   ...inputNumberCases.map((c) => ({ ...c, component: 'InputNumber' })),
   ...sliderCases.map((c) => ({ ...c, component: 'Slider' })),
+  ...tooltipCases.map((c) => ({ ...c, component: 'Tooltip' })),
 ]

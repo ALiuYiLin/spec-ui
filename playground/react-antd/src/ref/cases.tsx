@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -656,5 +656,35 @@ export const cases: RefCase[] = [
       { k: 'data', key: 'disabled', value: 'true' },
       { k: 'attr', on: 'handle', key: 'tabindex', value: '-1' },
     ],
+  },
+
+  // ---------------- Tooltip ----------------
+  {
+    id: 'ref-tooltip-top',
+    component: 'Tooltip',
+    render: () => (
+      <Tooltip title="提示文字" open side="top">
+        <button type="button">悬停</button>
+      </Tooltip>
+    ),
+    assert: [
+      { k: 'data', key: 'state', value: 'open' },
+      { k: 'data', key: 'side', value: 'top' },
+      { k: 'attr', on: 'root', key: 'role', value: 'tooltip' },
+      { k: 'part', name: 'trigger' },
+      { k: 'part', name: 'inner' },
+      { k: 'part', name: 'arrow' },
+      { k: 'attr', on: 'trigger', key: 'aria-describedby' },
+    ],
+  },
+  {
+    id: 'ref-tooltip-bottom',
+    component: 'Tooltip',
+    render: () => (
+      <Tooltip title="提示文字" open side="bottom">
+        <button type="button">悬停</button>
+      </Tooltip>
+    ),
+    assert: [{ k: 'data', key: 'side', value: 'bottom' }],
   },
 ]

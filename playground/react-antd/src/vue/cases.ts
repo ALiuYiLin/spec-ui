@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch, Tooltip } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -184,6 +184,15 @@ export const renders: Record<string, { component: VueCase['component']; actions?
 
   'ref-slider-basic': { component: 'Slider', render: () => h(Slider, { modelValue: 40 }) },
   'ref-slider-disabled': { component: 'Slider', render: () => h(Slider, { disabled: true, modelValue: 40 }) },
+
+  'ref-tooltip-top': {
+    component: 'Tooltip',
+    render: () => h(Tooltip, { title: '提示文字', open: true, side: 'top' }, { default: () => h('button', { type: 'button' }, '悬停') }),
+  },
+  'ref-tooltip-bottom': {
+    component: 'Tooltip',
+    render: () => h(Tooltip, { title: '提示文字', open: true, side: 'bottom' }, { default: () => h('button', { type: 'button' }, '悬停') }),
+  },
 }
 
 export const caseIds = Object.keys(renders)

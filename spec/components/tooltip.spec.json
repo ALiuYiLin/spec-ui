@@ -1,0 +1,69 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Tooltip",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "文字提示。第一个「触发器 + 浮层」分离的组件：触发器留在文档流里，浮层 portal 到 body 并按 side/align 定位。",
+  "anatomy": {
+    "root": {
+      "class": "sm-tooltip",
+      "tag": "div",
+      "required": true,
+      "portal": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        },
+        "side": {
+          "kind": "config",
+          "enum": ["top", "right", "bottom", "left"],
+          "required": true,
+          "default": "top"
+        }
+      },
+      "attrs": { "role": { "required": true, "default": "tooltip" } },
+      "notes": "root 本身就是浮层，直接 portal 到 body；定位用几何内联样式。"
+    },
+    "parts": {
+      "trigger": {
+        "class": "sm-tooltip__trigger",
+        "tag": "span",
+        "required": true,
+        "order": 0,
+        "aria": { "aria-describedby": "浮层存在时必填，指向 root 的 id" },
+        "notes": "留在文档流的触发器；hover / focus 由它驱动。"
+      },
+      "inner": {
+        "class": "sm-tooltip__inner",
+        "tag": "div",
+        "required": true,
+        "order": 1
+      },
+      "arrow": {
+        "class": "sm-tooltip__arrow",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "aria": { "aria-hidden": "true" }
+      }
+    }
+  },
+  "invariants": [
+    "root 必须 portal 到 document.body，且只在 state=open 时渲染。",
+    "trigger 必须留在原地，不得被 portal；它持有 aria-describedby 指向 root 的 id。",
+    "root 必须有 role=\"tooltip\" 且带 id，供 aria-describedby 引用。",
+    "inner 与 arrow 必须是 root 的直接子节点，顺序为 inner → arrow。",
+    "定位只允许几何内联样式（left / top / transform），不得夹带视觉属性。",
+    "state=closed 时 root 不得存在——浮层是条件渲染，不是 display:none。"
+  ],
+  "a11y": [
+    "触发器必须可聚焦（原生可聚焦元素或 tabindex），否则键盘用户看不到提示。",
+    "trigger 的 aria-describedby 只在浮层存在时出现，关闭后必须移除。",
+    "提示文案不得包含交互元素；需要交互请用 Popover。"
+  ],
+  "notes": "这是 portal 字段第一次用在「root 自身」而不是某个部件上；也是 data-side 第一次被使用。"
+}
