@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "paths": {
+      "@specmark/react": ["../packages/react/src/index.ts"],
+      "@specmark/vue": ["../packages/vue/src/index.ts"],
+      "@specmark/css/*": ["../packages/css/src/*"]
+    }
+  },
+  "include": [".vitepress/**/*.ts", ".vitepress/**/*.d.ts"],
+  "exclude": ["node_modules", ".vitepress/dist", ".vitepress/cache"]
+}

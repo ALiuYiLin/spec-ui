@@ -7,14 +7,17 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "verify": "pnpm typecheck && pnpm --filter @specmark/playground-react-antd run verify"
+    "typecheck:docs": "tsc -p docs/tsconfig.json --noEmit",
+    "verify": "pnpm typecheck && pnpm typecheck:docs && pnpm --filter @specmark/playground-react-antd run verify"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^26.6.6",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.0.0",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
+    "vite": "^5.4.14",
     "vitepress": "^1.6.4",
     "vue": "^3.5.45"
   }
