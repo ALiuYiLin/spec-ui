@@ -377,3 +377,56 @@ spinner 的 `transform` 会随帧变化，不禁用的话每次跑出来的值�
 | 空态插图（antd 的 Empty 带 SVG 插画） | 内容资产 |
 | 多选 / tags 的 tag 列表 | 协议未覆盖，需另立 |
 | 浮层翻转与碰撞检测 | 行为逻辑，当前只做了下方定位 |
+
+---
+
+# 扩组件：Input（第六轮）
+
+## 一、结果
+
+| 指标 | 上轮 | 本轮 |
+|---|---|---|
+| 证据状态 | 42 | **58** |
+| L2 用例 | 24 | **34** |
+| L3 目标 | 46 | **60** |
+| L3 断言 | 4048 | **5280** |
+
+全部通过：conformance 34/34、自检 7/7、visual diff 60/60。
+
+## 二、协议第一次遇到"结构随模式变化"
+
+Input 有两种合法形态：
+
+- **无前后缀**：根就是 `<input class="av-input">`，边框和 padding 都在它身上。
+- **有前后缀 / 清除**：根是 `<span class="av-input">`，原生 input 退为 `__field`。
+
+一开始想统一成"永远套一层包裹"，被 L3 直接否掉：参考实现的裸 input 是 `inline-block`，
+包裹层最自然是 `inline-flex`，`display` 一差，后面 88 项全崩。而给纯文本输入凭空套一层，
+也会污染它的语义。
+
+所以协议承认两种形态，`protocol.schema.json` 里 `tag` 的数组写法第一次真正派上用场。
+教训是：**结构自由不是目的，能让一份 CSS 同时满足两份实现才是。**
+
+## 三、四个只有逐属性比对才会暴露的事实
+
+1. **占位符态才有 `text-overflow: ellipsis`。**
+   空值时 antd 给 ellipsis，一旦有值就回到 `clip`——对应 `:placeholder-shown`。这条纯属反直觉。
+
+2. **affix 容器不设字体。**
+   antd 只把字体挂在 input 上，包裹层继承页面默认（这里是 Times New Roman）。
+   所以字体规则必须写在 `input.av-input` 和 `__field` 上，不能写在 `.av-input` 上。
+
+3. **antd 的 clear 是 `<button type="button" tabindex="-1">`。**
+   它的 `font-family` 因此落到 UA 默认的 Arial。我们的 clear 是 span，
+   这一项按"图形部件、无文本"忽略——并在比对里显式标注，而不是悄悄放过。
+
+4. **prefix / suffix 用 margin 而不是 gap。**
+   `margin-inline: 4px` + `flex-shrink: 0`；且包裹层 hover 时 `z-index` 变 1。
+
+## 四、当前组件矩阵
+
+| 组件 | 证据状态 | L2 用例 | L3 目标 |
+|---|---|---|---|
+| Button | 26 | 12 | 20 |
+| Select | 16 | 12 | 26 |
+| Input | 16 | 10 | 14 |

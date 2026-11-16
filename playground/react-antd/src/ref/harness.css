@@ -3,3 +3,7 @@
 [data-case-root] > .av-select {
   inline-size: 200px;
 }
+
+[data-case-root] > .av-input {
+  inline-size: 200px;
+}

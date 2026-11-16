@@ -163,6 +163,25 @@ const RESOLVE = {
     },
     option: null, // 需要 index，见下方
   },
+
+  Input: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('av-input')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-affix-wrapper') || n.classes.includes('ant-input')),
+    },
+    prefix: {
+      ref: (all) => all.find((n) => n.classes.includes('av-input__prefix')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-prefix')),
+    },
+    suffix: {
+      ref: (all) => all.find((n) => n.classes.includes('av-input__suffix')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-suffix')),
+    },
+    clear: {
+      ref: (all) => all.find((n) => n.classes.includes('av-input__clear')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-clear-icon')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -281,6 +300,31 @@ const PAIRS = [
   },
   { component: 'Select', ref: 'ref-select-focused', antd: 'select-focused', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-open-highlighted', antd: 'select-open-highlighted', targets: ['option0'] },
+
+  // ---- Input ----
+  { component: 'Input', ref: 'ref-input-basic', antd: 'input-basic', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-value', antd: 'input-value', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-disabled', antd: 'input-disabled', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-error', antd: 'input-error', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-sm', antd: 'input-sm', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-lg', antd: 'input-lg', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-basic', antd: 'input-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-focus', antd: 'input-focus', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-prefix', antd: 'input-prefix', targets: ['root', 'prefix'] },
+  {
+    component: 'Input',
+    ref: 'ref-input-clear',
+    antd: 'input-clear',
+    // 清除按钮是图形部件（SVG + currentColor），antd 那边是 button，字体会落到 UA 默认 Arial
+    targets: ['root', { name: 'clear', ignore: ['font-family'] }],
+  },
+  {
+    component: 'Input',
+    ref: 'ref-input-clear',
+    antd: 'input-clear-hover',
+    pseudo: ['hover'],
+    targets: ['root', { name: 'clear', ignore: ['font-family'] }],
+  },
 ]
 
 async function main() {

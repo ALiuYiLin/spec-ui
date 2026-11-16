@@ -1,0 +1,90 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Input",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "单行文本输入。根节点有两种形态：无前后缀时根就是原生 input；有前后缀或清除时根是包裹元素，原生 input 退为 __field。这是本协议第一次出现结构随模式变化。",
+  "anatomy": {
+    "root": {
+      "class": "av-input",
+      "tag": ["input", "span"],
+      "required": true,
+      "data": {
+        "variant": {
+          "kind": "variant",
+          "enum": ["outlined", "filled", "borderless"],
+          "required": true,
+          "default": "outlined"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md", "lg"],
+          "required": true,
+          "default": "md"
+        },
+        "status": {
+          "kind": "config",
+          "enum": ["default", "error", "warning"],
+          "required": true,
+          "default": "default"
+        },
+        "disabled": { "kind": "boolean" },
+        "readonly": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "focus-within"]
+    },
+    "parts": {
+      "prefix": {
+        "class": "av-input__prefix",
+        "tag": "span",
+        "required": false,
+        "order": 1,
+        "condition": "传入 prefix（仅 span 模式）"
+      },
+      "field": {
+        "class": "av-input__field",
+        "tag": "input",
+        "required": false,
+        "order": 2,
+        "condition": "根为 span 时必填；根为 input 时不渲染",
+        "attrs": {
+          "type": { "required": true, "default": "text" }
+        },
+        "aria": {
+          "aria-invalid": "status=error 时必填 true"
+        }
+      },
+      "clear": {
+        "class": "av-input__clear",
+        "tag": "span",
+        "required": false,
+        "order": 3,
+        "condition": "allowClear 且有值（仅 span 模式）",
+        "aria": { "aria-hidden": "true" }
+      },
+      "suffix": {
+        "class": "av-input__suffix",
+        "tag": "span",
+        "required": false,
+        "order": 3,
+        "condition": "传入 suffix 且当前无 clear（仅 span 模式）"
+      }
+    }
+  },
+  "invariants": [
+    "根节点只有两种合法形态：input（无前后缀）或 span（有前后缀/清除）；不得出现第三种。",
+    "根为 span 时，field 必须是 root 的直接子节点且恰好一个。",
+    "根为 input 时，不渲染任何 part，也不得再套包裹元素。",
+    "disabled 时原生 disabled 必须落在承载文本编辑的那个元素上（input 或 field），且根节点同时带 data-disabled。",
+    "readonly 时原生 readonly 必须落在承载文本编辑的元素上，且根节点同时带 data-readonly。",
+    "status=error 时，承载文本编辑的元素必须带 aria-invalid=\"true\"。",
+    "clear 与 suffix 共用尾部槽位，同一时刻只允许一个存在。",
+    "禁止用 div + contenteditable 模拟输入框。"
+  ],
+  "a11y": [
+    "可访问名称来自关联的 label 或 aria-label，不能只依赖 placeholder。",
+    "clear 不可聚焦、不进入 Tab 序列；键盘清除走 Esc 或 Delete。",
+    "错误状态必须同时体现在 aria-invalid 上，不能只改边框颜色。"
+  ],
+  "notes": "为什么允许双形态：无前后缀时如果仍套一层包裹，根节点的 display 与盒子模型就会和参考实现分叉（inline-block vs inline-flex），L3 永远对不上；而套包裹又会污染纯文本输入的语义。两种形态各自最自然，协议选择承认这一点而不是强行统一。"
+}

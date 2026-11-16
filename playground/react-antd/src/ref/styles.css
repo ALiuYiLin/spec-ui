@@ -402,6 +402,135 @@
     cursor: not-allowed;
   }
 
+  /* ================= Input ================= */
+  .av-input {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 32px;
+    margin: 0;
+    padding: 4px 11px;
+    border: 1px solid var(--color-av-border);
+    border-radius: 6px;
+    background: var(--color-av-bg);
+    color: var(--color-av-text);
+    font-size: 14px;
+    line-height: 22px;
+    text-align: start;
+    vertical-align: baseline;
+    outline-style: none;
+    outline-width: 3px;
+    outline-color: currentColor;
+    cursor: text;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  /* 形态一：根就是原生 input */
+  input.av-input {
+    display: inline-block;
+    font-family: var(--font-av);
+  }
+  /* 原生 input 有值才用 clip，展示占位符时 antd 用 ellipsis */
+  input.av-input:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+  /* 形态二：根是包裹元素，input 退为 __field；包裹层继承页面字体（与参考实现一致） */
+  span.av-input {
+    display: inline-flex;
+    cursor: auto;
+  }
+  /* 参考实现里 hover 时把包裹层提到同层之上 */
+  span.av-input:hover {
+    z-index: 1;
+  }
+
+  .av-input[data-size='sm'] {
+    height: 24px;
+    padding: 0 7px;
+    border-radius: 4px;
+  }
+  .av-input[data-size='lg'] {
+    height: 40px;
+    padding: 7px 11px;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .av-input[data-status='error'] {
+    border-color: var(--color-av-danger);
+  }
+  .av-input[data-status='warning'] {
+    border-color: var(--color-av-warning);
+  }
+  .av-input[data-variant='filled'] {
+    background: var(--color-av-fill);
+    border-color: transparent;
+  }
+  .av-input[data-variant='borderless'] {
+    height: 30px;
+    border-width: 0;
+    border-style: none;
+    background: transparent;
+  }
+  .av-input:not([data-disabled='true']):hover {
+    border-color: var(--color-av-primary-hover);
+  }
+  .av-input:focus,
+  .av-input:focus-within {
+    border-color: var(--color-av-primary);
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    outline-width: 0;
+  }
+  .av-input[data-disabled='true'] {
+    background: var(--color-av-fill);
+    color: var(--color-av-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .av-input__field {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: var(--font-av);
+    font-size: 14px;
+    line-height: 22px;
+    outline: none;
+    cursor: text;
+  }
+  .av-input__prefix,
+  .av-input__suffix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    color: var(--color-av-text);
+  }
+  .av-input__prefix {
+    margin-inline-end: 4px;
+  }
+  .av-input__suffix {
+    margin-inline-start: 4px;
+  }
+  .av-input__clear {
+    display: block;
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    line-height: 0;
+    text-align: center;
+    vertical-align: -1px;
+    color: var(--color-av-text-disabled);
+    cursor: pointer;
+  }
+
   .av-select__empty {
     @apply flex items-center justify-center;
     padding: 8px;
