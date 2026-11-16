@@ -17,5 +17,8 @@ export type { SwitchSize } from './switch'
 export { Field } from './field'
 export type { FieldStatus } from './field'
 
+export { InputNumber } from './input-number'
+export type { InputNumberSize, InputNumberStatus } from './input-number'
+
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'
 export { normalizeLabel } from './text'

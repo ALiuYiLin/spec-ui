@@ -3,7 +3,7 @@ import fsp from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-core'
-import { STYLE_PROPS } from './props.mjs'
+import { STYLE_PROPS, kebab } from './props.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PKG_ROOT = path.resolve(__dirname, '..')
@@ -190,7 +190,7 @@ async function main() {
   const failures = []
 
   for (const c of cases) {
-    const outDir = path.join(ARTIFACTS, c.component.toLowerCase())
+    const outDir = path.join(ARTIFACTS, kebab(c.component))
     await fsp.mkdir(outDir, { recursive: true })
     if (!byComponent.has(c.component)) byComponent.set(c.component, { dir: outDir, cases: [] })
 

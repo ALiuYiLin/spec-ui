@@ -3,7 +3,7 @@ import fsp from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-core'
-import { STYLE_PROPS } from './props.mjs'
+import { STYLE_PROPS, kebab } from './props.mjs'
 
 /**
  * L3 视觉一致性比对。
@@ -249,6 +249,17 @@ const RESOLVE = {
       antd: (all) => all.find((n) => n.classes.includes('ant-form-item-explain-error')),
     },
   },
+
+  InputNumber: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-input-number')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-number')),
+    },
+    input: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-input-number__input')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-input-number-input')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -437,6 +448,13 @@ const PAIRS = [
     antd: 'field-error',
     targets: [{ name: 'label', ignore: ['display', 'box-sizing', 'width', 'min-width', 'max-width', 'height', 'min-height', 'transform-origin'] }],
   },
+
+  // ---- InputNumber ----
+  { component: 'InputNumber', ref: 'ref-input-number-basic', antd: 'input-number-basic', targets: ['root', 'input'] },
+  { component: 'InputNumber', ref: 'ref-input-number-disabled', antd: 'input-number-disabled', targets: ['root', 'input'] },
+  { component: 'InputNumber', ref: 'ref-input-number-error', antd: 'input-number-error', targets: ['root'] },
+  { component: 'InputNumber', ref: 'ref-input-number-basic', antd: 'input-number-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'InputNumber', ref: 'ref-input-number-focus', antd: 'input-number-focus', targets: ['root', 'input'] },
 ]
 
 async function main() {
@@ -496,7 +514,7 @@ async function main() {
 
     const refSnap = await page.evaluate(snapFn, { props: PROPS })
     const antdRecord = JSON.parse(
-      await fsp.readFile(path.join(ARTIFACTS, pair.component.toLowerCase(), `${pair.antd}.json`), 'utf8'),
+      await fsp.readFile(path.join(ARTIFACTS, kebab(pair.component), `${pair.antd}.json`), 'utf8'),
     )
 
     const refs = {

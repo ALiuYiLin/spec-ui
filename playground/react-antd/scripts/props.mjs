@@ -25,3 +25,7 @@ export const STYLE_PROPS = [
   'align-items', 'align-self', 'justify-content', 'gap', 'row-gap', 'column-gap',
   'vertical-align', 'content',
 ]
+
+/** PascalCase 组件名 → kebab-case（InputNumber → input-number）。
+ *  证据目录、协议文件名、文档路径都用它，避免三处各写一遍字符串转换。 */
+export const kebab = (name) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()

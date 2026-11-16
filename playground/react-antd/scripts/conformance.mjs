@@ -3,6 +3,7 @@ import fsp from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-core'
+import { kebab } from './props.mjs'
 
 /**
  * L2 一致性校验器。
@@ -103,7 +104,7 @@ const flat = (n, out = []) => {
 const specs = new Map()
 async function loadSpec(component) {
   if (specs.has(component)) return specs.get(component)
-  const file = path.join(SPEC_DIR, `${component.toLowerCase()}.spec.json`)
+  const file = path.join(SPEC_DIR, `${kebab(component)}.spec.json`)
   const spec = JSON.parse(await fsp.readFile(file, 'utf8'))
   specs.set(component, spec)
   return spec
@@ -495,5 +496,6 @@ async function main() {
 
 main().catch((err) => {
   console.error(err)
-  process.exitCode = 1
+  // 必须硬退出：出错时浏览器没关，process.exitCode 不会让进程结束
+  process.exit(1)
 })

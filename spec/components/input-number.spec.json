@@ -1,0 +1,96 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "InputNumber",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "数字输入框。原生 input 承担编辑，外层 wrap 承担 spinbutton 语义，右侧是一组步进按钮。",
+  "anatomy": {
+    "root": {
+      "class": "sm-input-number",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md", "lg"],
+          "required": true,
+          "default": "md"
+        },
+        "status": {
+          "kind": "config",
+          "enum": ["default", "error", "warning"],
+          "required": true,
+          "default": "default"
+        },
+        "disabled": { "kind": "boolean" },
+        "readonly": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "focus-within"]
+    },
+    "parts": {
+      "wrap": {
+        "class": "sm-input-number__wrap",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "attrs": { "role": { "required": true, "default": "spinbutton" } },
+        "aria": {
+          "aria-valuenow": "与当前值同步",
+          "aria-valuemin": "存在 min 时必填",
+          "aria-valuemax": "存在 max 时必填"
+        },
+        "notes": "spinbutton 语义挂在这一层，不是 input 上。"
+      },
+      "input": {
+        "class": "sm-input-number__input",
+        "tag": "input",
+        "required": true,
+        "order": 1,
+        "attrs": {
+          "type": { "required": true, "default": "text" },
+          "inputmode": { "required": true, "default": "decimal" }
+        },
+        "notes": "文本型 input + inputmode，避免 type=number 的原生步进与本地化差异。"
+      },
+      "handler": {
+        "class": "sm-input-number__handler",
+        "tag": "div",
+        "required": false,
+        "order": 2,
+        "condition": "非 disabled 且非 readonly"
+      },
+      "up": {
+        "class": "sm-input-number__handler-up",
+        "tag": "span",
+        "required": false,
+        "order": 1,
+        "condition": "handler 存在",
+        "attrs": { "role": { "required": true, "default": "button" } },
+        "aria": { "aria-label": "必填，例如「增加」" }
+      },
+      "down": {
+        "class": "sm-input-number__handler-down",
+        "tag": "span",
+        "required": false,
+        "order": 2,
+        "condition": "handler 存在",
+        "attrs": { "role": { "required": true, "default": "button" } },
+        "aria": { "aria-label": "必填，例如「减少」" }
+      }
+    }
+  },
+  "invariants": [
+    "wrap 与 input 必须存在且只各出现一次；input 必须是 wrap 的直接子节点。",
+    "role=\"spinbutton\" 与 aria-valuenow 必须在 wrap 上，不得放在 input 上。",
+    "up / down 只在 handler 内出现，且 handler 缺失时二者都不得渲染。",
+    "disabled 时 input 必须带原生 disabled，且根节点同时带 data-disabled；handler 不得渲染。",
+    "status=error 时 input 必须带 aria-invalid=\"true\"。",
+    "值必须落在 [min, max] 内，步进由 up / down 触发，不依赖原生 type=number。"
+  ],
+  "a11y": [
+    "可访问名称来自关联 label 或 aria-label。",
+    "步进按钮必须有 aria-label，且点击后焦点保持在 input 上。",
+    "键盘 ArrowUp / ArrowDown 与按钮等价。"
+  ],
+  "notes": "第一个带「组合控件」结构的表单控件：一个 input + 两个按钮，但整体是一个可访问单元。"
+}

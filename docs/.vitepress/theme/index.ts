@@ -3,7 +3,7 @@ import DefaultTheme from 'vitepress/theme'
 import '@specmark/css/styles.css'
 import './custom.css'
 import Demo from './Demo.vue'
-import { Button, Checkbox, Field, Input, Radio, Select, Switch } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Switch } from '@specmark/vue'
 
 export default {
   extends: DefaultTheme,
@@ -16,5 +16,6 @@ export default {
     app.component('SmRadio', Radio)
     app.component('SmSwitch', Switch)
     app.component('SmField', Field)
+    app.component('SmInputNumber', InputNumber)
   },
 } satisfies Theme

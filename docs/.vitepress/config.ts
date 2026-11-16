@@ -33,6 +33,7 @@ export default defineConfig({
             { text: 'Radio', link: '/components/radio' },
             { text: 'Switch', link: '/components/switch' },
             { text: 'Field', link: '/components/field' },
+            { text: 'InputNumber', link: '/components/input-number' },
           ],
         },
       ],
