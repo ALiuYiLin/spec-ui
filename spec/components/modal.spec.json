@@ -1,0 +1,94 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Modal",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "模态框。第一个自带遮罩与层级分层的组件：根节点铺满视口，遮罩与对话框是它的两个直接子节点。",
+  "anatomy": {
+    "root": {
+      "class": "sm-modal",
+      "tag": "div",
+      "required": true,
+      "portal": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        }
+      },
+      "notes": "root 铺满视口（fixed inset 0），portal 到 body，仅在 open 时渲染。"
+    },
+    "parts": {
+      "mask": {
+        "class": "sm-modal__mask",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "dialog": {
+        "class": "sm-modal__dialog",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "attrs": {
+          "role": { "required": true, "default": "dialog" },
+          "aria-modal": { "required": true, "default": "true" }
+        },
+        "aria": { "aria-label": "无标题时必填，指向标题或角色名" }
+      },
+      "close": {
+        "class": "sm-modal__close",
+        "tag": "button",
+        "required": false,
+        "order": 1,
+        "condition": "closable 不为 false",
+        "aria": { "aria-label": "必填" }
+      },
+      "header": {
+        "class": "sm-modal__header",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      },
+      "title": {
+        "class": "sm-modal__title",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "传入 title"
+      },
+      "body": {
+        "class": "sm-modal__body",
+        "tag": "div",
+        "required": true,
+        "order": 3
+      },
+      "footer": {
+        "class": "sm-modal__footer",
+        "tag": "div",
+        "required": false,
+        "order": 4,
+        "condition": "footer 不为 null"
+      }
+    }
+  },
+  "invariants": [
+    "root 必须 portal 到 document.body，且只在 state=open 时渲染。",
+    "mask 与 dialog 必须是 root 的直接子节点，且 mask 在前。",
+    "dialog 必须带 role=\"dialog\" 与 aria-modal=\"true\"。",
+    "close 若存在，必须是 dialog 的直接子节点。",
+    "header 必须存在；title 若存在，必须是 header 的直接子节点。",
+    "state=closed 时 root 不得存在——不得用 display:none 隐藏。",
+    "禁止把焦点留在遮罩或背景内容上；打开时应聚焦 dialog 内第一个可聚焦元素。"
+  ],
+  "a11y": [
+    "dialog 必须有可访问名称（title 或 aria-label）。",
+    "关闭后焦点必须回到触发元素（由使用方负责）。",
+    "遮罩点击关闭属于交互契约，不由协议强制。"
+  ],
+  "notes": "第一个 z-index 分层（遮罩 1000 / 对话框 1000+）的组件；modal 的进出场动画不在 L3 比对范围。"
+}

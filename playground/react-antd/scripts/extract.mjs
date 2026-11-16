@@ -171,7 +171,7 @@ async function main() {
   page.on('pageerror', (err) => console.error(`  [pageerror] ${err.message}`))
 
   await page.goto(base, { waitUntil: 'load' })
-  await page.waitForSelector('[data-case-root] > *', { state: 'attached', timeout: 20000 })
+  await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
   const cases = await page.evaluate(() => window.__SPECMARK_CASES__)
   if (!Array.isArray(cases) || !cases.length) throw new Error('页面没有暴露 __SPECMARK_CASES__，检查 App.tsx')
 
@@ -197,7 +197,7 @@ async function main() {
     const t0 = Date.now()
     try {
       await page.goto(`${base}?case=${encodeURIComponent(c.id)}`, { waitUntil: 'load' })
-      await page.waitForSelector('[data-case-root] > *', { state: 'attached', timeout: 20000 })
+      await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
       await page.evaluate(() => document.fonts.ready.then(() => undefined))
 
       for (const a of c.actions ?? []) {

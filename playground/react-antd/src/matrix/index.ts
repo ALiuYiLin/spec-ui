@@ -10,6 +10,7 @@ import { cases as inputNumberCases } from './input-number'
 import { cases as sliderCases } from './slider'
 import { cases as tooltipCases } from './tooltip'
 import { cases as popoverCases } from './popover'
+import { cases as modalCases } from './modal'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -23,4 +24,5 @@ export const cases: Case[] = [
   ...sliderCases.map((c) => ({ ...c, component: 'Slider' })),
   ...tooltipCases.map((c) => ({ ...c, component: 'Tooltip' })),
   ...popoverCases.map((c) => ({ ...c, component: 'Popover' })),
+  ...modalCases.map((c) => ({ ...c, component: 'Modal' })),
 ]

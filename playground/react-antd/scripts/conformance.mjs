@@ -65,7 +65,11 @@ function startServer() {
 
 const snapshotFn = () => {
   const root = document.querySelector('[data-case-root]')
-  const el = root && root.firstElementChild
+  // 纯浮层组件（Modal 等）没有留在文档流的根，回退到 body 下的第一个浮层根
+  const bodyRoots = Array.from(document.querySelectorAll('[class^="sm-"], [class*=" sm-"]')).filter(
+    (p) => p.parentElement === document.body,
+  )
+  const el = (root && root.firstElementChild) || bodyRoots[0]
   if (!el) return null
 
   const walk = (n) => {
@@ -300,7 +304,7 @@ async function runSelftest(page, base) {
   let ok = 0
   for (const f of SELFTEST_FIXTURES) {
     await page.goto(`${base}${PAGE}`, { waitUntil: 'load' })
-    await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
+    await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
     await page.evaluate((html) => {
       const root = document.querySelector('[data-case-root]')
       if (root) root.innerHTML = html
@@ -438,7 +442,7 @@ async function main() {
   page.on('pageerror', (err) => console.error(`  [pageerror] ${err.message}`))
 
   await page.goto(`${base}ref.html`, { waitUntil: 'load' })
-  await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
+  await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
 
   if (process.argv.includes('--selftest')) {
     await runSelftest(page, base)
@@ -455,7 +459,7 @@ async function main() {
 
   for (const c of cases) {
     await page.goto(`${base}${PAGE}?case=${encodeURIComponent(c.id)}`, { waitUntil: 'load' })
-    await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
+    await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
 
     for (const a of c.actions ?? []) {
       if (a.type === 'focus') await page.focus(a.selector)
