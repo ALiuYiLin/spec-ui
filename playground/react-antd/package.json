@@ -12,7 +12,9 @@
     "conformance": "node scripts/conformance.mjs",
     "selftest": "node scripts/conformance.mjs --selftest",
     "diff": "node scripts/visual-diff.mjs",
-    "verify": "node scripts/conformance.mjs && node scripts/conformance.mjs --selftest && node scripts/visual-diff.mjs"
+    "conformance:vue": "node scripts/conformance.mjs --page=vue.html",
+    "diff:vue": "node scripts/visual-diff.mjs --page=vue.html",
+    "verify": "node scripts/conformance.mjs && node scripts/conformance.mjs --selftest && node scripts/visual-diff.mjs && node scripts/conformance.mjs --page=vue.html && node scripts/visual-diff.mjs --page=vue.html"
   },
   "dependencies": {
     "antd": "5.29.3",

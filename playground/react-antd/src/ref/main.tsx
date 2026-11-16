@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import './styles.css'
+import '@specmark/css/styles.css'
 import './harness.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,0 +1,11 @@
+{
+  "name": "@specmark/css",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SpecMark 样式层：Tailwind 令牌与组件规则，只依赖协议 DOM，不依赖任何框架实现。",
+  "exports": {
+    "./styles.css": "./src/styles.css"
+  },
+  "files": ["src"]
+}

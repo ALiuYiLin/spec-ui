@@ -1,11 +1,12 @@
 # playground/react-antd
 
-采集台 + 校验台 + 样式台。两个页面：
+采集台 + 校验台。三个页面：
 
 | 页面 | 用途 |
 |---|---|
 | `index.html` | **antd 证据台**：按受控状态矩阵渲染 antd 组件，抓成快照 |
-| `ref.html` | **参考实现台**：渲染 `packages/sm-react`（含 Tailwind 样式），供 L2 / L3 校验 |
+| `ref.html` | **React 实现台**：渲染 `packages/react`，供 L2 / L3 校验 |
+| `vue.html` | **Vue 实现台**：渲染 `packages/vue`，跑同一套 L2 / L3 |
 
 ## 命令
 
@@ -24,10 +25,12 @@ pnpm extract      # 抓取 antd 证据 → artifacts/<component>/*.json + *.png
 pnpm summarize    # 终端表格：各状态根节点样式、强制伪类是否生效
 pnpm report       # 生成 artifacts/index.html 可视化核对页
 
-pnpm conformance  # L2：参考实现 vs 协议（DOM 契约）
+pnpm conformance  # L2：React 实现 vs 协议（DOM 契约）
 pnpm selftest     # L2 自检：确认校验器会拒绝错误实现
-pnpm diff         # L3：参考实现的计算样式 vs antd 证据
-pnpm verify       # 上面三条一起跑
+pnpm diff         # L3：React 实现的计算样式 vs antd 证据
+pnpm conformance:vue  # L2：Vue 实现跑同一份用例
+pnpm diff:vue         # L3：Vue 实现跑同一份目标
+pnpm verify       # 以上全部（两套实现都跑）
 ```
 
 ## 结构
@@ -74,6 +77,6 @@ scripts/report.mjs      HTML 核对页
 - 元素上的 `css-xxxxxx` 类名是 cssinjs 的构建哈希，**不可作为协议依据**。
 - 样式层**不引入 Tailwind preflight**：preflight 会给所有元素加 `border-box` + `solid`，
   与 antd 的 reset（只有根节点 border-box、子部件 content-box）天然冲突。
-- `@specmark/react` 通过 `vite.config.ts` 的 alias 指向 `packages/sm-react/src`。
+- `@specmark/react` 通过 `vite.config.ts` 的 alias 指向 `packages/react/src`。
 - `artifacts/` 与 `dist/` 已在 `.gitignore` 里，随时可用 `pnpm extract` / `pnpm build` 重建。
 - 证据必须可重放：`extract` 连续跑两次结果要一致；再改抓取逻辑后记得跑两遍验证。

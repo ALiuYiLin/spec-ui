@@ -187,7 +187,7 @@ antd 的 arrow 始终 opacity 1，靠 clear 的实心圆图标几何遮挡住箭
 
 | 产物 | 说明 |
 |---|---|
-| `packages/sm-react/` | 参考实现，Button + Select，**零样式**，只输出协议 DOM |
+| `packages/react/` | 参考实现，Button + Select，**零样式**，只输出协议 DOM |
 | `playground/react-antd/ref.html` | 参考实现的受控用例台，用例自己声明断言 |
 | `playground/react-antd/scripts/conformance.mjs` | 通用规则 + 声明式断言 + 自检模式 |
 
@@ -335,7 +335,7 @@ ARIA 镜像 option、icon 嵌错层、浮层没 portal。每一个都必须被�
 
 ## 二、图标不是抄的，是从证据里生成的
 
-`packages/sm-react/src/icons.tsx` 里的三个 `path d` 不是手写的，而是从 `artifacts/` 里
+`packages/react/src/icons.tsx` 里的三个 `path d` 不是手写的，而是从 `artifacts/` 里
 antd 实际渲染出的 `<svg>` 节点提取后生成的。手抄一个路径少一位数字，就可能差半个像素，
 而这类差异在对比时表现为"莫名其妙对不上"。
 

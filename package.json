@@ -1,4 +1,7 @@
 {
+  "name": "specmark",
+  "private": true,
+  "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -7,9 +10,12 @@
     "verify": "pnpm typecheck && pnpm --filter @specmark/playground-react-antd run verify"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.0.0",
+    "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
-    "vitepress": "^1.6.4"
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.45"
   }
 }

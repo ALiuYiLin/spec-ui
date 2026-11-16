@@ -1,17 +1,17 @@
-// https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import '@specmark/css/styles.css'
+import './custom.css'
+import Demo from './Demo.vue'
+import { Button, Checkbox, Input, Select } from '@specmark/vue'
 
 export default {
   extends: DefaultTheme,
-  Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
+  enhanceApp({ app }) {
+    app.component('Demo', Demo)
+    app.component('SmButton', Button)
+    app.component('SmSelect', Select)
+    app.component('SmInput', Input)
+    app.component('SmCheckbox', Checkbox)
   },
-  enhanceApp({ app, router, siteData }) {
-    // ...
-  }
 } satisfies Theme

@@ -26,7 +26,9 @@
   --color-sm-ring: #91caff;
 }
 
-@layer components {
+/* 组件规则不放进 @layer：宿主环境（如 VitePress）的无层级样式会压过任何层，
+   放进 layer 反而会让组件样式失效。层只用来兜住 Tailwind 自己的 utilities。 */
+
   /* ================= Button ================= */
   .sm-btn {
     @apply relative inline-flex items-center justify-center box-border select-none;
@@ -645,7 +647,7 @@
     font-size: 14px;
     color: var(--color-sm-text-disabled);
   }
-}
+
 
 /* 加载指示器的旋转。证据在 motion:false 下采集，动画本身不参与比对。 */
 @keyframes sm-spin {

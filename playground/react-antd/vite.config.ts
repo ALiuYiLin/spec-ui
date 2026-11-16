@@ -9,8 +9,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      // 直接指向源码：参考实现是 workspace 包，但这里不依赖 pnpm 链接的解析行为
-      '@specmark/react': path.resolve(here, '../../packages/sm-react/src/index.ts'),
+      // 直接指向源码：各包是 workspace 包，但不依赖 pnpm 链接的解析行为
+      '@specmark/react': path.resolve(here, '../../packages/react/src/index.ts'),
+      '@specmark/vue': path.resolve(here, '../../packages/vue/src/index.ts'),
+      '@specmark/css': path.resolve(here, '../../packages/css/src'),
     },
   },
   build: {
@@ -18,7 +20,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(here, 'index.html'), // antd 证据台
-        ref: path.resolve(here, 'ref.html'), // 参考实现（L2 一致性校验用）
+        ref: path.resolve(here, 'ref.html'), // React 参考实现（L2 / L3）
+        vue: path.resolve(here, 'vue.html'), // Vue 实现（同一套 L2 / L3）
       },
     },
   },

@@ -21,6 +21,9 @@ const DIST = path.join(PKG_ROOT, 'dist')
 const SPEC_DIR = path.resolve(PKG_ROOT, '..', '..', 'spec', 'components')
 const VIEWPORT = { width: 1280, height: 800 }
 
+/** 用 --page=vue.html 可以对另一套实现跑同一份校验 */
+const PAGE = (process.argv.find((a) => a.startsWith('--page=')) ?? '--page=ref.html').slice('--page='.length)
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -294,7 +297,7 @@ async function runSelftest(page, base) {
   console.log('selftest: 确认校验器会拒绝错误实现')
   let ok = 0
   for (const f of SELFTEST_FIXTURES) {
-    await page.goto(`${base}ref.html`, { waitUntil: 'load' })
+    await page.goto(`${base}${PAGE}`, { waitUntil: 'load' })
     await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
     await page.evaluate((html) => {
       const root = document.querySelector('[data-case-root]')
@@ -421,8 +424,8 @@ function evalAssertion(a, ctx) {
 }
 
 async function main() {
-  await fsp.access(path.join(DIST, 'ref.html')).catch(() => {
-    throw new Error('未找到 dist/ref.html，请先 pnpm build')
+  await fsp.access(path.join(DIST, PAGE)).catch(() => {
+    throw new Error(`未找到 dist/${PAGE}，请先 pnpm build`)
   })
 
   const { server, port } = await startServer()
@@ -449,7 +452,7 @@ async function main() {
   const failed = []
 
   for (const c of cases) {
-    await page.goto(`${base}ref.html?case=${encodeURIComponent(c.id)}`, { waitUntil: 'load' })
+    await page.goto(`${base}${PAGE}?case=${encodeURIComponent(c.id)}`, { waitUntil: 'load' })
     await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
 
     for (const a of c.actions ?? []) {

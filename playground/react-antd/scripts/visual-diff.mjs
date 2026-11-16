@@ -19,6 +19,9 @@ const DIST = path.join(PKG_ROOT, 'dist')
 const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', 'artifacts')
 const VIEWPORT = { width: 1280, height: 800 }
 
+/** 用 --page=vue.html 可以让另一套实现跑同一份比对 */
+const PAGE = (process.argv.find((a) => a.startsWith('--page=')) ?? '--page=ref.html').slice('--page='.length)
+
 const PROPS = STYLE_PROPS
 
 /**
@@ -375,7 +378,7 @@ async function main() {
   await cdp.send('DOM.enable')
   await cdp.send('CSS.enable')
 
-  await page.goto(`${base}ref.html`, { waitUntil: 'load' })
+  await page.goto(`${base}${PAGE}`, { waitUntil: 'load' })
   await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
   const cases = await page.evaluate(() => window.__CONFORMANCE__)
   const caseById = new Map(cases.map((c) => [c.id, c]))
@@ -391,7 +394,7 @@ async function main() {
       continue
     }
 
-    await page.goto(`${base}ref.html?case=${encodeURIComponent(pair.ref)}`, { waitUntil: 'load' })
+    await page.goto(`${base}${PAGE}?case=${encodeURIComponent(pair.ref)}`, { waitUntil: 'load' })
     await page.waitForSelector('[data-case-root] > *', { timeout: 20000 })
     for (const a of rc.actions ?? []) {
       if (a.type === 'focus') await page.focus(a.selector)
