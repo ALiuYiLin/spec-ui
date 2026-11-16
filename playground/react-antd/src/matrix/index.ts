@@ -17,6 +17,11 @@ import { cases as dividerCases } from './divider'
 import { cases as tagCases } from './tag'
 import { cases as avatarCases } from './avatar'
 import { cases as badgeCases } from './badge'
+import { cases as spaceCases } from './space'
+import { cases as cardCases } from './card'
+import { cases as alertCases } from './alert'
+import { cases as spinCases } from './spin'
+import { cases as emptyCases } from './empty'
 
 export const cases: Case[] = [
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
@@ -37,4 +42,9 @@ export const cases: Case[] = [
   ...tagCases.map((c) => ({ ...c, component: 'Tag' })),
   ...avatarCases.map((c) => ({ ...c, component: 'Avatar' })),
   ...badgeCases.map((c) => ({ ...c, component: 'Badge' })),
+  ...spaceCases.map((c) => ({ ...c, component: 'Space' })),
+  ...cardCases.map((c) => ({ ...c, component: 'Card' })),
+  ...alertCases.map((c) => ({ ...c, component: 'Alert' })),
+  ...spinCases.map((c) => ({ ...c, component: 'Spin' })),
+  ...emptyCases.map((c) => ({ ...c, component: 'Empty' })),
 ]

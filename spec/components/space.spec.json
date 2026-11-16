@@ -1,0 +1,44 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Space",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "间距容器。给一组子元素加统一间距，横排或竖排。",
+  "anatomy": {
+    "root": {
+      "class": "sm-space",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "direction": {
+          "kind": "config",
+          "enum": ["horizontal", "vertical"],
+          "required": true,
+          "default": "horizontal"
+        },
+        "size": {
+          "kind": "variant",
+          "enum": ["sm", "md", "lg"],
+          "required": true,
+          "default": "md"
+        }
+      }
+    },
+    "parts": {
+      "item": {
+        "class": "sm-space__item",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "notes": "每个子元素包一层；间距由父容器 gap 决定。"
+      }
+    }
+  },
+  "invariants": [
+    "每个子元素必须被包裹为 item，不得直接放到 root 下。",
+    "间距只由 gap 决定，不得使用 margin。",
+    "direction=vertical 时 flex-direction 必须是 column。"
+  ],
+  "a11y": ["Space 不改变语义，只影响布局。"],
+  "notes": "第一个「强制包裹子元素」的容器型组件。"
+}

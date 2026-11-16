@@ -1,0 +1,36 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Empty",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "空状态。一张占位插图加一句说明。",
+  "anatomy": {
+    "root": {
+      "class": "sm-empty",
+      "tag": "div",
+      "required": true
+    },
+    "parts": {
+      "image": {
+        "class": "sm-empty__image",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "description": {
+        "class": "sm-empty__description",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      }
+    }
+  },
+  "invariants": [
+    "image 与 description 必须存在且各出现一次，顺序为 image → description。",
+    "插图是装饰性的，必须 aria-hidden。",
+    "说明文案不得为空。"
+  ],
+  "a11y": ["空状态文案要能独立说明当前没有数据。"],
+  "notes": "第一个「插图 + 文案」的静态占位组件。"
+}

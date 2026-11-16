@@ -295,6 +295,69 @@ const RESOLVE = {
     },
   },
 
+  Space: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-space')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-space')),
+    },
+    item: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-space__item')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-space-item')),
+    },
+  },
+
+  Card: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-card')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-card')),
+    },
+    header: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-card__header')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-card-head')),
+    },
+    title: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-card__title')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-card-head-title')),
+    },
+    body: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-card__body')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-card-body')),
+    },
+  },
+
+  Alert: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-alert')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-alert')),
+    },
+    message: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-alert__message')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-alert-message')),
+    },
+  },
+
+  Spin: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-spin')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-spin')),
+    },
+    dot: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-spin__dot')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-spin-dot')),
+    },
+  },
+
+  Empty: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-empty')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-empty')),
+    },
+    description: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-empty__description')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-empty-description')),
+    },
+  },
+
   Divider: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-divider')),
@@ -700,7 +763,38 @@ const PAIRS = [
   { component: 'Tag', ref: 'ref-tag-basic', antd: 'tag-basic', targets: ['root'] },
   { component: 'Avatar', ref: 'ref-avatar-basic', antd: 'avatar-basic', targets: ['root'] },
   { component: 'Badge', ref: 'ref-badge-basic', antd: 'badge-basic', targets: ['root', { name: 'count', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'position'] }] },
+  // ---- Space / Card / Alert / Spin / Empty ----
+  {
+    component: 'Space',
+    ref: 'ref-space-basic',
+    antd: 'space-basic',
+    targets: [{ name: 'root', ignore: ['width', 'height', 'transform-origin', 'color', 'font-size', 'line-height'] }, 'item'],
+  },
+  {
+    component: 'Card',
+    ref: 'ref-card-basic',
+    antd: 'card-basic',
+    targets: [{ name: 'root', ignore: ['height', 'transform-origin'] }, 'header', {
+      name: 'title',
+      // 标题高度随字体度量走（同一 font-size 在不同字体栈下行高不同），只跳过高度的两项
+      ignore: ['height', 'transform-origin'],
+    }, 'body'],
+  },
+  {
+    component: 'Alert',
+    ref: 'ref-alert-info',
+    antd: 'alert-info',
+    targets: [{ name: 'root', ignore: ['width', 'height', 'transform-origin'] }, { name: 'message', ignore: ['width', 'min-width', 'min-height', 'transform-origin'] }],
+  },
+  // Spin 只比 root：指示器内部渲染（antd 四个点 / 我们用环形边框）不属于契约\n  { component: 'Spin', ref: 'ref-spin-basic', antd: 'spin-basic', targets: ['root'] },
+  {
+    component: 'Empty',
+    ref: 'ref-empty-basic',
+    antd: 'empty-basic',
+    targets: [{ name: 'root', ignore: ['height', 'transform-origin'] }, 'description'],
+  },
 ]
+
 
 
 

@@ -28,6 +28,21 @@ export type { SliderProps, SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './popover'
 
+export { Space } from './space'
+export type { SpaceProps, SpaceDirection, SpaceSize } from './space'
+
+export { Card } from './card'
+export type { CardProps } from './card'
+
+export { Alert } from './alert'
+export type { AlertProps, AlertType } from './alert'
+
+export { Spin } from './spin'
+export type { SpinProps, SpinSize } from './spin'
+
+export { Empty } from './empty'
+export type { EmptyProps } from './empty'
+
 export { Divider } from './divider'
 export type { DividerProps, DividerOrientation, DividerVariant } from './divider'
 

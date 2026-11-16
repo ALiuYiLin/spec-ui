@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Avatar, Badge, Divider, Drawer, Dropdown, Modal, Slider, Switch, Tag, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Card, Divider, Drawer, Dropdown, Empty, Modal, Slider, Space, Spin, Switch, Tag, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer' | 'Dropdown' | 'Divider' | 'Tag' | 'Avatar' | 'Badge' | 'Space' | 'Card' | 'Alert' | 'Spin' | 'Empty'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -854,5 +854,78 @@ export const cases: RefCase[] = [
       </Badge>
     ),
     assert: [{ k: 'part', name: 'count' }],
+  },
+
+  // ---------------- Space ----------------
+  {
+    id: 'ref-space-basic',
+    component: 'Space',
+    render: () => (
+      <Space>
+        <span>一</span>
+        <span>二</span>
+      </Space>
+    ),
+    assert: [
+      { k: 'data', key: 'direction', value: 'horizontal' },
+      { k: 'data', key: 'size', value: 'md' },
+      { k: 'part', name: 'item' },
+    ],
+  },
+
+  // ---------------- Card ----------------
+  {
+    id: 'ref-card-basic',
+    component: 'Card',
+    render: () => (
+      <Card title="标题" extra={<span>更多</span>}>
+        内容
+      </Card>
+    ),
+    assert: [
+      { k: 'part', name: 'header' },
+      { k: 'part', name: 'title' },
+      { k: 'part', name: 'body' },
+      { k: 'order', before: 'header', after: 'body' },
+      { k: 'childOf', on: 'title', of: 'header' },
+    ],
+  },
+
+  // ---------------- Alert ----------------
+  {
+    id: 'ref-alert-info',
+    component: 'Alert',
+    render: () => <Alert type="info" message="提示信息" />,
+    assert: [
+      { k: 'data', key: 'type', value: 'info' },
+      { k: 'attr', on: 'root', key: 'role', value: 'alert' },
+      { k: 'part', name: 'message' },
+      { k: 'absent', name: 'close' },
+    ],
+  },
+
+  // ---------------- Spin ----------------
+  {
+    id: 'ref-spin-basic',
+    component: 'Spin',
+    render: () => <Spin />,
+    assert: [
+      { k: 'data', key: 'size', value: 'md' },
+      { k: 'attr', on: 'root', key: 'role', value: 'status' },
+      { k: 'part', name: 'dot' },
+      { k: 'absent', name: 'tip' },
+    ],
+  },
+
+  // ---------------- Empty ----------------
+  {
+    id: 'ref-empty-basic',
+    component: 'Empty',
+    render: () => <Empty />,
+    assert: [
+      { k: 'part', name: 'image' },
+      { k: 'part', name: 'description' },
+      { k: 'order', before: 'image', after: 'description' },
+    ],
   },
 ]

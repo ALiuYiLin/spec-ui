@@ -1,0 +1,43 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Card",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "卡片。带边框的容器，可选标题区。",
+  "anatomy": {
+    "root": {
+      "class": "sm-card",
+      "tag": "div",
+      "required": true
+    },
+    "parts": {
+      "header": {
+        "class": "sm-card__header",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "传入 title 或 extra"
+      },
+      "title": {
+        "class": "sm-card__title",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "传入 title"
+      },
+      "body": {
+        "class": "sm-card__body",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      }
+    }
+  },
+  "invariants": [
+    "body 必须存在且只出现一次。",
+    "header 若存在必须位于 body 之前；title 若存在必须是 header 的直接子节点。",
+    "圆角只在 root 上；header 不做独立圆角。"
+  ],
+  "a11y": ["卡片通常需要标题，便于辅助技术定位区块。"],
+  "notes": "第一个「有头有身体」的容器。"
+}

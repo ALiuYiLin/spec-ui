@@ -15,3 +15,11 @@
 [data-case-root] > .sm-slider {
   inline-size: 200px;
 }
+
+[data-case-root] > .sm-card {
+  inline-size: 240px;
+}
+
+[data-case-root] > .sm-empty {
+  inline-size: 240px;
+}

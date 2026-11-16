@@ -26,6 +26,19 @@ export type { SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverSide, PopoverAlign } from './popover'
 
+export { Space } from './space'
+export type { SpaceDirection, SpaceSize } from './space'
+
+export { Card } from './card'
+
+export { Alert } from './alert'
+export type { AlertType } from './alert'
+
+export { Spin } from './spin'
+export type { SpinSize } from './spin'
+
+export { Empty } from './empty'
+
 export { Divider } from './divider'
 export type { DividerOrientation, DividerVariant } from './divider'
 
