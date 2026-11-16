@@ -9,6 +9,15 @@
 
 ## 命令
 
+在仓库根目录：
+
+```bash
+pnpm typecheck    # 全仓类型检查（tsc -p tsconfig.json --noEmit）
+pnpm verify       # typecheck + L2 + 自检 + L3，一条命令跑完全部
+```
+
+在本目录：
+
 ```bash
 pnpm build        # 构建两个页面
 pnpm extract      # 抓取 antd 证据 → artifacts/<component>/*.json + *.png

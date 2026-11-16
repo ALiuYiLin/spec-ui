@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Button, Checkbox, Input, Select } from '@actview/react'
 import type { SelectOption } from '@actview/react'
+import type { Pseudo } from '../matrix/types'
 
 export type Assertion = {
   k: 'part' | 'absent' | 'data' | 'noData' | 'attr' | 'noAttr' | 'order' | 'text' | 'childOf' | 'parentIsBody'
@@ -25,8 +26,10 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox'
   actions?: RefAction[]
+  /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
+  pseudo?: Pseudo[]
   render: () => ReactNode
   assert: Assertion[]
 }

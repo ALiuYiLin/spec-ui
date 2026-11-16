@@ -4,3 +4,9 @@ packages:
 
 allowBuilds:
   esbuild: true
+
+# React 18 运行时必须配 18 的类型：@types/react 19 会把 ReactPortal/ReactNode 定义改掉，
+# 导致 createPortal 的返回值与 JSX 的 ReactNode 不兼容。
+overrides:
+  '@types/react': ^18.3.31
+  '@types/react-dom': ^18.0.0
