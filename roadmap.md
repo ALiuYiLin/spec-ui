@@ -30,10 +30,11 @@
 
 复用 Checkbox 抽出的 `control` 部件与原生 input 结构。
 
-- [ ] Radio —— 启用词汇表的 `radio` 值域
-- [ ] Switch —— 启用 `toggle` 值域；注意它是 `button[role=switch]`，没有原生 input
+- [x] Radio —— radio 值域落地
+- [x] Switch —— toggle 值域落地
 - [x] InputNumber —— spinbutton 语义在 wrap 上，文本型 input + 步进按钮
-- [x] Slider —— geometry 字段落地；轨道与手柄走几何内联样式
+
+- [x] Tooltip —— 触发器/浮层分离；data-side 落地
 
 - [x] Popover —— 白底卡片；data-align 落地
 - [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
