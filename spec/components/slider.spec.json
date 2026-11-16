@@ -1,0 +1,74 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Slider",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "滑块。第一个「尺寸与位置由数值实时算出」的组件：轨道宽度与手柄位移只能走几何内联样式。",
+  "anatomy": {
+    "root": {
+      "class": "sm-slider",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "orientation": {
+          "kind": "config",
+          "enum": ["horizontal", "vertical"],
+          "required": true,
+          "default": "horizontal"
+        },
+        "disabled": { "kind": "boolean" }
+      },
+      "interaction": ["hover", "focus-within"]
+    },
+    "parts": {
+      "rail": {
+        "class": "sm-slider__rail",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "track": {
+        "class": "sm-slider__track",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "geometry": true,
+        "aria": { "aria-hidden": "true" },
+        "notes": "选中区间的填充；横向时只写 width，纵向时只写 height。"
+      },
+      "handle": {
+        "class": "sm-slider__handle",
+        "tag": "div",
+        "required": true,
+        "order": 3,
+        "geometry": true,
+        "attrs": {
+          "role": { "required": true, "default": "slider" },
+          "tabindex": { "required": true, "default": "0" }
+        },
+        "aria": {
+          "aria-valuenow": "必填，与当前值同步",
+          "aria-valuemin": "必填",
+          "aria-valuemax": "必填",
+          "aria-orientation": "竖向时为 vertical"
+        },
+        "notes": "滑块手柄；横向时只写 left，纵向时只写 bottom。"
+      }
+    }
+  },
+  "invariants": [
+    "rail / track / handle 都必须存在且各出现一次，顺序为 rail → track → handle。",
+    "track 与 handle 只允许几何内联样式（width / height / left / bottom），不得夹带任何视觉属性。",
+    "handle 必须是唯一可聚焦元素，且 role=\"slider\"。",
+    "aria-valuenow 必须等于当前值，aria-valuemin / aria-valuemax 必须与 props 一致。",
+    "disabled 时根节点带 data-disabled，handle 的 tabindex 必须为 -1。",
+    "键盘契约：左右/上下方向键步进，Home / End 跳到两端，由实现提供。"
+  ],
+  "a11y": [
+    "可访问名称来自 aria-label 或 aria-labelledby。",
+    "值为百分比不等于值为数值：aria-valuenow 必须是业务值，不是 0–100 的位置百分比。",
+    "禁用时不可聚焦，且不得只靠颜色表达。"
+  ],
+  "notes": "这是 protocol.schema.json 里 geometry 字段第一次被使用。多手柄（range）会引入同槽位多实例，另行立项。"
+}

@@ -260,6 +260,25 @@ const RESOLVE = {
       antd: (all) => all.find((n) => n.classes.includes('ant-input-number-input')),
     },
   },
+
+  Slider: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-slider')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-slider')),
+    },
+    rail: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-slider__rail')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-slider-rail')),
+    },
+    track: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-slider__track')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-slider-track')),
+    },
+    handle: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-slider__handle')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-slider-handle')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -455,6 +474,10 @@ const PAIRS = [
   { component: 'InputNumber', ref: 'ref-input-number-error', antd: 'input-number-error', targets: ['root'] },
   { component: 'InputNumber', ref: 'ref-input-number-basic', antd: 'input-number-hover', pseudo: ['hover'], targets: ['root'] },
   { component: 'InputNumber', ref: 'ref-input-number-focus', antd: 'input-number-focus', targets: ['root', 'input'] },
+
+  // ---- Slider ----
+  { component: 'Slider', ref: 'ref-slider-basic', antd: 'slider-basic', targets: ['root', 'rail', 'track', 'handle'] },
+  { component: 'Slider', ref: 'ref-slider-disabled', antd: 'slider-disabled', targets: ['root', 'handle'] },
 ]
 
 async function main() {

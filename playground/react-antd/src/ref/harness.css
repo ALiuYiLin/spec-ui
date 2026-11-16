@@ -11,3 +11,7 @@
 [data-case-root] > .sm-input-number {
   inline-size: 120px;
 }
+
+[data-case-root] > .sm-slider {
+  inline-size: 200px;
+}

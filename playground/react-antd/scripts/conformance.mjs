@@ -146,8 +146,8 @@ function genericChecks(snap, spec) {
     if (!decl) continue
 
     if (n.inlineStyle !== null) {
-      if (decl.portal === true) {
-        // portal 部件允许几何内联样式（宽高与定位），但不许夹带视觉属性
+      if (decl.portal === true || decl.geometry === true) {
+        // portal / 动态几何部件允许几何内联样式（宽高与定位），但不许夹带视觉属性
         const props = n.inlineStyle
           .split(';')
           .map((s) => s.trim())

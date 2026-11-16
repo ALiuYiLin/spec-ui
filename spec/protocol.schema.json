@@ -118,6 +118,10 @@
           "type": "boolean",
           "description": "true 表示该部件 portal 到 body。此类部件允许携带仅含几何属性的内联样式（宽高与定位）。"
         },
+        "geometry": {
+          "type": "boolean",
+          "description": "true 表示该部件的尺寸/位置由数值实时算出（如滑块的轨道与手柄）。同样只允许几何属性，禁止视觉属性。"
+        },
         "notes": {
           "type": "string"
         }

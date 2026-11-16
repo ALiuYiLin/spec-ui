@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Switch } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Radio, Select, Slider, Switch } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -629,6 +629,32 @@ export const cases: RefCase[] = [
     assert: [
       { k: 'data', key: 'status', value: 'error' },
       { k: 'attr', on: 'input', key: 'aria-invalid', value: 'true' },
+    ],
+  },
+
+  // ---------------- Slider ----------------
+  {
+    id: 'ref-slider-basic',
+    component: 'Slider',
+    render: () => <Slider defaultValue={40} />,
+    assert: [
+      { k: 'data', key: 'orientation', value: 'horizontal' },
+      { k: 'part', name: 'rail' },
+      { k: 'part', name: 'track' },
+      { k: 'part', name: 'handle' },
+      { k: 'order', before: 'rail', after: 'track' },
+      { k: 'order', before: 'track', after: 'handle' },
+      { k: 'attr', on: 'handle', key: 'role', value: 'slider' },
+      { k: 'attr', on: 'handle', key: 'aria-valuenow', value: '40' },
+    ],
+  },
+  {
+    id: 'ref-slider-disabled',
+    component: 'Slider',
+    render: () => <Slider disabled defaultValue={40} />,
+    assert: [
+      { k: 'data', key: 'disabled', value: 'true' },
+      { k: 'attr', on: 'handle', key: 'tabindex', value: '-1' },
     ],
   },
 ]

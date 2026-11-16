@@ -34,6 +34,7 @@ export default defineConfig({
             { text: 'Switch', link: '/components/switch' },
             { text: 'Field', link: '/components/field' },
             { text: 'InputNumber', link: '/components/input-number' },
+            { text: 'Slider', link: '/components/slider' },
           ],
         },
       ],

@@ -22,5 +22,8 @@ export type { FieldProps, FieldStatus } from './field'
 export { InputNumber } from './input-number'
 export type { InputNumberProps, InputNumberSize, InputNumberStatus } from './input-number'
 
+export { Slider } from './slider'
+export type { SliderProps, SliderOrientation } from './slider'
+
 export { normalizeLabel } from './text'
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'
