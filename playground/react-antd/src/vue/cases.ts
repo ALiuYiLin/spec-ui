@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
-import { Button, Checkbox, Input, Radio, Select, Switch } from '@specmark/vue'
+import { Button, Checkbox, Field, Input, Radio, Select, Switch } from '@specmark/vue'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -9,7 +9,7 @@ export type VueAction =
 
 export type VueCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field'
   actions?: VueAction[]
   /** 断言刻意留空：Vue 实现靠通用规则 + L3 计算样式比对来判，
    *  逐用例断言只在 React 参考实现里写一份，避免两套实现各维护一遍。 */
@@ -156,6 +156,22 @@ export const renders: Record<string, { component: VueCase['component']; actions?
     render: () => h(Switch),
   },
   'ref-switch-small': { component: 'Switch', render: () => h(Switch, { size: 'sm' }) },
+
+  'ref-field-basic': {
+    component: 'Field',
+    render: () => h(Field, { label: '用户名' }, { default: () => h(Input, { placeholder: '请输入' }) }),
+  },
+  'ref-field-required': {
+    component: 'Field',
+    render: () => h(Field, { label: '用户名', required: true }, { default: () => h(Input, { placeholder: '请输入' }) }),
+  },
+  'ref-field-error': {
+    component: 'Field',
+    render: () =>
+      h(Field, { label: '用户名', status: 'error', error: '请填写用户名' }, {
+        default: () => h(Input, { placeholder: '请输入' }),
+      }),
+  },
 }
 
 export const caseIds = Object.keys(renders)

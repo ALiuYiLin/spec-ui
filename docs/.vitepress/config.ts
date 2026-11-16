@@ -32,6 +32,7 @@ export default defineConfig({
             { text: 'Checkbox', link: '/components/checkbox' },
             { text: 'Radio', link: '/components/radio' },
             { text: 'Switch', link: '/components/switch' },
+            { text: 'Field', link: '/components/field' },
           ],
         },
       ],

@@ -234,6 +234,21 @@ const RESOLVE = {
       antd: (all) => all.find((n) => n.classes.includes('ant-switch-handle')),
     },
   },
+
+  Field: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-field')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-form-item')),
+    },
+    label: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-field__label')),
+      antd: (all) => all.find((n) => n.tag === 'label'),
+    },
+    error: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-field__error')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-form-item-explain-error')),
+    },
+  },
 }
 
 function resolveTarget(component, name, side, refs) {
@@ -400,6 +415,28 @@ const PAIRS = [
   { component: 'Switch', ref: 'ref-switch-off', antd: 'switch-hover', pseudo: ['hover'], targets: ['root'] },
   { component: 'Switch', ref: 'ref-switch-focus', antd: 'switch-focus', targets: ['root'] },
   { component: 'Switch', ref: 'ref-switch-small', antd: 'switch-small', targets: ['root', 'handle'] },
+
+  // ---- Field ----
+  // 只比 label，且跳过盒子模型相关的几项：antd 的 label 被包在一层 block 容器里，
+  // display / width 由那层容器决定，不可比。字体、颜色、对齐仍然严格比对。
+  {
+    component: 'Field',
+    ref: 'ref-field-basic',
+    antd: 'field-basic',
+    targets: [{ name: 'label', ignore: ['display', 'box-sizing', 'width', 'min-width', 'max-width', 'height', 'min-height', 'transform-origin'] }],
+  },
+  {
+    component: 'Field',
+    ref: 'ref-field-required',
+    antd: 'field-required',
+    targets: [{ name: 'label', ignore: ['display', 'box-sizing', 'width', 'min-width', 'max-width', 'height', 'min-height', 'transform-origin'] }],
+  },
+  {
+    component: 'Field',
+    ref: 'ref-field-error',
+    antd: 'field-error',
+    targets: [{ name: 'label', ignore: ['display', 'box-sizing', 'width', 'min-width', 'max-width', 'height', 'min-height', 'transform-origin'] }],
+  },
 ]
 
 async function main() {

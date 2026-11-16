@@ -1,0 +1,59 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Field",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "表单项外壳：标签、控件槽位、错误信息。它不渲染任何控件，只负责布局与状态传递。",
+  "anatomy": {
+    "root": {
+      "class": "sm-field",
+      "tag": "div",
+      "required": true,
+      "data": {
+        "status": {
+          "kind": "config",
+          "enum": ["default", "error", "warning"],
+          "required": true,
+          "default": "default"
+        },
+        "required": { "kind": "boolean" }
+      }
+    },
+    "parts": {
+      "label": {
+        "class": "sm-field__label",
+        "tag": "label",
+        "required": false,
+        "order": 1,
+        "condition": "传入 label"
+      },
+      "control": {
+        "class": "sm-field__control",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "notes": "控件槽位，具体控件由使用方放入。"
+      },
+      "error": {
+        "class": "sm-field__error",
+        "tag": "div",
+        "required": false,
+        "order": 3,
+        "condition": "存在错误信息",
+        "aria": { "role": "alert" }
+      }
+    }
+  },
+  "invariants": [
+    "control 必须存在且只出现一次，且位于 label 之后。",
+    "error 出现时 root 的 data-status 必须是 error。",
+    "必填标记由 label 的 ::before 绘制，不额外占用 DOM 节点。",
+    "Field 不渲染任何表单控件，控件由使用方通过插槽传入。",
+    "label 与控件的关联（for/id 或包裹）由使用方负责，Field 不代劳。"
+  ],
+  "a11y": [
+    "错误信息必须带 role=\"alert\"，并由控件通过 aria-describedby 关联。",
+    "必填标记只是视觉提示，语义必须由控件的 required / aria-required 表达。"
+  ],
+  "notes": "这是第一个跨组件布局协议：纵向排列、标签在上、错误在下。水平布局留给后续的 data-layout。"
+}

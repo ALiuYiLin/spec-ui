@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Input, Radio, Select, Switch } from '@specmark/react'
+import { Button, Checkbox, Field, Input, Radio, Select, Switch } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -545,5 +545,49 @@ export const cases: RefCase[] = [
     component: 'Switch',
     render: () => <Switch size="sm" />,
     assert: [{ k: 'data', key: 'size', value: 'sm' }],
+  },
+
+  // ---------------- Field ----------------
+  {
+    id: 'ref-field-basic',
+    component: 'Field',
+    render: () => (
+      <Field label="用户名">
+        <Input placeholder="请输入" />
+      </Field>
+    ),
+    assert: [
+      { k: 'data', key: 'status', value: 'default' },
+      { k: 'part', name: 'label' },
+      { k: 'part', name: 'control' },
+      { k: 'absent', name: 'error' },
+      { k: 'childOf', on: 'label', of: 'root' },
+      { k: 'order', before: 'label', after: 'control' },
+    ],
+  },
+  {
+    id: 'ref-field-required',
+    component: 'Field',
+    render: () => (
+      <Field label="用户名" required>
+        <Input placeholder="请输入" />
+      </Field>
+    ),
+    assert: [{ k: 'data', key: 'required', value: 'true' }],
+  },
+  {
+    id: 'ref-field-error',
+    component: 'Field',
+    render: () => (
+      <Field label="用户名" status="error" error="请填写用户名">
+        <Input placeholder="请输入" />
+      </Field>
+    ),
+    assert: [
+      { k: 'data', key: 'status', value: 'error' },
+      { k: 'part', name: 'error' },
+      { k: 'attr', on: 'error', key: 'role', value: 'alert' },
+      { k: 'order', before: 'control', after: 'error' },
+    ],
   },
 ]

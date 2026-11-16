@@ -32,9 +32,9 @@
 
 - [ ] Radio —— 启用词汇表的 `radio` 值域
 - [ ] Switch —— 启用 `toggle` 值域；注意它是 `button[role=switch]`，没有原生 input
-- [ ] Field —— 表单项壳：label / 控件 / 错误信息，是 Form 的前置
 - [ ] InputNumber —— Input + 两个步进按钮
 - [ ] Slider —— 双 thumb、`aria-valuenow`、方向键
+- [x] Field —— 表单项壳；L3 只比 label（antd 的 Form.Item 有多层包裹）
 
 ## B 档：展示类（18 个，机械但量大）
 

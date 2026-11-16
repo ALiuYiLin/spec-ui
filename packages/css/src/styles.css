@@ -819,3 +819,43 @@
 .sm-switch[data-size='sm'][data-state='on'] .sm-switch__handle {
   left: calc(100% - 14px);
 }
+
+/* ================= Field ================= */
+.sm-field {
+  display: block;
+  box-sizing: border-box;
+  margin-block-end: 24px;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-field__label {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  box-sizing: content-box;
+  height: 22px;
+  margin: 0;
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: 22px;
+  cursor: default;
+}
+.sm-field[data-required='true'] .sm-field__label::before {
+  content: '*';
+  margin-inline-end: 4px;
+  color: var(--color-sm-danger);
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+}
+.sm-field__control {
+  display: block;
+  margin-block-start: 8px;
+}
+.sm-field__error {
+  margin-block-start: 2px;
+  color: var(--color-sm-danger);
+  font-size: 14px;
+  line-height: 22px;
+}

@@ -14,5 +14,8 @@ export { Radio } from './radio'
 export { Switch } from './switch'
 export type { SwitchSize } from './switch'
 
+export { Field } from './field'
+export type { FieldStatus } from './field'
+
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'
 export { normalizeLabel } from './text'

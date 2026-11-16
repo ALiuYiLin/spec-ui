@@ -16,5 +16,8 @@ export type { RadioProps } from './radio'
 export { Switch } from './switch'
 export type { SwitchProps, SwitchSize } from './switch'
 
+export { Field } from './field'
+export type { FieldProps, FieldStatus } from './field'
+
 export { normalizeLabel } from './text'
 export { DownIcon, CloseIcon, SpinnerIcon } from './icons'
