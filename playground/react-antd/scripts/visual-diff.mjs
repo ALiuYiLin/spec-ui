@@ -295,6 +295,29 @@ const RESOLVE = {
     },
   },
 
+  Drawer: {
+    root: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-drawer')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer')),
+    },
+    mask: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-drawer__mask')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer-mask')),
+    },
+    panel: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-drawer__panel')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer-content')),
+    },
+    header: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-drawer__header')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer-header')),
+    },
+    body: {
+      ref: (all) => all.find((n) => n.classes.includes('sm-drawer__body')),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer-body')),
+    },
+  },
+
   Modal: {
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-modal')),
@@ -599,7 +622,23 @@ const PAIRS = [
       { name: 'footer', ignore: ['height', 'transform-origin'] },
     ],
   },
+  // ---- Drawer ----
+  {
+    component: 'Drawer',
+    ref: 'ref-drawer-basic',
+    antd: 'drawer-basic',
+    targets: [
+      'mask',
+      {
+        name: 'panel',
+        ignore: ['box-shadow', 'top', 'right', 'bottom', 'left', 'height', 'width', 'max-width', 'position', 'z-index'],
+      },
+      'header',
+      'body',
+    ],
+  },
 ]
+
 
 
 async function main() {

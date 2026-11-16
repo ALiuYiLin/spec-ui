@@ -28,6 +28,9 @@ export type { SliderProps, SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverProps, PopoverSide, PopoverAlign } from './popover'
 
+export { Drawer } from './drawer'
+export type { DrawerProps, DrawerSide } from './drawer'
+
 export { Modal } from './modal'
 export type { ModalProps } from './modal'
 

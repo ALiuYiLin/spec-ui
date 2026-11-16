@@ -26,6 +26,9 @@ export type { SliderOrientation } from './slider'
 export { Popover } from './popover'
 export type { PopoverSide, PopoverAlign } from './popover'
 
+export { Drawer } from './drawer'
+export type { DrawerSide } from './drawer'
+
 export { Modal } from './modal'
 
 export { Tooltip } from './tooltip'

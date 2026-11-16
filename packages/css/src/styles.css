@@ -1218,3 +1218,86 @@
   color: rgba(0, 0, 0, 0.45);
   cursor: pointer;
 }
+
+
+/* ================= Drawer ================= */
+.sm-drawer {
+  color: var(--color-sm-text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: normal;
+}
+.sm-drawer__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.45);
+}
+.sm-drawer__panel {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  background: var(--color-sm-bg);
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: normal;
+  box-shadow: -6px 0 16px 0 rgba(0, 0, 0, 0.08), -3px 0 6px -4px rgba(0, 0, 0, 0.12), -9px 0 28px 8px rgba(0, 0, 0, 0.05);
+}
+.sm-drawer__header {
+  display: flex;
+  align-items: center;
+  flex: 0 1 0%;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+  color: var(--color-sm-text);
+  font-size: 16px;
+  line-height: 24px;
+}
+.sm-drawer__title {
+  color: var(--color-sm-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.sm-drawer__body {
+  flex: 1 1 0%;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: normal;
+}
+.sm-drawer__close {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}

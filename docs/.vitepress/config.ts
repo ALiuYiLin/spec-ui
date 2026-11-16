@@ -38,6 +38,7 @@ export default defineConfig({
             { text: 'Tooltip', link: '/components/tooltip' },
             { text: 'Popover', link: '/components/popover' },
             { text: 'Modal', link: '/components/modal' },
+            { text: 'Drawer', link: '/components/drawer' },
           ],
         },
       ],

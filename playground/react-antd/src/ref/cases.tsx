@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Modal, Slider, Switch, Tooltip } from '@specmark/react'
+import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Drawer, Modal, Slider, Switch, Tooltip } from '@specmark/react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -26,7 +26,7 @@ export type RefAction =
 
 export type RefCase = {
   id: string
-  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal'
+  component: 'Button' | 'Select' | 'Input' | 'Checkbox' | 'Radio' | 'Switch' | 'Field' | 'InputNumber' | 'Slider' | 'Tooltip' | 'Popover' | 'Modal' | 'Drawer'
   actions?: RefAction[]
   /** 需要 CDP 强制的伪类（与 antd 证据台同一机制） */
   pseudo?: Pseudo[]
@@ -740,6 +740,28 @@ export const cases: RefCase[] = [
       { k: 'attr', on: 'dialog', key: 'aria-modal', value: 'true' },
       { k: 'order', before: 'mask', after: 'dialog' },
       { k: 'childOf', on: 'title', of: 'header' },
+    ],
+  },
+
+  // ---------------- Drawer ----------------
+  {
+    id: 'ref-drawer-basic',
+    component: 'Drawer',
+    render: () => (
+      <Drawer open title="标题">
+        内容文字
+      </Drawer>
+    ),
+    assert: [
+      { k: 'data', key: 'state', value: 'open' },
+      { k: 'data', key: 'side', value: 'right' },
+      { k: 'part', name: 'mask' },
+      { k: 'part', name: 'panel' },
+      { k: 'part', name: 'header' },
+      { k: 'part', name: 'body' },
+      { k: 'attr', on: 'panel', key: 'role', value: 'dialog' },
+      { k: 'attr', on: 'panel', key: 'aria-modal', value: 'true' },
+      { k: 'order', before: 'mask', after: 'panel' },
     ],
   },
 ]

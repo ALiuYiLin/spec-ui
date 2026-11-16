@@ -1,0 +1,93 @@
+{
+  "$schema": "../protocol.schema.json",
+  "component": "Drawer",
+  "protocol": 1,
+  "status": "draft",
+  "summary": "抽屉。与 Modal 同构（遮罩 + 面板），区别是面板贴着视口一侧，宽度由 props 决定。",
+  "anatomy": {
+    "root": {
+      "class": "sm-drawer",
+      "tag": "div",
+      "required": true,
+      "portal": true,
+      "data": {
+        "state": {
+          "kind": "state",
+          "domain": "visibility",
+          "enum": ["open", "closed"],
+          "required": true,
+          "default": "closed"
+        },
+        "side": {
+          "kind": "config",
+          "enum": ["right", "left", "top", "bottom"],
+          "required": true,
+          "default": "right"
+        }
+      },
+      "notes": "root 铺满视口，portal 到 body，仅 open 时渲染。"
+    },
+    "parts": {
+      "mask": {
+        "class": "sm-drawer__mask",
+        "tag": "div",
+        "required": true,
+        "order": 1,
+        "aria": { "aria-hidden": "true" }
+      },
+      "panel": {
+        "class": "sm-drawer__panel",
+        "tag": "div",
+        "required": true,
+        "order": 2,
+        "geometry": true,
+        "attrs": {
+          "role": { "required": true, "default": "dialog" },
+          "aria-modal": { "required": true, "default": "true" }
+        },
+        "notes": "宽度由 props 决定，走几何内联样式。"
+      },
+      "close": {
+        "class": "sm-drawer__close",
+        "tag": "button",
+        "required": false,
+        "order": 1,
+        "condition": "closable 不为 false",
+        "aria": { "aria-label": "必填" }
+      },
+      "header": {
+        "class": "sm-drawer__header",
+        "tag": "div",
+        "required": true,
+        "order": 2
+      },
+      "title": {
+        "class": "sm-drawer__title",
+        "tag": "div",
+        "required": false,
+        "order": 1,
+        "condition": "传入 title"
+      },
+      "body": {
+        "class": "sm-drawer__body",
+        "tag": "div",
+        "required": true,
+        "order": 3
+      }
+    }
+  },
+  "invariants": [
+    "root 必须 portal 到 document.body，且只在 state=open 时渲染。",
+    "mask 与 panel 必须是 root 的直接子节点，且 mask 在前。",
+    "panel 必须带 role=\"dialog\" 与 aria-modal=\"true\"，并紧贴 data-side 指定的一侧。",
+    "panel 的宽度只能通过几何内联样式设置。",
+    "close 若存在，必须是 panel 的直接子节点。",
+    "state=closed 时 root 不得存在。"
+  ],
+  "a11y": [
+    "panel 必须有可访问名称（title 或 aria-label）。",
+    "关闭后焦点必须回到触发元素。",
+    "遮罩点击关闭属于交互契约，不在协议内强制。"
+  ],
+  "notes": "第二个使用 geometry 的组件（面板宽度）；没有 footer，与 Modal 刻意区分。"
+}
