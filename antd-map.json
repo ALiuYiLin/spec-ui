@@ -1,0 +1,498 @@
+{
+  "Button": {
+    "root": {
+      "ref": ".sm-btn",
+      "antd": ".ant-btn"
+    },
+    "icon": {
+      "ref": ".sm-btn__icon",
+      "antd": ".ant-btn-icon:has(.lucide-search)"
+    },
+    "iconSvg": {
+      "ref": ".sm-btn__icon svg",
+      "antd": ".ant-btn-icon:has(.lucide-search) svg"
+    },
+    "spinner": {
+      "ref": ".sm-btn__spinner",
+      "antd": ".ant-btn-icon:has(.lucide-loader-2)"
+    },
+    "spinnerSvg": {
+      "ref": ".sm-btn__spinner svg",
+      "antd": ".ant-btn-icon:has(.lucide-loader-2) svg"
+    },
+    "label": {
+      "ref": ".sm-btn__label",
+      "antd": "@fn:antdBtnLabel"
+    }
+  },
+  "Select": {
+    "root": {
+      "ref": ".sm-select",
+      "antd": ".ant-select"
+    },
+    "control": {
+      "ref": ".sm-select__control",
+      "antd": ".ant-select-selector"
+    },
+    "value": {
+      "ref": ".sm-select__value",
+      "antd": ".ant-select-selection-item"
+    },
+    "placeholder": {
+      "ref": ".sm-select__placeholder",
+      "antd": ".ant-select-selection-placeholder"
+    },
+    "arrow": {
+      "ref": ".sm-select__arrow",
+      "antd": ".ant-select-arrow"
+    },
+    "arrowSvg": {
+      "ref": ".sm-select__arrow svg",
+      "antd": ".ant-select-arrow svg"
+    },
+    "clear": {
+      "ref": ".sm-select__clear",
+      "antd": ".ant-select-clear"
+    },
+    "clearSvg": {
+      "ref": ".sm-select__clear svg",
+      "antd": ".ant-select-clear svg"
+    },
+    "dropdown": {
+      "ref": "@portal:0",
+      "antd": "@portal:0"
+    }
+  },
+  "Input": {
+    "root": {
+      "ref": ".sm-input",
+      "antd": "@any:.ant-input-affix-wrapper,.ant-input"
+    },
+    "prefix": {
+      "ref": ".sm-input__prefix",
+      "antd": ".ant-input-prefix"
+    },
+    "suffix": {
+      "ref": ".sm-input__suffix",
+      "antd": ".ant-input-suffix"
+    },
+    "clear": {
+      "ref": ".sm-input__clear",
+      "antd": ".ant-input-clear-icon"
+    },
+    "clearSvg": {
+      "ref": ".sm-input__clear svg",
+      "antd": ".ant-input-clear-icon svg"
+    },
+    "field": {
+      "ref": ".sm-input__field",
+      "antd": ".ant-input"
+    }
+  },
+  "Checkbox": {
+    "root": {
+      "ref": ".sm-checkbox",
+      "antd": ".ant-checkbox-wrapper"
+    },
+    "control": {
+      "ref": ".sm-checkbox__control",
+      "antd": ".ant-checkbox"
+    },
+    "box": {
+      "ref": ".sm-checkbox__box",
+      "antd": ".ant-checkbox-inner"
+    },
+    "label": {
+      "ref": ".sm-checkbox__label",
+      "antd": ".ant-checkbox-label"
+    }
+  },
+  "Radio": {
+    "root": {
+      "ref": ".sm-radio",
+      "antd": ".ant-radio-wrapper"
+    },
+    "control": {
+      "ref": ".sm-radio__control",
+      "antd": ".ant-radio"
+    },
+    "box": {
+      "ref": ".sm-radio__box",
+      "antd": ".ant-radio-inner"
+    },
+    "label": {
+      "ref": ".sm-radio__label",
+      "antd": ".ant-radio-label"
+    }
+  },
+  "Switch": {
+    "root": {
+      "ref": ".sm-switch",
+      "antd": ".ant-switch"
+    },
+    "handle": {
+      "ref": ".sm-switch__handle",
+      "antd": ".ant-switch-handle"
+    }
+  },
+  "Field": {
+    "root": {
+      "ref": ".sm-field",
+      "antd": ".ant-form-item"
+    },
+    "error": {
+      "ref": ".sm-field__error",
+      "antd": ".ant-form-item-explain-error"
+    },
+    "label": {
+      "ref": ".sm-field__label",
+      "antd": "label"
+    }
+  },
+  "InputNumber": {
+    "root": {
+      "ref": ".sm-input-number",
+      "antd": ".ant-input-number"
+    },
+    "input": {
+      "ref": ".sm-input-number__input",
+      "antd": ".ant-input-number-input"
+    }
+  },
+  "Popover": {
+    "root": {
+      "ref": ".sm-popover",
+      "antd": ".ant-popover"
+    },
+    "inner": {
+      "ref": ".sm-popover__inner",
+      "antd": ".ant-popover-inner"
+    },
+    "title": {
+      "ref": ".sm-popover__title",
+      "antd": ".ant-popover-title"
+    },
+    "content": {
+      "ref": ".sm-popover__content",
+      "antd": ".ant-popover-inner-content"
+    }
+  },
+  "Tooltip": {
+    "root": {
+      "ref": ".sm-tooltip",
+      "antd": ".ant-tooltip"
+    },
+    "inner": {
+      "ref": ".sm-tooltip__inner",
+      "antd": ".ant-tooltip-inner"
+    }
+  },
+  "Image": {
+    "root": {
+      "ref": ".sm-image",
+      "antd": ".ant-image"
+    },
+    "img": {
+      "ref": ".sm-image__img",
+      "antd": ".ant-image-img"
+    }
+  },
+  "Steps": {
+    "root": {
+      "ref": ".sm-steps",
+      "antd": ".ant-steps"
+    },
+    "item": {
+      "ref": ".sm-steps__item",
+      "antd": ".ant-steps-item"
+    },
+    "title": {
+      "ref": ".sm-steps__title",
+      "antd": ".ant-steps-item-title"
+    }
+  },
+  "Timeline": {
+    "root": {
+      "ref": ".sm-timeline",
+      "antd": ".ant-timeline"
+    },
+    "item": {
+      "ref": ".sm-timeline__item",
+      "antd": ".ant-timeline-item"
+    },
+    "dot": {
+      "ref": ".sm-timeline__dot",
+      "antd": ".ant-timeline-item-head"
+    },
+    "content": {
+      "ref": ".sm-timeline__content",
+      "antd": ".ant-timeline-item-content"
+    }
+  },
+  "Descriptions": {
+    "root": {
+      "ref": ".sm-descriptions",
+      "antd": ".ant-descriptions"
+    }
+  },
+  "Progress": {
+    "root": {
+      "ref": ".sm-progress",
+      "antd": ".ant-progress"
+    },
+    "rail": {
+      "ref": ".sm-progress__rail",
+      "antd": ".ant-progress-inner"
+    },
+    "bar": {
+      "ref": ".sm-progress__bar",
+      "antd": ".ant-progress-bg"
+    },
+    "text": {
+      "ref": ".sm-progress__text",
+      "antd": ".ant-progress-text"
+    }
+  },
+  "Skeleton": {
+    "root": {
+      "ref": ".sm-skeleton",
+      "antd": ".ant-skeleton"
+    },
+    "title": {
+      "ref": ".sm-skeleton__title",
+      "antd": ".ant-skeleton-title"
+    },
+    "item": {
+      "ref": ".sm-skeleton__item",
+      "antd": ".ant-skeleton-paragraph-li"
+    }
+  },
+  "Result": {
+    "root": {
+      "ref": ".sm-result",
+      "antd": ".ant-result"
+    },
+    "icon": {
+      "ref": ".sm-result__icon",
+      "antd": ".ant-result-icon"
+    },
+    "title": {
+      "ref": ".sm-result__title",
+      "antd": ".ant-result-title"
+    }
+  },
+  "Statistic": {
+    "root": {
+      "ref": ".sm-statistic",
+      "antd": ".ant-statistic"
+    },
+    "title": {
+      "ref": ".sm-statistic__title",
+      "antd": ".ant-statistic-title"
+    },
+    "value": {
+      "ref": ".sm-statistic__value",
+      "antd": ".ant-statistic-content"
+    }
+  },
+  "Breadcrumb": {
+    "root": {
+      "ref": ".sm-breadcrumb",
+      "antd": ".ant-breadcrumb"
+    },
+    "item": {
+      "ref": ".sm-breadcrumb__item",
+      "antd": ".ant-breadcrumb-link"
+    },
+    "separator": {
+      "ref": ".sm-breadcrumb__separator",
+      "antd": ".ant-breadcrumb-separator"
+    }
+  },
+  "Space": {
+    "root": {
+      "ref": ".sm-space",
+      "antd": ".ant-space"
+    },
+    "item": {
+      "ref": ".sm-space__item",
+      "antd": ".ant-space-item"
+    }
+  },
+  "Card": {
+    "root": {
+      "ref": ".sm-card",
+      "antd": ".ant-card"
+    },
+    "header": {
+      "ref": ".sm-card__header",
+      "antd": ".ant-card-head"
+    },
+    "title": {
+      "ref": ".sm-card__title",
+      "antd": ".ant-card-head-title"
+    },
+    "body": {
+      "ref": ".sm-card__body",
+      "antd": ".ant-card-body"
+    }
+  },
+  "Alert": {
+    "close": {
+      "ref": ".sm-alert__close",
+      "antd": ".ant-alert-close-icon"
+    },
+    "root": {
+      "ref": ".sm-alert",
+      "antd": ".ant-alert"
+    },
+    "message": {
+      "ref": ".sm-alert__message",
+      "antd": ".ant-alert-message"
+    },
+    "description": {
+      "ref": ".sm-alert__description",
+      "antd": ".ant-alert-description"
+    }
+  },
+  "Spin": {
+    "root": {
+      "ref": ".sm-spin",
+      "antd": ".ant-spin"
+    },
+    "dot": {
+      "ref": ".sm-spin__dot",
+      "antd": ".ant-spin-dot"
+    }
+  },
+  "Empty": {
+    "root": {
+      "ref": ".sm-empty",
+      "antd": ".ant-empty"
+    },
+    "description": {
+      "ref": ".sm-empty__description",
+      "antd": ".ant-empty-description"
+    }
+  },
+  "Divider": {
+    "root": {
+      "ref": ".sm-divider",
+      "antd": ".ant-divider"
+    }
+  },
+  "Tag": {
+    "close": {
+      "ref": ".sm-tag__close",
+      "antd": ".ant-tag-close-icon"
+    },
+    "root": {
+      "ref": ".sm-tag",
+      "antd": ".ant-tag"
+    }
+  },
+  "Avatar": {
+    "root": {
+      "ref": ".sm-avatar",
+      "antd": ".ant-avatar"
+    }
+  },
+  "Badge": {
+    "root": {
+      "ref": ".sm-badge",
+      "antd": ".ant-badge"
+    },
+    "count": {
+      "ref": ".sm-badge__count",
+      "antd": ".ant-badge-count"
+    }
+  },
+  "Dropdown": {
+    "root": {
+      "ref": ".sm-dropdown",
+      "antd": ".ant-dropdown"
+    },
+    "menu": {
+      "ref": ".sm-dropdown__menu",
+      "antd": ".ant-dropdown-menu"
+    },
+    "item": {
+      "ref": ".sm-dropdown__item",
+      "antd": ".ant-dropdown-menu-item"
+    }
+  },
+  "Drawer": {
+    "close": {
+      "ref": ".sm-drawer__close",
+      "antd": ".ant-drawer-close"
+    },
+    "root": {
+      "ref": ".sm-drawer",
+      "antd": ".ant-drawer"
+    },
+    "mask": {
+      "ref": ".sm-drawer__mask",
+      "antd": ".ant-drawer-mask"
+    },
+    "panel": {
+      "ref": ".sm-drawer__panel",
+      "antd": ".ant-drawer-content"
+    },
+    "header": {
+      "ref": ".sm-drawer__header",
+      "antd": ".ant-drawer-header"
+    },
+    "body": {
+      "ref": ".sm-drawer__body",
+      "antd": ".ant-drawer-body"
+    }
+  },
+  "Modal": {
+    "close": {
+      "ref": ".sm-modal__close",
+      "antd": ".ant-modal-close"
+    },
+    "root": {
+      "ref": ".sm-modal",
+      "antd": ".ant-modal-wrap"
+    },
+    "mask": {
+      "ref": ".sm-modal__mask",
+      "antd": ".ant-modal-mask"
+    },
+    "dialog": {
+      "ref": ".sm-modal__dialog",
+      "antd": ".ant-modal-content"
+    },
+    "header": {
+      "ref": ".sm-modal__header",
+      "antd": ".ant-modal-header"
+    },
+    "body": {
+      "ref": ".sm-modal__body",
+      "antd": ".ant-modal-body"
+    },
+    "footer": {
+      "ref": ".sm-modal__footer",
+      "antd": ".ant-modal-footer"
+    }
+  },
+  "Slider": {
+    "root": {
+      "ref": ".sm-slider",
+      "antd": ".ant-slider"
+    },
+    "rail": {
+      "ref": ".sm-slider__rail",
+      "antd": ".ant-slider-rail"
+    },
+    "track": {
+      "ref": ".sm-slider__track",
+      "antd": ".ant-slider-track"
+    },
+    "handle": {
+      "ref": ".sm-slider__handle",
+      "antd": ".ant-slider-handle"
+    }
+  }
+}

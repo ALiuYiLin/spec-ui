@@ -12,7 +12,7 @@ import path from 'node:path'
 const ROOT = path.resolve('.')
 const ARTIFACTS = path.join(ROOT, 'artifacts')
 const SPEC_DIR = path.join(ROOT, 'spec', 'components')
-const DIFF_PATH = path.join(ROOT, 'playground', 'react-antd', 'scripts', 'visual-diff.mjs')
+
 
 const argv = process.argv.slice(2)
 const component = (argv.find((a) => a.startsWith('--component=')) ?? '').slice('--component='.length)
@@ -28,48 +28,21 @@ const slug = kebab(component)
 const spec = JSON.parse(fs.readFileSync(path.join(SPEC_DIR, `${slug}.spec.json`), 'utf8'))
 
 // ---------- 从 RESOLVE 里取「部件 → antd 类名」 ----------
-function readResolve(component) {
-  const src = fs.readFileSync(DIFF_PATH, 'utf8')
-  const start = src.indexOf(`  ${component}: {`)
-  if (start < 0) return null
-
-  // 先按 4 空格缩进的 key 切块（root / 各部件），再只从 antd 那一行取类名
-  let depth = 0
-  let end = start
-  for (let i = src.indexOf('{', start); i < src.length; i += 1) {
-    if (src[i] === '{') depth += 1
-    else if (src[i] === '}') {
-      depth -= 1
-      if (depth === 0) {
-        end = i
-        break
-      }
-    }
-  }
-
-  const body = src.slice(start, end)
-  const chunks = body.split(/\n    (\w+): \{/)
-  const map = {}
-  for (let i = 1; i < chunks.length; i += 2) {
-    const name = chunks[i]
-    const chunk = chunks[i + 1] ?? ''
-    const antdIdx = chunk.indexOf('antd:')
-    if (antdIdx < 0) continue
-    const antdPart = chunk.slice(antdIdx)
-    const byClass = antdPart.match(/classes\.includes\('([^']+)'\)/)
-    const byDesc = antdPart.match(/hasDescendantClass\([^,]+,\s*'([^']+)'\)/)
-    const cls = byClass?.[1] ?? byDesc?.[1]
-    if (cls) map[name] = cls
-  }
-  return map
+const { ANTD_MAP } = await import('./antd-map.mjs')
+const antdMap = ANTD_MAP[component] ?? {}
+const classNameOf = (selector) => {
+  const first = selector.split(' ')[0]
+  if (first.startsWith('@any:')) return first.slice('@any:'.length).split(',')[0].replace(/^\./, '')
+  if (first.startsWith('.')) return first.replace(/^\./, '').replace(/:.*$/, '')
+  return null
 }
 
-const antdMap = readResolve(component) ?? {}
-const rootAntdClass = antdMap.root
+const rootAntdClass = classNameOf(antdMap.root?.antd ?? '')
 const antdToPart = new Map()
-for (const [name, cls] of Object.entries(antdMap)) {
-  if (name === 'root' || !cls) continue
-  antdToPart.set(cls, name)
+for (const [name, entry] of Object.entries(antdMap)) {
+  if (name === 'root' || !entry?.antd) continue
+  const cls = classNameOf(entry.antd)
+  if (cls) antdToPart.set(cls, name)
 }
 
 if (!rootAntdClass) {
