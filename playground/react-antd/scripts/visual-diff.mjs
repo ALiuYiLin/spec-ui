@@ -226,6 +226,10 @@ const RESOLVE = {
       ref: (all) => partByClass(all, 'sm-select__clear'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-clear')),
     },
+    clearSvg: {
+      ref: (all) => findDescendant(partByClass(all, 'sm-select__clear'), (c) => c.tag === 'svg'),
+      antd: (all) => findDescendant(all.find((n) => n.classes.includes('ant-select-clear')), (c) => c.tag === 'svg'),
+    },
     option: null, // 需要 index，见下方
   },
 
@@ -245,6 +249,10 @@ const RESOLVE = {
     clear: {
       ref: (all) => all.find((n) => n.classes.includes('sm-input__clear')),
       antd: (all) => all.find((n) => n.classes.includes('ant-input-clear-icon')),
+    },
+    clearSvg: {
+      ref: (all) => findDescendant(all.find((n) => n.classes.includes('sm-input__clear')), (c) => c.tag === 'svg'),
+      antd: (all) => findDescendant(all.find((n) => n.classes.includes('ant-input-clear-icon')), (c) => c.tag === 'svg'),
     },
   },
 
@@ -735,10 +743,10 @@ const PAIRS = [
   { component: 'Button', ref: 'ref-button-tone-success', antd: 'button-tone-success', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-tone-warning', antd: 'button-tone-warning', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
-  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', { name: 'icon', center: true }, 'label', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }] },
+  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', { name: 'icon', center: true }, 'label', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }] },
+  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }] },
+  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-round', antd: 'button-shape-round', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-block', antd: 'button-block', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }, 'label'] },
@@ -786,12 +794,12 @@ const PAIRS = [
       'arrow',
       {
         name: 'arrowSvg',
-        ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'],
+        ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'],
       }
 ],
   },
   { component: 'Select', ref: 'ref-select-filled', antd: 'select-closed-filled', targets: ['root', 'control', 'value'] },
-  { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: [{ name: 'clear', center: true }, { name: 'arrow', center: true }] },
+  { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: [{ name: 'clear', center: true }, { name: 'arrow', center: true }, { name: 'clearSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }] },
   {
     component: 'Select',
     ref: 'ref-select-open',
@@ -840,7 +848,7 @@ const PAIRS = [
     ref: 'ref-input-clear',
     antd: 'input-clear',
     // 清除按钮是图形部件（SVG + currentColor），antd 那边是 button，字体会落到 UA 默认 Arial
-    targets: ['root', { name: 'clear', ignore: ['font-family'] }],
+    targets: ['root', { name: 'clear', ignore: ['font-family'] }, { name: 'clearSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }],
   },
   {
     component: 'Input',
