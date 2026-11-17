@@ -1,0 +1,49 @@
+{
+  "component": "Timeline",
+  "cases": 1,
+  "inferred": 3,
+  "draft": {
+    "item": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      },
+      "many": true
+    },
+    "dot": {
+      "requires": {
+        "inside": "item",
+        "lane": {
+          "name": "item-row",
+          "order": 1
+        }
+      },
+      "many": true
+    },
+    "content": {
+      "requires": {
+        "inside": "item",
+        "lane": {
+          "name": "item-row",
+          "order": 2
+        }
+      },
+      "many": true
+    }
+  },
+  "issues": [
+    "dot: 父级布局 list-item 不在已知布局里",
+    "content: 父级布局 list-item 不在已知布局里"
+  ],
+  "diff": [
+    "item: 手写 spec 里没有 requires（推断有）",
+    "dot: 手写 spec 里没有 requires（推断有）",
+    "content: 手写 spec 里没有 requires（推断有）"
+  ]
+}

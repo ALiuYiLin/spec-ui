@@ -1,0 +1,36 @@
+{
+  "component": "Statistic",
+  "cases": 2,
+  "inferred": 2,
+  "draft": {
+    "title": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "value": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "title: 手写 spec 里没有 requires（推断有）",
+    "value: 手写 spec 里没有 requires（推断有）"
+  ]
+}

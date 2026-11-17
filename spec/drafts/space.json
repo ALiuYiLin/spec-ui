@@ -1,0 +1,24 @@
+{
+  "component": "Space",
+  "cases": 1,
+  "inferred": 1,
+  "draft": {
+    "item": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      },
+      "many": true
+    }
+  },
+  "issues": [],
+  "diff": [
+    "item: 手写 spec 里没有 requires（推断有）"
+  ]
+}

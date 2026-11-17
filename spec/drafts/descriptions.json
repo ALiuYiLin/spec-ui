@@ -1,0 +1,44 @@
+{
+  "component": "Descriptions",
+  "cases": 1,
+  "inferred": 3,
+  "draft": {
+    "item": {
+      "requires": {
+        "inside": "root"
+      }
+    },
+    "label": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "content": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [
+    "item: 父级布局 table-row 不在已知布局里"
+  ],
+  "diff": [
+    "item: 手写 spec 里没有 requires（推断有）",
+    "label: 手写 spec 里没有 requires（推断有）",
+    "content: 手写 spec 里没有 requires（推断有）"
+  ]
+}

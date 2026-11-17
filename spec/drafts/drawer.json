@@ -1,0 +1,80 @@
+{
+  "component": "Drawer",
+  "cases": 1,
+  "inferred": 6,
+  "draft": {
+    "mask": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "panel": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "header": {
+      "requires": {
+        "inside": "panel",
+        "lane": {
+          "name": "panel-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-column"
+        }
+      }
+    },
+    "close": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "title": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "body": {
+      "requires": {
+        "inside": "panel",
+        "lane": {
+          "name": "panel-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-column"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "mask: 手写 spec 里没有 requires（推断有）",
+    "panel: 手写 spec 里没有 requires（推断有）",
+    "header: 手写 spec 里没有 requires（推断有）",
+    "close: 手写 spec 里没有 requires（推断有）",
+    "title: 手写 spec 里没有 requires（推断有）",
+    "body: 手写 spec 里没有 requires（推断有）"
+  ]
+}

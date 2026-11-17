@@ -1,0 +1,45 @@
+{
+  "component": "Card",
+  "cases": 1,
+  "inferred": 3,
+  "draft": {
+    "header": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "title": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "body": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "header: 手写 spec 里没有 requires（推断有）",
+    "title: 手写 spec 里没有 requires（推断有）",
+    "body: 手写 spec 里没有 requires（推断有）"
+  ]
+}

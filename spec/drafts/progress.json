@@ -1,0 +1,45 @@
+{
+  "component": "Progress",
+  "cases": 3,
+  "inferred": 3,
+  "draft": {
+    "rail": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "bar": {
+      "requires": {
+        "inside": "rail",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "text": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "rail: 手写 spec 里没有 requires（推断有）",
+    "bar: 手写 spec 里没有 requires（推断有）",
+    "text: 手写 spec 里没有 requires（推断有）"
+  ]
+}

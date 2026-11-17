@@ -1,16 +1,24 @@
 {
   "component": "Button",
   "cases": 31,
-  "inferred": 0,
-  "draft": {},
+  "inferred": 1,
+  "draft": {
+    "spinner": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
   "issues": [
     "icon: RESOLVE 里没有 antd 映射，无法推断",
-    "label: RESOLVE 里没有 antd 映射，无法推断",
-    "spinner: RESOLVE 里没有 antd 映射，无法推断"
+    "label: RESOLVE 里没有 antd 映射，无法推断"
   ],
   "diff": [
+    "spinner: 手写 spec 里没有 requires（推断有）",
     "icon: 推断里没有（手写有）",
-    "label: 推断里没有（手写有）",
-    "spinner: 推断里没有（手写有）"
+    "label: 推断里没有（手写有）"
   ]
 }

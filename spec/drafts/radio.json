@@ -1,0 +1,62 @@
+{
+  "component": "Radio",
+  "cases": 6,
+  "inferred": 4,
+  "draft": {
+    "control": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "input": {
+      "requires": {
+        "inside": "control",
+        "lane": {
+          "name": "control-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "box": {
+      "requires": {
+        "inside": "control",
+        "lane": {
+          "name": "control-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "label": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "control: 手写 spec 里没有 requires（推断有）",
+    "input: 手写 spec 里没有 requires（推断有）",
+    "box: 手写 spec 里没有 requires（推断有）",
+    "label: 手写 spec 里没有 requires（推断有）"
+  ]
+}

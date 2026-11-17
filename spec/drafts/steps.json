@@ -1,0 +1,33 @@
+{
+  "component": "Steps",
+  "cases": 1,
+  "inferred": 2,
+  "draft": {
+    "item": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      },
+      "many": true
+    },
+    "title": {
+      "requires": {
+        "inside": "root"
+      },
+      "many": true
+    }
+  },
+  "issues": [
+    "title: 父级布局 inline-block 不在已知布局里"
+  ],
+  "diff": [
+    "item: 手写 spec 里没有 requires（推断有）",
+    "title: 手写 spec 里没有 requires（推断有）"
+  ]
+}

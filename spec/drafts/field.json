@@ -1,0 +1,31 @@
+{
+  "component": "Field",
+  "cases": 3,
+  "inferred": 2,
+  "draft": {
+    "control": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-column"
+        }
+      }
+    },
+    "error": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [
+    "label: RESOLVE 里没有 antd 映射，无法推断"
+  ],
+  "diff": [
+    "control: 手写 spec 里没有 requires（推断有）",
+    "error: 手写 spec 里没有 requires（推断有）",
+    "label: 推断里没有（手写有）"
+  ]
+}

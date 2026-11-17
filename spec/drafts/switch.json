@@ -1,0 +1,33 @@
+{
+  "component": "Switch",
+  "cases": 8,
+  "inferred": 2,
+  "draft": {
+    "handle": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        }
+      }
+    },
+    "inner": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        }
+      }
+    }
+  },
+  "issues": [
+    "handle: 父级布局 inline-block 不在已知布局里",
+    "inner: 父级布局 inline-block 不在已知布局里"
+  ],
+  "diff": [
+    "handle: 手写 spec 里没有 requires（推断有）",
+    "inner: 手写 spec 里没有 requires（推断有）"
+  ]
+}

@@ -61,6 +61,26 @@
     "dropdown": {
       "ref": "@portal:0",
       "antd": "@portal:0"
+    },
+    "search": {
+      "ref": ".sm-select__search",
+      "antd": ".ant-select-selection-search"
+    },
+    "input": {
+      "ref": ".sm-select__input",
+      "antd": ".ant-select-selection-search-input"
+    },
+    "listbox": {
+      "ref": ".sm-select__listbox",
+      "antd": ".ant-select-dropdown [role=\"listbox\"]"
+    },
+    "option": {
+      "ref": ".sm-select__option",
+      "antd": ".ant-select-item-option"
+    },
+    "empty": {
+      "ref": ".sm-select__empty",
+      "antd": ".ant-select-item-empty"
     }
   },
   "Input": {
@@ -105,6 +125,10 @@
     "label": {
       "ref": ".sm-checkbox__label",
       "antd": ".ant-checkbox-label"
+    },
+    "input": {
+      "ref": ".sm-checkbox__input",
+      "antd": ".ant-checkbox-input"
     }
   },
   "Radio": {
@@ -123,6 +147,10 @@
     "label": {
       "ref": ".sm-radio__label",
       "antd": ".ant-radio-label"
+    },
+    "input": {
+      "ref": ".sm-radio__input",
+      "antd": ".ant-radio-input"
     }
   },
   "Switch": {
@@ -133,6 +161,10 @@
     "handle": {
       "ref": ".sm-switch__handle",
       "antd": ".ant-switch-handle"
+    },
+    "inner": {
+      "ref": ".sm-switch__inner",
+      "antd": ".ant-switch-inner"
     }
   },
   "Field": {
@@ -147,6 +179,10 @@
     "label": {
       "ref": ".sm-field__label",
       "antd": "label"
+    },
+    "control": {
+      "ref": ".sm-field__control",
+      "antd": ".ant-form-item-control"
     }
   },
   "InputNumber": {
@@ -157,6 +193,22 @@
     "input": {
       "ref": ".sm-input-number__input",
       "antd": ".ant-input-number-input"
+    },
+    "wrap": {
+      "ref": ".sm-input-number__wrap",
+      "antd": ".ant-input-number-handler-wrap"
+    },
+    "handler": {
+      "ref": ".sm-input-number__handler",
+      "antd": ".ant-input-number-handler"
+    },
+    "up": {
+      "ref": ".sm-input-number__up",
+      "antd": ".ant-input-number-handler-up"
+    },
+    "down": {
+      "ref": ".sm-input-number__down",
+      "antd": ".ant-input-number-handler-down"
     }
   },
   "Popover": {
@@ -175,6 +227,14 @@
     "content": {
       "ref": ".sm-popover__content",
       "antd": ".ant-popover-inner-content"
+    },
+    "arrow": {
+      "ref": ".sm-popover__arrow",
+      "antd": ".ant-popover-arrow"
+    },
+    "trigger": {
+      "ref": ".sm-popover__trigger",
+      "antd": "@none"
     }
   },
   "Tooltip": {
@@ -185,6 +245,14 @@
     "inner": {
       "ref": ".sm-tooltip__inner",
       "antd": ".ant-tooltip-inner"
+    },
+    "arrow": {
+      "ref": ".sm-tooltip__arrow",
+      "antd": ".ant-tooltip-arrow"
+    },
+    "trigger": {
+      "ref": ".sm-tooltip__trigger",
+      "antd": "@none"
     }
   },
   "Image": {
@@ -233,6 +301,18 @@
     "root": {
       "ref": ".sm-descriptions",
       "antd": ".ant-descriptions"
+    },
+    "item": {
+      "ref": ".sm-descriptions__item",
+      "antd": ".ant-descriptions-item"
+    },
+    "label": {
+      "ref": ".sm-descriptions__label",
+      "antd": ".ant-descriptions-item-label"
+    },
+    "content": {
+      "ref": ".sm-descriptions__content",
+      "antd": ".ant-descriptions-item-content"
     }
   },
   "Progress": {
@@ -265,6 +345,10 @@
     "item": {
       "ref": ".sm-skeleton__item",
       "antd": ".ant-skeleton-paragraph-li"
+    },
+    "paragraph": {
+      "ref": ".sm-skeleton__paragraph",
+      "antd": ".ant-skeleton-paragraph"
     }
   },
   "Result": {
@@ -279,6 +363,10 @@
     "title": {
       "ref": ".sm-result__title",
       "antd": ".ant-result-title"
+    },
+    "subtitle": {
+      "ref": ".sm-result__subtitle",
+      "antd": ".ant-result-subtitle"
     }
   },
   "Statistic": {
@@ -363,6 +451,10 @@
     "dot": {
       "ref": ".sm-spin__dot",
       "antd": ".ant-spin-dot"
+    },
+    "tip": {
+      "ref": ".sm-spin__tip",
+      "antd": ".ant-spin-text"
     }
   },
   "Empty": {
@@ -373,12 +465,20 @@
     "description": {
       "ref": ".sm-empty__description",
       "antd": ".ant-empty-description"
+    },
+    "image": {
+      "ref": ".sm-empty__image",
+      "antd": ".ant-empty-image"
     }
   },
   "Divider": {
     "root": {
       "ref": ".sm-divider",
       "antd": ".ant-divider"
+    },
+    "text": {
+      "ref": ".sm-divider__text",
+      "antd": ".ant-divider-inner-text"
     }
   },
   "Tag": {
@@ -419,6 +519,14 @@
     "item": {
       "ref": ".sm-dropdown__item",
       "antd": ".ant-dropdown-menu-item"
+    },
+    "divider": {
+      "ref": ".sm-dropdown__divider",
+      "antd": ".ant-dropdown-menu-item-divider"
+    },
+    "trigger": {
+      "ref": ".sm-dropdown__trigger",
+      "antd": "@none"
     }
   },
   "Drawer": {
@@ -445,6 +553,10 @@
     "body": {
       "ref": ".sm-drawer__body",
       "antd": ".ant-drawer-body"
+    },
+    "title": {
+      "ref": ".sm-drawer__title",
+      "antd": ".ant-drawer-title"
     }
   },
   "Modal": {
@@ -475,6 +587,10 @@
     "footer": {
       "ref": ".sm-modal__footer",
       "antd": ".ant-modal-footer"
+    },
+    "title": {
+      "ref": ".sm-modal__title",
+      "antd": ".ant-modal-title"
     }
   },
   "Slider": {

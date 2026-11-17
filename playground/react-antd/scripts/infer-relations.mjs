@@ -9,7 +9,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const ROOT = path.resolve('.')
+const ROOT = path.resolve(import.meta.dirname, '..', '..', '..')
 const ARTIFACTS = path.join(ROOT, 'artifacts')
 const SPEC_DIR = path.join(ROOT, 'spec', 'components')
 
@@ -40,7 +40,7 @@ const classNameOf = (selector) => {
 const rootAntdClass = classNameOf(antdMap.root?.antd ?? '')
 const antdToPart = new Map()
 for (const [name, entry] of Object.entries(antdMap)) {
-  if (name === 'root' || !entry?.antd) continue
+  if (name === 'root' || !entry?.antd || name.endsWith('Svg') || entry.antd === '@none') continue
   const cls = classNameOf(entry.antd)
   if (cls) antdToPart.set(cls, name)
 }

@@ -1,0 +1,20 @@
+{
+  "component": "Spin",
+  "cases": 3,
+  "inferred": 1,
+  "draft": {
+    "dot": {
+      "requires": {
+        "inside": "root"
+      }
+    }
+  },
+  "issues": [
+    "dot: 父级布局 inline-block 不在已知布局里",
+    "tip: RESOLVE 里没有 antd 映射，无法推断"
+  ],
+  "diff": [
+    "dot: 手写 spec 里没有 requires（推断有）",
+    "tip: 推断里没有（手写有）"
+  ]
+}

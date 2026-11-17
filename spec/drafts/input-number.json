@@ -1,0 +1,42 @@
+{
+  "component": "InputNumber",
+  "cases": 5,
+  "inferred": 3,
+  "draft": {
+    "wrap": {
+      "requires": {
+        "inside": "root"
+      }
+    },
+    "handler": {
+      "requires": {
+        "inside": "wrap",
+        "lane": {
+          "name": "wrap-row",
+          "order": 2
+        }
+      },
+      "many": true
+    },
+    "input": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [
+    "wrap: 父级布局 inline-block 不在已知布局里",
+    "up: RESOLVE 里没有 antd 映射，无法推断",
+    "down: RESOLVE 里没有 antd 映射，无法推断"
+  ],
+  "diff": [
+    "wrap: 手写 spec 里没有 requires（推断有）",
+    "handler: 手写 spec 里没有 requires（推断有）",
+    "input: 手写 spec 里没有 requires（推断有）",
+    "up: 推断里没有（手写有）",
+    "down: 推断里没有（手写有）"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "component": "Skeleton",
+  "cases": 2,
+  "inferred": 2,
+  "draft": {
+    "title": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        }
+      }
+    },
+    "paragraph": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        }
+      }
+    }
+  },
+  "issues": [
+    "title: 父级布局 table-cell 不在已知布局里",
+    "paragraph: 父级布局 table-cell 不在已知布局里",
+    "item: RESOLVE 里没有 antd 映射，无法推断"
+  ],
+  "diff": [
+    "title: 手写 spec 里没有 requires（推断有）",
+    "paragraph: 手写 spec 里没有 requires（推断有）",
+    "item: 推断里没有（手写有）"
+  ]
+}

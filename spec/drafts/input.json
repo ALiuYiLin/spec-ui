@@ -1,0 +1,51 @@
+{
+  "component": "Input",
+  "cases": 16,
+  "inferred": 4,
+  "draft": {
+    "field": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "suffix": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "clear": {
+      "requires": {
+        "inside": "suffix",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    },
+    "prefix": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "clear: inside 手写=root 推断=suffix"
+  ]
+}

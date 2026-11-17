@@ -1,0 +1,49 @@
+{
+  "component": "Slider",
+  "cases": 6,
+  "inferred": 3,
+  "draft": {
+    "rail": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "track": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "handle": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 3
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "rail: 手写 spec 里没有 requires（推断有）",
+    "track: 手写 spec 里没有 requires（推断有）",
+    "handle: 手写 spec 里没有 requires（推断有）"
+  ]
+}

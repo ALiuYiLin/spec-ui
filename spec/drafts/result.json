@@ -1,0 +1,49 @@
+{
+  "component": "Result",
+  "cases": 3,
+  "inferred": 3,
+  "draft": {
+    "icon": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "title": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "subtitle": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 3
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "icon: 手写 spec 里没有 requires（推断有）",
+    "title: 手写 spec 里没有 requires（推断有）",
+    "subtitle: 手写 spec 里没有 requires（推断有）"
+  ]
+}

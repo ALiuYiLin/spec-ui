@@ -1,0 +1,81 @@
+{
+  "component": "Modal",
+  "cases": 1,
+  "inferred": 7,
+  "draft": {
+    "mask": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "dialog": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "close": {
+      "requires": {
+        "inside": "dialog",
+        "lane": {
+          "name": "dialog-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "header": {
+      "requires": {
+        "inside": "dialog",
+        "lane": {
+          "name": "dialog-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "title": {
+      "requires": {
+        "inside": "header",
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "body": {
+      "requires": {
+        "inside": "dialog",
+        "lane": {
+          "name": "dialog-row",
+          "order": 3
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "footer": {
+      "requires": {
+        "inside": "dialog",
+        "lane": {
+          "name": "dialog-row",
+          "order": 4
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": []
+}

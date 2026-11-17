@@ -1,0 +1,36 @@
+{
+  "component": "Empty",
+  "cases": 1,
+  "inferred": 2,
+  "draft": {
+    "image": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 1
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    },
+    "description": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        },
+        "parent": {
+          "layout": "block"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "image: 手写 spec 里没有 requires（推断有）",
+    "description: 手写 spec 里没有 requires（推断有）"
+  ]
+}

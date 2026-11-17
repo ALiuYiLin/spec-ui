@@ -1,0 +1,19 @@
+{
+  "component": "Divider",
+  "cases": 2,
+  "inferred": 1,
+  "draft": {
+    "text": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [],
+  "diff": [
+    "text: 手写 spec 里没有 requires（推断有）"
+  ]
+}

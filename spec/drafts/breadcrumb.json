@@ -1,0 +1,28 @@
+{
+  "component": "Breadcrumb",
+  "cases": 1,
+  "inferred": 2,
+  "draft": {
+    "item": {
+      "requires": {
+        "inside": "root"
+      },
+      "many": true
+    },
+    "separator": {
+      "requires": {
+        "inside": "root",
+        "parent": {
+          "layout": "flex-row"
+        }
+      }
+    }
+  },
+  "issues": [
+    "item: 父级布局 list-item 不在已知布局里"
+  ],
+  "diff": [
+    "item: 手写 spec 里没有 requires（推断有）",
+    "separator: 手写 spec 里没有 requires（推断有）"
+  ]
+}
