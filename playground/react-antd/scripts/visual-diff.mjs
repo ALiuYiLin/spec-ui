@@ -141,18 +141,27 @@ const antdBtnLabel = (all) => {
   return root.children.find((c) => c.tag === 'span' && c.classes.length === 0)
 }
 
+/** 节点子树里是否包含指定 class（用于区分 antd 图标槽里放的是搜索图标还是 loading 图标） */
+function hasDescendantClass(node, cls) {
+  if (!node) return false
+  if ((node.classes ?? []).includes(cls)) return true
+  return (node.children ?? []).some((child) => hasDescendantClass(child, cls))
+}
+
 const RESOLVE = {
   Button: {
     root: { ref: (all) => partByClass(all, 'sm-btn'), antd: (all) => all.find((n) => n.classes.includes('ant-btn')) },
     label: { ref: (all) => partByClass(all, 'sm-btn__label'), antd: antdBtnLabel },
+    // antd 的图标槽统一是 .ant-btn-icon，靠里面 svg 的 class 区分是普通图标还是 loading
     icon: {
       ref: (all) => partByClass(all, 'sm-btn__icon'),
       antd: (all) =>
-        all.find((n) => n.classes.includes('ant-btn-icon') && !n.classes.includes('ant-btn-loading-icon')),
+        all.find((n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-search')),
     },
     spinner: {
       ref: (all) => partByClass(all, 'sm-btn__spinner'),
-      antd: (all) => all.find((n) => n.classes.includes('ant-btn-loading-icon')),
+      antd: (all) =>
+        all.find((n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-loader-2')),
     },
   },
   Select: {

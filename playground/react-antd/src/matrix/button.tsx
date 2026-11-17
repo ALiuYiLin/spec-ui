@@ -2,9 +2,13 @@ import { Button } from 'antd'
 import type { CaseDef } from './types'
 
 // 图标用 lucide：React 与 Vue 两版几何完全一致，图标槽位与 svg 才能逐项比对
-import { Search } from 'lucide-react'
+import { Loader2, Search } from 'lucide-react'
 
 const searchIcon = <Search size={16} aria-hidden="true" />
+
+// loading 态下 antd 会丢弃传入的 icon、换用自己的 LoadingOutlined；
+// 用 loading.icon 指定 lucide 的 Loader2，两侧字形才同源（否则只有盒子一致）
+const loadingIcon = { icon: <Loader2 size={14} aria-hidden="true" /> }
 
 const base = (props: Parameters<typeof Button>[0]) => () => <Button {...props} />
 
@@ -48,11 +52,11 @@ export const cases: CaseDef[] = [
   { id: 'button-danger-default', state: 'base', render: base({ danger: true, children: '删除' }) },
 
   // ---- 布尔状态 ----
-  { id: 'button-loading', state: 'loading', render: base({ type: 'primary', loading: true, children: '提交' }) },
+  { id: 'button-loading', state: 'loading', render: base({ type: 'primary', loading: loadingIcon, children: '提交' }) },
   {
     id: 'button-loading-icon',
     state: 'loading',
-    render: base({ type: 'primary', loading: true, icon: searchIcon, children: '提交' }),
+    render: base({ type: 'primary', loading: loadingIcon, icon: searchIcon, children: '提交' }),
   },
   { id: 'button-disabled-dashed', state: 'disabled', render: base({ type: 'dashed', disabled: true, children: '提交' }) },
   { id: 'button-disabled-text', state: 'disabled', render: base({ type: 'text', disabled: true, children: '提交' }) },
