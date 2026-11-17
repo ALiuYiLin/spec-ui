@@ -217,11 +217,14 @@
     box-sizing: border-box;
     width: 14px;
     height: 19px;
-    font-size: 14px;
+    /* 字号继承按钮：图标按 1em 走，大尺寸按钮才不会被固定成 14px */
     line-height: normal;
     text-align: center;
   }
   .sm-btn__spinner > svg {
+    /* 尺寸用 CSS 定死：lucide 的 width/height 属性写 '1em' 在 Vue 侧会回落成 24px */
+    width: 1em;
+    height: 1em;
     display: block;
     margin: 2.5px auto 0;
     transform-origin: center;

@@ -7,11 +7,8 @@
 import { h } from 'vue'
 import { ChevronDown, Loader2, X } from 'lucide-vue-next'
 
-/** 尺寸跟随字号，与 font-size 保持 1:1 */
-const em = { width: '1em', height: '1em' }
+export const DownIcon = () => h(ChevronDown, { 'aria-hidden': 'true' })
 
-export const DownIcon = () => h(ChevronDown, { ...em, 'aria-hidden': 'true' })
+export const CloseIcon = () => h(X, { 'aria-hidden': 'true' })
 
-export const CloseIcon = () => h(X, { ...em, 'aria-hidden': 'true' })
-
-export const SpinnerIcon = () => h(Loader2, { ...em, 'aria-hidden': 'true' })
+export const SpinnerIcon = () => h(Loader2, { 'aria-hidden': 'true' })
