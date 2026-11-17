@@ -13,31 +13,89 @@
 
 ## 代码演示 {#examples}
 
+### 类型
+
 默认按钮用于次要动作，主按钮用于一个区域里最重要的那一个。
 
 ::: demo 按钮类型
-<SmButton variant="primary" label="提交" />
-<SmButton label="默认" />
-<SmButton variant="dashed" label="虚线" />
-<SmButton variant="text" label="文本" />
-<SmButton variant="link" label="链接" />
+<SmButton variant="primary" label="主按钮" />
+<SmButton label="默认按钮" />
+<SmButton variant="dashed" label="虚线按钮" />
+<SmButton variant="text" label="文本按钮" />
+<SmButton variant="link" label="链接按钮" />
 :::
 
-尺寸只由 `data-size` 决定，形状只由 `data-shape` 决定。
+### 颜色与变体的组合
 
-::: demo 尺寸与形状
-<SmButton variant="primary" size="sm" label="小" />
-<SmButton variant="primary" label="中" />
-<SmButton variant="primary" size="lg" label="大" />
-<SmButton variant="primary" shape="round" label="圆角" />
-<SmButton danger label="删除" />
+协议把外观拆成两个正交维度：`data-variant`（形态）× `data-danger`（语义色）。
+实际可组合出 10 种：主色没有 `default`/`dashed` 形态，危险色则五态齐全。
+
+::: demo 默认色
+<div style="display: flex; flex-wrap: wrap; gap: 8px; width: 100%">
+  <SmButton label="默认" />
+  <SmButton variant="dashed" label="虚线" />
+  <SmButton variant="text" label="文本" />
+  <SmButton variant="link" label="链接" />
+</div>
 :::
+
+::: demo 主色
+<div style="display: flex; flex-wrap: wrap; gap: 8px; width: 100%">
+  <SmButton variant="primary" label="实心" />
+  <SmButton variant="primary" :loading="true" label="加载" />
+</div>
+:::
+
+::: demo 危险色
+<div style="display: flex; flex-wrap: wrap; gap: 8px; width: 100%">
+  <SmButton danger variant="primary" label="实心" />
+  <SmButton danger label="默认" />
+  <SmButton danger variant="dashed" label="虚线" />
+  <SmButton danger variant="text" label="文本" />
+  <SmButton danger variant="link" label="链接" />
+</div>
+:::
+
+### 尺寸
+
+尺寸只由 `data-size` 决定，不通过额外类名切换。
+
+::: demo 三种常用尺寸
+<SmButton size="sm" label="小" />
+<SmButton label="中" />
+<SmButton size="lg" label="大" />
+:::
+
+### 形状
+
+::: demo 圆角与圆形
+<SmButton shape="round" label="圆角" />
+<SmButton shape="circle" label="A" />
+<SmButton variant="primary" shape="round" label="圆角主色" />
+<SmButton variant="primary" shape="circle" label="B" />
+:::
+
+### 加载与禁用
 
 加载中的按钮不可点击；禁用用原生 `disabled`，不是只改颜色。
 
 ::: demo 加载与禁用
 <SmButton variant="primary" :loading="true" label="提交" />
+<SmButton :loading="true" label="提交" />
 <SmButton variant="primary" :disabled="true" label="提交" />
+<SmButton :disabled="true" label="提交" />
+:::
+
+### 块级
+
+`block` 让按钮占满容器宽度。
+
+::: demo 块级按钮
+<div style="width: 100%">
+  <SmButton variant="primary" :block="true" label="提交" />
+  <div style="height: 8px"></div>
+  <SmButton :block="true" label="取消" />
+</div>
 :::
 
 ## 协议 {#protocol}
@@ -62,6 +120,20 @@
 
 交互态一律伪类：`:hover` `:active` `:focus-visible`，没有任何状态类名。
 
+### 与 antd 的差异
+
+antd 的 Button 有 `color`（default/primary/danger 及 13 个预设色）× `variant`（solid/outlined/dashed/filled/text/link）两个轴。
+SpecMark 目前只有：
+
+| | antd | SpecMark |
+|---|---|---|
+| 形态 | 6 种（含 solid/outlined/filled） | 5 种（default 即 antd 的 outlined，primary 即 solid） |
+| 颜色 | 默认 + 13 预设 | 默认 + danger 两种语义色 |
+| 组合 | 任意色 × 任意形态 | 主色只有实心，危险色五态齐全 |
+
+**这是一处有意收窄**：预设色需要每个色相的 10 级色阶（亮暗各一套），会把令牌数量翻几倍。
+真要支持，属于协议级变更（新增 `color` 值域 + 色阶生成），不是加几个 demo 能补的。
+
 ## 设计约束 {#constraints}
 
 ### 文案规范化
@@ -84,6 +156,7 @@
 | 变量 | 亮色 | 暗色 |
 |---|---|---|
 | `--color-sm-primary` | `#1677ff` | `#1668dc` |
+| `--color-sm-danger` | `#ff4d4f` | `#dc4446` |
 | `--color-sm-shadow-btn` | `rgba(0,0,0,.02)` | `rgba(255,255,255,.04)` |
 
 ## 源码
