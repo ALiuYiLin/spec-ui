@@ -158,6 +158,16 @@ const RESOLVE = {
       antd: (all) =>
         all.find((n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-search')),
     },
+    // 图标槽里的 svg：尺寸写错时槽位盒子看不出来
+    iconSvg: {
+      ref: (all) => partByClass(all, 'sm-btn__icon')?.children?.find((c) => c.tag === 'svg') ?? null,
+      antd: (all) => {
+        const wrap = all.find(
+          (n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-search'),
+        )
+        return wrap?.children?.find((c) => c.tag === 'svg') ?? null
+      },
+    },
     spinner: {
       ref: (all) => partByClass(all, 'sm-btn__spinner'),
       antd: (all) =>
@@ -693,8 +703,8 @@ const PAIRS = [
   { component: 'Button', ref: 'ref-button-tone-success', antd: 'button-tone-success', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-tone-warning', antd: 'button-tone-warning', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
-  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root'] },
-  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label'] },
+  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root', { name: 'iconSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label', { name: 'iconSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
   { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
   { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },

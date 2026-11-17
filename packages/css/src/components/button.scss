@@ -209,6 +209,9 @@
   /* 与 antd 的 .anticon 对齐：图标下沉 0.125em，line box 高度才对得上 */
   .sm-btn__icon > svg {
     vertical-align: -0.125em;
+    /* 与 antd 的 .anticon 对齐（这两项不进视觉，但属于计算样式） */
+    align-items: center;
+    line-height: 0;
   }
   /* 槽位保持 14×19 的行盒（与 antd 的 .ant-btn-loading-icon 一致），
      但旋转必须交给 14×14 的 svg：在 14×19 的非方形盒子上转会绕错中心、视觉发抖 */
