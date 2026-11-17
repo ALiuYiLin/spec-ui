@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Descriptions, Divider, Drawer, Dropdown, Empty, Image, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Steps, Switch, Tag, Timeline, Tooltip } from '@specmark/react'
+import { Search } from 'lucide-react'
 import type { SelectOption } from '@specmark/react'
 import type { Pseudo } from '../matrix/types'
 
@@ -34,11 +35,7 @@ export type RefCase = {
   assert: Assertion[]
 }
 
-const icon = (
-  <svg viewBox="0 0 16 16" width="1em" height="1em" fill="none" stroke="currentColor" aria-hidden="true">
-    <circle cx="8" cy="8" r="6" />
-  </svg>
-)
+const icon = <Search size={16} aria-hidden="true" />
 
 const OPTIONS: SelectOption[] = [
   { value: 'a', label: '选项 A' },

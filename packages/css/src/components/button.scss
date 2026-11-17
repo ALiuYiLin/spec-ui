@@ -206,6 +206,10 @@
     box-sizing: border-box;
     line-height: normal;
   }
+  /* 与 antd 的 .anticon 对齐：图标下沉 0.125em，line box 高度才对得上 */
+  .sm-btn__icon > svg {
+    vertical-align: -0.125em;
+  }
   .sm-btn__spinner {
     display: block;
     box-sizing: border-box;

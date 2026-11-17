@@ -1,6 +1,7 @@
 import { h } from 'vue'
 import type { VNodeChild } from 'vue'
 import { Button, Checkbox, Field, Input, InputNumber, Popover, Radio, Select, Alert, Avatar, Badge, Breadcrumb, Card, Descriptions, Divider, Drawer, Dropdown, Empty, Image, Modal, Progress, Result, Skeleton, Slider, Space, Spin, Statistic, Steps, Switch, Tag, Timeline, Tooltip } from '@specmark/vue'
+import { Search } from 'lucide-vue-next'
 
 export type VueAction =
   | { type: 'focus'; selector: string }
@@ -21,12 +22,7 @@ const OPTIONS = [
   { value: 'b', label: '选项 B' },
   { value: 'c', label: '选项 C' },
 ]
-const icon = () =>
-  h(
-    'svg',
-    { viewBox: '0 0 16 16', width: '1em', height: '1em', fill: 'none', stroke: 'currentColor', 'aria-hidden': 'true' },
-    [h('circle', { cx: 8, cy: 8, r: 6 })],
-  )
+const icon = () => h(Search, { size: 16, 'aria-hidden': 'true' })
 
 /** id 与 React 用例一一对应，这样 L3 的 pair 表可以原样复用 */
 export const renders: Record<string, { component: VueCase['component']; actions?: VueAction[]; render: () => VNodeChild }> = {
