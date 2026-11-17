@@ -3,6 +3,8 @@ packages:
   - 'packages/*'
 
 allowBuilds:
+  # sass 的可选依赖，只在 watch 模式下用；我们只做一次性编译，不需要原生模块
+  '@parcel/watcher': false
   esbuild: true
 
 # React 18 运行时必须配 18 的类型：@types/react 19 会把 ReactPortal/ReactNode 定义改掉，

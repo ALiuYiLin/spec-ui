@@ -1,0 +1,229 @@
+/* Select */
+.sm-select {
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+    min-width: 0;
+    height: 32px;
+    font-family: var(--font-sm);
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-sm-text);
+    cursor: pointer;
+  }
+  .sm-select[data-size='sm'] {
+    height: 24px;
+  }
+  .sm-select[data-size='lg'] {
+    height: 40px;
+  }
+
+  .sm-select__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+    flex: 1 1 auto;
+    height: 100%;
+    padding: 0 11px;
+    border: 1px solid var(--color-sm-border);
+    border-radius: 6px;
+    background: var(--color-sm-bg);
+    line-height: 22px;
+    /* antd 的 selector 常态是 UA 默认的 3px outline（style:none，不可见），聚焦时归零 */
+    outline-style: none;
+    outline-width: 3px;
+  }
+  .sm-select[data-size='sm'] .sm-select__control {
+    border-radius: 4px;
+    padding-inline: 7px;
+  }
+  .sm-select[data-size='lg'] .sm-select__control {
+    border-radius: 8px;
+  }
+
+  .sm-select__search {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+    inset-inline: 11px;
+  }
+  .sm-select__input {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+    font: inherit;
+    color: inherit;
+    outline: none;
+  }
+
+  .sm-select__value,
+  .sm-select__placeholder {
+    display: block;
+    box-sizing: border-box;
+    flex: 1 1 0%;
+    align-self: center;
+    height: 30px;
+    padding-inline-end: 18px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 0;
+  }
+  .sm-select__value {
+    position: relative;
+    user-select: none;
+  }
+  .sm-select__placeholder {
+    pointer-events: none;
+  }
+  .sm-select[data-size='sm'] .sm-select__value,
+  .sm-select[data-size='sm'] .sm-select__placeholder {
+    height: 22px;
+    line-height: 22px;
+  }
+  .sm-select[data-size='lg'] .sm-select__value,
+  .sm-select[data-size='lg'] .sm-select__placeholder {
+    height: 38px;
+    line-height: 38px;
+  }
+  .sm-select__placeholder {
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+  .sm-select__arrow {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+    box-sizing: border-box;
+    user-select: none;
+    inset-inline-end: 11px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    vertical-align: -1.5px;
+    color: var(--color-sm-text-disabled);
+  }
+  .sm-select__clear {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    z-index: 1;
+    inset-inline-end: 11px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    /* antd 的 clear 带一个恒等 transform，保持一致 */
+    transform: translate(0, 0);
+    border-radius: 50%;
+    color: var(--color-sm-text-disabled);
+    /* 常态不可见；hover / focus-within 时显现，并用不透明底遮住 arrow */
+    opacity: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+  .sm-select:hover .sm-select__clear,
+  .sm-select:focus-within .sm-select__clear {
+    opacity: 1;
+    background: var(--color-sm-bg);
+    border-radius: 50%;
+  }
+  /* 与 antd 的 .anticon 对齐：图标本体是按基线摆放的 */
+  .sm-btn__spinner > svg,
+  .sm-select__arrow > svg,
+  .sm-select__clear > svg {
+    display: inline-block;
+    vertical-align: -1.75px;
+  }
+
+  .sm-select[data-status='error'] .sm-select__control {
+    border-color: var(--color-sm-danger);
+  }
+  .sm-select[data-status='warning'] .sm-select__control {
+    border-color: var(--color-sm-warning);
+  }
+  .sm-select[data-variant='filled'] .sm-select__control {
+    background: var(--color-sm-fill);
+    border-color: transparent;
+  }
+  .sm-select[data-variant='borderless'] .sm-select__control {
+    background: transparent;
+    border-color: transparent;
+  }
+  .sm-select[data-disabled='true'] .sm-select__control {
+    background: var(--color-sm-fill);
+    color: var(--color-sm-text-disabled);
+    cursor: not-allowed;
+  }
+  .sm-select:not([data-disabled='true']):hover .sm-select__control {
+    border-color: var(--color-sm-primary-hover);
+  }
+  .sm-select__control:focus-within {
+    border-color: var(--color-sm-primary);
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    outline-width: 0;
+  }
+
+  .sm-select__dropdown {
+  position: absolute;
+  box-sizing: border-box;
+    z-index: 1050;
+    overflow: hidden;
+    padding: 4px;
+    border: 0;
+    background: var(--color-sm-bg);
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    line-height: 22px;
+    cursor: auto;
+  }
+
+  .sm-select__listbox {
+  display: flex;
+  flex-direction: column;
+  }
+
+  .sm-select__option {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+    min-height: 32px;
+    height: 32px;
+    padding: 5px 12px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-sm-text);
+    cursor: pointer;
+  }
+  .sm-select__option[data-highlighted='true'] {
+    background: var(--color-sm-fill);
+  }
+  .sm-select__option[data-selected='true'] {
+    background: var(--color-sm-primary-bg);
+    font-weight: 600;
+  }
+  .sm-select__option[data-disabled='true'] {
+    color: var(--color-sm-text-disabled);
+    cursor: not-allowed;
+  }

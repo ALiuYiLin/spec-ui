@@ -14,7 +14,7 @@
 | 3 | Vue 实现 | `packages/vue/src/<name>.ts` |
 | 4 | antd 证据矩阵 | `playground/react-antd/src/matrix/<name>.tsx` |
 | 5 | 两套实现的用例 | `src/ref/cases.tsx`、`src/vue/cases.ts` |
-| 6 | Tailwind 样式 | `packages/css/src/styles.css` |
+| 6 | 样式 | `packages/css/src/components/<name>.scss` |
 | 7 | L3 pair + 文档页 | `scripts/visual-diff.mjs`、`docs/components/<name>.md` |
 
 验收：`pnpm typecheck` 0 错误、`pnpm verify` 两套实现全绿。

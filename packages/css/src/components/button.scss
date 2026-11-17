@@ -1,0 +1,171 @@
+/* Button */
+.sm-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  user-select: none;
+    min-width: 0;
+    height: 32px;
+    padding: 0 15px;
+    gap: 8px;
+    border: 1px solid var(--color-sm-border);
+    border-radius: 6px;
+    background: var(--color-sm-bg);
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  }
+
+  .sm-btn[data-size='xs'] {
+    height: 16px;
+    padding-inline: 7px;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+  .sm-btn[data-size='sm'] {
+    height: 24px;
+    padding-inline: 7px;
+    border-radius: 4px;
+  }
+  .sm-btn[data-size='lg'] {
+    height: 40px;
+    padding-inline: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .sm-btn[data-size='xl'] {
+    height: 48px;
+    padding-inline: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .sm-btn[data-variant='primary'] {
+    color: #fff;
+    background: var(--color-sm-primary);
+    border-color: transparent;
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  }
+  .sm-btn[data-variant='dashed'] {
+    border-style: dashed;
+  }
+  .sm-btn[data-variant='text'],
+  .sm-btn[data-variant='link'] {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  .sm-btn[data-variant='link'] {
+    color: var(--color-sm-primary);
+  }
+
+  .sm-btn[data-danger='true'][data-variant='primary'] {
+    background: var(--color-sm-danger);
+    box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
+  }
+  .sm-btn[data-danger='true'][data-variant='default'],
+  .sm-btn[data-danger='true'][data-variant='dashed'] {
+    color: var(--color-sm-danger);
+    border-color: var(--color-sm-danger);
+  }
+  .sm-btn[data-danger='true'][data-variant='text'],
+  .sm-btn[data-danger='true'][data-variant='link'] {
+    color: var(--color-sm-danger);
+  }
+
+  .sm-btn[data-shape='circle'] {
+    min-width: 32px;
+    width: 32px;
+    padding-inline: 0;
+    border-radius: 50%;
+  }
+  .sm-btn[data-shape='circle'][data-size='sm'] {
+    min-width: 24px;
+    width: 24px;
+  }
+  .sm-btn[data-shape='circle'][data-size='lg'] {
+    min-width: 40px;
+    width: 40px;
+  }
+  .sm-btn[data-shape='round'] {
+    border-radius: 9999px;
+  }
+
+  .sm-btn[data-block='true'] {
+    display: flex;
+    width: 100%;
+  }
+
+  /* 交互态：一律伪类，不依赖任何状态类名 */
+  .sm-btn[data-variant='primary']:hover {
+    background: var(--color-sm-primary-hover);
+  }
+  .sm-btn[data-variant='primary']:active {
+    background: var(--color-sm-primary-active);
+  }
+  .sm-btn[data-variant='default']:hover,
+  .sm-btn[data-variant='dashed']:hover {
+    color: var(--color-sm-primary-hover);
+    border-color: var(--color-sm-primary-hover);
+  }
+  .sm-btn[data-variant='default']:active,
+  .sm-btn[data-variant='dashed']:active {
+    color: var(--color-sm-primary-active);
+    border-color: var(--color-sm-primary-active);
+  }
+  .sm-btn[data-variant='text']:hover {
+    background: var(--color-sm-fill);
+  }
+  .sm-btn[data-variant='link']:hover {
+    color: #69b1ff;
+  }
+  .sm-btn:focus-visible {
+    outline: 3px solid var(--color-sm-ring);
+    outline-offset: 1px;
+  }
+
+  /* 加载态：antd 用整体透明度 + default 光标 */
+  .sm-btn[data-loading='true'] {
+    opacity: 0.65;
+    cursor: default;
+  }
+
+  /* 禁用态：中性覆盖，写在最后压住变体色 */
+  .sm-btn[data-disabled='true'][data-variant] {
+    color: var(--color-sm-text-disabled);
+    background: var(--color-sm-fill);
+    border-color: var(--color-sm-border);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  /* 子部件：antd 的 reset 不覆盖它们，保持 content-box / border none */
+  .sm-btn__label {
+    display: block;
+    box-sizing: content-box;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  .sm-btn__icon {
+    display: block;
+    box-sizing: border-box;
+    line-height: normal;
+  }
+  .sm-btn__spinner {
+    display: block;
+    box-sizing: border-box;
+    width: 14px;
+    height: 19px;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    animation: sm-spin 1s linear infinite;
+  }

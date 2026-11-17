@@ -5,7 +5,7 @@
     "paths": {
       "@specmark/react": ["../packages/react/src/index.ts"],
       "@specmark/vue": ["../packages/vue/src/index.ts"],
-      "@specmark/css/*": ["../packages/css/src/*"]
+      "@specmark/css/*": ["../packages/css/dist/*"]
     }
   },
   "include": [".vitepress/**/*.ts", ".vitepress/**/*.d.ts"],

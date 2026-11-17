@@ -1,6 +1,6 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import '@specmark/css/styles.css'
+import '@specmark/css/index.css'
 import './custom.css'
 import Demo from './Demo.vue'
 import ModalDemo from './ModalDemo.vue'

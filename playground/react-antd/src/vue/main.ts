@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import '@specmark/css/styles.css'
+import '@specmark/css/index.css'
 import '../ref/harness.css'
 import { renders } from './cases'
 

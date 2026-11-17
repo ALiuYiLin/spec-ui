@@ -1,0 +1,79 @@
+/* Switch */
+.sm-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 44px;
+  height: 22px;
+  min-width: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  vertical-align: middle;
+  user-select: none;
+  outline-style: none;
+  outline-width: 3px;
+}
+.sm-switch[data-size='sm'] {
+  width: 28px;
+  height: 16px;
+  min-width: 28px;
+  line-height: 16px;
+}
+.sm-switch[data-state='on'] {
+  background: var(--color-sm-primary);
+}
+.sm-switch:not([data-disabled='true']):hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+.sm-switch[data-state='on']:not([data-disabled='true']):hover {
+  background: #4096ff;
+}
+.sm-switch:focus-visible {
+  outline: 3px solid var(--color-sm-ring);
+  outline-offset: 1px;
+}
+.sm-switch[data-disabled='true'] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.sm-switch__handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 0;
+}
+.sm-switch__handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
+}
+.sm-switch[data-state='on'] .sm-switch__handle {
+  left: calc(100% - 20px);
+}
+.sm-switch[data-size='sm'] .sm-switch__handle {
+  width: 12px;
+  height: 12px;
+}
+.sm-switch[data-size='sm'] .sm-switch__handle::before {
+  border-radius: 6px;
+}
+.sm-switch[data-size='sm'][data-state='on'] .sm-switch__handle {
+  left: calc(100% - 14px);
+}

@@ -11,7 +11,7 @@ SpecMark 把它们拆成三层，只有协议是对外契约：
 ```
 协议 (spec/)  ──►  实现 (React / Vue / …)  ──►  DOM
    │
-   └────────────►  样式 (Tailwind)
+   └────────────►  样式 (Sass → PostCSS → index.css)
 ```
 
 ## 三条铁律

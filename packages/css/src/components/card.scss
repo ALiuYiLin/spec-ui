@@ -1,0 +1,48 @@
+/* Card */
+.sm-card {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  background: var(--color-sm-bg);
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-card__header {
+  display: flex;
+  color: var(--color-sm-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5714;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 56px;
+  margin-bottom: -1px;
+  padding: 0 24px;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 8px 8px 0 0;
+}
+.sm-card__title {
+  height: 25.1429px;
+  flex: 1 1 0%;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--color-sm-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25.1429px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sm-card__body {
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: 0 0 8px 8px;
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: 22px;
+}

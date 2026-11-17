@@ -1,0 +1,124 @@
+/* Checkbox */
+.sm-checkbox {
+    display: inline-flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    color: var(--color-sm-text);
+    font-family: var(--font-sm);
+    font-size: 14px;
+    line-height: 22px;
+    cursor: pointer;
+  }
+  .sm-checkbox__control {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+    white-space: nowrap;
+    align-self: center;
+    cursor: pointer;
+  }
+  .sm-checkbox__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .sm-checkbox__box {
+    display: block;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-sm-border);
+    border-radius: 4px;
+    background: var(--color-sm-bg);
+    font-size: 14px;
+    line-height: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .sm-checkbox__label {
+    display: block;
+    box-sizing: border-box;
+    padding-inline: 8px;
+  }
+
+  /* 勾号与半选横线：画在 control 上，绝对定位不受 box 的 static 影响 */
+  .sm-checkbox__control::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 9px;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    opacity: 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+  }
+
+  .sm-checkbox:hover .sm-checkbox__box {
+    border-color: var(--color-sm-primary);
+  }
+  .sm-checkbox[data-state='checked'] .sm-checkbox__box {
+    background: var(--color-sm-primary);
+    border-color: var(--color-sm-primary);
+  }
+  .sm-checkbox[data-state='checked']:hover .sm-checkbox__box {
+    background: var(--color-sm-primary-hover);
+    border-color: transparent;
+  }
+  .sm-checkbox[data-state='checked'] .sm-checkbox__control::after {
+    opacity: 1;
+  }
+  .sm-checkbox[data-state='indeterminate'] .sm-checkbox__control::after {
+    width: 8px;
+    height: 0;
+    border: 0;
+    border-top: 2px solid var(--color-sm-primary);
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 禁用态压住所有变体 */
+  .sm-checkbox[data-disabled='true'] {
+    cursor: not-allowed;
+  }
+  .sm-checkbox[data-disabled='true'] .sm-checkbox__box {
+    background: var(--color-sm-fill);
+    border-color: var(--color-sm-border);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* 焦点环：antd 在 :focus 上直接给，不区分是否 focus-visible */
+  .sm-checkbox__input:focus + .sm-checkbox__box {
+    outline: 3px solid var(--color-sm-ring);
+    outline-offset: 1px;
+  }
+
+  .sm-select__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    padding: 8px;
+    font-size: 14px;
+    color: var(--color-sm-text-disabled);
+  }
+
+
+/* 加载指示器的旋转。证据在 motion:false 下采集，动画本身不参与比对。 */
+@keyframes sm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

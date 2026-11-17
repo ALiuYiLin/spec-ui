@@ -1,0 +1,15 @@
+/* Image */
+.sm-image {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: normal;
+}
+.sm-image__img {
+  display: inline;
+  box-sizing: border-box;
+  vertical-align: middle;
+}

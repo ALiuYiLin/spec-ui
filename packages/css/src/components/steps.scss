@@ -1,0 +1,41 @@
+/* Steps */
+.sm-steps {
+  display: flex;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 0;
+  line-height: 0;
+}
+.sm-steps[data-direction='vertical'] {
+  flex-direction: column;
+}
+.sm-steps__item {
+  flex: 1 1 0%;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.sm-steps__title {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  padding-inline-end: 16px;
+  color: var(--color-sm-text);
+  font-size: 16px;
+  line-height: 32px;
+  white-space: nowrap;
+}
+.sm-steps__item[data-status='process'] .sm-steps__title {
+  color: var(--color-sm-primary);
+}
+.sm-steps__item[data-status='error'] .sm-steps__title {
+  color: var(--color-sm-danger);
+}

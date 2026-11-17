@@ -1,0 +1,41 @@
+/* Badge */
+.sm-badge {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 1;
+}
+.sm-badge__count {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  min-width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 10px;
+  background: var(--color-sm-danger);
+  box-shadow: 0 0 0 1px var(--color-sm-bg);
+  color: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  transform: translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+.sm-badge[data-status='success'] .sm-badge__count {
+  background: #52c41a;
+}
+.sm-badge[data-status='warning'] .sm-badge__count {
+  background: var(--color-sm-warning);
+}
+.sm-badge[data-status='error'] .sm-badge__count {
+  background: var(--color-sm-danger);
+}

@@ -1,0 +1,25 @@
+/* Breadcrumb */
+.sm-breadcrumb {
+  display: block;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-breadcrumb__item {
+  box-sizing: border-box;
+  display: inline;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-breadcrumb__separator {
+  box-sizing: border-box;
+  display: inline;
+  margin-inline: 8px;
+  min-height: auto;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+}

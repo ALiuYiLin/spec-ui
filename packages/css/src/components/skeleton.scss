@@ -1,0 +1,26 @@
+/* Skeleton */
+.sm-skeleton {
+  display: block;
+  box-sizing: border-box;
+  color: #000;
+  font-size: 14px;
+  font-family: var(--font-sm);
+}
+.sm-skeleton__title {
+  box-sizing: border-box;
+  width: 38%;
+  height: 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+}
+.sm-skeleton__paragraph {
+  display: block;
+}
+.sm-skeleton__item {
+  box-sizing: border-box;
+  height: 16px;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+}

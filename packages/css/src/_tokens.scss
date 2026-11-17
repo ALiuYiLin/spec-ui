@@ -1,0 +1,19 @@
+/* 设计令牌：只放变量，不放规则。 */
+
+:root {
+  --font-sm: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-sm-primary: #1677ff;
+  --color-sm-primary-hover: #4096ff;
+  --color-sm-primary-active: #0958d9;
+  --color-sm-primary-bg: #e6f4ff;
+  --color-sm-danger: #ff4d4f;
+  --color-sm-warning: #faad14;
+  --color-sm-text: rgba(0, 0, 0, 0.88);
+  --color-sm-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-sm-border: #d9d9d9;
+  --color-sm-fill: rgba(0, 0, 0, 0.04);
+  --color-sm-bg: #ffffff;
+  --color-sm-ring: #91caff;
+}

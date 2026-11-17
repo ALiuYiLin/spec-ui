@@ -38,7 +38,7 @@ pnpm verify       # 以上全部（两套实现都跑）
 ```
 src/matrix/             antd 证据台的状态矩阵（button / select）
 src/ref/cases.tsx       参考实现的用例与断言（校验器从页面读取）
-src/ref/styles.css      Tailwind 样式层（令牌 + 组件规则）
+（样式层已移到 packages/css，构建产物为 packages/css/dist/index.css）
 src/ref/harness.css     仅比对台用的布局约束（Select 200px 宽）
 scripts/props.mjs       采集与比对共用的属性白名单（唯一来源）
 scripts/extract.mjs     静态服务 + Playwright 抓取

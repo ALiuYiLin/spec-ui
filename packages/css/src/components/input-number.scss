@@ -1,0 +1,103 @@
+/* InputNumber */
+.sm-input-number {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-sm-border);
+  border-radius: 6px;
+  background: var(--color-sm-bg);
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+  vertical-align: baseline;
+  outline-style: none;
+  outline-width: 3px;
+  outline-color: currentColor;
+  cursor: auto;
+}
+.sm-input-number[data-size='sm'] {
+  height: 24px;
+  border-radius: 4px;
+}
+.sm-input-number[data-size='lg'] {
+  height: 40px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.sm-input-number[data-status='error'] {
+  border-color: var(--color-sm-danger);
+}
+.sm-input-number[data-status='warning'] {
+  border-color: var(--color-sm-warning);
+}
+.sm-input-number:not([data-disabled='true']):hover {
+  border-color: var(--color-sm-primary-hover);
+}
+.sm-input-number:focus-within {
+  border-color: var(--color-sm-primary);
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  outline-width: 0;
+}
+.sm-input-number[data-disabled='true'] {
+  background: var(--color-sm-fill);
+  color: var(--color-sm-text-disabled);
+  cursor: not-allowed;
+}
+.sm-input-number__wrap {
+  display: block;
+  height: 100%;
+}
+.sm-input-number__input {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 4px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+  outline-style: none;
+  outline-width: 0;
+  outline-color: currentColor;
+  cursor: text;
+}
+.sm-input-number[data-size='sm'] .sm-input-number__input {
+  padding: 0 7px;
+  border-radius: 4px;
+}
+.sm-input-number[data-size='lg'] .sm-input-number__input {
+  padding: 7px 11px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.sm-input-number[data-disabled='true'] .sm-input-number__input {
+  color: var(--color-sm-text-disabled);
+  cursor: not-allowed;
+}
+.sm-input-number__handler {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 22px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sm-input-number:hover .sm-input-number__handler {
+  opacity: 1;
+}
+.sm-input-number__handler-up,
+.sm-input-number__handler-down {
+  flex: 1 1 auto;
+  display: block;
+  cursor: pointer;
+}

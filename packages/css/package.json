@@ -3,9 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "SpecMark 样式层：Tailwind 令牌与组件规则，只依赖协议 DOM，不依赖任何框架实现。",
+  "description": "SpecMark 样式层：按组件拆分的 Sass 源码，构建产出单个 dist/index.css。只依赖协议 DOM，不依赖任何框架实现。",
+  "main": "./dist/index.css",
+  "style": "./dist/index.css",
   "exports": {
-    "./styles.css": "./src/styles.css"
+    ".": "./dist/index.css",
+    "./index.css": "./dist/index.css",
+    "./styles.css": "./dist/index.css"
   },
-  "files": ["src"]
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.33",
+    "sass": "^1.108.2"
+  }
 }

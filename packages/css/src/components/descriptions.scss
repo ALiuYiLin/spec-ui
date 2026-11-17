@@ -1,0 +1,28 @@
+/* Descriptions */
+.sm-descriptions {
+  display: block;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-family: var(--font-sm);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-descriptions__item {
+  display: flex;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+}
+.sm-descriptions__label {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: 22px;
+}
+.sm-descriptions__content {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  color: var(--color-sm-text);
+  font-size: 14px;
+  line-height: 22px;
+}

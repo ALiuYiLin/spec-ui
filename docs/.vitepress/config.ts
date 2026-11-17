@@ -1,7 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import tailwindcss from '@tailwindcss/vite'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 
@@ -67,11 +66,11 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()],
+
     resolve: {
       alias: {
         '@specmark/vue': path.resolve(here, '../../packages/vue/src/index.ts'),
-        '@specmark/css': path.resolve(here, '../../packages/css/src'),
+        '@specmark/css': path.resolve(here, '../../packages/css/dist'),
       },
     },
   },
