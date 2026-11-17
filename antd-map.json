@@ -196,11 +196,11 @@
     },
     "wrap": {
       "ref": ".sm-input-number__wrap",
-      "antd": ".ant-input-number-handler-wrap"
+      "antd": ".ant-input-number-input-wrap"
     },
     "handler": {
       "ref": ".sm-input-number__handler",
-      "antd": ".ant-input-number-handler"
+      "antd": ".ant-input-number-handler-wrap"
     },
     "up": {
       "ref": ".sm-input-number__up",

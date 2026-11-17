@@ -51,6 +51,29 @@ export function InputNumber({
       {...(disabled ? { 'data-disabled': 'true' } : null)}
       {...(readOnly ? { 'data-readonly': 'true' } : null)}
     >
+      {/* HANDLER_FIRST */}
+      {!disabled && !readOnly ? (
+        <div className="sm-input-number__handler">
+          <span
+            className="sm-input-number__handler-up"
+            role="button"
+            aria-label="增加"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              nudge(1)
+            }}
+          />
+          <span
+            className="sm-input-number__handler-down"
+            role="button"
+            aria-label="减少"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              nudge(-1)
+            }}
+          />
+        </div>
+      ) : null}
       <div
         className="sm-input-number__wrap"
         role="spinbutton"
@@ -74,28 +97,7 @@ export function InputNumber({
           }}
         />
       </div>
-      {!disabled && !readOnly ? (
-        <div className="sm-input-number__handler">
-          <span
-            className="sm-input-number__handler-up"
-            role="button"
-            aria-label="增加"
-            onMouseDown={(e) => {
-              e.preventDefault()
-              nudge(1)
-            }}
-          />
-          <span
-            className="sm-input-number__handler-down"
-            role="button"
-            aria-label="减少"
-            onMouseDown={(e) => {
-              e.preventDefault()
-              nudge(-1)
-            }}
-          />
-        </div>
-      ) : null}
+
     </div>
   )
 }

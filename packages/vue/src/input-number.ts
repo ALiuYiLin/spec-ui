@@ -52,6 +52,28 @@ export const InputNumber = defineComponent({
           ...(props.readOnly ? { 'data-readonly': 'true' } : {}),
         },
         [
+          props.disabled || props.readOnly
+            ? null
+            : h('div', { class: 'sm-input-number__handler' }, [
+                h('span', {
+                  class: 'sm-input-number__handler-up',
+                  role: 'button',
+                  'aria-label': '增加',
+                  onMousedown: (e: Event) => {
+                    e.preventDefault()
+                    nudge(1)
+                  },
+                }),
+                h('span', {
+                  class: 'sm-input-number__handler-down',
+                  role: 'button',
+                  'aria-label': '减少',
+                  onMousedown: (e: Event) => {
+                    e.preventDefault()
+                    nudge(-1)
+                  },
+                }),
+              ]),
           h(
             'div',
             {
@@ -80,28 +102,6 @@ export const InputNumber = defineComponent({
               }),
             ],
           ),
-          props.disabled || props.readOnly
-            ? null
-            : h('div', { class: 'sm-input-number__handler' }, [
-                h('span', {
-                  class: 'sm-input-number__handler-up',
-                  role: 'button',
-                  'aria-label': '增加',
-                  onMousedown: (e: Event) => {
-                    e.preventDefault()
-                    nudge(1)
-                  },
-                }),
-                h('span', {
-                  class: 'sm-input-number__handler-down',
-                  role: 'button',
-                  'aria-label': '减少',
-                  onMousedown: (e: Event) => {
-                    e.preventDefault()
-                    nudge(-1)
-                  },
-                }),
-              ]),
         ],
       )
     }

@@ -1,26 +1,47 @@
 {
   "component": "InputNumber",
   "cases": 5,
-  "inferred": 3,
+  "inferred": 5,
   "draft": {
-    "wrap": {
-      "requires": {
-        "inside": "root"
-      }
-    },
     "handler": {
       "requires": {
-        "inside": "wrap",
+        "inside": "root",
         "lane": {
-          "name": "wrap-row",
+          "name": "root-row",
+          "order": 1
+        }
+      }
+    },
+    "up": {
+      "requires": {
+        "inside": "handler",
+        "lane": {
+          "name": "handler-row",
+          "order": 1
+        }
+      }
+    },
+    "down": {
+      "requires": {
+        "inside": "handler",
+        "lane": {
+          "name": "handler-row",
           "order": 2
         }
-      },
-      "many": true
+      }
+    },
+    "wrap": {
+      "requires": {
+        "inside": "root",
+        "lane": {
+          "name": "root-row",
+          "order": 2
+        }
+      }
     },
     "input": {
       "requires": {
-        "inside": "root",
+        "inside": "wrap",
         "parent": {
           "layout": "block"
         }
@@ -28,15 +49,14 @@
     }
   },
   "issues": [
-    "wrap: 父级布局 inline-block 不在已知布局里",
-    "up: RESOLVE 里没有 antd 映射，无法推断",
-    "down: RESOLVE 里没有 antd 映射，无法推断"
+    "handler: 父级布局 inline-block 不在已知布局里",
+    "wrap: 父级布局 inline-block 不在已知布局里"
   ],
   "diff": [
-    "wrap: 手写 spec 里没有 requires（推断有）",
     "handler: 手写 spec 里没有 requires（推断有）",
-    "input: 手写 spec 里没有 requires（推断有）",
-    "up: 推断里没有（手写有）",
-    "down: 推断里没有（手写有）"
+    "up: 手写 spec 里没有 requires（推断有）",
+    "down: 手写 spec 里没有 requires（推断有）",
+    "wrap: 手写 spec 里没有 requires（推断有）",
+    "input: 手写 spec 里没有 requires（推断有）"
   ]
 }

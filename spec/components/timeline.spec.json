@@ -19,24 +19,58 @@
         "data": {
           "tone": {
             "kind": "variant",
-            "enum": ["default", "success", "warning", "danger"],
+            "enum": [
+              "default",
+              "success",
+              "warning",
+              "danger"
+            ],
             "required": true,
             "default": "default"
           }
-        }
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "block"
+          }
+        },
+        "many": true
       },
       "dot": {
         "class": "sm-timeline__dot",
         "tag": "span",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "item",
+          "lane": {
+            "name": "item-row",
+            "order": 1
+          }
+        },
+        "many": true
       },
       "content": {
         "class": "sm-timeline__content",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "item",
+          "lane": {
+            "name": "item-row",
+            "order": 2
+          }
+        },
+        "many": true
       }
     }
   },
@@ -45,6 +79,8 @@
     "dot 必须 aria-hidden。",
     "竖线用伪元素绘制，不占 DOM。"
   ],
-  "a11y": ["时间轴本身不需要 role；语义由内容承担。"],
+  "a11y": [
+    "时间轴本身不需要 role；语义由内容承担。"
+  ],
   "notes": "第一个「圆点 + 伪元素竖线」的列表。"
 }

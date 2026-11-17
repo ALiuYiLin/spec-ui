@@ -206,9 +206,10 @@ function relationsChecks(snap, spec) {
         fails.push(name + ' 的 inside 指向了协议里不存在的部件 ' + insideName)
         continue
       }
-      const insideNode =
-        insideName && insideName !== 'root' ? find(insideName)[0] : rootNode
-      if (insideNode && !isAncestor(insideNode, node)) {
+      const insideNodes =
+        insideName && insideName !== 'root' ? find(insideName) : [rootNode]
+      const insideNode = insideNodes.find((n) => isAncestor(n, node)) ?? insideNodes[0]
+      if (insideNodes.length && !insideNodes.some((n) => isAncestor(n, node))) {
         fails.push(`${name} 必须是 ${insideName ?? 'root'} 的后代`)
         continue
       }
@@ -225,12 +226,20 @@ function relationsChecks(snap, spec) {
               const isFlex = parent.computed.display === 'flex' || parent.computed.display === 'inline-flex'
               const wantRow = value === 'flex-row'
               const wantColumn = value === 'flex-column'
-              const wantBlock = value === 'block'
+              const wantBlock = value === 'block' || value === 'inline-block' || value === 'list-item'
+              const wantInlineFlex = value === 'inline-flex'
               if (wantBlock) {
-                if (parent.computed.display !== 'block') {
+                const okBlock = parent.computed.display === value
+                if (!okBlock) {
                   fails.push(
-                    `${name} 要求父级是 block，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
+                    `${name} 要求父级是 ${value}，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
                   )
+                }
+                continue
+              }
+              if (wantInlineFlex) {
+                if (parent.computed.display !== 'inline-flex') {
+                  fails.push(`${name} 要求父级是 inline-flex，实际 ${parent.computed.display}`)
                 }
                 continue
               }
