@@ -59,4 +59,13 @@ export const checkboxCases: RefCase[] = [
     render: () => <Checkbox>同意</Checkbox>,
     assert: [{ k: 'data', key: 'state', value: 'unchecked' }],
   },
+  {
+    id: 'ref-checkbox-disabled-checked',
+    component: 'Checkbox',
+    render: () => <Checkbox disabled defaultChecked>同意</Checkbox>,
+    assert: [
+      { k: 'data', key: 'state', value: 'checked' },
+      { k: 'data', key: 'disabled', value: 'true' },
+    ],
+  },
 ]

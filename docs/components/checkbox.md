@@ -16,6 +16,18 @@ checkbox/basic
 checkbox/indeterminate
 
 :::
+
+:::demo 禁用态不响应点击，已选 / 未选 / 半选三种外观都要保留。
+
+checkbox/disabled
+
+:::
+
+:::demo 标签可以是纯文本（`label`），也可以是节点（`content`）。
+
+checkbox/label
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

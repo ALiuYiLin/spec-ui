@@ -12,4 +12,5 @@ export const radioRenders: Record<string, VueCase> = {
     actions: [{ type: 'focus', selector: '.sm-radio__input' }],
     render: () => h(Radio, { label: '同意' }),
   },
+  'ref-radio-disabled-checked': { component: 'Radio', render: () => h(Radio, { label: '选项', disabled: true, modelValue: true }) },
 }

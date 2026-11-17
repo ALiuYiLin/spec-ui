@@ -14,4 +14,5 @@ export const checkboxRenders: Record<string, VueCase> = {
     actions: [{ type: 'focus', selector: '.sm-checkbox__input' }],
     render: () => h(Checkbox, { label: '同意' }),
   },
+  'ref-checkbox-disabled-checked': { component: 'Checkbox', render: () => h(Checkbox, { label: '选项', disabled: true, modelValue: true }) },
 }

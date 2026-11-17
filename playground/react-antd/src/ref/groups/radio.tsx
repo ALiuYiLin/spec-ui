@@ -41,4 +41,13 @@ export const radioCases: RefCase[] = [
     render: () => <Radio>同意</Radio>,
     assert: [{ k: 'data', key: 'state', value: 'unchecked' }],
   },
+  {
+    id: 'ref-radio-disabled-checked',
+    component: 'Radio',
+    render: () => <Radio disabled defaultChecked>选项</Radio>,
+    assert: [
+      { k: 'data', key: 'state', value: 'checked' },
+      { k: 'data', key: 'disabled', value: 'true' },
+    ],
+  },
 ]

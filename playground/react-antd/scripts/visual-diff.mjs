@@ -849,8 +849,12 @@ const PAIRS = [
   // ---- Checkbox ----
   { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-unchecked', targets: ['root', 'control', { name: 'box', center: true }, 'label'] },
   { component: 'Checkbox', ref: 'ref-checkbox-checked', antd: 'checkbox-checked', targets: [{ name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-checked', antd: 'checkbox-hover-checked', pseudo: ['hover'], targets: [{ name: 'box', center: true }] },
   { component: 'Checkbox', ref: 'ref-checkbox-indeterminate', antd: 'checkbox-indeterminate', targets: [{ name: 'box', center: true }] },
   { component: 'Checkbox', ref: 'ref-checkbox-disabled', antd: 'checkbox-disabled', targets: ['root', { name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-disabled-checked', antd: 'checkbox-disabled-checked', targets: ['root', { name: 'box', center: true }] },
+  // 无标签时 antd 的根保留 22px 行盒、我们只剩 16px 的盒子（结构差异已记录），只比盒子
+  { component: 'Checkbox', ref: 'ref-checkbox-nolabel', antd: 'checkbox-no-label', targets: [{ name: 'box', center: true }] },
   { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-hover', pseudo: ['hover'], targets: [{ name: 'box', center: true }] },
   { component: 'Checkbox', ref: 'ref-checkbox-focus', antd: 'checkbox-focus', targets: [{ name: 'box', center: true }] },
 
@@ -858,6 +862,7 @@ const PAIRS = [
   { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-unchecked', targets: ['root', 'control', { name: 'box', center: true }, 'label'] },
   { component: 'Radio', ref: 'ref-radio-checked', antd: 'radio-checked', targets: [{ name: 'box', center: true }] },
   { component: 'Radio', ref: 'ref-radio-disabled', antd: 'radio-disabled', targets: ['root', { name: 'box', center: true }] },
+  { component: 'Radio', ref: 'ref-radio-disabled-checked', antd: 'radio-disabled-checked', targets: ['root', { name: 'box', center: true }] },
   { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-hover', pseudo: ['hover'], targets: [{ name: 'box', center: true }] },
   { component: 'Radio', ref: 'ref-radio-focus', antd: 'radio-focus', targets: [{ name: 'box', center: true }] },
 

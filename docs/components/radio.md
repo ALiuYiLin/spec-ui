@@ -16,6 +16,12 @@ radio/basic
 radio/disabled
 
 :::
+
+:::demo 同名 radio 由浏览器原生互斥，不需要额外的 Group 组件。
+
+radio/group
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |
