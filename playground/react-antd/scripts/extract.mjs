@@ -11,6 +11,8 @@ const DIST = path.join(PKG_ROOT, 'dist')
 /** --theme=dark 时采集暗色证据，单独落到 artifacts-dark/，不覆盖亮色基线 */
 const THEME = (process.argv.find((a) => a.startsWith('--theme=')) ?? '--theme=light').slice('--theme='.length)
 const THEME_QUERY = THEME === 'dark' ? '&theme=dark' : ''
+/** --component=Button 只采集该组件的证据 */
+const COMPONENT = (process.argv.find((a) => a.startsWith('--component=')) ?? '').slice('--component='.length)
 const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', THEME === 'dark' ? 'artifacts-dark' : 'artifacts')
 const VIEWPORT = { width: 1280, height: 800 }
 
@@ -175,8 +177,14 @@ async function main() {
 
   await page.goto(base, { waitUntil: 'load' })
   await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
-  const cases = await page.evaluate(() => window.__SPECMARK_CASES__)
-  if (!Array.isArray(cases) || !cases.length) throw new Error('页面没有暴露 __SPECMARK_CASES__，检查 App.tsx')
+  const allCases = await page.evaluate(() => window.__SPECMARK_CASES__)
+  const cases = COMPONENT
+    ? allCases.filter((c) => c.component.toLowerCase() === COMPONENT.toLowerCase())
+    : allCases
+  if (COMPONENT) console.log(`只采集组件：${COMPONENT}（${cases.length}/${allCases.length} 个用例）`)
+  if (!Array.isArray(cases) || !cases.length) {
+    throw new Error(COMPONENT ? `没有组件为 ${COMPONENT} 的用例` : '页面没有暴露 __SPECMARK_CASES__，检查 App.tsx')
+  }
 
   const source = {
     lib: 'antd',
@@ -318,5 +326,6 @@ async function main() {
 
 main().catch((err) => {
   console.error(err)
-  process.exitCode = 1
+  // 必须硬退出：出错时浏览器没关，只设 exitCode 进程不会结束
+  process.exit(1)
 })
