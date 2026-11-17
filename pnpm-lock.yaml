@@ -54,12 +54,18 @@ importers:
 
   packages/react:
     dependencies:
+      lucide-react:
+        specifier: ^1.73.0
+        version: 1.73.0(@types/react@18.3.31)(react@19.3.1)
       react:
         specifier: '>=18'
         version: 19.3.1
 
   packages/vue:
     dependencies:
+      lucide-vue-next:
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.45(typescript@7.0.2))
       vue:
         specifier: '>=3.4'
         version: 3.5.45(typescript@7.0.2)
@@ -3396,6 +3402,12 @@ snapshots:
   lucide-react@1.73.0(@types/react@18.3.31)(react@18.3.1):
     dependencies:
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.31
+
+  lucide-react@1.73.0(@types/react@18.3.31)(react@19.3.1):
+    dependencies:
+      react: 19.3.1
     optionalDependencies:
       '@types/react': 18.3.31
 

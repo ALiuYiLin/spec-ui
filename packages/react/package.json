@@ -11,5 +11,8 @@
   },
   "peerDependencies": {
     "react": ">=18"
+  },
+  "dependencies": {
+    "lucide-react": "^1.73.0"
   }
 }

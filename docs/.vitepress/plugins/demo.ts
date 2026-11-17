@@ -47,6 +47,24 @@ export default function demoPlugin(md: MarkdownRenderer) {
       if (token.type !== 'container_demo_open') continue
       token.meta = { ...(token.meta ?? {}), body: bodies[cursor++] ?? '' }
     }
+
+    // 容器体那行「路径」只是给插件读的，不该在页面上渲染成 <p>button/basic</p>。
+    // 把 open 与 close 之间的 token 全部摘掉，插槽里就只剩示例组件本身。
+    for (let i = state.tokens.length - 1; i >= 0; i -= 1) {
+      if (state.tokens[i].type !== 'container_demo_open') continue
+
+      let depth = 1
+      let j = i + 1
+      for (; j < state.tokens.length; j += 1) {
+        if (state.tokens[j].type === 'container_demo_open') depth += 1
+        if (state.tokens[j].type === 'container_demo_close') {
+          depth -= 1
+          if (depth === 0) break
+        }
+      }
+
+      if (j < state.tokens.length) state.tokens.splice(i + 1, j - i - 1)
+    }
   })
 
   md.use(container as never, 'demo', {

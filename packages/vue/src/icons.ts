@@ -1,26 +1,17 @@
 /**
- * 图标 glyph（Vue 版）。
+ * 图标 glyph。
  *
- * 路径不是手抄的：由 scripts 从 packages/react/src/icons.tsx 生成，
- * 而那份文件又是从 artifacts 里 antd 实际渲染的 svg 节点提取的。
- * 生成后请勿手工编辑。
+ * 统一使用 lucide：React 与 Vue 两版是同一份 SVG 几何，
+ * 文档演示、视觉校验、库内部实现用的都是它。
  */
 import { h } from 'vue'
+import { ChevronDown, Loader2, X } from 'lucide-vue-next'
 
-/** 对应 React 实现的 DownIcon，路径完全相同。 */
-export const DownIcon = () =>
-  h('svg', { viewBox: '64 64 896 896', width: '1em', height: '1em', fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' }, [
-    h('path', { d: 'M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z' }),
-  ])
+/** 尺寸跟随字号，与 font-size 保持 1:1 */
+const em = { width: '1em', height: '1em' }
 
-/** 对应 React 实现的 CloseIcon，路径完全相同。 */
-export const CloseIcon = () =>
-  h('svg', { viewBox: '64 64 896 896', width: '1em', height: '1em', fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' }, [
-    h('path', { d: 'M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm127.98 274.82h-.04l-.08.06L512 466.75 384.14 338.88c-.04-.05-.06-.06-.08-.06a.12.12 0 00-.07 0c-.03 0-.05.01-.09.05l-45.02 45.02a.2.2 0 00-.05.09.12.12 0 000 .07v.02a.27.27 0 00.06.06L466.75 512 338.88 639.86c-.05.04-.06.06-.06.08a.12.12 0 000 .07c0 .03.01.05.05.09l45.02 45.02a.2.2 0 00.09.05.12.12 0 00.07 0c.02 0 .04-.01.08-.05L512 557.25l127.86 127.87c.04.04.06.05.08.05a.12.12 0 00.07 0c.03 0 .05-.01.09-.05l45.02-45.02a.2.2 0 00.05-.09.12.12 0 000-.07v-.02a.27.27 0 00-.05-.06L557.25 512l127.87-127.86c.04-.04.05-.06.05-.08a.12.12 0 000-.07c0-.03-.01-.05-.05-.09l-45.02-45.02a.2.2 0 00-.09-.05.12.12 0 00-.07 0z' }),
-  ])
+export const DownIcon = () => h(ChevronDown, { ...em, 'aria-hidden': 'true' })
 
-/** 对应 React 实现的 SpinnerIcon，路径完全相同。 */
-export const SpinnerIcon = () =>
-  h('svg', { viewBox: '0 0 1024 1024', width: '1em', height: '1em', fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' }, [
-    h('path', { d: 'M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z' }),
-  ])
+export const CloseIcon = () => h(X, { ...em, 'aria-hidden': 'true' })
+
+export const SpinnerIcon = () => h(Loader2, { ...em, 'aria-hidden': 'true' })
