@@ -83,6 +83,18 @@ const snapshotFn = () => {
     return {
       tag: n.tagName.toLowerCase(),
       classes: Array.from(n.classList),
+      // 布局校验要看的少量计算值（结构校验仍以 DOM 为准）
+      computed: (() => {
+        const s = getComputedStyle(n)
+        return {
+          display: s.display,
+          alignItems: s.alignItems,
+          flex: s.flex,
+          lineHeight: s.lineHeight,
+          width: s.width,
+          height: s.height,
+        }
+      })(),
       attrs,
       inlineStyle: n.getAttribute('style'),
       text: Array.from(n.childNodes)
@@ -115,6 +127,102 @@ async function loadSpec(component) {
   const spec = JSON.parse(await fsp.readFile(file, 'utf8'))
   specs.set(component, spec)
   return spec
+}
+
+
+/** 读取尺寸令牌表（spec/tokens.size.json），按 size 档位取值 */
+const SIZE_TOKENS = JSON.parse(
+  await fsp.readFile(path.resolve(SPEC_DIR, '..', 'tokens.size.json'), 'utf8'),
+).valueOf()
+
+function tokenValue(ref, size) {
+  const table = SIZE_TOKENS[ref]
+  if (!table) return null
+  return table[size] ?? null
+}
+
+const px = (v) => (typeof v === 'string' && v.endsWith('px') ? Number.parseFloat(v) : null)
+const near = (a, b) => Math.abs(a - b) < 0.51
+
+/** 由 spec.layout 推导的布局规则：同层、顺序、互斥、关键计算值 */
+function layoutChecks(snap, spec) {
+  const L = spec.layout
+  const fails = []
+  if (!L) return fails
+
+  const rootClass = spec.anatomy.root.class
+  const all = [...flat(snap.tree), ...snap.portals.flatMap((p) => flat(p.tree))]
+  const root = all.find((n) => n.classes.includes(rootClass))
+  if (!root) return fails
+
+  // 只看该形态：例如 Input 无前后缀时根是 input，没有部件也没有 flex 布局
+  const appliesTo = L.appliesTo ?? {}
+  if (appliesTo.rootTag && root.tag !== appliesTo.rootTag) return fails
+
+  const size = root.attrs['data-size'] ?? spec.anatomy.root.data?.size?.default ?? 'md'
+
+  // 根节点的关键计算值
+  for (const [prop, want] of Object.entries(L.root ?? {})) {
+    if (prop === 'height' && want && typeof want === 'object' && want.$token) {
+      const v = tokenValue(want.$token, size)
+      if (v && !near(px(v), px(root.computed.height))) {
+        fails.push(`根节点 height 应为 ${v}（token ${want.$token}.${size}），实际 ${root.computed.height}`)
+      }
+      continue
+    }
+    const actual = root.computed[prop === 'align-items' ? 'alignItems' : prop]
+    if (typeof want === 'string' && actual !== want) {
+      fails.push(`根节点 ${prop} 应为 ${want}，实际 ${actual}`)
+    }
+  }
+
+  // 同层与顺序：row.parts 里出现的部件必须是 root 的直接子节点，且顺序与声明一致
+  const parts = spec.anatomy.parts ?? {}
+  const rowParts = L.row?.parts ?? []
+  let lastIndex = -1
+  for (const entry of rowParts) {
+    const names = entry.split('|')
+    const present = names.filter((n) => parts[n] && root.children.some((c) => c.classes.includes(parts[n].class)))
+    if (names.length > 1 && present.length > 1) {
+      fails.push(`共用槽位 ${entry} 同时出现了 ${present.join('、')}，应互斥`)
+    }
+    for (const name of present) {
+      const cls = parts[name].class
+      const idx = root.children.findIndex((c) => c.classes.includes(cls))
+      if (idx < 0) {
+        fails.push(`${name} 不是根节点的直接子节点`)
+        continue
+      }
+      if (idx < lastIndex) {
+        fails.push(`${name} 的位置早于声明顺序（同层顺序应为 ${rowParts.join(' → ')}）`)
+      }
+      lastIndex = Math.max(lastIndex, idx)
+
+      // 单个部件的关键计算值
+      const decl = L.parts?.[name] ?? {}
+      const node = root.children[idx]
+      if (decl.flex && node.computed.flex !== decl.flex) {
+        fails.push(`${name} 的 flex 应为 ${decl.flex}，实际 ${node.computed.flex}`)
+      }
+      if (decl['line-height']) {
+        const want = decl['line-height'].$token ? tokenValue(decl['line-height'].$token, size) : decl['line-height']
+        if (want && !near(px(want), px(node.computed.lineHeight))) {
+          fails.push(`${name} 的 line-height 应为 ${want}，实际 ${node.computed.lineHeight}`)
+        }
+      }
+      for (const [prop, ref] of Object.entries(decl.box ?? {})) {
+        const want = ref.$token ? tokenValue(ref.$token, size) : ref
+        if (!want) continue
+        const actual = prop === 'width' ? node.computed.width : node.computed.height
+        if (!near(px(want), px(actual))) {
+          fails.push(`${name} 的 ${prop} 应为 ${want}（token ${ref.$token}.${size}），实际 ${actual}`)
+        }
+      }
+    }
+  }
+
+
+  return fails
 }
 
 /** 通用规则：由 spec 推导，实现无关 */
@@ -230,6 +338,8 @@ function genericChecks(snap, spec) {
     fails.push(`role="option" 节点数 ${roleOptions.length} 与协议 option 节点数 ${classOptions.length} 不一致`)
   }
 
+
+  fails.push(...layoutChecks(snap, spec))
   return fails
 }
 

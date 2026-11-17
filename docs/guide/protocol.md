@@ -53,6 +53,40 @@ L2 的通用规则由协议推导，不认框架：类名封闭、`data-*` 必�
 
 L3 拿 antd 的真实渲染结果当基线，比 88 项计算样式，容差 0.6px / 1 个色阶。
 
+## 布局也是协议的一部分
+
+只写部件和状态是不够的：`prefix`、`field`、`clear` 同为根节点的子节点、**同一行、垂直居中**，
+以及清除按钮**多大**——这些同样是「换个实现也得一致」的契约，所以它们进协议。
+
+Input 是试点，`layout` 长这样：
+
+```json
+"layout": {
+  "appliesTo": { "rootTag": "span" },
+  "root": { "display": "inline-flex", "align-items": "normal", "height": { "$token": "control.height" } },
+  "row": { "parts": ["prefix", "field", "clear|suffix"] },
+  "parts": {
+    "field": { "flex": "1 1 auto", "line-height": { "$token": "control.lineHeight" } },
+    "clear": { "box": { "width": { "$token": "input.clear.size" }, "height": { "$token": "input.clear.size" } } }
+  }
+}
+```
+
+四条约定：
+
+- **结果约束**，不是实现约束。协议说「必须在同一行且垂直居中」，不说用 `align-items: center` 还是
+  `align-self`——Input 里两者都出现过，最终以计算值为准。
+- **`a|b` 表示共用槽位**。`clear|suffix` 说明二者互斥，L2 会验证同一时刻只有一个。
+- **尺寸走令牌**。`{"$token": "input.clear.size"}` 指向 `spec/tokens.size.json`，按 `sm/md/lg` 取档；
+  写死一个 `14px` 会在其余两档上错。
+- **`appliesTo` 限定形态**。Input 无前后缀时根就是 `<input>`，没有部件也不是 flex 容器，
+  这类形态不参与布局校验。
+
+L2 新增三条通用规则：部件必须是根的直接子节点、顺序与声明一致、共用槽位互斥；
+外加关键计算值（`display` / `align-items` / `flex` / `line-height` / 令牌尺寸）的比对。
+三条规则都用负向测试验证过：把 `display`、令牌、顺序分别改错，校验器都会报红。
+
+
 ## 一个例子
 
 同一个 Button，两套实现输出完全相同的 DOM：

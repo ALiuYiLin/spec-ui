@@ -4,7 +4,12 @@
   "title": "SpecMark Component Protocol",
   "description": "框架无关组件协议文件的结构定义。每个组件一份，位于 spec/components/<Component>.spec.json。",
   "type": "object",
-  "required": ["component", "protocol", "anatomy", "invariants"],
+  "required": [
+    "component",
+    "protocol",
+    "anatomy",
+    "invariants"
+  ],
   "additionalProperties": false,
   "properties": {
     "$schema": {
@@ -22,7 +27,11 @@
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "stable", "deprecated"],
+      "enum": [
+        "draft",
+        "stable",
+        "deprecated"
+      ],
       "default": "draft"
     },
     "summary": {
@@ -30,34 +39,78 @@
     },
     "anatomy": {
       "type": "object",
-      "required": ["root"],
+      "required": [
+        "root"
+      ],
       "additionalProperties": false,
       "properties": {
-        "root": { "$ref": "#/$defs/part" },
+        "root": {
+          "$ref": "#/$defs/part"
+        },
         "parts": {
           "type": "object",
-          "additionalProperties": { "$ref": "#/$defs/part" }
+          "additionalProperties": {
+            "$ref": "#/$defs/part"
+          }
         }
       }
     },
     "invariants": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "可机器校验的结构断言，写法见 CONVENTIONS.md 第 5 节。"
     },
     "a11y": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "notes": {
       "type": "string"
+    },
+    "layout": {
+      "$comment": "布局约束（可选）。表达的是「结果约束」：允许实现用不同手法达成同一布局，校验看最终计算值。",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "type": "object",
+          "additionalProperties": true,
+          "$comment": "根节点必须满足的计算值，如 display / align-items / height（可引用 $token）"
+        },
+        "row": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "parts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "$comment": "同一父节点下的部件顺序；用 a|b 表达共用槽位、互斥"
+            }
+          }
+        },
+        "parts": {
+          "type": "object",
+          "additionalProperties": true,
+          "$comment": "各部件必须满足的计算值，如 flex / line-height / box（可引用 $token）"
+        }
+      }
     }
   },
   "$defs": {
     "part": {
       "type": "object",
-      "required": ["class", "tag", "required"],
+      "required": [
+        "class",
+        "tag",
+        "required"
+      ],
       "additionalProperties": false,
       "properties": {
         "class": {
@@ -66,11 +119,15 @@
         },
         "tag": {
           "oneOf": [
-            { "type": "string" },
+            {
+              "type": "string"
+            },
             {
               "type": "array",
               "minItems": 1,
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              }
             }
           ],
           "description": "允许的标签名。数组表示实现可在其中选择，是实现自由度的显式声明。"
@@ -90,28 +147,42 @@
         },
         "attrs": {
           "type": "object",
-          "additionalProperties": { "$ref": "#/$defs/attrRule" }
+          "additionalProperties": {
+            "$ref": "#/$defs/attrRule"
+          }
         },
         "data": {
           "type": "object",
-          "additionalProperties": { "$ref": "#/$defs/dataRule" }
+          "additionalProperties": {
+            "$ref": "#/$defs/dataRule"
+          }
         },
         "interaction": {
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["hover", "active", "focus", "focus-visible", "focus-within"]
+            "enum": [
+              "hover",
+              "active",
+              "focus",
+              "focus-visible",
+              "focus-within"
+            ]
           },
           "description": "该部件支持的交互态，必须由伪类实现。"
         },
         "aria": {
           "type": "object",
-          "additionalProperties": { "type": "string" },
+          "additionalProperties": {
+            "type": "string"
+          },
           "description": "该部件必须携带的 aria 属性。"
         },
         "mirror": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "需要从根节点镜像的状态键。仅用于 portal 到 body、脱离根子树的部件。"
         },
         "portal": {
@@ -133,7 +204,9 @@
       "properties": {
         "enum": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "required": {
           "type": "boolean"
@@ -151,17 +224,26 @@
     },
     "dataRule": {
       "type": "object",
-      "required": ["kind"],
+      "required": [
+        "kind"
+      ],
       "additionalProperties": false,
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["variant", "boolean", "state", "config"]
+          "enum": [
+            "variant",
+            "boolean",
+            "state",
+            "config"
+          ]
         },
         "enum": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "domain": {
           "type": "string",

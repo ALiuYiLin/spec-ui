@@ -7,31 +7,53 @@
   "anatomy": {
     "root": {
       "class": "sm-input",
-      "tag": ["input", "span"],
+      "tag": [
+        "input",
+        "span"
+      ],
       "required": true,
       "data": {
         "variant": {
           "kind": "variant",
-          "enum": ["outlined", "filled", "borderless"],
+          "enum": [
+            "outlined",
+            "filled",
+            "borderless"
+          ],
           "required": true,
           "default": "outlined"
         },
         "size": {
           "kind": "variant",
-          "enum": ["sm", "md", "lg"],
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ],
           "required": true,
           "default": "md"
         },
         "status": {
           "kind": "config",
-          "enum": ["default", "error", "warning"],
+          "enum": [
+            "default",
+            "error",
+            "warning"
+          ],
           "required": true,
           "default": "default"
         },
-        "disabled": { "kind": "boolean" },
-        "readonly": { "kind": "boolean" }
+        "disabled": {
+          "kind": "boolean"
+        },
+        "readonly": {
+          "kind": "boolean"
+        }
       },
-      "interaction": ["hover", "focus-within"]
+      "interaction": [
+        "hover",
+        "focus-within"
+      ]
     },
     "parts": {
       "prefix": {
@@ -48,7 +70,10 @@
         "order": 2,
         "condition": "根为 span 时必填；根为 input 时不渲染",
         "attrs": {
-          "type": { "required": true, "default": "text" }
+          "type": {
+            "required": true,
+            "default": "text"
+          }
         },
         "aria": {
           "aria-invalid": "status=error 时必填 true"
@@ -60,7 +85,9 @@
         "required": false,
         "order": 3,
         "condition": "allowClear 且有值（仅 span 模式）",
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        }
       },
       "suffix": {
         "class": "sm-input__suffix",
@@ -68,6 +95,53 @@
         "required": false,
         "order": 3,
         "condition": "传入 suffix 且当前无 clear（仅 span 模式）"
+      }
+    }
+  },
+  "layout": {
+    "appliesTo": {
+      "rootTag": "span"
+    },
+    "root": {
+      "display": "inline-flex",
+      "align-items": "normal",
+      "height": {
+        "$token": "control.height"
+      }
+    },
+    "row": {
+      "parts": [
+        "prefix",
+        "field",
+        "clear|suffix"
+      ]
+    },
+    "parts": {
+      "field": {
+        "flex": "1 1 auto",
+        "line-height": {
+          "$token": "control.lineHeight"
+        }
+      },
+      "prefix": {
+        "line-height": {
+          "$token": "control.lineHeight"
+        }
+      },
+      "suffix": {
+        "line-height": {
+          "$token": "control.lineHeight"
+        }
+      },
+      "clear": {
+        "box": {
+          "width": {
+            "$token": "input.clear.size"
+          },
+          "height": {
+            "$token": "input.clear.size"
+          }
+        }
       }
     }
   },
@@ -79,12 +153,14 @@
     "readonly 时原生 readonly 必须落在承载文本编辑的元素上，且根节点同时带 data-readonly。",
     "status=error 时，承载文本编辑的元素必须带 aria-invalid=\"true\"。",
     "clear 与 suffix 共用尾部槽位，同一时刻只允许一个存在。",
-    "禁止用 div + contenteditable 模拟输入框。"
+    "禁止用 div + contenteditable 模拟输入框。",
+    "根为 span 时，prefix / field / clear|suffix 必须是同一个父节点的直接子节点，顺序即声明顺序。",
+    "清除按钮的盒尺寸随 size 档位取值（见 tokens.size.json 的 input.clear.size），不得写死在别处。"
   ],
   "a11y": [
     "可访问名称来自关联的 label 或 aria-label，不能只依赖 placeholder。",
     "clear 不可聚焦、不进入 Tab 序列；键盘清除走 Esc 或 Delete。",
     "错误状态必须同时体现在 aria-invalid 上，不能只改边框颜色。"
   ],
-  "notes": "为什么允许双形态：无前后缀时如果仍套一层包裹，根节点的 display 与盒子模型就会和参考实现分叉（inline-block vs inline-flex），L3 永远对不上；而套包裹又会污染纯文本输入的语义。两种形态各自最自然，协议选择承认这一点而不是强行统一。"
+  "notes": "为什么允许双形态：无前后缀时如果仍套一层包裹，根节点的 display 与盒子模型就会和参考实现分叉（inline-block vs inline-flex），L3 永远对不上；而套包裹又会污染纯文本输入的语义。两种形态各自最自然，协议选择承认这一点而不是强行统一。layout 里的约束都是「结果约束」：允许实现用不同手法（槽位容器、align-self、行盒）达成同一条中线，校验看最终结果。"
 }
