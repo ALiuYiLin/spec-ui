@@ -67,14 +67,24 @@
 }
 .sm-modal__close {
   position: absolute;
-  top: 12.5px;
-  right: 17px;
-  width: 22px;
-  height: 22px;
+  top: 12px;
+  inset-inline-end: 12px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 0;
-  border-radius: 4px;
   background: transparent;
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--color-sm-text-tertiary);
   cursor: pointer;
+  border-radius: 4px;
+  border: 0;
+  font-family: inherit;
+  font-size: 14px;
+  z-index: 1010;
+}
+.sm-modal__close > svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin: auto;
 }

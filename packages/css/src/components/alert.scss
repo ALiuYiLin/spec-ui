@@ -27,9 +27,6 @@
 }
 .sm-alert__message {
   box-sizing: border-box;
-  color: var(--color-sm-text);
-  font-size: 14px;
-  line-height: 22px;
 }
 .sm-alert__description {
   color: var(--color-sm-text);
@@ -37,10 +34,17 @@
   line-height: 22px;
 }
 .sm-alert__close {
-  margin-inline-start: 8px;
+  margin-inline-start: auto;
   padding: 0;
   border: 0;
   background: transparent;
-  color: inherit;
+  font-size: 12px;
+  line-height: 12px;
+  overflow: hidden;
   cursor: pointer;
+}
+.sm-alert__close > svg {
+  width: 12px;
+  height: 12px;
+  display: block;
 }

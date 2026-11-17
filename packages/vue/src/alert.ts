@@ -1,4 +1,5 @@
 import { defineComponent, h } from 'vue'
+import { CloseIcon } from './icons'
 import type { PropType } from 'vue'
 
 export type AlertType = 'success' | 'info' | 'warning' | 'error'
@@ -23,7 +24,7 @@ export const Alert = defineComponent({
               class: 'sm-alert__close',
               'aria-label': '关闭',
               onClick: () => emit('close'),
-            })
+            }, [h(CloseIcon)])
           : null,
       ])
   },

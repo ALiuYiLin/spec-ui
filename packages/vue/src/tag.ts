@@ -1,4 +1,5 @@
 import { defineComponent, h } from 'vue'
+import { CloseIcon } from './icons'
 import type { PropType, VNode } from 'vue'
 
 export type TagTone = 'default' | 'primary' | 'success' | 'warning' | 'danger'
@@ -22,7 +23,7 @@ export const Tag = defineComponent({
               class: 'sm-tag__close',
               'aria-label': '移除',
               onClick: () => emit('close'),
-            })
+            }, [h(CloseIcon)])
           : null,
       ])
     }

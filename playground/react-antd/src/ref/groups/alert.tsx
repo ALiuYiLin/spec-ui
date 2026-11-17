@@ -48,4 +48,14 @@ export const alertCases: RefCase[] = [
     ),
     assert: [],
   },
+  {
+    id: 'ref-alert-closable',
+    component: 'Alert',
+    render: () => (
+      <div style={{ width: 256 }}>
+        <Alert type="info" message="提示信息" closable />
+      </div>
+    ),
+    assert: [{ k: 'part', name: 'close' }],
+  },
 ]

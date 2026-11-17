@@ -515,6 +515,10 @@ const RESOLVE = {
   },
 
   Alert: {
+    close: {
+      ref: (all) => partByClass(all, 'sm-alert__close'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-alert-close-icon')),
+    },
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-alert')),
       antd: (all) => all.find((n) => n.classes.includes('ant-alert')),
@@ -975,7 +979,7 @@ const PAIRS = [
       'header',
       'body',
       { name: 'footer', ignore: ['height', 'transform-origin'] },
-      { name: 'close', center: true, relativeTo: 'dialog', ignore: ['*'] }
+      { name: 'close', relativeTo: 'dialog', ignore: ['font-size', 'line-height', 'font-weight', 'font-family', 'outline-width', 'outline-color', 'transform-origin', 'margin-left', 'margin-right', 'justify-content', 'vertical-align', 'box-sizing', 'top', 'right', 'bottom', 'left'] }
 ],
   },
   // ---- Drawer ----
@@ -1011,7 +1015,7 @@ const PAIRS = [
     component: 'Tag',
     ref: 'ref-tag-closable',
     antd: 'tag-closable',
-    targets: ['root', { name: 'close', center: true, ignore: ['*'] }],
+    targets: ['root', { name: 'close', ignore: ['font-size', 'line-height', 'font-weight', 'font-family', 'outline-width', 'outline-color', 'transform-origin', 'margin-left', 'margin-right', 'justify-content', 'vertical-align', 'box-sizing', 'top', 'right', 'bottom', 'left'] }],
   },
   { component: 'Avatar', ref: 'ref-avatar-basic', antd: 'avatar-basic', targets: ['root'] },
   { component: 'Badge', ref: 'ref-badge-basic', antd: 'badge-basic', targets: ['root', { name: 'count', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'position'] }] },
@@ -1152,7 +1156,8 @@ const PAIRS = [
   { component: 'Alert', ref: 'ref-alert-error', antd: 'alert-error', targets: ['root'] },
   { component: 'Spin', ref: 'ref-spin-sm', antd: 'spin-sm', targets: ['root'] },
   { component: 'Spin', ref: 'ref-spin-lg', antd: 'spin-lg', targets: ['root'] },
-  { component: 'Statistic', ref: 'ref-statistic-precision', antd: 'statistic-precision', targets: ['root'] }
+  { component: 'Statistic', ref: 'ref-statistic-precision', antd: 'statistic-precision', targets: ['root'] },
+  { component: 'Alert', ref: 'ref-alert-closable', antd: 'alert-closable', targets: ['root', { name: 'close', center: true, ignore: ['font-size', 'line-height', 'font-weight', 'font-family', 'outline-width', 'outline-color', 'transform-origin', 'margin-left', 'margin-right', 'justify-content', 'vertical-align', 'box-sizing', 'top', 'right', 'bottom', 'left'] }] }
 ]
 
 
@@ -1216,8 +1221,7 @@ async function main() {
       const { root: doc } = await cdp.send('DOM.getDocument', { depth: 0 })
       const { nodeId } = await cdp.send('DOM.querySelector', {
         nodeId: doc.nodeId,
-        selector: '[data-case-root] > *',
-      })
+        selector: '[data-case-root] > *' })
       if (nodeId) await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: forced })
     }
     await page.waitForTimeout(120)
@@ -1251,7 +1255,7 @@ async function main() {
       }
 
       const diffs = []
-      // ignore: ['*'] 表示不比样式、只比中心点（用于结构与 antd 不同的小块，比如关闭按钮）
+      //  表示不比样式、只比中心点（用于结构与 antd 不同的小块，比如关闭按钮）
       const ignoreAll = ignore.has('*')
       for (const p of ignoreAll ? [] : PROPS) {
         if (ignore.has(p) || IGNORE_ALWAYS.has(p)) continue
@@ -1277,8 +1281,7 @@ async function main() {
           : antdRecord.tree
         const rel = (node, root) => ({
           x: +(node.rect.x + node.rect.w / 2 - (root.rect.x + root.rect.w / 2)).toFixed(2),
-          y: +(node.rect.y + node.rect.h / 2 - (root.rect.y + root.rect.h / 2)).toFixed(2),
-        })
+          y: +(node.rect.y + node.rect.h / 2 - (root.rect.y + root.rect.h / 2)).toFixed(2) })
         const a = rel(antdEl, antdBase)
         const b = rel(refEl, refBase)
         const dx = +(b.x - a.x).toFixed(2)

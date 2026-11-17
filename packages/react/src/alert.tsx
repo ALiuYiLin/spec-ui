@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { CloseIcon } from './icons'
 
 export type AlertType = 'success' | 'info' | 'warning' | 'error'
 
@@ -16,7 +17,9 @@ export function Alert({ type = 'info', message, description, closable, onClose }
       <div className="sm-alert__message">{message}</div>
       {description != null ? <div className="sm-alert__description">{description}</div> : null}
       {closable ? (
-        <button type="button" className="sm-alert__close" aria-label="关闭" onClick={onClose} />
+        <button type="button" className="sm-alert__close" aria-label="关闭" onClick={onClose}>
+        <CloseIcon />
+      </button>
       ) : null}
     </div>
   )

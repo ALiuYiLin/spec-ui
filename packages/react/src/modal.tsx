@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { CloseIcon } from './icons'
 import { createPortal } from 'react-dom'
 
 export type ModalProps = {
@@ -18,7 +19,9 @@ export function Modal({ open, title, footer, closable = true, onClose, children 
       <div className="sm-modal__mask" aria-hidden="true" />
       <div className="sm-modal__dialog" role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined}>
         {closable ? (
-          <button type="button" className="sm-modal__close" aria-label="关闭" onClick={onClose} />
+          <button type="button" className="sm-modal__close" aria-label="关闭" onClick={onClose}>
+        <CloseIcon />
+      </button>
         ) : null}
         <div className="sm-modal__header">{title != null ? <div className="sm-modal__title">{title}</div> : null}</div>
         <div className="sm-modal__body">{children}</div>

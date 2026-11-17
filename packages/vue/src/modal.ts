@@ -1,4 +1,5 @@
 import { Teleport, defineComponent, h } from 'vue'
+import { CloseIcon } from './icons'
 import type { PropType, VNode } from 'vue'
 
 export const Modal = defineComponent({
@@ -37,7 +38,7 @@ export const Modal = defineComponent({
                     class: 'sm-modal__close',
                     'aria-label': '关闭',
                     onClick: () => emit('close'),
-                  })
+                  }, [h(CloseIcon)])
                 : null,
               h('div', { class: 'sm-modal__header' }, [
                 props.title ? h('div', { class: 'sm-modal__title' }, [props.title]) : null,

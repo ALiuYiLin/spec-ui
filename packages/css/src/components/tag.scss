@@ -1,7 +1,7 @@
 /* Tag */
 .sm-tag {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   box-sizing: border-box;
   height: 22px;
   margin-inline-end: 8px;
@@ -36,32 +36,23 @@
   color: var(--color-sm-danger);
 }
 .sm-tag__close {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
   width: 10px;
   height: 10px;
   margin-inline-start: 3px;
   padding: 0;
   border: 0;
   background: transparent;
-  color: inherit;
+  color: var(--color-sm-text-tertiary);
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 0;
+  vertical-align: -1.25px;
   cursor: pointer;
-  vertical-align: middle;
-  top: -0.75px;
 }
-/* 图标本体由伪元素画：两个 45° 的细线组成 ×，与 antd 的 10×10 图标同尺寸 */
-.sm-tag__close::before,
-.sm-tag__close::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
+.sm-tag__close > svg {
   width: 10px;
-  height: 1px;
-  background: currentColor;
-}
-.sm-tag__close::before {
-  transform: rotate(45deg);
-}
-.sm-tag__close::after {
-  transform: rotate(-45deg);
+  height: 10px;
+  display: block;
 }
