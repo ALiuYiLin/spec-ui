@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmEmpty />
-</Demo>
+:::
 
 ## 结构
 

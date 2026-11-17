@@ -4,20 +4,20 @@
 
 ## 代码演示
 
-<Demo note="无前后缀时根就是原生 input；有前后缀/清除时根是包裹元素">
+::: demo
   <SmInput placeholder="请输入" style="width: 200px" />
   <SmInput placeholder="带前缀" style="width: 200px">
     <template #prefix>￥</template>
   </SmInput>
   <SmInput model-value="内容" :allow-clear="true" style="width: 200px" />
-</Demo>
+:::
 
-<Demo>
+::: demo
   <SmInput placeholder="小" size="sm" style="width: 140px" />
   <SmInput placeholder="大" size="lg" style="width: 160px" />
   <SmInput status="error" model-value="错误" style="width: 140px" />
   <SmInput :disabled="true" model-value="禁用" style="width: 140px" />
-</Demo>
+:::
 
 ## 结构
 

@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
+import demoPlugin from './plugins/demo'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 
@@ -31,8 +32,14 @@ export default defineConfig({
     ],
   ],
 
-  themeConfig: {
-    nav: [
+  // ::: demo 容器：构建期把示例源码高亮好再交给 Demo 组件
+  markdown: {
+    config: (md) => {
+      md.use(demoPlugin)
+    },
+  },
+
+  themeConfig: {    nav: [
       { text: '指南', link: '/guide/protocol' },
       { text: '组件', link: '/components/button' },
     ],

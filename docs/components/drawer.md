@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo note="默认从右侧滑出，宽度 378">
+::: demo
   <DrawerDemo />
-</Demo>
+:::
 
 ## 结构
 

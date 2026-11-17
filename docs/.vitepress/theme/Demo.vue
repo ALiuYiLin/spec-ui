@@ -1,66 +1,25 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
-  /** demo 标题，对应 antd 文档里每个演示卡的标题 */
+  /** 演示标题，来自 ::: demo 后的文字 */
   title?: string
-  /** 标题下的一句话说明 */
-  desc?: string
-  /** 渲染区下方的小字备注 */
-  note?: string
-  /** 手写代码片段；不传则抓取渲染出的协议 DOM */
+  /** 构建期高亮好的 HTML（encodeURIComponent） */
   code?: string
+  /** 原始源码（encodeURIComponent），用于复制 */
+  raw?: string
 }>()
 
-const stage = ref<HTMLElement | null>(null)
-const captured = ref('')
+const sourceVisible = ref(false)
 const copied = ref(false)
 
-/**
- * 没有手写片段时，把渲染后的协议 DOM 抓下来当示例。
- *
- * 对协议驱动的库来说，DOM 才是对外契约——比「某个框架怎么写」更接近文档该展示的东西。
- * 手写 code 仍然优先，用于需要展示框架写法的场景。
- */
-onMounted(() => {
-  if (props.code || !stage.value) return
-  captured.value = prettyHtml(stage.value.innerHTML)
-})
+const highlighted = computed(() => (props.code ? decodeURIComponent(props.code) : ''))
+const rawSource = computed(() => (props.raw ? decodeURIComponent(props.raw) : ''))
 
-/** 极简格式化：按标签切分，维护缩进深度 */
-function prettyHtml(html: string): string {
-  const tokens = html.match(/<[^>]+>|[^<]+/g) ?? []
-  const voidTags = /^<(img|input|br|hr|meta|link|source|textarea)\b/
-  const lines: string[] = []
-  let depth = 0
-
-  for (const token of tokens) {
-    // Vue 会在列表/插槽位置插入 <!--[--> <!----> 之类的占位注释，
-    // 既不是内容也不该影响缩进，直接丢掉
-    if (token.startsWith('<!--')) continue
-
-    if (token.startsWith('</')) {
-      depth = Math.max(0, depth - 1)
-      lines.push('  '.repeat(depth) + token)
-    } else if (token.startsWith('<')) {
-      lines.push('  '.repeat(depth) + token)
-      const selfClosing = token.endsWith('/>') || voidTags.test(token)
-      if (!selfClosing) depth += 1
-    } else {
-      const text = token.trim()
-      if (text) lines.push('  '.repeat(depth) + text)
-    }
-  }
-
-  return lines.join('\n')
-}
-
-const source = computed(() => props.code ?? captured.value)
-
-async function copy() {
-  if (!source.value) return
+async function copyCode() {
+  if (!rawSource.value) return
   try {
-    await navigator.clipboard.writeText(source.value)
+    await navigator.clipboard.writeText(rawSource.value)
     copied.value = true
     window.setTimeout(() => (copied.value = false), 1500)
   } catch {
@@ -71,28 +30,44 @@ async function copy() {
 
 <template>
   <div class="sm-demo">
-    <div v-if="title || desc" class="sm-demo__head">
-      <h4 v-if="title" class="sm-demo__title">{{ title }}</h4>
-      <p v-if="desc" class="sm-demo__desc">{{ desc }}</p>
-    </div>
+    <div v-if="title" class="sm-demo__title">{{ title }}</div>
 
-    <div ref="stage" class="sm-demo__stage">
+    <div class="sm-demo__stage">
       <slot />
     </div>
 
-    <div v-if="note" class="sm-demo__note">{{ note }}</div>
+    <div class="sm-demo__toolbar">
+      <button type="button" class="sm-demo__btn" :aria-label="copied ? '已复制' : '复制代码'" @click="copyCode">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            d="M9 9h9v11H9zM6 15H5V4h9v1"
+          />
+        </svg>
+        <span>{{ copied ? '已复制' : '复制' }}</span>
+      </button>
+      <button
+        type="button"
+        class="sm-demo__btn"
+        :aria-label="sourceVisible ? '隐藏源代码' : '查看源代码'"
+        @click="sourceVisible = !sourceVisible"
+      >
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="1.8" d="m9 8-4 4 4 4M15 8l4 4-4 4" />
+        </svg>
+        <span>{{ sourceVisible ? '隐藏源代码' : '查看源代码' }}</span>
+      </button>
+    </div>
 
-    <details v-if="source" class="sm-demo__code">
-      <summary>
-        <span>查看代码</span>
-        <code class="sm-demo__lang">{{ code ? '片段' : '协议 DOM' }}</code>
-      </summary>
-      <div class="sm-demo__code-body">
-        <button type="button" class="sm-demo__copy" @click="copy">
-          {{ copied ? '已复制' : '复制' }}
-        </button>
-        <pre><code>{{ source }}</code></pre>
-      </div>
-    </details>
+    <div v-show="sourceVisible" class="sm-demo__source" v-html="highlighted" />
+
+    <button v-show="sourceVisible" type="button" class="sm-demo__collapse" @click="sourceVisible = false">
+      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" d="m6 15 6-6 6 6" />
+      </svg>
+      <span>隐藏源代码</span>
+    </button>
   </div>
 </template>

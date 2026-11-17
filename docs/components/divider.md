@@ -4,13 +4,13 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <div style="width: 240px">
     <SmDivider />
     <SmDivider variant="dashed" />
     <SmDivider>文本</SmDivider>
   </div>
-</Demo>
+:::
 
 ## 结构
 

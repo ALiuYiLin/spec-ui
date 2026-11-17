@@ -4,11 +4,11 @@
 
 ## 代码演示
 
-<Demo note="步进按钮只在 hover 时出现；点击后焦点留在输入框">
+::: demo
   <SmInputNumber :model-value="5" style="width: 120px" aria-label="数量" />
   <SmInputNumber :model-value="5" :disabled="true" style="width: 120px" aria-label="禁用" />
   <SmInputNumber :model-value="5" status="error" style="width: 120px" aria-label="错误" />
-</Demo>
+:::
 
 ## 结构
 

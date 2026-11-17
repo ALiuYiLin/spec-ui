@@ -4,13 +4,13 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmImage
     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
     :width="40"
     alt=""
   />
-</Demo>
+:::
 
 ## 结构
 

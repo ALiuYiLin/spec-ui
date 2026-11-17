@@ -4,12 +4,12 @@
 
 ## 代码演示
 
-<Demo note="Space / Enter 切换由原生 button 提供">
+::: demo
   <SmSwitch aria-label="关" />
   <SmSwitch :model-value="true" aria-label="开" />
   <SmSwitch :disabled="true" aria-label="禁用" />
   <SmSwitch size="sm" aria-label="小号" />
-</Demo>
+:::
 
 ## 结构
 

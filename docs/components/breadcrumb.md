@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmBreadcrumb :items="[{ title: '首页' }, { title: '列表' }]" />
-</Demo>
+:::
 
 ## 结构
 

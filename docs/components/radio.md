@@ -4,11 +4,11 @@
 
 ## 代码演示
 
-<Demo note="同一组必须共享 name，互斥由浏览器保证">
+::: demo
   <SmRadio label="未选" name="demo" />
   <SmRadio :model-value="true" label="已选" name="demo" />
   <SmRadio :disabled="true" label="禁用" name="demo" />
-</Demo>
+:::
 
 ## 结构
 

@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-<Demo note="点击展开；支持键盘 ArrowDown / ArrowUp / Enter / Esc / Delete">
+::: demo
   <SmSelect
     :options="[
       { value: 'a', label: '选项 A' },
@@ -25,7 +25,7 @@
     :disabled="true"
     placeholder="禁用"
   />
-</Demo>
+:::
 
 ## 结构
 

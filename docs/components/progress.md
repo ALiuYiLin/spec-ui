@@ -4,12 +4,12 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <div style="width: 200px">
     <SmProgress :percent="40" />
     <SmProgress :percent="100" status="success" />
   </div>
-</Demo>
+:::
 
 ## 结构
 

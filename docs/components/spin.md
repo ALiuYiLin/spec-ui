@@ -4,10 +4,10 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmSpin />
   <SmSpin size="lg" />
-</Demo>
+:::
 
 ## 结构
 

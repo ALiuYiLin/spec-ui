@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo note="点击触发器打开；条目带 role=menuitem">
+::: demo
   <DropdownDemo />
-</Demo>
+:::
 
 ## 结构
 

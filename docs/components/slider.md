@@ -4,10 +4,10 @@
 
 ## 代码演示
 
-<Demo note="方向键步进，Home / End 跳到两端">
+::: demo
   <SmSlider :model-value="40" style="width: 200px" aria-label="音量" />
   <SmSlider :model-value="70" :disabled="true" style="width: 200px" aria-label="禁用" />
-</Demo>
+:::
 
 ## 结构
 

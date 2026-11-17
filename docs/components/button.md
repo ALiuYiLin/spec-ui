@@ -13,30 +13,32 @@
 
 ## 代码演示 {#examples}
 
-<Demo title="按钮类型" desc="默认按钮用于次要动作，主按钮用于一个区域里最重要的那一个">
-  <SmButton variant="primary" label="提交" />
-  <SmButton label="默认" />
-  <SmButton variant="dashed" label="虚线" />
-  <SmButton variant="text" label="文本" />
-  <SmButton variant="link" label="链接" />
-</Demo>
+默认按钮用于次要动作，主按钮用于一个区域里最重要的那一个。
 
-<Demo title="尺寸与形状" desc="尺寸只由 data-size 决定，形状只由 data-shape 决定">
-  <SmButton variant="primary" size="sm" label="小" />
-  <SmButton variant="primary" label="中" />
-  <SmButton variant="primary" size="lg" label="大" />
-  <SmButton variant="primary" shape="round" label="圆角" />
-  <SmButton danger label="删除" />
-</Demo>
+::: demo 按钮类型
+<SmButton variant="primary" label="提交" />
+<SmButton label="默认" />
+<SmButton variant="dashed" label="虚线" />
+<SmButton variant="text" label="文本" />
+<SmButton variant="link" label="链接" />
+:::
 
-<Demo
-  title="加载与禁用"
-  desc="加载中的按钮不可点击；禁用用原生 disabled，不是只改颜色"
-  note="两套实现渲染出的 DOM 完全一致，差异只可能出现在样式层"
->
-  <SmButton variant="primary" :loading="true" label="提交" />
-  <SmButton variant="primary" :disabled="true" label="提交" />
-</Demo>
+尺寸只由 `data-size` 决定，形状只由 `data-shape` 决定。
+
+::: demo 尺寸与形状
+<SmButton variant="primary" size="sm" label="小" />
+<SmButton variant="primary" label="中" />
+<SmButton variant="primary" size="lg" label="大" />
+<SmButton variant="primary" shape="round" label="圆角" />
+<SmButton danger label="删除" />
+:::
+
+加载中的按钮不可点击；禁用用原生 `disabled`，不是只改颜色。
+
+::: demo 加载与禁用
+<SmButton variant="primary" :loading="true" label="提交" />
+<SmButton variant="primary" :disabled="true" label="提交" />
+:::
 
 ## 协议 {#protocol}
 

@@ -12,3 +12,9 @@ declare module '*.vue' {
   const component: DefineComponent<Record<string, unknown>, Record<string, unknown>, unknown>
   export default component
 }
+
+/** markdown-it-container 自身不带类型声明 */
+declare module 'markdown-it-container' {
+  const plugin: unknown
+  export default plugin
+}

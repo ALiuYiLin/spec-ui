@@ -4,11 +4,11 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <div style="width: 240px">
     <SmCard title="标题">卡片内容</SmCard>
   </div>
-</Demo>
+:::
 
 ## 结构
 

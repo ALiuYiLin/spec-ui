@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmStatistic title="总访问量" :value="1234" />
-</Demo>
+:::
 
 ## 结构
 

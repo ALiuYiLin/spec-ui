@@ -4,12 +4,12 @@
 
 ## 代码演示
 
-<Demo note="原生 input 承担全部语义与键盘行为，视觉方框是独立部件">
+::: demo
   <SmCheckbox label="未选" />
   <SmCheckbox :model-value="true" label="已选" />
   <SmCheckbox :indeterminate="true" label="半选" />
   <SmCheckbox :disabled="true" label="禁用" />
-</Demo>
+:::
 
 ## 结构
 

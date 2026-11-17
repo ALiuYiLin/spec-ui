@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmResult status="info" title="标题" subtitle="这是副标题" />
-</Demo>
+:::
 
 ## 结构
 

@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-<Demo note="控件由使用方通过插槽传入">
+::: demo
   <div style="display: grid; gap: 8px; width: 240px">
     <SmField label="用户名">
       <SmInput placeholder="请输入" />
@@ -13,7 +13,7 @@
       <SmInput status="error" model-value="not-an-email" />
     </SmField>
   </div>
-</Demo>
+:::
 
 ## 结构
 

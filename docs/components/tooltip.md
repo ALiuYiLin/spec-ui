@@ -4,14 +4,14 @@
 
 ## 代码演示
 
-<Demo note="hover 或 focus 触发；浮层 portal 到 body 并按 side 定位">
+::: demo
   <SmTooltip title="上方提示" side="top">
     <SmButton label="悬停我" />
   </SmTooltip>
   <SmTooltip title="下方提示" side="bottom">
     <SmButton variant="text" label="也可以是文字" />
   </SmTooltip>
-</Demo>
+:::
 
 ## 结构
 

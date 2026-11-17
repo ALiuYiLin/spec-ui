@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmDescriptions :items="[{ label: '姓名', content: '张三' }, { label: '部门', content: '设计' }]" />
-</Demo>
+:::
 
 ## 结构
 

@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmSteps :current="1" :items="[{ title: '第一步' }, { title: '第二步' }]" />
-</Demo>
+:::
 
 ## 结构
 

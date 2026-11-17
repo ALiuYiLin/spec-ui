@@ -4,9 +4,9 @@
 
 ## 代码演示
 
-<Demo>
+::: demo
   <SmTimeline :items="[{ content: '创建于 09:00' }, { content: '更新于 10:30' }]" />
-</Demo>
+:::
 
 ## 结构
 
