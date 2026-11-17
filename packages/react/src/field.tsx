@@ -13,15 +13,18 @@ export type FieldProps = {
 export function Field({ label, required, status = 'default', error, children }: FieldProps) {
   return (
     <div className="sm-field" data-status={status} {...(required ? { 'data-required': 'true' } : null)}>
-      {label != null ? <label className="sm-field__label">{label}</label> : null}
-      {/* ERROR_IN_CONTROL */}
-      <div className="sm-field__control">
-        {children}
-        {error != null ? (
-          <div className="sm-field__error" role="alert">
-            {error}
-          </div>
-        ) : null}
+      <div className="sm-field__row">
+        {label != null ? <label className="sm-field__label">{label}</label> : null}
+        <div className="sm-field__control">
+          {children}
+          {error != null ? (
+            <div className="sm-field__additional">
+              <div className="sm-field__error" role="alert">
+                {error}
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ export const fieldCases: RefCase[] = [
       { k: 'part', name: 'label' },
       { k: 'part', name: 'control' },
       { k: 'absent', name: 'error' },
-      { k: 'childOf', on: 'label', of: 'root' },
+      { k: 'childOf', on: 'label', of: 'row' },
       { k: 'order', before: 'label', after: 'control' },
     ],
   },

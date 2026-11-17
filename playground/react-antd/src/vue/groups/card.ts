@@ -6,7 +6,8 @@ import { Card } from '@specmark/vue'
 export const cardRenders: Record<string, VueCase> = {
   'ref-card-basic': {
     component: 'Card',
+    // 与 antd 用例一致：240 宽、只有标题
     render: () =>
-      h(Card, { title: '标题', extra: h('span', null, '更多') }, { default: () => '内容' }),
+      h('div', { style: { width: '240px' } }, h(Card, { title: '标题' }, { default: () => '内容' })),
   },
 }

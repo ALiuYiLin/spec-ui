@@ -183,6 +183,14 @@
     "control": {
       "ref": ".sm-field__control",
       "antd": ".ant-form-item-control"
+    },
+    "row": {
+      "ref": ".sm-field__row",
+      "antd": ".ant-row.ant-form-item-row"
+    },
+    "additional": {
+      "ref": ".sm-field__additional",
+      "antd": ".ant-form-item-additional"
     }
   },
   "InputNumber": {
@@ -431,6 +439,10 @@
     "body": {
       "ref": ".sm-card__body",
       "antd": ".ant-card-body"
+    },
+    "headWrapper": {
+      "ref": ".sm-card__head-wrapper",
+      "antd": ".ant-card-head-wrapper"
     }
   },
   "Alert": {

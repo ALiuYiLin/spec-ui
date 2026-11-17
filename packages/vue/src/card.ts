@@ -16,8 +16,10 @@ export const Card = defineComponent({
       return h('div', { class: 'sm-card' }, [
         hasHeader
           ? h('div', { class: 'sm-card__header' }, [
-              props.title ? h('div', { class: 'sm-card__title' }, [props.title]) : null,
-              props.extra,
+              h('div', { class: 'sm-card__head-wrapper' }, [
+                props.title ? h('div', { class: 'sm-card__title' }, [props.title]) : null,
+                props.extra,
+              ]),
             ])
           : null,
         h('div', { class: 'sm-card__body' }, body ? (Array.isArray(body) ? body : [body]) : []),

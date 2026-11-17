@@ -24,9 +24,17 @@ export const Field = defineComponent({
           ...(props.required ? { 'data-required': 'true' } : {}),
         },
         [
-          props.label ? h('label', { class: 'sm-field__label' }, [props.label]) : null,
-          h('div', { class: 'sm-field__control' }, control ? (Array.isArray(control) ? control : [control]) : []),
-          props.error ? h('div', { class: 'sm-field__error', role: 'alert' }, [props.error]) : null,
+          h('div', { class: 'sm-field__row' }, [
+            props.label ? h('label', { class: 'sm-field__label' }, [props.label]) : null,
+            h('div', { class: 'sm-field__control' }, [
+              ...(control ? (Array.isArray(control) ? control : [control]) : []),
+              props.error
+                ? h('div', { class: 'sm-field__additional' }, [
+                    h('div', { class: 'sm-field__error', role: 'alert' }, [props.error]),
+                  ])
+                : null,
+            ]),
+          ]),
         ],
       )
     }

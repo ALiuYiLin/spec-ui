@@ -47,3 +47,11 @@
   line-height: 22px;
 }
 
+/* antd：head 是 flex-column，里面还有一层 head-wrapper(flex-row, space-between) */
+.sm-card__head-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

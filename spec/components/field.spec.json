@@ -12,11 +12,17 @@
       "data": {
         "status": {
           "kind": "config",
-          "enum": ["default", "error", "warning"],
+          "enum": [
+            "default",
+            "error",
+            "warning"
+          ],
           "required": true,
           "default": "default"
         },
-        "required": { "kind": "boolean" }
+        "required": {
+          "kind": "boolean"
+        }
       }
     },
     "parts": {
@@ -25,14 +31,26 @@
         "tag": "label",
         "required": false,
         "order": 1,
-        "condition": "传入 label"
+        "condition": "传入 label",
+        "requires": {
+          "inside": "row",
+          "parent": {
+            "layout": "flex-column"
+          }
+        }
       },
       "control": {
         "class": "sm-field__control",
         "tag": "div",
         "required": true,
         "order": 2,
-        "notes": "控件槽位，具体控件由使用方放入。"
+        "notes": "控件槽位，具体控件由使用方放入。",
+        "requires": {
+          "inside": "row",
+          "parent": {
+            "layout": "flex-column"
+          }
+        }
       },
       "error": {
         "class": "sm-field__error",
@@ -40,7 +58,39 @@
         "required": false,
         "order": 3,
         "condition": "存在错误信息",
-        "aria": { "role": "alert" }
+        "aria": {
+          "role": "alert"
+        },
+        "requires": {
+          "inside": "additional",
+          "parent": {
+            "layout": "block"
+          }
+        }
+      },
+      "row": {
+        "class": "sm-field__row",
+        "tag": "div",
+        "required": false,
+        "condition": "标签与控件的纵向容器",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "block"
+          }
+        }
+      },
+      "additional": {
+        "class": "sm-field__additional",
+        "tag": "div",
+        "required": false,
+        "condition": "有错误文案时渲染，包住 error",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },
