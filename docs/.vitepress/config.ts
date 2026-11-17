@@ -9,6 +9,28 @@ export default defineConfig({
   title: 'SpecMark',
   description: 'Spec first, mark drives UI',
 
+  head: [
+    [
+      'script',
+      {},
+      // VitePress 用 <html class="dark"> 表达暗色，组件库用 <html data-theme="dark">。
+      // 这里把类名镜像成属性：
+      //  - 同步执行一次，覆盖「首屏就是暗色」的情况
+      //  - MutationObserver 覆盖运行期切换（右上角主题开关只改 class，不刷新页面）
+      // 放在 head 里执行，且观察者在同一轮任务内回调，因此不会出现亮色闪一下。
+      [
+        '(function () {',
+        '  var root = document.documentElement;',
+        '  function sync() {',
+        "    root.dataset.theme = root.classList.contains('dark') ? 'dark' : 'light';",
+        '  }',
+        '  sync();',
+        "  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['class'] });",
+        '})();',
+      ].join('\n'),
+    ],
+  ],
+
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide/protocol' },

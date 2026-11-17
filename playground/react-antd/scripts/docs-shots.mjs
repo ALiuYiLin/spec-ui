@@ -53,24 +53,19 @@ const browser = await chromium.launch({ channel: 'chrome' })
 const page = await browser.newPage({
   viewport: { width: 1024, height: 900 },
   deviceScaleFactor: 1,
+  // --dark 走 VitePress 自己的暗色（给 <html> 加 class="dark"），
+  // 再由文档站的镜像脚本转成 data-theme —— 这样截的是整合后的真实效果
   colorScheme: dark ? 'dark' : 'light',
 })
-
-if (dark) {
-  // 组件令牌走 [data-theme='dark']；同时给页面底色，避免白底上叠暗色组件
-  await page.addInitScript(() => {
-    document.documentElement.dataset.theme = 'dark'
-  })
-  await page.addStyleTag({ content: 'html { background: #000 !important; }' })
-}
 
 for (const name of PAGES) {
   await page.goto(`http://127.0.0.1:${port}/components/${name}.html`, { waitUntil: 'networkidle' })
   if (dark) {
-    await page.evaluate(() => {
-      document.documentElement.dataset.theme = 'dark'
-    })
-    await page.addStyleTag({ content: 'html, body { background: #000 !important; }' })
+    await page.waitForFunction(() => document.documentElement.classList.contains('dark'))
+    const applied = await page.evaluate(() => document.documentElement.dataset.theme ?? '(未设置)')
+    if (applied !== 'dark') {
+      console.warn(`  ! data-theme=${applied}，镜像脚本没有生效`)
+    }
   }
   await page.waitForTimeout(300)
   await page.screenshot({ path: path.join(OUT, `docs-${dark ? 'dark-' : ''}${name}.png`), fullPage: false })

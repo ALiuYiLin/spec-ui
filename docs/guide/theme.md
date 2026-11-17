@@ -17,6 +17,42 @@
 
 只认显式属性，**不跟随 `prefers-color-scheme`**——组件库不替宿主决定主题，避免和宿主自己的暗色逻辑打架。
 
+## 接入 VitePress
+
+VitePress 的暗色是给 `<html>` 加/删 `class="dark"`（不刷新页面），和我们的 `data-theme` 不是一回事。
+文档站用一段 head 内联脚本把两者接起来：
+
+```js
+(function () {
+  var root = document.documentElement
+  function sync() {
+    root.dataset.theme = root.classList.contains('dark') ? 'dark' : 'light'
+  }
+  sync() // 覆盖「首屏就是暗色」
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['class'] })
+})()
+```
+
+## 为什么是「观察 class」而不是「监听 isDark」
+
+用 Vue 侧 `useData().isDark` 当然也能拿到状态，但它有两个问题：
+
+1. **时机**：`isDark` 要等客户端 hydrate 之后才可用，而此时浏览器可能已经画过一帧——
+   首屏会先亮一下再变暗
+2. **覆盖不全**：它只是 VitePress 的内部状态，真正生效的是 `class`。
+
+`MutationObserver` 直接盯着那个 class，两个时机都能覆盖：脚本在 head 中同步执行一次（首屏就是暗色时不闪），
+之后每次开关触发 class 变化，回调在**同一轮任务的微任务阶段**执行，仍在绘制之前。
+
+## 为什么不改库、只改文档
+
+库只认 `data-theme=...`，不认 `.dark`。把宿主的约定挡在文档站这一层，好处是：
+
+- 库不绑定 VitePress；换到别的站点只需要换镜像脚本（或者直接用 `data-theme`）
+- 想接入 Tailwind 的 `.dark` 约定、MUI 的 `.Mui-dark`，都只是同样的几行镜像
+
+代价是文档站多了一段脚本，但它只有 8 行，且不进入 `packages/css`。
+
 ## 令牌来自 antd，不是手调的
 
 亮色值等于 `theme.defaultAlgorithm(theme.defaultSeed)` 的输出，暗色值等于 `theme.darkAlgorithm(...)` 的输出。
