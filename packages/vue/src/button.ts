@@ -33,9 +33,9 @@ export const Button = defineComponent({
       const slotText =
         slotNodes.length === 1 && typeof slotNodes[0].children === 'string' ? (slotNodes[0].children as string) : ''
       const text = props.label
-        ? normalizeLabel(props.label, showIcon, props.variant)
+        ? normalizeLabel(props.label, props.icon != null, props.variant)
         : slotText
-          ? normalizeLabel(slotText, showIcon, props.variant)
+          ? normalizeLabel(slotText, props.icon != null, props.variant)
           : ''
       const content = text ? [text] : slotNodes
 

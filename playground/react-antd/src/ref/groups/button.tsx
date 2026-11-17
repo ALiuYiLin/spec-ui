@@ -160,7 +160,7 @@ export const buttonCases: RefCase[] = [
     id: 'ref-button-loading-icon',
     component: 'Button',
     render: () => (
-      <Button loading icon={icon}>
+      <Button variant="solid" loading icon={icon}>
         提交
       </Button>
     ),

@@ -686,6 +686,7 @@ const PAIRS = [
   { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label'] },
   { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner'] },
+  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', 'spinner'] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-round', antd: 'button-shape-round', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-block', antd: 'button-block', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }, 'label'] },

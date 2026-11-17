@@ -29,7 +29,7 @@ export const buttonRenders: Record<string, VueCase> = {
   },
   'ref-button-loading-icon': {
     component: 'Button',
-    render: () => h(Button, { loading: true, icon: h(icon), label: '提交' }),
+    render: () => h(Button, { variant: 'solid', loading: true, icon: h(icon), label: '提交' }),
   },
   'ref-button-disabled': {
     component: 'Button',

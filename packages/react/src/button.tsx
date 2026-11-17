@@ -35,7 +35,7 @@ export function Button({
   const showSpinner = Boolean(loading)
   // 协议：icon 与 spinner 互斥，loading 时 icon 不渲染
   const showIcon = icon != null && !showSpinner
-  const label = typeof children === 'string' ? normalizeLabel(children, showIcon, variant) : children
+  const label = typeof children === 'string' ? normalizeLabel(children, icon != null, variant) : children
 
   return (
     <button
