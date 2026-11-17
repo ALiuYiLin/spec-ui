@@ -119,6 +119,8 @@
   }
   .sm-input__clear {
     display: block;
+    /* 包裹层是 align-items: normal，用 align-self 把 12px 的按钮拉到中线 */
+    align-self: center;
     box-sizing: border-box;
     width: 12px;
     height: 12px;

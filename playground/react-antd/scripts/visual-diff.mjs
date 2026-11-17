@@ -848,14 +848,14 @@ const PAIRS = [
     ref: 'ref-input-clear',
     antd: 'input-clear',
     // 清除按钮是图形部件（SVG + currentColor），antd 那边是 button，字体会落到 UA 默认 Arial
-    targets: ['root', { name: 'clear', ignore: ['font-family'] }, { name: 'clearSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }],
+    targets: ['root', { name: 'clear', ignore: ['font-family', 'align-self'] }, { name: 'clearSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position', 'line-height', 'font-family', 'min-width', 'min-height'] }],
   },
   {
     component: 'Input',
     ref: 'ref-input-clear',
     antd: 'input-clear-hover',
     pseudo: ['hover'],
-    targets: ['root', { name: 'clear', ignore: ['font-family'] }],
+    targets: ['root', { name: 'clear', ignore: ['font-family', 'align-self'] }],
   },
 
   // ---- Checkbox ----
