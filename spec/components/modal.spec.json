@@ -14,7 +14,10 @@
         "state": {
           "kind": "state",
           "domain": "visibility",
-          "enum": ["open", "closed"],
+          "enum": [
+            "open",
+            "closed"
+          ],
           "required": true,
           "default": "closed"
         }
@@ -27,7 +30,20 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "overlay-stack",
+            "order": 1,
+            "container": "root"
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "dialog": {
         "class": "sm-modal__dialog",
@@ -35,10 +51,29 @@
         "required": true,
         "order": 2,
         "attrs": {
-          "role": { "required": true, "default": "dialog" },
-          "aria-modal": { "required": true, "default": "true" }
+          "role": {
+            "required": true,
+            "default": "dialog"
+          },
+          "aria-modal": {
+            "required": true,
+            "default": "true"
+          }
         },
-        "aria": { "aria-label": "无标题时必填，指向标题或角色名" }
+        "aria": {
+          "aria-label": "无标题时必填，指向标题或角色名"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "overlay-stack",
+            "order": 2,
+            "container": "root"
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "close": {
         "class": "sm-modal__close",
@@ -46,33 +81,74 @@
         "required": false,
         "order": 1,
         "condition": "closable 不为 false",
-        "aria": { "aria-label": "必填" }
+        "aria": {
+          "aria-label": "必填"
+        },
+        "requires": {
+          "inside": "dialog"
+        }
       },
       "header": {
         "class": "sm-modal__header",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "dialog",
+          "lane": {
+            "name": "dialog-stack",
+            "order": 1,
+            "container": "dialog"
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "title": {
         "class": "sm-modal__title",
         "tag": "div",
         "required": false,
         "order": 1,
-        "condition": "传入 title"
+        "condition": "传入 title",
+        "requires": {
+          "inside": "header"
+        }
       },
       "body": {
         "class": "sm-modal__body",
         "tag": "div",
         "required": true,
-        "order": 3
+        "order": 3,
+        "requires": {
+          "inside": "dialog",
+          "lane": {
+            "name": "dialog-stack",
+            "order": 2,
+            "container": "dialog"
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "footer": {
         "class": "sm-modal__footer",
         "tag": "div",
         "required": false,
         "order": 4,
-        "condition": "footer 不为 null"
+        "condition": "footer 不为 null",
+        "requires": {
+          "inside": "dialog",
+          "lane": {
+            "name": "dialog-stack",
+            "order": 3,
+            "container": "dialog"
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },
@@ -83,12 +159,14 @@
     "close 若存在，必须是 dialog 的直接子节点。",
     "header 必须存在；title 若存在，必须是 header 的直接子节点。",
     "state=closed 时 root 不得存在——不得用 display:none 隐藏。",
-    "禁止把焦点留在遮罩或背景内容上；打开时应聚焦 dialog 内第一个可聚焦元素。"
+    "禁止把焦点留在遮罩或背景内容上；打开时应聚焦 dialog 内第一个可聚焦元素。",
+    "mask 必须排在 dialog 之前（同一 overlay-stack lane），dialog 内部的 header → body → footer 顺序固定。",
+    "实现可以在 root / dialog 与部件之间插入透明包裹，但包裹必须满足部件的 requires.parent。"
   ],
   "a11y": [
     "dialog 必须有可访问名称（title 或 aria-label）。",
     "关闭后焦点必须回到触发元素（由使用方负责）。",
     "遮罩点击关闭属于交互契约，不由协议强制。"
   ],
-  "notes": "第一个 z-index 分层（遮罩 1000 / 对话框 1000+）的组件；modal 的进出场动画不在 L3 比对范围。"
+  "notes": "第一个 z-index 分层（遮罩 1000 / 对话框 1000+）的组件；modal 的进出场动画不在 L3 比对范围。 关系约束：mask 与 dialog 同属 overlay-stack lane（都在 root 这一层，mask 在前）；dialog 内部是 dialog-stack lane（header → body → footer），close 是绝对定位的浮层按钮，不参与该 lane。"
 }

@@ -225,6 +225,15 @@ function relationsChecks(snap, spec) {
               const isFlex = parent.computed.display === 'flex' || parent.computed.display === 'inline-flex'
               const wantRow = value === 'flex-row'
               const wantColumn = value === 'flex-column'
+              const wantBlock = value === 'block'
+              if (wantBlock) {
+                if (parent.computed.display !== 'block') {
+                  fails.push(
+                    `${name} 要求父级是 block，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
+                  )
+                }
+                continue
+              }
               if (!wantRow && !wantColumn) {
                 fails.push(`${name} 声明了未知的父级布局 ${value}`)
               } else if (!isFlex || parent.computed.flexDirection !== (wantRow ? 'row' : 'column')) {
