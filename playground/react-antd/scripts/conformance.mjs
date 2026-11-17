@@ -138,19 +138,8 @@ async function loadSpec(component) {
 }
 
 
-/** 读取尺寸令牌表（spec/tokens.size.json），按 size 档位取值 */
-const SIZE_TOKENS = JSON.parse(
-  await fsp.readFile(path.resolve(SPEC_DIR, '..', 'tokens.size.json'), 'utf8'),
-)
 
-function tokenValue(ref, size) {
-  const table = SIZE_TOKENS[ref]
-  if (!table) return null
-  return table[size] ?? null
-}
 
-const px = (v) => (typeof v === 'string' && v.endsWith('px') ? Number.parseFloat(v) : null)
-const near = (a, b) => Math.abs(a - b) < 0.51
 
 /** 未声明的中间元素必须是「透明包裹」：不承载类名、状态、语义与文本 */
 function isTransparent(node) {
@@ -326,21 +315,6 @@ function relationsChecks(snap, spec) {
         fails.push(`lane ${laneName} 里 ${prev.partName} 与 ${cur.partName} 不能互相嵌套`)
       } else if (prev.order !== cur.order && a.seq > b.seq) {
         fails.push(`lane ${laneName} 的文档顺序应为 ${prev.partName} → ${cur.partName}，实际相反`)
-      }
-    }
-  }
-
-  // ---- 尺寸令牌 ----
-  const size = rootNode.attrs['data-size'] ?? spec.anatomy.root.data?.size?.default ?? 'md'
-  for (const [name, decl] of Object.entries(spec.anatomy.parts ?? {})) {
-    for (const [prop, ref] of Object.entries(decl.box ?? {})) {
-      const want = ref?.$token ? tokenValue(ref.$token, size) : ref
-      if (!want) continue
-      for (const node of find(name)) {
-        const actual = prop === 'width' ? node.computed.width : node.computed.height
-        if (!near(px(want), px(actual))) {
-          fails.push(`${name} 的 ${prop} 应为 ${want}（token ${ref.$token}.${size}），实际 ${actual}`)
-        }
       }
     }
   }

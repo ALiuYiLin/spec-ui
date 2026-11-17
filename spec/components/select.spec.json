@@ -201,14 +201,6 @@
             "layout": "flex-row",
             "align-items": "normal"
           }
-        },
-        "box": {
-          "width": {
-            "$token": "select.clear.size"
-          },
-          "height": {
-            "$token": "select.clear.size"
-          }
         }
       },
       "arrow": {
@@ -230,14 +222,6 @@
           "parent": {
             "layout": "flex-row",
             "align-items": "normal"
-          }
-        },
-        "box": {
-          "width": {
-            "$token": "select.arrow.size"
-          },
-          "height": {
-            "$token": "select.arrow.size"
           }
         }
       },

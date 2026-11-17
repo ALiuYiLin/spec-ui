@@ -80,7 +80,7 @@
         "root": {
           "type": "object",
           "additionalProperties": true,
-          "$comment": "根节点必须满足的计算值，如 display / align-items / height（可引用 $token）"
+          "$comment": "根节点必须满足的计算值，如 display / align-items"
         },
         "row": {
           "type": "object",
@@ -98,7 +98,7 @@
         "parts": {
           "type": "object",
           "additionalProperties": true,
-          "$comment": "各部件必须满足的计算值，如 flex / line-height / box（可引用 $token）"
+          "$comment": "各部件必须满足的计算值，如 flex / line-height"
         }
       }
     }

@@ -82,11 +82,6 @@
             "layout": "flex-row",
             "align-items": "normal"
           }
-        },
-        "box": {
-          "line-height": {
-            "$token": "control.lineHeight"
-          }
         }
       },
       "field": {
@@ -113,11 +108,6 @@
           "parent": {
             "layout": "flex-row"
           }
-        },
-        "box": {
-          "line-height": {
-            "$token": "control.lineHeight"
-          }
         }
       },
       "clear": {
@@ -141,14 +131,6 @@
           "parent": {
             "layout": "flex-row",
             "align-items": "normal"
-          }
-        },
-        "box": {
-          "width": {
-            "$token": "input.clear.size"
-          },
-          "height": {
-            "$token": "input.clear.size"
           }
         }
       },

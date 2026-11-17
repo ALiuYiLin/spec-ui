@@ -72,7 +72,6 @@ Input 的关系约束长这样：
     "lane": { "name": "affix-row", "order": 1 },
     "parent": { "layout": "flex-row", "align-items": "normal" }
   },
-  "box": { "line-height": { "$token": "control.lineHeight" } }
 }
 ```
 
@@ -83,7 +82,6 @@ Input 的关系约束长这样：
 | `inside` | 必须是该部件的后代（不承诺深度） | 沿 `parentUid` 链回溯 |
 | `lane` | 同一行的成员，按 `order` 出现，`exclusiveWith` 互斥 | `seq` 文档序 + 祖先互斥检查 |
 | `parent` | **直接父元素**必须满足的计算值 | 取父节点的 `display` / `flexDirection` / `alignItems` |
-| `box` | 尺寸，按 `sm/md/lg` 取令牌 | 比计算后的宽高 |
 
 ### 为什么「父级布局」写在子元素上
 
@@ -97,29 +95,22 @@ Input 的关系约束长这样：
 未声明的中间元素必须同时满足：没有 `sm-` 类名、没有 `data-*` / `aria-*` / `role` / `tabindex`、
 不承载文本。它在 DOM 里存在，但对语义、状态与可访问性树没有贡献。
 
-### 尺寸走令牌，不写死
+### 尺寸不写进协议
 
-```json
-"box": { "width": { "$token": "input.clear.size" }, "height": { "$token": "input.clear.size" } }
-```
-
-令牌表在 `spec/tokens.size.json`，按档位展开：
-
-```json
-"input.clear.size": { "sm": "12px", "md": "12px", "lg": "12px" }
-```
-
-写死一个 `14px` 必然在另外两档上错。
+尺寸属于 CSS 层的职责：组件库用自己的令牌体系（`--sm-*`）按 `sm/md/lg` 定义，
+协议只约束结构与关系。尺寸是否与参考实现一致，由 L3 拿计算样式逐项比对——那是几何问题，
+用几何的方式验证，比在协议里抄一份数字更可靠。
 
 ### 五条负向测试
 
 改错协议，校验器必须报红（全部验证过）：
 
 1. lane 顺序写反
-2. 尺寸令牌改错
-3. 父级布局写成 `flex-column`
-4. `inside` 指向错误的同级部件
-5. `inside` 指向协议里不存在的部件
+2. 父级布局写成 `flex-column`
+3. `inside` 指向错误的同级部件
+4. `inside` 指向协议里不存在的部件
+
+（尺寸不由协议承载，因此没有「令牌改错」这一项。）
 
 ### 边界
 
