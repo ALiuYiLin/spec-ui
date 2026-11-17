@@ -220,4 +220,34 @@ export const buttonCases: RefCase[] = [
     ),
     assert: [{ k: 'text', on: 'label', value: '提交' }],
   },
+  {
+    id: 'ref-button-danger-primary',
+    component: 'Button',
+    render: () => <Button variant="solid" tone="danger">删除</Button>,
+    assert: [{ k: 'part', name: 'label' }],
+  },
+  {
+    id: 'ref-button-danger-default',
+    component: 'Button',
+    render: () => <Button tone="danger">删除</Button>,
+    assert: [{ k: 'part', name: 'label' }],
+  },
+  {
+    id: 'ref-button-dashed',
+    component: 'Button',
+    render: () => <Button variant="dashed">编辑</Button>,
+    assert: [{ k: 'part', name: 'label' }],
+  },
+  {
+    id: 'ref-button-link',
+    component: 'Button',
+    render: () => <Button variant="link">链接</Button>,
+    assert: [{ k: 'part', name: 'label' }],
+  },
+  {
+    id: 'ref-button-size-sm',
+    component: 'Button',
+    render: () => <Button variant="solid" size="sm">小</Button>,
+    assert: [{ k: 'part', name: 'label' }],
+  },
 ]

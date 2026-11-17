@@ -27,4 +27,22 @@ export const sliderCases: RefCase[] = [
       { k: 'attr', on: 'handle', key: 'tabindex', value: '-1' },
     ],
   },
+  {
+    id: 'ref-slider-max',
+    component: 'Slider',
+    render: () => <Slider max={100} value={100} />,
+    assert: [{ k: 'part', name: 'track' }],
+  },
+  {
+    id: 'ref-slider-min',
+    component: 'Slider',
+    render: () => <Slider min={0} value={0} />,
+    assert: [{ k: 'part', name: 'track' }],
+  },
+  {
+    id: 'ref-slider-focus',
+    component: 'Slider',
+    render: () => <Slider value={40} />,
+    assert: [{ k: 'part', name: 'track' }],
+  },
 ]

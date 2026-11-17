@@ -1,4 +1,28 @@
 /* Divider */
+/* 带文字时高度交给行盒（antd 也是 25.14px 的行高），无文字时才是 1px 的线 */
+.sm-divider:has(.sm-divider__text) {
+  height: auto;
+  margin: 16px 0;
+  font-size: 16px;
+  line-height: 1.5714;
+  /* 带文字时线不再画在根上，改由两侧的伪元素画（antd 的做法） */
+  border-top: 0;
+  align-items: center;
+  border-top-color: var(--color-sm-split);
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+.sm-divider:has(.sm-divider__text)::before,
+.sm-divider:has(.sm-divider__text)::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--color-sm-split);
+}
+.sm-divider__text {
+  padding-inline: 1em;
+}
+
 .sm-divider {
   clear: both;
   display: flex;

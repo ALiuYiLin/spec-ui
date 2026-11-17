@@ -42,4 +42,9 @@ export const buttonRenders: Record<string, VueCase> = {
     component: 'Button',
     render: () => h(Button, { icon: h(icon), label: '提交' }),
   },
+  'ref-button-danger-primary': { component: 'Button', render: () => h(Button, { variant: 'solid', tone: 'danger', label: '删除' }) },
+  'ref-button-danger-default': { component: 'Button', render: () => h(Button, { tone: 'danger', label: '删除' }) },
+  'ref-button-dashed': { component: 'Button', render: () => h(Button, { variant: 'dashed', label: '编辑' }) },
+  'ref-button-link': { component: 'Button', render: () => h(Button, { variant: 'link', label: '链接' }) },
+  'ref-button-size-sm': { component: 'Button', render: () => h(Button, { variant: 'solid', size: 'sm', label: '小' }) },
 }

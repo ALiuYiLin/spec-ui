@@ -1133,6 +1133,20 @@ const PAIRS = [
     antd: 'descriptions-basic',
     targets: [{ name: 'root', ignore: ['width', 'height', 'transform-origin'] }],
   },
+  { component: 'Avatar', ref: 'ref-avatar-square', antd: 'avatar-square', targets: ['root'] },
+  { component: 'Divider', ref: 'ref-divider-text', antd: 'divider-text', targets: ['root'] },
+  { component: 'Select', ref: 'ref-select-open-empty', antd: 'select-open-empty', targets: ['root', 'control'] },
+  { component: 'Button', ref: 'ref-button-danger-primary', antd: 'button-danger-primary', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-danger-default', antd: 'button-danger-default', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-dashed', antd: 'button-dashed-md', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-link', antd: 'button-link-md', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-link', antd: 'button-link-md-hover', pseudo: ['hover'], targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-primary', antd: 'button-primary-md-focus', pseudo: ['focus'], targets: ['root'] },
+  { component: 'Button', ref: 'ref-button-size-sm', antd: 'button-size-sm', targets: ['root', 'label'] },
+  { component: 'Slider', ref: 'ref-slider-basic', antd: 'slider-hover', pseudo: ['hover'], targets: ['root'] },
+  { component: 'Slider', ref: 'ref-slider-focus', antd: 'slider-focus', targets: ['root'] },
+  { component: 'Slider', ref: 'ref-slider-max', antd: 'slider-max', targets: ['root'] },
+  { component: 'Slider', ref: 'ref-slider-min', antd: 'slider-min', targets: ['root'] },
 ]
 
 

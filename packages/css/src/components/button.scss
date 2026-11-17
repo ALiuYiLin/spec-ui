@@ -92,6 +92,16 @@
     border-style: dashed;
   }
   .sm-btn[data-variant='text'],
+  /* antd 的 danger 描边按钮阴影带红色调，不能沿用中性阴影 */
+.sm-btn[data-tone='danger'][data-variant='default'],
+.sm-btn[data-tone='danger'][data-variant='dashed'] {
+  box-shadow: 0 2px 0 var(--color-sm-shadow-danger);
+}
+
+.sm-btn[data-variant='text'] {
+    background: transparent;
+    border-color: transparent;
+  }
   .sm-btn[data-variant='link'] {
     background: transparent;
     border-color: transparent;
@@ -170,7 +180,7 @@
     background: var(--color-sm-fill);
   }
   .sm-btn[data-variant='link']:hover {
-    color: var(--sm-tone-hover, var(--color-sm-ring));
+    color: var(--sm-tone-hover, var(--color-sm-link-hover));
   }
   .sm-btn:focus-visible {
     outline: 3px solid var(--color-sm-ring);
@@ -242,3 +252,16 @@
     transform-origin: center;
     animation: sm-spin 1s linear infinite;
   }
+
+/* text / link 从不显示边框：悬停时也不能被基础规则的边框色带上 */
+.sm-btn[data-variant='text'],
+.sm-btn[data-variant='text']:hover,
+.sm-btn[data-variant='link'],
+.sm-btn[data-variant='link']:hover {
+  border-color: transparent;
+}
+/* text 变体没有立体阴影，悬停也一样 */
+.sm-btn[data-variant='text'],
+.sm-btn[data-variant='text']:hover {
+  box-shadow: none;
+}

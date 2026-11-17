@@ -16,7 +16,11 @@ export const dividerCases: RefCase[] = [
   {
     id: 'ref-divider-text',
     component: 'Divider',
-    render: () => <Divider>文本</Divider>,
+    render: () => (
+      <div style={{ width: 256 }}>
+        <Divider>文本</Divider>
+      </div>
+    ),
     assert: [{ k: 'part', name: 'text' }],
   },
 ]
