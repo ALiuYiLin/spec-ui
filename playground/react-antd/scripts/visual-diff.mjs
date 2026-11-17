@@ -719,10 +719,10 @@ const PAIRS = [
   { component: 'Button', ref: 'ref-button-tone-success', antd: 'button-tone-success', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-tone-warning', antd: 'button-tone-warning', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
-  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root', { name: 'iconSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label', { name: 'iconSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
-  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', { name: 'icon', center: true }, 'label', { name: 'iconSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', { name: 'spinner', center: true }, { name: 'spinnerSvg', center: true, ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-round', antd: 'button-shape-round', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-block', antd: 'button-block', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }, 'label'] },
@@ -1196,7 +1196,23 @@ async function main() {
         if (!sameValue(p, a, b)) diffs.push({ p, a, b })
       }
 
-      const compared = PROPS.length - ignore.size - IGNORE_ALWAYS.size
+      // 可选：比对元素中心相对 case 根节点的偏移。
+      // 计算样式全对但位置错了（例如空 label 把图标挤偏 gap/2）只有这里能发现。
+      if (target.center) {
+        const rel = (node, root) => ({
+          x: +(node.rect.x + node.rect.w / 2 - (root.rect.x + root.rect.w / 2)).toFixed(2),
+          y: +(node.rect.y + node.rect.h / 2 - (root.rect.y + root.rect.h / 2)).toFixed(2),
+        })
+        const a = rel(antdEl, antdRecord.tree)
+        const b = rel(refEl, refSnap.tree)
+        const dx = +(b.x - a.x).toFixed(2)
+        const dy = +(b.y - a.y).toFixed(2)
+        if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+          diffs.push({ p: 'center', a: `(${a.x}, ${a.y})`, b: `(${b.x}, ${b.y}) 偏移 (${dx}, ${dy})` })
+        }
+      }
+
+      const compared = PROPS.length - ignore.size - IGNORE_ALWAYS.size + (target.center ? 1 : 0)
       if (diffs.length === 0) {
         cleanTargets += 1
         console.log(`  ${target.name.padEnd(12)} ✓ ${compared} 项一致`)
