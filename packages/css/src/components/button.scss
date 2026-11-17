@@ -107,6 +107,12 @@
     border-color: var(--sm-tone-text, var(--color-sm-border));
   }
 
+  /* 只有图标时 label 槽是空的，但它仍是 flex item，gap 会把字形挤偏 gap/2。
+     不能改 gap（它是比对项），改为让空槽不参与布局，DOM 里仍然存在。 */
+  .sm-btn__label:empty {
+    display: none;
+  }
+
   .sm-btn[data-shape='circle'] {
     min-width: 32px;
     width: 32px;
