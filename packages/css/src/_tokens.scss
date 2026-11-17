@@ -22,12 +22,18 @@
   --color-sm-success: #52c41a;
   --color-sm-success-bg: #f6ffed;
   --color-sm-success-border: #b7eb8f;
+  --color-sm-success-hover: #95de64;
+  --color-sm-success-active: #389e0d;
   --color-sm-warning: #faad14;
   --color-sm-warning-bg: #fffbe6;
   --color-sm-warning-border: #ffe58f;
+  --color-sm-warning-hover: #ffd666;
+  --color-sm-warning-active: #d48806;
   --color-sm-danger: #ff4d4f;
   --color-sm-danger-bg: #fff2f0;
   --color-sm-danger-border: #ffccc7;
+  --color-sm-danger-hover: #ff7875;
+  --color-sm-danger-active: #d9363e;
 
   /* 文字 */
   --color-sm-text-base: #000;
@@ -60,6 +66,9 @@
   /* 阴影：暗色下 antd 换成白/更高饱和的投影 */
   --color-sm-shadow-btn: rgba(0, 0, 0, 0.02);
   --color-sm-shadow-primary: rgba(5, 145, 255, 0.1);
+  --color-sm-shadow-success: rgba(142, 255, 30, 0.08);
+  --color-sm-shadow-warning: rgba(255, 215, 5, 0.1);
+  --color-sm-shadow-danger: rgba(255, 38, 5, 0.06);
 }
 
 /* 暗色：颜色值等于 theme.darkAlgorithm(defaultSeed) 的输出。
@@ -76,12 +85,18 @@
   --color-sm-success: #49aa19;
   --color-sm-success-bg: #162312;
   --color-sm-success-border: #274916;
+  --color-sm-success-hover: #306317;
+  --color-sm-success-active: #3c8618;
   --color-sm-warning: #d89614;
   --color-sm-warning-bg: #2b2111;
   --color-sm-warning-border: #594214;
+  --color-sm-warning-hover: #7c5914;
+  --color-sm-warning-active: #aa7714;
   --color-sm-danger: #dc4446;
   --color-sm-danger-bg: #2c1618;
   --color-sm-danger-border: #5b2526;
+  --color-sm-danger-hover: #e86e6b;
+  --color-sm-danger-active: #ad393a;
 
 
   --color-sm-text: rgba(255, 255, 255, 0.85);
@@ -108,4 +123,7 @@
   --color-sm-tag-bg: #1d1d1d;
   --color-sm-shadow-btn: rgba(255, 255, 255, 0.04);
   --color-sm-shadow-primary: rgba(23, 117, 249, 0.31);
+  --color-sm-shadow-success: rgba(40, 170, 0, 0.1);
+  --color-sm-shadow-warning: rgba(173, 107, 0, 0.15);
+  --color-sm-shadow-danger: rgba(255, 38, 5, 0.06);
 }

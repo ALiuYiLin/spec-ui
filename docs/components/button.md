@@ -48,11 +48,11 @@
 
 ::: demo 危险色
 <div style="display: flex; flex-wrap: wrap; gap: 8px; width: 100%">
-  <SmButton danger variant="primary" label="实心" />
-  <SmButton danger label="默认" />
-  <SmButton danger variant="dashed" label="虚线" />
-  <SmButton danger variant="text" label="文本" />
-  <SmButton danger variant="link" label="链接" />
+  <SmButton tone="danger" variant="primary" label="实心" />
+  <SmButton tone="danger" label="默认" />
+  <SmButton tone="danger" variant="dashed" label="虚线" />
+  <SmButton tone="danger" variant="text" label="文本" />
+  <SmButton tone="danger" variant="link" label="链接" />
 </div>
 :::
 
@@ -113,7 +113,8 @@
 
 | 属性 | 取值 |
 |---|---|
-| `data-variant` | `default` `primary` `dashed` `text` `link` |
+| `data-variant` | `default` `solid` `dashed` `text` `link` |
+| `data-tone` | `default` `primary` `success` `warning` `danger` |
 | `data-size` | `xs` `sm` `md` `lg` `xl` |
 | `data-shape` | `default` `round` `circle` |
 | `data-danger` / `data-block` / `data-loading` / `data-disabled` | 布尔 |

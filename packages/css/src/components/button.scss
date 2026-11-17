@@ -48,11 +48,45 @@
     font-size: 16px;
   }
 
-  .sm-btn[data-variant='primary'] {
+  /* 颜色：tone 只声明一组变量，所有形态复用；neutral 靠回退值兜底 */
+  .sm-btn[data-tone='primary'] {
+    --sm-tone: var(--color-sm-primary);
+    --sm-tone-hover: var(--color-sm-primary-hover);
+    --sm-tone-active: var(--color-sm-primary-active);
+    --sm-tone-text: var(--color-sm-primary);
+    --sm-tone-bg: var(--color-sm-primary-bg);
+    --sm-tone-shadow: var(--color-sm-shadow-primary);
+  }
+  .sm-btn[data-tone='success'] {
+    --sm-tone: var(--color-sm-success);
+    --sm-tone-hover: var(--color-sm-success-hover);
+    --sm-tone-active: var(--color-sm-success-active);
+    --sm-tone-text: var(--color-sm-success);
+    --sm-tone-bg: var(--color-sm-success-bg);
+    --sm-tone-shadow: var(--color-sm-shadow-success);
+  }
+  .sm-btn[data-tone='warning'] {
+    --sm-tone: var(--color-sm-warning);
+    --sm-tone-hover: var(--color-sm-warning-hover);
+    --sm-tone-active: var(--color-sm-warning-active);
+    --sm-tone-text: var(--color-sm-warning);
+    --sm-tone-bg: var(--color-sm-warning-bg);
+    --sm-tone-shadow: var(--color-sm-shadow-warning);
+  }
+  .sm-btn[data-tone='danger'] {
+    --sm-tone: var(--color-sm-danger);
+    --sm-tone-hover: var(--color-sm-danger-hover);
+    --sm-tone-active: var(--color-sm-danger-active);
+    --sm-tone-text: var(--color-sm-danger);
+    --sm-tone-bg: var(--color-sm-danger-bg);
+    --sm-tone-shadow: var(--color-sm-shadow-danger);
+  }
+
+  .sm-btn[data-variant='solid'] {
     color: var(--color-sm-white);
-    background: var(--color-sm-primary);
+    background: var(--sm-tone, var(--color-sm-primary));
     border-color: transparent;
-    box-shadow: 0 2px 0 var(--color-sm-shadow-primary);
+    box-shadow: 0 2px 0 var(--sm-tone-shadow, var(--color-sm-shadow-primary));
   }
   .sm-btn[data-variant='dashed'] {
     border-style: dashed;
@@ -62,23 +96,15 @@
     background: transparent;
     border-color: transparent;
     box-shadow: none;
+    color: var(--sm-tone-text, var(--color-sm-text));
   }
   .sm-btn[data-variant='link'] {
-    color: var(--color-sm-primary);
+    color: var(--sm-tone-text, var(--color-sm-primary));
   }
-
-  .sm-btn[data-danger='true'][data-variant='primary'] {
-    background: var(--color-sm-danger);
-    box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
-  }
-  .sm-btn[data-danger='true'][data-variant='default'],
-  .sm-btn[data-danger='true'][data-variant='dashed'] {
-    color: var(--color-sm-danger);
-    border-color: var(--color-sm-danger);
-  }
-  .sm-btn[data-danger='true'][data-variant='text'],
-  .sm-btn[data-danger='true'][data-variant='link'] {
-    color: var(--color-sm-danger);
+  .sm-btn[data-variant='default'],
+  .sm-btn[data-variant='dashed'] {
+    color: var(--sm-tone-text, var(--color-sm-text));
+    border-color: var(--sm-tone-text, var(--color-sm-border));
   }
 
   .sm-btn[data-shape='circle'] {
@@ -105,27 +131,27 @@
   }
 
   /* 交互态：一律伪类，不依赖任何状态类名 */
-  .sm-btn[data-variant='primary']:hover {
-    background: var(--color-sm-primary-hover);
+  .sm-btn[data-variant='solid']:hover {
+    background: var(--sm-tone-hover, var(--color-sm-primary-hover));
   }
-  .sm-btn[data-variant='primary']:active {
-    background: var(--color-sm-primary-active);
+  .sm-btn[data-variant='solid']:active {
+    background: var(--sm-tone-active, var(--color-sm-primary-active));
   }
   .sm-btn[data-variant='default']:hover,
   .sm-btn[data-variant='dashed']:hover {
-    color: var(--color-sm-primary-hover);
-    border-color: var(--color-sm-primary-hover);
+    color: var(--sm-tone-hover, var(--color-sm-primary-hover));
+    border-color: var(--sm-tone-hover, var(--color-sm-primary-hover));
   }
   .sm-btn[data-variant='default']:active,
   .sm-btn[data-variant='dashed']:active {
-    color: var(--color-sm-primary-active);
-    border-color: var(--color-sm-primary-active);
+    color: var(--sm-tone-active, var(--color-sm-primary-active));
+    border-color: var(--sm-tone-active, var(--color-sm-primary-active));
   }
   .sm-btn[data-variant='text']:hover {
     background: var(--color-sm-fill);
   }
   .sm-btn[data-variant='link']:hover {
-    color: var(--color-sm-ring);
+    color: var(--sm-tone-hover, var(--color-sm-ring));
   }
   .sm-btn:focus-visible {
     outline: 3px solid var(--color-sm-ring);

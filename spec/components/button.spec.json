@@ -18,9 +18,15 @@
         }
       },
       "data": {
+        "tone": {
+          "kind": "variant",
+          "enum": ["default", "primary", "success", "warning", "danger"],
+          "required": true,
+          "default": "default"
+        },
         "variant": {
           "kind": "variant",
-          "enum": ["default", "primary", "dashed", "text", "link"],
+          "enum": ["default", "solid", "dashed", "text", "link"],
           "required": true,
           "default": "default"
         },

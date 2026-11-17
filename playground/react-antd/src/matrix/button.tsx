@@ -13,6 +13,27 @@ const searchIcon = (
 
 const base = (props: Parameters<typeof Button>[0]) => () => <Button {...props} />
 
+export const toneCases: CaseDef[] = [
+  {
+    id: 'button-tone-success',
+    state: 'base',
+    render: () => (
+      <Button color="green" variant="solid">
+        提交
+      </Button>
+    ),
+  },
+  {
+    id: 'button-tone-warning',
+    state: 'base',
+    render: () => (
+      <Button color="gold" variant="solid">
+        提交
+      </Button>
+    ),
+  },
+]
+
 export const cases: CaseDef[] = [
   // ---- 默认 / 变体 ----
   { id: 'button-primary-md', state: 'base', render: base({ type: 'primary', children: '提交' }) },

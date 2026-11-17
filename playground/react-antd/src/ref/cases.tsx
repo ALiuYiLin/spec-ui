@@ -67,11 +67,31 @@ export const cases: RefCase[] = [
     ],
   },
   {
+    id: 'ref-button-tone-success',
+    component: 'Button',
+    render: () => (
+      <Button tone="success" variant="solid">
+        提交
+      </Button>
+    ),
+    assert: [{ k: 'data', key: 'tone', value: 'success' }],
+  },
+  {
+    id: 'ref-button-tone-warning',
+    component: 'Button',
+    render: () => (
+      <Button tone="warning" variant="solid">
+        提交
+      </Button>
+    ),
+    assert: [{ k: 'data', key: 'tone', value: 'warning' }],
+  },
+  {
     id: 'ref-button-primary',
     component: 'Button',
-    render: () => <Button variant="primary">提交</Button>,
+    render: () => <Button variant="solid">提交</Button>,
     assert: [
-      { k: 'data', key: 'variant', value: 'primary' },
+      { k: 'data', key: 'variant', value: 'solid' },
       { k: 'part', name: 'label' },
       { k: 'noAttr', on: 'root', key: 'aria-busy' },
     ],
@@ -80,7 +100,7 @@ export const cases: RefCase[] = [
     id: 'ref-button-size-lg',
     component: 'Button',
     render: () => (
-      <Button variant="primary" size="lg">
+      <Button variant="solid" size="lg">
         大
       </Button>
     ),
@@ -90,7 +110,7 @@ export const cases: RefCase[] = [
     id: 'ref-button-circle',
     component: 'Button',
     render: () => (
-      <Button variant="primary" shape="circle" icon={icon} aria-label="搜索" />
+      <Button variant="solid" shape="circle" icon={icon} aria-label="搜索" />
     ),
     assert: [
       { k: 'data', key: 'shape', value: 'circle' },
@@ -103,7 +123,7 @@ export const cases: RefCase[] = [
     id: 'ref-button-icon',
     component: 'Button',
     render: () => (
-      <Button variant="primary" icon={icon}>
+      <Button variant="solid" icon={icon}>
         搜索
       </Button>
     ),
@@ -119,7 +139,7 @@ export const cases: RefCase[] = [
     id: 'ref-button-loading',
     component: 'Button',
     render: () => (
-      <Button variant="primary" loading>
+      <Button variant="solid" loading>
         提交
       </Button>
     ),
@@ -150,7 +170,7 @@ export const cases: RefCase[] = [
     id: 'ref-button-disabled',
     component: 'Button',
     render: () => (
-      <Button variant="primary" disabled>
+      <Button variant="solid" disabled>
         提交
       </Button>
     ),
@@ -165,12 +185,12 @@ export const cases: RefCase[] = [
     id: 'ref-button-danger-block',
     component: 'Button',
     render: () => (
-      <Button danger block>
+      <Button tone="danger" block>
         删除
       </Button>
     ),
     assert: [
-      { k: 'data', key: 'danger', value: 'true' },
+      { k: 'data', key: 'tone', value: 'danger' },
       { k: 'data', key: 'block', value: 'true' },
     ],
   },

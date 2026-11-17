@@ -669,6 +669,8 @@ const PAIRS = [
   // ---- Button：静止态 ----
   { component: 'Button', ref: 'ref-button-default', antd: 'button-default-md', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-primary', antd: 'button-primary-md', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-tone-success', antd: 'button-tone-success', targets: ['root', 'label'] },
+  { component: 'Button', ref: 'ref-button-tone-warning', antd: 'button-tone-warning', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label'] },

@@ -1,5 +1,5 @@
 import type { Case } from './types'
-import { cases as buttonCases } from './button'
+import { cases as buttonCases, toneCases as buttonToneCases } from './button'
 import { cases as selectCases } from './select'
 import { cases as inputCases } from './input'
 import { cases as checkboxCases } from './checkbox'
@@ -33,6 +33,7 @@ import { cases as timelineCases } from './timeline'
 import { cases as descriptionsCases } from './descriptions'
 
 export const cases: Case[] = [
+  ...buttonToneCases.map((c) => ({ ...c, component: 'Button' })),
   ...buttonCases.map((c) => ({ ...c, component: 'Button' })),
   ...selectCases.map((c) => ({ ...c, component: 'Select' })),
   ...inputCases.map((c) => ({ ...c, component: 'Input' })),

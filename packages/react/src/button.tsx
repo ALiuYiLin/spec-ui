@@ -2,7 +2,8 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { SpinnerIcon } from './icons'
 import { normalizeLabel } from './text'
 
-export type ButtonVariant = 'default' | 'primary' | 'dashed' | 'text' | 'link'
+export type ButtonVariant = 'default' | 'solid' | 'dashed' | 'text' | 'link'
+export type ButtonTone = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ButtonShape = 'default' | 'round' | 'circle'
 export type ButtonType = 'button' | 'submit' | 'reset'
@@ -11,7 +12,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> 
   variant?: ButtonVariant
   size?: ButtonSize
   shape?: ButtonShape
-  danger?: boolean
+  tone?: ButtonTone
   block?: boolean
   loading?: boolean
   icon?: ReactNode
@@ -22,7 +23,7 @@ export function Button({
   variant = 'default',
   size = 'md',
   shape = 'default',
-  danger,
+  tone = 'default',
   block,
   loading,
   icon,
@@ -44,7 +45,7 @@ export function Button({
       data-variant={variant}
       data-size={size}
       data-shape={shape}
-      {...(danger ? { 'data-danger': 'true' } : null)}
+      data-tone={tone}
       {...(block ? { 'data-block': 'true' } : null)}
       {...(showSpinner ? { 'data-loading': 'true', 'aria-busy': 'true' } : null)}
       {...(disabled ? { 'data-disabled': 'true', disabled: true } : null)}

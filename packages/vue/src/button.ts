@@ -3,7 +3,8 @@ import type { PropType, VNode } from 'vue'
 import { SpinnerIcon } from './icons'
 import { normalizeLabel } from './text'
 
-export type ButtonVariant = 'default' | 'primary' | 'dashed' | 'text' | 'link'
+export type ButtonVariant = 'default' | 'solid' | 'dashed' | 'text' | 'link'
+export type ButtonTone = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ButtonShape = 'default' | 'round' | 'circle'
 export type ButtonType = 'button' | 'submit' | 'reset'
@@ -14,7 +15,7 @@ export const Button = defineComponent({
     variant: { type: String as PropType<ButtonVariant>, default: 'default' },
     size: { type: String as PropType<ButtonSize>, default: 'md' },
     shape: { type: String as PropType<ButtonShape>, default: 'default' },
-    danger: { type: Boolean, default: false },
+    tone: { type: String as PropType<ButtonTone>, default: 'default' },
     block: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
@@ -27,8 +28,16 @@ export const Button = defineComponent({
     return () => {
       const showSpinner = Boolean(props.loading)
       const showIcon = props.icon != null && !showSpinner
-      const text = props.label ? normalizeLabel(props.label, showIcon, props.variant) : ''
-      const content = text ? [text] : slots.default ? slots.default() : []
+      // 插槽里的纯文本同样要规范化，否则 Vue 与 React 的按钮宽度会差 3.84px
+      const slotNodes = slots.default ? slots.default() : []
+      const slotText =
+        slotNodes.length === 1 && typeof slotNodes[0].children === 'string' ? (slotNodes[0].children as string) : ''
+      const text = props.label
+        ? normalizeLabel(props.label, showIcon, props.variant)
+        : slotText
+          ? normalizeLabel(slotText, showIcon, props.variant)
+          : ''
+      const content = text ? [text] : slotNodes
 
       return h(
         'button',
@@ -38,7 +47,7 @@ export const Button = defineComponent({
           'data-variant': props.variant,
           'data-size': props.size,
           'data-shape': props.shape,
-          ...(props.danger ? { 'data-danger': 'true' } : {}),
+          'data-tone': props.tone,
           ...(props.block ? { 'data-block': 'true' } : {}),
           ...(showSpinner ? { 'data-loading': 'true', 'aria-busy': 'true' } : {}),
           ...(props.disabled ? { 'data-disabled': 'true', disabled: true } : {}),
