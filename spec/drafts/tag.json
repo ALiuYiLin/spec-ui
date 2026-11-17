@@ -1,0 +1,18 @@
+{
+  "component": "Tag",
+  "cases": 2,
+  "inferred": 1,
+  "draft": {
+    "close": {
+      "requires": {
+        "inside": "root"
+      }
+    }
+  },
+  "issues": [
+    "close: 父级布局 inline-block 不在已知布局里"
+  ],
+  "diff": [
+    "close: 手写 spec 里没有 requires（推断有）"
+  ]
+}

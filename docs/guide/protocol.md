@@ -117,3 +117,15 @@ Input 的关系约束长这样：
 - `attach: "body"` 的部件（portal 浮层）跳过 `inside` / `lane` 的容器校验，改验父节点是 `body`
 - `many: true` 的集合部件（如 option）逐个校验，不校验数量
 - `forms` 表达根的多种形态（Input 的 `input` / `span`），不存在形态不参与校验
+
+## 关系推断器
+
+```bash
+pnpm --filter @specmark/playground-react-antd run infer:relations -- --component=Tag --write
+```
+
+从 antd 证据反推 `requires` 草稿：跨用例一致的关系才写进 draft，不一致的进 `issues`；
+部件映射来自 `visual-diff.mjs` 的 `RESOLVE`（那是「我们的部件 ↔ antd 类名」的唯一真相）。
+
+用途是**减少手写量**，不是替代裁决：推断器给草稿，人判断哪些是契约、哪些是实现细节。
+`draft`/`issues`/`diff` 三块分别对应「推出来的」「推断不了的」「与手写 spec 不一致的」。

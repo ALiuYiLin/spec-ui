@@ -18,7 +18,8 @@
     "verify": "pnpm --filter @specmark/css run build && node scripts/check-theme-tokens.mjs && node scripts/conformance.mjs && node scripts/conformance.mjs --selftest && node scripts/visual-diff.mjs && node scripts/conformance.mjs --page=vue.html && node scripts/visual-diff.mjs --page=vue.html && node scripts/visual-diff.mjs --theme=dark && node scripts/visual-diff.mjs --page=vue.html --theme=dark",
     "extract:dark": "node scripts/extract.mjs --theme=dark",
     "diff:dark": "node scripts/visual-diff.mjs --theme=dark",
-    "diff:dark:vue": "node scripts/visual-diff.mjs --page=vue.html --theme=dark"
+    "diff:dark:vue": "node scripts/visual-diff.mjs --page=vue.html --theme=dark",
+    "infer:relations": "node scripts/infer-relations.mjs"
   },
   "dependencies": {
     "antd": "5.29.3",

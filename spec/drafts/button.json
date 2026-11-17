@@ -1,0 +1,16 @@
+{
+  "component": "Button",
+  "cases": 31,
+  "inferred": 0,
+  "draft": {},
+  "issues": [
+    "icon: RESOLVE 里没有 antd 映射，无法推断",
+    "label: RESOLVE 里没有 antd 映射，无法推断",
+    "spinner: RESOLVE 里没有 antd 映射，无法推断"
+  ],
+  "diff": [
+    "icon: 推断里没有（手写有）",
+    "label: 推断里没有（手写有）",
+    "spinner: 推断里没有（手写有）"
+  ]
+}

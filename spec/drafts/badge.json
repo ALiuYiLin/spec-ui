@@ -1,0 +1,18 @@
+{
+  "component": "Badge",
+  "cases": 3,
+  "inferred": 1,
+  "draft": {
+    "count": {
+      "requires": {
+        "inside": "root"
+      }
+    }
+  },
+  "issues": [
+    "count: 父级布局 inline-block 不在已知布局里"
+  ],
+  "diff": [
+    "count: 手写 spec 里没有 requires（推断有）"
+  ]
+}
