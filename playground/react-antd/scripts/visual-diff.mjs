@@ -815,6 +815,11 @@ const PAIRS = [
   { component: 'Input', ref: 'ref-input-value', antd: 'input-value', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-disabled', antd: 'input-disabled', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-error', antd: 'input-error', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-warning', antd: 'input-warning', targets: ['root'] },
+  // filled 在 antd 里没有显式 color（继承页面色），证据台的黑字是环境产物，不比 color
+  { component: 'Input', ref: 'ref-input-filled', antd: 'input-variant-filled', targets: [{ name: 'root', ignore: ['color', 'outline-color'] }] },
+  { component: 'Input', ref: 'ref-input-borderless', antd: 'input-variant-borderless', targets: ['root'] },
+  { component: 'Input', ref: 'ref-input-readonly', antd: 'input-readonly', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-sm', antd: 'input-sm', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-lg', antd: 'input-lg', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-basic', antd: 'input-hover', pseudo: ['hover'], targets: ['root'] },

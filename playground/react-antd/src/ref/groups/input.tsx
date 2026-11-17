@@ -3,7 +3,31 @@ import { Input } from '@specmark/react'
 
 /*** Input */
 export const inputCases: RefCase[] = [
-{
+  {
+    id: 'ref-input-warning',
+    component: 'Input',
+    render: () => (
+      <Input status="warning" defaultValue="内容" />
+    ),
+    assert: [{ k: 'data', key: 'status', value: 'warning' }],
+  },
+  {
+    id: 'ref-input-filled',
+    component: 'Input',
+    render: () => (
+      <Input variant="filled" placeholder="请输入" />
+    ),
+    assert: [{ k: 'data', key: 'variant', value: 'filled' }],
+  },
+  {
+    id: 'ref-input-borderless',
+    component: 'Input',
+    render: () => (
+      <Input variant="borderless" placeholder="请输入" />
+    ),
+    assert: [{ k: 'data', key: 'variant', value: 'borderless' }],
+  },
+  {
     id: 'ref-input-basic',
     component: 'Input',
     render: () => <Input placeholder="请输入" />,

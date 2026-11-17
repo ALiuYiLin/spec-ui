@@ -68,6 +68,9 @@
     height: 30px;
     border-width: 0;
     border-style: none;
+    /* antd 没给 borderless 设 border-color，计算值是 currentColor；
+       我们基础规则里设了 #d9d9d9，这里显式跟回文字色 */
+    border-color: currentColor;
     background: transparent;
   }
   .sm-input:not([data-disabled='true']):hover {

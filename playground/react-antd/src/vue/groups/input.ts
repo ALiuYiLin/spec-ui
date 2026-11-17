@@ -4,6 +4,9 @@ import { Input } from '@specmark/vue'
 
 /*** Input */
 export const inputRenders: Record<string, VueCase> = {
+  'ref-input-warning': { component: 'Input', render: () => h(Input, { status: 'warning', modelValue: '内容' }) },
+  'ref-input-filled': { component: 'Input', render: () => h(Input, { variant: 'filled', placeholder: '请输入' }) },
+  'ref-input-borderless': { component: 'Input', render: () => h(Input, { variant: 'borderless', placeholder: '请输入' }) },
   'ref-input-basic': { component: 'Input', render: () => h(Input, { placeholder: '请输入' }) },
   'ref-input-value': { component: 'Input', render: () => h(Input, { modelValue: '内容' }) },
   'ref-input-disabled': { component: 'Input', render: () => h(Input, { disabled: true, modelValue: '内容' }) },
