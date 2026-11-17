@@ -24,8 +24,9 @@ export const Progress = defineComponent({
           'aria-valuemax': 100,
         },
         [
-          h('div', { class: 'sm-progress__rail', 'aria-hidden': 'true' }),
-          h('div', { class: 'sm-progress__bar', 'aria-hidden': 'true', style: { width: `${value}%` } }),
+          h('div', { class: 'sm-progress__rail', 'aria-hidden': 'true' }, [
+            h('div', { class: 'sm-progress__bar', 'aria-hidden': 'true', style: { width: `${value}%` } }),
+          ]),
           props.showInfo ? h('span', { class: 'sm-progress__text' }, `${value}%`) : null,
         ],
       )

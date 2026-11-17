@@ -18,8 +18,9 @@ export function Progress({ percent = 0, status = 'normal', showInfo = true }: Pr
       aria-valuemin={0}
       aria-valuemax={100}
     >
-      <div className="sm-progress__rail" aria-hidden="true" />
-      <div className="sm-progress__bar" aria-hidden="true" style={{ width: `${value}%` }} />
+      <div className="sm-progress__rail" aria-hidden="true">
+        <div className="sm-progress__bar" aria-hidden="true" style={{ width: `${value}%` }} />
+      </div>
       {showInfo ? <span className="sm-progress__text">{value}%</span> : null}
     </div>
   )

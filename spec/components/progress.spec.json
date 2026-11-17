@@ -12,7 +12,11 @@
       "data": {
         "status": {
           "kind": "variant",
-          "enum": ["normal", "success", "exception"],
+          "enum": [
+            "normal",
+            "success",
+            "exception"
+          ],
           "required": true,
           "default": "normal"
         }
@@ -24,7 +28,19 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "bar": {
         "class": "sm-progress__bar",
@@ -32,15 +48,33 @@
         "required": true,
         "order": 2,
         "geometry": true,
-        "aria": { "aria-hidden": "true" },
-        "notes": "宽度由 percent 决定，走几何内联样式。"
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "notes": "宽度由 percent 决定，走几何内联样式。",
+        "requires": {
+          "inside": "rail",
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "text": {
         "class": "sm-progress__text",
         "tag": "span",
         "required": false,
         "order": 3,
-        "condition": "showInfo"
+        "condition": "showInfo",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },
@@ -49,6 +83,8 @@
     "bar 的宽度只能通过几何内联样式设置。",
     "root 必须带 role=\"progressbar\"、aria-valuenow、aria-valuemin、aria-valuemax。"
   ],
-  "a11y": ["进度必须通过 aria-valuenow 播报，不能只靠视觉宽度。"],
+  "a11y": [
+    "进度必须通过 aria-valuenow 播报，不能只靠视觉宽度。"
+  ],
   "notes": "第二个使用 geometry 的组件。"
 }
