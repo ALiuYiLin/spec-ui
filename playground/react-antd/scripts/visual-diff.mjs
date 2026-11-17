@@ -141,6 +141,15 @@ const antdBtnLabel = (all) => {
   return root.children.find((c) => c.tag === 'span' && c.classes.length === 0)
 }
 
+function findDescendant(node, predicate) {
+  for (const child of node?.children ?? []) {
+    if (predicate(child)) return child
+    const found = findDescendant(child, predicate)
+    if (found) return found
+  }
+  return null
+}
+
 /** 节点子树里是否包含指定 class（用于区分 antd 图标槽里放的是搜索图标还是 loading 图标） */
 function hasDescendantClass(node, cls) {
   if (!node) return false
@@ -160,7 +169,7 @@ const RESOLVE = {
     },
     // 图标槽里的 svg：尺寸写错时槽位盒子看不出来
     iconSvg: {
-      ref: (all) => partByClass(all, 'sm-btn__icon')?.children?.find((c) => c.tag === 'svg') ?? null,
+      ref: (all) => findDescendant(partByClass(all, 'sm-btn__icon'), (c) => c.tag === 'svg'),
       antd: (all) => {
         const wrap = all.find(
           (n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-search'),
@@ -175,7 +184,7 @@ const RESOLVE = {
     },
     // 槽位盒子对不代表里面的字形对：lucide 的 1em 曾在 Vue 侧回落成 24px
     spinnerSvg: {
-      ref: (all) => partByClass(all, 'sm-btn__spinner')?.children?.find((c) => c.tag === 'svg') ?? null,
+      ref: (all) => findDescendant(partByClass(all, 'sm-btn__spinner'), (c) => c.tag === 'svg'),
       antd: (all) => {
         const wrap = all.find(
           (n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-loader-2'),
@@ -205,6 +214,13 @@ const RESOLVE = {
     arrow: {
       ref: (all) => partByClass(all, 'sm-select__arrow'),
       antd: (all) => all.find((n) => n.classes.includes('ant-select-arrow')),
+    },
+    arrowSvg: {
+      ref: (all) => findDescendant(partByClass(all, 'sm-select__arrow'), (c) => c.tag === 'svg'),
+      antd: (all) => {
+        const wrap = all.find((n) => n.classes.includes('ant-select-arrow'))
+        return findDescendant(wrap, (c) => c.tag === 'svg')
+      },
     },
     clear: {
       ref: (all) => partByClass(all, 'sm-select__clear'),
@@ -747,7 +763,16 @@ const PAIRS = [
     component: 'Select',
     ref: 'ref-select-closed',
     antd: 'select-closed-empty',
-    targets: ['root', 'control', 'placeholder', 'arrow'],
+    targets: [
+      'root',
+      'control',
+      'placeholder',
+      'arrow',
+      {
+        name: 'arrowSvg',
+        ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'],
+      },
+    ],
   },
   { component: 'Select', ref: 'ref-select-filled', antd: 'select-closed-filled', targets: ['root', 'control', 'value'] },
   { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: ['clear', 'arrow'] },

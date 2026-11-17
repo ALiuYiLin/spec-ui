@@ -144,11 +144,13 @@
     border-radius: 50%;
   }
   /* 与 antd 的 .anticon 对齐：图标本体是按基线摆放的 */
-  .sm-btn__spinner > svg,
   .sm-select__arrow > svg,
   .sm-select__clear > svg {
     display: inline-block;
     vertical-align: -1.75px;
+    /* lucide 默认 24px，必须显式收到 12px（与 antd 的 .anticon 一致） */
+    width: 12px;
+    height: 12px;
   }
 
   .sm-select[data-status='error'] .sm-select__control {
