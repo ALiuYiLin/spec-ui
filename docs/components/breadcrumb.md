@@ -2,7 +2,7 @@
 
 面包屑。一串层级链接，用分隔符连接。
 
-## 演示
+## 代码演示
 
 <Demo>
   <SmBreadcrumb :items="[{ title: '首页' }, { title: '列表' }]" />

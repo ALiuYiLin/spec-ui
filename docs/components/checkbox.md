@@ -2,7 +2,7 @@
 
 复选框。`selection` 状态值域第一次落地。
 
-## 演示
+## 代码演示
 
 <Demo note="原生 input 承担全部语义与键盘行为，视觉方框是独立部件">
   <SmCheckbox label="未选" />

@@ -2,7 +2,7 @@
 
 结果页。一个状态图标加标题与副标题。
 
-## 演示
+## 代码演示
 
 <Demo>
   <SmResult status="info" title="标题" subtitle="这是副标题" />

@@ -2,7 +2,7 @@
 
 开关。第一个**没有原生 input** 的表单类控件：语义完全由 `role="switch"` 与 `aria-checked` 承载。
 
-## 演示
+## 代码演示
 
 <Demo note="Space / Enter 切换由原生 button 提供">
   <SmSwitch aria-label="关" />

@@ -2,7 +2,7 @@
 
 文字提示。第一个「触发器 + 浮层」分离的组件。
 
-## 演示
+## 代码演示
 
 <Demo note="hover 或 focus 触发；浮层 portal 到 body 并按 side 定位">
   <SmTooltip title="上方提示" side="top">

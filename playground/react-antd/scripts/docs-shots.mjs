@@ -15,6 +15,7 @@ const OUT = 'artifacts/docs-shots'
 
 const argv = process.argv.slice(2)
 const dark = argv.includes('--dark')
+const full = argv.includes('--full')
 const PAGES = argv.filter((a) => !a.startsWith('--'))
 
 if (!fs.existsSync(ROOT)) {

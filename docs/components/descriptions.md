@@ -2,7 +2,7 @@
 
 描述列表。一组成对的「标签 / 内容」。
 
-## 演示
+## 代码演示
 
 <Demo>
   <SmDescriptions :items="[{ label: '姓名', content: '张三' }, { label: '部门', content: '设计' }]" />

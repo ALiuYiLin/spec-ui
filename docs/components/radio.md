@@ -2,7 +2,7 @@
 
 单选框。结构与 Checkbox 同构，但选中态用 `radio` 值域。
 
-## 演示
+## 代码演示
 
 <Demo note="同一组必须共享 name，互斥由浏览器保证">
   <SmRadio label="未选" name="demo" />

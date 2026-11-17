@@ -2,7 +2,7 @@
 
 下拉菜单。触发器 + 浮层菜单，与 Popover 共用定位机制，但内容是可供键盘导航的菜单列表。
 
-## 演示
+## 代码演示
 
 <Demo note="点击触发器打开；条目带 role=menuitem">
   <DropdownDemo />

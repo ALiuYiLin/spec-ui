@@ -2,7 +2,7 @@
 
 单行文本输入。第一个「根节点结构随功能模式变化」的组件。
 
-## 演示
+## 代码演示
 
 <Demo note="无前后缀时根就是原生 input；有前后缀/清除时根是包裹元素">
   <SmInput placeholder="请输入" style="width: 200px" />

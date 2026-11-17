@@ -2,7 +2,7 @@
 
 单选下拉。第一个带 portal 浮层、键盘游标与状态镜像的组件。
 
-## 演示
+## 代码演示
 
 <Demo note="点击展开；支持键盘 ArrowDown / ArrowUp / Enter / Esc / Delete">
   <SmSelect

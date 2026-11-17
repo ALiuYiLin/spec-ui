@@ -2,7 +2,7 @@
 
 气泡卡片。与 Tooltip 同构，但内容是白底卡片、可放交互元素。
 
-## 演示
+## 代码演示
 
 <Demo note="hover 或 focus 触发；内容可以放按钮">
   <SmPopover title="标题" content="这是一段说明文字" side="top">

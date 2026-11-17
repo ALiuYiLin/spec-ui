@@ -2,7 +2,7 @@
 
 数字输入框。第一个「一个可访问单元由多个控件组成」的组件。
 
-## 演示
+## 代码演示
 
 <Demo note="步进按钮只在 hover 时出现；点击后焦点留在输入框">
   <SmInputNumber :model-value="5" style="width: 120px" aria-label="数量" />

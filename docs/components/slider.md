@@ -2,7 +2,7 @@
 
 滑块。第一个「尺寸与位置由数值实时算出」的组件。
 
-## 演示
+## 代码演示
 
 <Demo note="方向键步进，Home / End 跳到两端">
   <SmSlider :model-value="40" style="width: 200px" aria-label="音量" />
