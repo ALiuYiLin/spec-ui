@@ -9,6 +9,12 @@
 modal/basic
 
 :::
+:::demo `showFooter=false` 隐藏默认页脚；`footer` 插槽可放自定义操作。
+
+modal/footer
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

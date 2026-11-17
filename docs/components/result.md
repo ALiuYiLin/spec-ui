@@ -9,6 +9,12 @@
 result/basic
 
 :::
+:::demo `status` 决定图标与主色：`success` / `info` / `warning` / `error`。
+
+result/status
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

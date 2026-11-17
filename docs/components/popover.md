@@ -9,6 +9,12 @@
 popover/basic
 
 :::
+:::demo `align` 控制浮层与触发元素的对齐方式：`start` / `center` / `end`。
+
+popover/align
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

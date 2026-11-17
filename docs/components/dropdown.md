@@ -9,6 +9,12 @@
 dropdown/basic
 
 :::
+:::demo `items` 里单项可以 `disabled`，不影响其他项。
+
+dropdown/disabled-item
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

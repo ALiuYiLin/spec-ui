@@ -28,6 +28,9 @@ const vueIndex = fs.readFileSync(VUE_INDEX, 'utf8')
 const specs = fs.readdirSync(SPEC_DIR).filter((f) => f.endsWith('.spec.json'))
 const failures = []
 let covered = 0
+/** 只在打开时 portal 渲染的组件：页面静态 HTML 里不会出现根节点，按交互演示处理 */
+const PORTAL_ONLY = new Set(['modal', 'drawer', 'dropdown', 'tooltip', 'popover'])
+
 let interactive = 0
 
 /** 从 markdown 里取出每个 demo 容器的示例路径 */
@@ -88,7 +91,8 @@ for (const file of specs) {
   }
 
   const usesComponent = sources.some((s) => new RegExp(`<Sm${name}\\b`).test(s))
-  if (usesComponent) {
+  const portalOnly = PORTAL_ONLY.has(slug)
+  if (usesComponent && !(portalOnly && !html.includes(`class="${rootClass}`))) {
     if (!html.includes(`class="${rootClass}`)) {
       failures.push(`${slug}: 示例用了组件，但渲染结果里没有 class="${rootClass}"`)
     }

@@ -9,6 +9,18 @@
 slider/basic
 
 :::
+:::demo `min` / `max` / `step` 决定刻度，`defaultValue` 给出初始位置。
+
+slider/range
+
+:::
+
+:::demo `orientation="vertical"` 时主轴变为纵向。
+
+slider/vertical
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

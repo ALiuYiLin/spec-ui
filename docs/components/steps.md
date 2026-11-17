@@ -16,6 +16,12 @@ steps/basic
 steps/status
 
 :::
+:::demo `direction="vertical"` 改为纵向；`current` 决定进行到第几步。
+
+steps/direction
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

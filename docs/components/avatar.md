@@ -16,6 +16,12 @@ avatar/basic
 avatar/sizes
 
 :::
+:::demo `content` 可以放任意节点，例如图片。
+
+avatar/image
+
+:::
+
 ## 结构
 
 没有部件——只有一个根节点，内容直接作为子节点。这是协议里第一个「空 parts」组件，

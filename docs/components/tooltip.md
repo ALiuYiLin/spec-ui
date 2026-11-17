@@ -9,6 +9,12 @@
 tooltip/basic
 
 :::
+:::demo `side` 决定浮层出现在触发元素的哪一侧：`top` / `right` / `bottom` / `left`。
+
+tooltip/sides
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

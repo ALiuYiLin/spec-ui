@@ -9,6 +9,18 @@
 divider/basic
 
 :::
+:::demo `variant` 决定线的样式：`solid` / `dashed` / `dotted`。
+
+divider/variants
+
+:::
+
+:::demo `orientation="vertical"` 用于行内分隔，高度由容器决定。
+
+divider/vertical
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

@@ -16,6 +16,12 @@ alert/basic
 alert/types
 
 :::
+:::demo `closable` 在右上角提供关闭按钮，`description` 展示补充说明。
+
+alert/closable
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

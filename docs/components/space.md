@@ -9,6 +9,18 @@
 space/basic
 
 :::
+:::demo `size` 控制间距档位：`sm` / `md` / `lg`。
+
+space/size
+
+:::
+
+:::demo `direction="vertical"` 时子项纵向排列，间距作用于纵轴。
+
+space/direction
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

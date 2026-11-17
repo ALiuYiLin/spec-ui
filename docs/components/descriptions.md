@@ -9,6 +9,12 @@
 descriptions/basic
 
 :::
+:::demo `items` 决定条目，标签与内容成对出现。
+
+descriptions/items
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

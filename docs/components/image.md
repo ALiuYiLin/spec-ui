@@ -9,6 +9,12 @@
 image/basic
 
 :::
+:::demo `width` / `height` 控制渲染尺寸，`alt` 是无障碍名称。
+
+image/sizes
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

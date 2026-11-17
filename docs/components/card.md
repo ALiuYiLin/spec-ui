@@ -9,6 +9,12 @@
 card/basic
 
 :::
+:::demo `title` 与 `extra` 分列头部两端，`content` 放正文。
+
+card/extra
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

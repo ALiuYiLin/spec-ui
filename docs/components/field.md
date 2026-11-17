@@ -9,6 +9,12 @@
 field/basic
 
 :::
+:::demo `status` 决定标签与提示的配色，`error` 文案挂在字段下方。
+
+field/status
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

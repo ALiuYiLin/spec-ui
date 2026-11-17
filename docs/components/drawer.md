@@ -9,6 +9,12 @@
 drawer/basic
 
 :::
+:::demo `side` 决定抽屉从哪一侧滑出：`right` / `left` / `top` / `bottom`。
+
+drawer/sides
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

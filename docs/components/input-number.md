@@ -9,6 +9,18 @@
 input-number/basic
 
 :::
+:::demo `size` 只改高度与字号，不影响步进逻辑。
+
+input-number/sizes
+
+:::
+
+:::demo `min` / `max` / `step` 约束取值范围与步长，`readOnly` 只读。
+
+input-number/range
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

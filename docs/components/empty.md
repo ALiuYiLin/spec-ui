@@ -9,6 +9,12 @@
 empty/basic
 
 :::
+:::demo `description` 替换默认文案。
+
+empty/custom
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

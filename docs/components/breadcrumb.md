@@ -9,6 +9,12 @@
 breadcrumb/basic
 
 :::
+:::demo `items` 按顺序渲染，最后一项是当前页。
+
+breadcrumb/items
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

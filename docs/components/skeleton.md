@@ -16,6 +16,12 @@ skeleton/basic
 skeleton/rows
 
 :::
+:::demo `active` 打开微光动画，`rows` 控制段落行数，`title` 控制标题占位。
+
+skeleton/active
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

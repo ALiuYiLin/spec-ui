@@ -16,6 +16,12 @@ badge/basic
 badge/dot-overflow
 
 :::
+:::demo `status` 是独立的状态点，不带数字，也不需要子元素。
+
+badge/status
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

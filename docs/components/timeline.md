@@ -9,6 +9,12 @@
 timeline/basic
 
 :::
+:::demo 每个节点可以带 `tone`，用颜色表达事件性质。
+
+timeline/tones
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

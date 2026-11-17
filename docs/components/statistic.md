@@ -9,6 +9,12 @@
 statistic/basic
 
 :::
+:::demo `precision` 控制小数位，不足补零。
+
+statistic/precision
+
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |
