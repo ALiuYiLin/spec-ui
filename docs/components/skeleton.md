@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 内容加载前的占位条，`rows` 控制段落行数。
   <div style="width: 200px">
     <SmSkeleton />
   </div>

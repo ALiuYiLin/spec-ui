@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 填充宽度由 `percent` 决定，`status` 切换语义色。
   <div style="width: 200px">
     <SmProgress :percent="40" />
     <SmProgress :percent="100" status="success" />

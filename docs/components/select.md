@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 点击展开浮层；`status` 表达校验态，`clearable` 允许清空当前值。
   <SmSelect
     :options="[
       { value: 'a', label: '选项 A' },

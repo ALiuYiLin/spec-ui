@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 同组 `name` 互斥；选中态由 `data-state` 表达，不靠类名。
   <SmRadio label="未选" name="demo" />
   <SmRadio :model-value="true" label="已选" name="demo" />
   <SmRadio :disabled="true" label="禁用" name="demo" />

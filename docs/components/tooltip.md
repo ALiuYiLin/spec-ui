@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo hover 或 focus 触发；浮层通过 `side` 决定出现在哪一侧。
   <SmTooltip title="上方提示" side="top">
     <SmButton label="悬停我" />
   </SmTooltip>

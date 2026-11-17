@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 语义色由 `data-tone` 表达，`closable` 时渲染关闭按钮。
   <SmTag>默认</SmTag>
   <SmTag tone="primary">主要</SmTag>
   <SmTag tone="success">成功</SmTag>

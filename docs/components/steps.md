@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 步骤条；当前步骤由 `data-status` 表达，`aria-current="step"` 标记位置。
   <SmSteps :current="1" :items="[{ title: '第一步' }, { title: '第二步' }]" />
 :::
 

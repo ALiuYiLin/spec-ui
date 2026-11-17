@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 用分隔符连接层级，最后一项是当前页，不再渲染分隔符。
   <SmBreadcrumb :items="[{ title: '首页' }, { title: '列表' }]" />
 :::
 

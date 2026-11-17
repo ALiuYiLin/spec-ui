@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 加载指示器；`role="status"` 会被读屏播报，纯装饰场景不要用它。
   <SmSpin />
   <SmSpin size="lg" />
 :::

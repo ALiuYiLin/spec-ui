@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 圆形与方形、三种尺寸；内容可以是文字或图标。
   <SmAvatar label="用户">U</SmAvatar>
   <SmAvatar shape="square" label="用户">U</SmAvatar>
   <SmAvatar size="sm" label="小">S</SmAvatar>

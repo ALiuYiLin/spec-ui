@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 标题区可选，主体承载任意内容。
   <div style="width: 240px">
     <SmCard title="标题">卡片内容</SmCard>
   </div>

@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo `min` / `max` / `step` 约束取值范围，步进按钮与方向键等价。
   <SmInputNumber :model-value="5" style="width: 120px" aria-label="数量" />
   <SmInputNumber :model-value="5" :disabled="true" style="width: 120px" aria-label="禁用" />
   <SmInputNumber :model-value="5" status="error" style="width: 120px" aria-label="错误" />

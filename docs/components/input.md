@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 通过 `v-model` 绑定值；`status` 表达校验态，`prefix` / `suffix` 放图标。
   <SmInput placeholder="请输入" style="width: 200px" />
   <SmInput placeholder="带前缀" style="width: 200px">
     <template #prefix>￥</template>
@@ -12,7 +12,7 @@
   <SmInput model-value="内容" :allow-clear="true" style="width: 200px" />
 :::
 
-::: demo
+:::demo `size` 只影响高度、内边距与字号，不改变交互。
   <SmInput placeholder="小" size="sm" style="width: 140px" />
   <SmInput placeholder="大" size="lg" style="width: 160px" />
   <SmInput status="error" model-value="错误" style="width: 140px" />

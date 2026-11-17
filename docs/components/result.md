@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 结果页：状态图标 + 标题 + 可选的副标题。
   <SmResult status="info" title="标题" subtitle="这是副标题" />
 :::
 

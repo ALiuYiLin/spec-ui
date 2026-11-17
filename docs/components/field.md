@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 表单项外壳：标签在上、控件居中、错误在下，控件由使用方通过插槽传入。
   <div style="display: grid; gap: 8px; width: 240px">
     <SmField label="用户名">
       <SmInput placeholder="请输入" />

@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 给一组子元素统一间距，`direction` 控制横排或竖排。
   <SmSpace>
     <SmTag>一</SmTag>
     <SmTag>二</SmTag>

@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 从右侧滑出，面板宽度可通过 `width` 指定。
   <DrawerDemo />
 :::
 

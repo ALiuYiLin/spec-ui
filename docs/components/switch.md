@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 开关是 `button[role="switch"]`，没有原生 input，状态由 `aria-checked` 表达。
   <SmSwitch aria-label="关" />
   <SmSwitch :model-value="true" aria-label="开" />
   <SmSwitch :disabled="true" aria-label="禁用" />

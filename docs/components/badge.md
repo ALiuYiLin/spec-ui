@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 在被包裹元素的右上角叠加计数，`overflowCount` 控制何时显示 `+`。
   <SmBadge :count="5">
     <span style="display: inline-block; width: 40px; height: 40px; background: #ddd"></span>
   </SmBadge>

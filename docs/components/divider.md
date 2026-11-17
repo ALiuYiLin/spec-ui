@@ -4,7 +4,7 @@
 
 ## 代码演示
 
-::: demo
+:::demo 横线用于分隔内容块，也可以带一段文字。
   <div style="width: 240px">
     <SmDivider />
     <SmDivider variant="dashed" />
