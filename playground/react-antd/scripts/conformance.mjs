@@ -24,6 +24,8 @@ const VIEWPORT = { width: 1280, height: 800 }
 
 /** 用 --page=vue.html 可以对另一套实现跑同一份校验 */
 const PAGE = (process.argv.find((a) => a.startsWith('--page=')) ?? '--page=ref.html').slice('--page='.length)
+/** --component=Button 只跑该组件的用例，调试单个组件时不必等全量 */
+const COMPONENT = (process.argv.find((a) => a.startsWith('--component=')) ?? '').slice('--component='.length)
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -451,8 +453,14 @@ async function main() {
     return
   }
 
-  const cases = await page.evaluate(() => window.__CONFORMANCE__)
-  if (!Array.isArray(cases) || !cases.length) throw new Error('ref 页面没有暴露 __CONFORMANCE__')
+  const allCases = await page.evaluate(() => window.__CONFORMANCE__)
+  const cases = COMPONENT
+    ? allCases.filter((c) => c.component.toLowerCase() === COMPONENT.toLowerCase())
+    : allCases
+  if (COMPONENT) console.log(`只跑组件：${COMPONENT}（${cases.length}/${allCases.length} 个用例）`)
+  if (!Array.isArray(cases) || !cases.length) {
+    throw new Error(COMPONENT ? `没有组件为 ${COMPONENT} 的用例` : 'ref 页面没有暴露 __CONFORMANCE__')
+  }
 
   let pass = 0
   const failed = []

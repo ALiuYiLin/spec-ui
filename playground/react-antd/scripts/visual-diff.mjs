@@ -32,6 +32,8 @@ const VIEWPORT = { width: 1280, height: 800 }
 
 /** 用 --page=vue.html 可以让另一套实现跑同一份比对 */
 const PAGE = (process.argv.find((a) => a.startsWith('--page=')) ?? '--page=ref.html').slice('--page='.length)
+/** --component=Button 只比该组件的目标 */
+const COMPONENT = (process.argv.find((a) => a.startsWith('--component=')) ?? '').slice('--component='.length)
 
 const PROPS = STYLE_PROPS
 
@@ -1069,7 +1071,12 @@ async function main() {
   let cleanTargets = 0
   const failures = []
 
-  for (const pair of PAIRS) {
+  const pairs = COMPONENT
+    ? PAIRS.filter((p) => p.component.toLowerCase() === COMPONENT.toLowerCase())
+    : PAIRS
+  if (COMPONENT) console.log(`只比组件：${COMPONENT}（${pairs.length}/${PAIRS.length} 个目标）`)
+
+  for (const pair of pairs) {
     const rc = caseById.get(pair.ref)
     if (!rc) {
       failures.push({ pair: pair.ref, target: '-', msg: '参考实现里找不到该用例' })

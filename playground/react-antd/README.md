@@ -30,6 +30,8 @@ pnpm selftest     # L2 自检：确认校验器会拒绝错误实现
 pnpm diff         # L3：React 实现的计算样式 vs antd 证据
 pnpm conformance:vue  # L2：Vue 实现跑同一份用例
 pnpm diff:vue         # L3：Vue 实现跑同一份目标
+pnpm conformance -- --component=Button   # 只跑某个组件的 L2
+pnpm diff -- --component=Button          # 只比某个组件的 L3
 pnpm verify       # 以上全部（两套实现都跑）
 ```
 
