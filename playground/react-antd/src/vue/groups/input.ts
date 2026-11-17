@@ -23,6 +23,10 @@ export const inputRenders: Record<string, VueCase> = {
     component: 'Input',
     render: () => h(Input, { prefix: h('span', null, '￥'), placeholder: '请输入' }),
   },
+  'ref-input-suffix': {
+    component: 'Input',
+    render: () => h(Input, { modelValue: '内容', suffix: h('span', '元') }),
+  },
   'ref-input-clear': {
     component: 'Input',
     render: () => h(Input, { allowClear: true, modelValue: '内容' }),

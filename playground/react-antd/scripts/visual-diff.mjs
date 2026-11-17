@@ -825,6 +825,7 @@ const PAIRS = [
   { component: 'Input', ref: 'ref-input-basic', antd: 'input-hover', pseudo: ['hover'], targets: ['root'] },
   { component: 'Input', ref: 'ref-input-focus', antd: 'input-focus', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-prefix', antd: 'input-prefix', targets: ['root', { name: 'prefix', center: true }] },
+  { component: 'Input', ref: 'ref-input-suffix', antd: 'input-suffix', targets: ['root', { name: 'suffix', center: true }] },
   {
     component: 'Input',
     ref: 'ref-input-clear',

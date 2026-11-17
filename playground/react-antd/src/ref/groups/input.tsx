@@ -114,4 +114,14 @@ export const inputCases: RefCase[] = [
       { k: 'absent', name: 'suffix' },
     ],
   },
+  {
+    id: 'ref-input-suffix',
+    component: 'Input',
+    render: () => <Input suffix={<span>元</span>} defaultValue="内容" />,
+    assert: [
+      { k: 'part', name: 'field' },
+      { k: 'part', name: 'suffix' },
+      { k: 'order', before: 'field', after: 'suffix' },
+    ],
+  },
 ]
