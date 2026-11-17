@@ -206,7 +206,8 @@ function relationsChecks(snap, spec) {
         fails.push(name + ' 的 inside 指向了协议里不存在的部件 ' + insideName)
         continue
       }
-      const insideNode = insideName ? find(insideName)[0] : rootNode
+      const insideNode =
+        insideName && insideName !== 'root' ? find(insideName)[0] : rootNode
       if (insideNode && !isAncestor(insideNode, node)) {
         fails.push(`${name} 必须是 ${insideName ?? 'root'} 的后代`)
         continue
