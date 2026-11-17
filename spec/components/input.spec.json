@@ -53,7 +53,17 @@
       "interaction": [
         "hover",
         "focus-within"
-      ]
+      ],
+      "forms": {
+        "plain": {
+          "tag": "input",
+          "$comment": "无前后缀：根就是原生 input，不渲染任何部件"
+        },
+        "affix": {
+          "tag": "span",
+          "$comment": "有前后缀或清除：根是包裹元素，input 退为 field"
+        }
+      }
     },
     "parts": {
       "prefix": {
@@ -61,7 +71,23 @@
         "tag": "span",
         "required": false,
         "order": 1,
-        "condition": "传入 prefix（仅 span 模式）"
+        "condition": "传入 prefix（仅 span 模式）",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "affix-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        },
+        "box": {
+          "line-height": {
+            "$token": "control.lineHeight"
+          }
+        }
       },
       "field": {
         "class": "sm-input__field",
@@ -77,6 +103,21 @@
         },
         "aria": {
           "aria-invalid": "status=error 时必填 true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "affix-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        },
+        "box": {
+          "line-height": {
+            "$token": "control.lineHeight"
+          }
         }
       },
       "clear": {
@@ -87,53 +128,21 @@
         "condition": "allowClear 且有值（仅 span 模式）",
         "aria": {
           "aria-hidden": "true"
-        }
-      },
-      "suffix": {
-        "class": "sm-input__suffix",
-        "tag": "span",
-        "required": false,
-        "order": 3,
-        "condition": "传入 suffix 且当前无 clear（仅 span 模式）"
-      }
-    }
-  },
-  "layout": {
-    "appliesTo": {
-      "rootTag": "span"
-    },
-    "root": {
-      "display": "inline-flex",
-      "align-items": "normal",
-      "height": {
-        "$token": "control.height"
-      }
-    },
-    "row": {
-      "parts": [
-        "prefix",
-        "field",
-        "clear|suffix"
-      ]
-    },
-    "parts": {
-      "field": {
-        "flex": "1 1 auto",
-        "line-height": {
-          "$token": "control.lineHeight"
-        }
-      },
-      "prefix": {
-        "line-height": {
-          "$token": "control.lineHeight"
-        }
-      },
-      "suffix": {
-        "line-height": {
-          "$token": "control.lineHeight"
-        }
-      },
-      "clear": {
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "affix-row",
+            "order": 3,
+            "exclusiveWith": [
+              "suffix"
+            ]
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        },
         "box": {
           "width": {
             "$token": "input.clear.size"
@@ -142,12 +151,33 @@
             "$token": "input.clear.size"
           }
         }
+      },
+      "suffix": {
+        "class": "sm-input__suffix",
+        "tag": "span",
+        "required": false,
+        "order": 3,
+        "condition": "传入 suffix 且当前无 clear（仅 span 模式）",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "affix-row",
+            "order": 3,
+            "exclusiveWith": [
+              "clear"
+            ]
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        }
       }
     }
   },
   "invariants": [
     "根节点只有两种合法形态：input（无前后缀）或 span（有前后缀/清除）；不得出现第三种。",
-    "根为 span 时，field 必须是 root 的直接子节点且恰好一个。",
+    "根为 span 时，prefix / field / clear|suffix 必须都是 root 的后代，按其 lane 声明的顺序出现，且彼此不嵌套（允许实现插入透明包裹）。",
     "根为 input 时，不渲染任何 part，也不得再套包裹元素。",
     "disabled 时原生 disabled 必须落在承载文本编辑的那个元素上（input 或 field），且根节点同时带 data-disabled。",
     "readonly 时原生 readonly 必须落在承载文本编辑的元素上，且根节点同时带 data-readonly。",
@@ -155,12 +185,13 @@
     "clear 与 suffix 共用尾部槽位，同一时刻只允许一个存在。",
     "禁止用 div + contenteditable 模拟输入框。",
     "根为 span 时，prefix / field / clear|suffix 必须是同一个父节点的直接子节点，顺序即声明顺序。",
-    "清除按钮的盒尺寸随 size 档位取值（见 tokens.size.json 的 input.clear.size），不得写死在别处。"
+    "清除按钮的盒尺寸随 size 档位取值（见 tokens.size.json 的 input.clear.size），不得写死在别处。",
+    "实现可以在 root 与部件之间插入包裹元素，但该包裹必须承担布局职责（满足部件的 requires.parent），且不得携带类名、状态、语义或文本。"
   ],
   "a11y": [
     "可访问名称来自关联的 label 或 aria-label，不能只依赖 placeholder。",
     "clear 不可聚焦、不进入 Tab 序列；键盘清除走 Esc 或 Delete。",
     "错误状态必须同时体现在 aria-invalid 上，不能只改边框颜色。"
   ],
-  "notes": "为什么允许双形态：无前后缀时如果仍套一层包裹，根节点的 display 与盒子模型就会和参考实现分叉（inline-block vs inline-flex），L3 永远对不上；而套包裹又会污染纯文本输入的语义。两种形态各自最自然，协议选择承认这一点而不是强行统一。layout 里的约束都是「结果约束」：允许实现用不同手法（槽位容器、align-self、行盒）达成同一条中线，校验看最终结果。"
+  "notes": "为什么允许双形态：无前后缀时如果仍套一层包裹，根节点的 display 与盒子模型就会和参考实现分叉（inline-block vs inline-flex），L3 永远对不上；而套包裹又会污染纯文本输入的语义。两种形态各自最自然，协议选择承认这一点而不是强行统一。layout 里的约束都是「结果约束」：允许实现用不同手法（槽位容器、align-self、行盒）达成同一条中线，校验看最终结果。 关系约束（requires）表达的是「结构等价」：root 与 prefix 是祖先关系而非固定父子，实现可以插一层 flex 容器；校验看的是祖先、lane 顺序、直接父级布局与透明包裹，而不是同一棵树。"
 }

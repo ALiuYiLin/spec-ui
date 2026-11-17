@@ -74,7 +74,11 @@ const snapshotFn = () => {
   const el = (root && root.firstElementChild) || bodyRoots[0]
   if (!el) return null
 
-  const walk = (n) => {
+  let uidSeq = 0
+  let orderSeq = 0
+  const walk = (n, parentUid = null) => {
+    const uid = ++uidSeq
+    const seq = ++orderSeq
     const attrs = {}
     for (const a of n.attributes) {
       if (a.name === 'class') continue
@@ -82,6 +86,9 @@ const snapshotFn = () => {
     }
     return {
       tag: n.tagName.toLowerCase(),
+      uid,
+      parentUid,
+      seq,
       classes: Array.from(n.classList),
       // 布局校验要看的少量计算值（结构校验仍以 DOM 为准）
       computed: (() => {
@@ -89,6 +96,7 @@ const snapshotFn = () => {
         return {
           display: s.display,
           alignItems: s.alignItems,
+          flexDirection: s.flexDirection,
           flex: s.flex,
           lineHeight: s.lineHeight,
           width: s.width,
@@ -102,7 +110,7 @@ const snapshotFn = () => {
         .map((x) => x.textContent || '')
         .join('')
         .trim(),
-      children: Array.from(n.children).map(walk),
+      children: Array.from(n.children).map((child) => walk(child, uid)),
     }
   }
 
@@ -133,7 +141,7 @@ async function loadSpec(component) {
 /** 读取尺寸令牌表（spec/tokens.size.json），按 size 档位取值 */
 const SIZE_TOKENS = JSON.parse(
   await fsp.readFile(path.resolve(SPEC_DIR, '..', 'tokens.size.json'), 'utf8'),
-).valueOf()
+)
 
 function tokenValue(ref, size) {
   const table = SIZE_TOKENS[ref]
@@ -144,75 +152,164 @@ function tokenValue(ref, size) {
 const px = (v) => (typeof v === 'string' && v.endsWith('px') ? Number.parseFloat(v) : null)
 const near = (a, b) => Math.abs(a - b) < 0.51
 
-/** 由 spec.layout 推导的布局规则：同层、顺序、互斥、关键计算值 */
-function layoutChecks(snap, spec) {
-  const L = spec.layout
+/** 未声明的中间元素必须是「透明包裹」：不承载类名、状态、语义与文本 */
+function isTransparent(node) {
+  if (!node) return true
+  const smClasses = (node.classes ?? []).filter((x) => x.startsWith('sm-'))
+  if (smClasses.length) return false
+  if ((node.text ?? '') !== '') return false
+  if (node.attrs.role || node.attrs.tabindex !== undefined) return false
+  for (const key of Object.keys(node.attrs)) {
+    if (key.startsWith('data-') || key.startsWith('aria-') || key === 'id' || key === 'for') return false
+  }
+  return true
+}
+
+/**
+ * 关系校验：由 spec 的 anatomy.requires 推导。
+ * 只约束「相对结构」——祖先、同一条 lane 的顺序、直接父级的布局、透明包裹；
+ * 不要求实现产出同一棵树。
+ */
+function relationsChecks(snap, spec) {
   const fails = []
-  if (!L) return fails
+  const parts = Object.entries(spec.anatomy.parts ?? {}).filter(([, p]) => p.requires || p.attach)
+  if (!parts.length) return fails
 
   const rootClass = spec.anatomy.root.class
   const all = [...flat(snap.tree), ...snap.portals.flatMap((p) => flat(p.tree))]
-  const root = all.find((n) => n.classes.includes(rootClass))
-  if (!root) return fails
+  const byUid = new Map(all.map((n) => [n.uid, n]))
+  const rootNode = all.find((n) => n.classes.includes(rootClass))
+  if (!rootNode) return fails
 
-  // 只看该形态：例如 Input 无前后缀时根是 input，没有部件也没有 flex 布局
-  const appliesTo = L.appliesTo ?? {}
-  if (appliesTo.rootTag && root.tag !== appliesTo.rootTag) return fails
-
-  const size = root.attrs['data-size'] ?? spec.anatomy.root.data?.size?.default ?? 'md'
-
-  // 根节点的关键计算值
-  for (const [prop, want] of Object.entries(L.root ?? {})) {
-    if (prop === 'height' && want && typeof want === 'object' && want.$token) {
-      const v = tokenValue(want.$token, size)
-      if (v && !near(px(v), px(root.computed.height))) {
-        fails.push(`根节点 height 应为 ${v}（token ${want.$token}.${size}），实际 ${root.computed.height}`)
-      }
-      continue
+  const nodesByClass = new Map()
+  for (const n of all) {
+    for (const cls of n.classes) {
+      if (!nodesByClass.has(cls)) nodesByClass.set(cls, [])
+      nodesByClass.get(cls).push(n)
     }
-    const actual = root.computed[prop === 'align-items' ? 'alignItems' : prop]
-    if (typeof want === 'string' && actual !== want) {
-      fails.push(`根节点 ${prop} 应为 ${want}，实际 ${actual}`)
+  }
+  const find = (name) => nodesByClass.get(spec.anatomy.parts[name]?.class) ?? []
+
+  const ancestors = (node) => {
+    const out = []
+    let cur = byUid.get(node.parentUid)
+    while (cur) {
+      out.push(cur)
+      cur = byUid.get(cur.parentUid)
+    }
+    return out
+  }
+  const isAncestor = (a, b) => ancestors(b).some((n) => n.uid === a.uid)
+
+  // ---- 单个部件：inside / parent 布局 / 透明包裹 ----
+  for (const [name, decl] of parts) {
+    const nodes = find(name)
+    if (!nodes.length) continue
+
+    for (const node of nodes) {
+      if (decl.attach === 'body') {
+        if (node.parentUid !== null) fails.push(`${name} 应 portal 到 body，实际有父节点`)
+        continue
+      }
+
+      const insideName = decl.requires?.inside
+      if (insideName && insideName !== 'root' && !spec.anatomy.parts[insideName]) {
+        fails.push(name + ' 的 inside 指向了协议里不存在的部件 ' + insideName)
+        continue
+      }
+      const insideNode = insideName ? find(insideName)[0] : rootNode
+      if (insideNode && !isAncestor(insideNode, node)) {
+        fails.push(`${name} 必须是 ${insideName ?? 'root'} 的后代`)
+        continue
+      }
+
+      // 直接父级的布局要求
+      const want = decl.requires?.parent
+      if (want) {
+        const parent = byUid.get(node.parentUid)
+        if (!parent) {
+          fails.push(`${name} 声明了父级布局要求，但没有父节点`)
+        } else {
+          for (const [prop, value] of Object.entries(want)) {
+            if (prop === 'layout') {
+              const isFlex = parent.computed.display === 'flex' || parent.computed.display === 'inline-flex'
+              const wantRow = value === 'flex-row'
+              const wantColumn = value === 'flex-column'
+              if (!wantRow && !wantColumn) {
+                fails.push(`${name} 声明了未知的父级布局 ${value}`)
+              } else if (!isFlex || parent.computed.flexDirection !== (wantRow ? 'row' : 'column')) {
+                fails.push(
+                  `${name} 要求父级是 ${value}，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
+                )
+              }
+              continue
+            }
+            const actual = parent.computed[prop === 'align-items' ? 'alignItems' : prop]
+            if (typeof value === 'string' && actual !== value) {
+              fails.push(`${name} 要求父级 ${prop}=${value}，实际 ${actual}`)
+            }
+          }
+        }
+      }
+
+      // 从 node 往上、到 inside 目标之前的每一层都必须是「已声明部件」或「透明包裹」
+      if (insideNode) {
+        let cur = byUid.get(node.parentUid)
+        while (cur && cur.uid !== insideNode.uid) {
+          const declared = all.some((n) => n.uid === cur.uid && spec.anatomy.parts && Object.values(spec.anatomy.parts).some((p) => p.class === cur.classes.find((x) => x.startsWith('sm-'))))
+          if (!declared && !isTransparent(cur)) {
+            fails.push(`${name} 与 ${insideName ?? 'root'} 之间存在非法中间元素 <${cur.tag}>`)
+            break
+          }
+          cur = byUid.get(cur.parentUid)
+        }
+      }
     }
   }
 
-  // 同层与顺序：row.parts 里出现的部件必须是 root 的直接子节点，且顺序与声明一致
-  const parts = spec.anatomy.parts ?? {}
-  const rowParts = L.row?.parts ?? []
-  let lastIndex = -1
-  for (const entry of rowParts) {
-    const names = entry.split('|')
-    const present = names.filter((n) => parts[n] && root.children.some((c) => c.classes.includes(parts[n].class)))
-    if (names.length > 1 && present.length > 1) {
-      fails.push(`共用槽位 ${entry} 同时出现了 ${present.join('、')}，应互斥`)
-    }
-    for (const name of present) {
-      const cls = parts[name].class
-      const idx = root.children.findIndex((c) => c.classes.includes(cls))
-      if (idx < 0) {
-        fails.push(`${name} 不是根节点的直接子节点`)
-        continue
-      }
-      if (idx < lastIndex) {
-        fails.push(`${name} 的位置早于声明顺序（同层顺序应为 ${rowParts.join(' → ')}）`)
-      }
-      lastIndex = Math.max(lastIndex, idx)
+  // ---- lane：同一条行的顺序与互斥 ----
+  const lanes = new Map()
+  for (const [name, decl] of parts) {
+    const lane = decl.requires?.lane
+    if (!lane) continue
+    if (!lanes.has(lane.name)) lanes.set(lane.name, [])
+    lanes.get(lane.name).push({ name, ...lane, nodes: find(name) })
+  }
 
-      // 单个部件的关键计算值
-      const decl = L.parts?.[name] ?? {}
-      const node = root.children[idx]
-      if (decl.flex && node.computed.flex !== decl.flex) {
-        fails.push(`${name} 的 flex 应为 ${decl.flex}，实际 ${node.computed.flex}`)
-      }
-      if (decl['line-height']) {
-        const want = decl['line-height'].$token ? tokenValue(decl['line-height'].$token, size) : decl['line-height']
-        if (want && !near(px(want), px(node.computed.lineHeight))) {
-          fails.push(`${name} 的 line-height 应为 ${want}，实际 ${node.computed.lineHeight}`)
+  for (const [laneName, members] of lanes) {
+    members.sort((a, b) => a.order - b.order)
+    const present = members.filter((m) => m.nodes.length)
+
+    // 互斥
+    for (const m of present) {
+      for (const other of m.exclusiveWith ?? []) {
+        if (present.some((x) => x.name === other)) {
+          fails.push(`lane ${laneName} 里 ${m.name} 与 ${other} 应互斥，实际同时存在`)
         }
       }
-      for (const [prop, ref] of Object.entries(decl.box ?? {})) {
-        const want = ref.$token ? tokenValue(ref.$token, size) : ref
-        if (!want) continue
+    }
+
+    // 顺序 + 互不嵌套
+    for (let i = 1; i < present.length; i += 1) {
+      const prev = present[i - 1]
+      const cur = present[i]
+      const a = prev.nodes[0]
+      const b = cur.nodes[0]
+      if (isAncestor(a, b) || isAncestor(b, a)) {
+        fails.push(`lane ${laneName} 里 ${prev.name} 与 ${cur.name} 不能互相嵌套`)
+      } else if (a.seq > b.seq) {
+        fails.push(`lane ${laneName} 的文档顺序应为 ${prev.name} → ${cur.name}，实际相反`)
+      }
+    }
+  }
+
+  // ---- 尺寸令牌 ----
+  const size = rootNode.attrs['data-size'] ?? spec.anatomy.root.data?.size?.default ?? 'md'
+  for (const [name, decl] of Object.entries(spec.anatomy.parts ?? {})) {
+    for (const [prop, ref] of Object.entries(decl.box ?? {})) {
+      const want = ref?.$token ? tokenValue(ref.$token, size) : ref
+      if (!want) continue
+      for (const node of find(name)) {
         const actual = prop === 'width' ? node.computed.width : node.computed.height
         if (!near(px(want), px(actual))) {
           fails.push(`${name} 的 ${prop} 应为 ${want}（token ${ref.$token}.${size}），实际 ${actual}`)
@@ -220,7 +317,6 @@ function layoutChecks(snap, spec) {
       }
     }
   }
-
 
   return fails
 }
@@ -339,7 +435,7 @@ function genericChecks(snap, spec) {
   }
 
 
-  fails.push(...layoutChecks(snap, spec))
+  fails.push(...relationsChecks(snap, spec))
   return fails
 }
 

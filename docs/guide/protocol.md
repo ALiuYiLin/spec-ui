@@ -53,50 +53,76 @@ L2 的通用规则由协议推导，不认框架：类名封闭、`data-*` 必�
 
 L3 拿 antd 的真实渲染结果当基线，比 88 项计算样式，容差 0.6px / 1 个色阶。
 
-## 布局也是协议的一部分
+## 结构等价，而不是同一棵树
 
-只写部件和状态是不够的：`prefix`、`field`、`clear` 同为根节点的子节点、**同一行、垂直居中**，
-以及清除按钮**多大**——这些同样是「换个实现也得一致」的契约，所以它们进协议。
+不同实现**不必产出同一棵 DOM 树**。协议约束的是「相对结构」：
 
-Input 是试点，`layout` 长这样：
+- 部件在谁的子树里（祖先，不是固定父子）
+- 同一条行里的部件顺序与互斥
+- 部件的**直接父元素**必须是哪种布局
+- 中间允许插入「透明包裹」
+
+Input 的关系约束长这样：
 
 ```json
-"layout": {
-  "appliesTo": { "rootTag": "span" },
-  "root": { "display": "inline-flex", "align-items": "normal", "height": { "$token": "control.height" } },
-  "row": { "parts": ["prefix", "field", "clear|suffix"] },
-  "parts": {
-    "field": { "flex": "1 1 auto", "line-height": { "$token": "control.lineHeight" } },
-    "clear": { "box": { "width": { "$token": "input.clear.size" }, "height": { "$token": "input.clear.size" } } }
-  }
+"prefix": {
+  "class": "sm-input__prefix",
+  "requires": {
+    "inside": "root",
+    "lane": { "name": "affix-row", "order": 1 },
+    "parent": { "layout": "flex-row", "align-items": "normal" }
+  },
+  "box": { "line-height": { "$token": "control.lineHeight" } }
 }
 ```
 
-四条约定：
+四个字段各管一件事：
 
-- **结果约束**，不是实现约束。协议说「必须在同一行且垂直居中」，不说用 `align-items: center` 还是
-  `align-self`——Input 里两者都出现过，最终以计算值为准。
-- **`a|b` 表示共用槽位**。`clear|suffix` 说明二者互斥，L2 会验证同一时刻只有一个。
-- **尺寸走令牌**。`{"$token": "input.clear.size"}` 指向 `spec/tokens.size.json`，按 `sm/md/lg` 取档；
-  写死一个 `14px` 会在其余两档上错。
-- **`appliesTo` 限定形态**。Input 无前后缀时根就是 `<input>`，没有部件也不是 flex 容器，
-  这类形态不参与布局校验。
+| 字段 | 含义 | 校验方式 |
+|---|---|---|
+| `inside` | 必须是该部件的后代（不承诺深度） | 沿 `parentUid` 链回溯 |
+| `lane` | 同一行的成员，按 `order` 出现，`exclusiveWith` 互斥 | `seq` 文档序 + 祖先互斥检查 |
+| `parent` | **直接父元素**必须满足的计算值 | 取父节点的 `display` / `flexDirection` / `alignItems` |
+| `box` | 尺寸，按 `sm/md/lg` 取令牌 | 比计算后的宽高 |
 
-L2 新增三条通用规则：部件必须是根的直接子节点、顺序与声明一致、共用槽位互斥；
-外加关键计算值（`display` / `align-items` / `flex` / `line-height` / 令牌尺寸）的比对。
-三条规则都用负向测试验证过：把 `display`、令牌、顺序分别改错，校验器都会报红。
+### 为什么「父级布局」写在子元素上
 
+因为这样才允许实现插入容器。谁需要一行，谁就声明「我的父元素必须是 flex-row」；
+如果实现凭空加了一层包裹，**这层包裹必须自己证明自己是 flex-row**，否则校验失败。
 
-## 一个例子
+好处是报错直接指向违反约定的元素：*「clear 要求父级是 flex-row，实际 block/row」*。
 
-同一个 Button，两套实现输出完全相同的 DOM：
+### 透明包裹的定义
 
-```html
-<button class="sm-btn" data-variant="primary" data-size="md" data-shape="default"
-        data-loading="true" aria-busy="true">
-  <span class="sm-btn__spinner" aria-hidden="true"><svg>…</svg></span>
-  <span class="sm-btn__label">提 交</span>
-</button>
+未声明的中间元素必须同时满足：没有 `sm-` 类名、没有 `data-*` / `aria-*` / `role` / `tabindex`、
+不承载文本。它在 DOM 里存在，但对语义、状态与可访问性树没有贡献。
+
+### 尺寸走令牌，不写死
+
+```json
+"box": { "width": { "$token": "input.clear.size" }, "height": { "$token": "input.clear.size" } }
 ```
 
-React 与 Vue 的产物逐字节相同，样式只需认得这套类名。
+令牌表在 `spec/tokens.size.json`，按档位展开：
+
+```json
+"input.clear.size": { "sm": "12px", "md": "12px", "lg": "12px" }
+```
+
+写死一个 `14px` 必然在另外两档上错。
+
+### 五条负向测试
+
+改错协议，校验器必须报红（全部验证过）：
+
+1. lane 顺序写反
+2. 尺寸令牌改错
+3. 父级布局写成 `flex-column`
+4. `inside` 指向错误的同级部件
+5. `inside` 指向协议里不存在的部件
+
+### 边界
+
+- `attach: "body"` 的部件（portal 浮层）跳过 `inside` / `lane` 的容器校验，改验父节点是 `body`
+- `many: true` 的集合部件（如 option）逐个校验，不校验数量
+- `forms` 表达根的多种形态（Input 的 `input` / `span`），不存在形态不参与校验

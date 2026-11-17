@@ -195,6 +195,27 @@
         },
         "notes": {
           "type": "string"
+        },
+        "requires": {
+          "$ref": "#/$defs/requires"
+        },
+        "attach": {
+          "type": "string",
+          "enum": [
+            "body"
+          ],
+          "$comment": "portal 到 body：跳过 inside / lane 的容器校验"
+        },
+        "many": {
+          "type": "boolean",
+          "$comment": "集合部件（如 option），逐个校验而不校验数量"
+        },
+        "forms": {
+          "$comment": "根节点的多形态（如 Input 有 input / span 两种根）",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
         }
       }
     },
@@ -257,6 +278,45 @@
         },
         "notes": {
           "type": "string"
+        }
+      }
+    },
+    "requires": {
+      "$comment": "相对关系约束。表达「结构等价」而非「同一棵树」：允许插入透明包裹。",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "inside": {
+          "type": "string",
+          "$comment": "必须是该部件的后代（祖先约束，不承诺深度）"
+        },
+        "lane": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "order"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "$comment": "同一行的名字；同 lane 的部件共享最近公共祖先且顺序固定"
+            },
+            "order": {
+              "type": "integer"
+            },
+            "exclusiveWith": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "parent": {
+          "$comment": "直接父元素必须满足的计算值（插入的包裹层必须自己证明自己是 flex-row）",
+          "type": "object",
+          "additionalProperties": true
         }
       }
     }
