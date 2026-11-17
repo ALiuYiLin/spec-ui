@@ -14,4 +14,6 @@ export const switchRenders: Record<string, VueCase> = {
   },
   'ref-switch-small': { component: 'Switch', render: () => h(Switch, { size: 'sm' }) },
 
+  'ref-switch-disabled-on': { component: 'Switch', render: () => h(Switch, { modelValue: true, disabled: true }) },
+  'ref-switch-text': { component: 'Switch', render: () => h(Switch, { modelValue: true }, { default: () => '开' }) },
 }

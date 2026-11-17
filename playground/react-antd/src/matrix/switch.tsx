@@ -14,4 +14,9 @@ export const cases: CaseDef[] = [
     render: () => <Switch />,
   },
   { id: 'switch-small', state: 'base', render: () => <Switch size="small" /> },
+  {
+    id: 'switch-text',
+    state: 'on',
+    render: () => <Switch defaultChecked checkedChildren="开" unCheckedChildren="关" />,
+  },
 ]

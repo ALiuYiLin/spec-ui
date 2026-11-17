@@ -9,6 +9,12 @@
 tag/basic
 
 :::
+
+:::demo `closable` 让标签尾部出现关闭按钮，与 tone 正交。
+
+tag/closable
+
+:::
 ### 语义色与关闭
 
 :::demo 颜色由 `data-tone` 表达；`closable` 时渲染关闭按钮。

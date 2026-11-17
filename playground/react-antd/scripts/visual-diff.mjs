@@ -873,6 +873,17 @@ const PAIRS = [
   { component: 'Switch', ref: 'ref-switch-off', antd: 'switch-hover', pseudo: ['hover'], targets: ['root'] },
   { component: 'Switch', ref: 'ref-switch-focus', antd: 'switch-focus', targets: ['root'] },
   { component: 'Switch', ref: 'ref-switch-small', antd: 'switch-small', targets: ['root', 'handle'] },
+  { component: 'Switch', ref: 'ref-switch-disabled-on', antd: 'switch-disabled-on', targets: ['root'] },
+  // 带文字时 antd 的轨道会随文字宽度放宽 1px（字体度量差异），只比不受宽度影响的属性
+  {
+    component: 'Switch',
+    ref: 'ref-switch-text',
+    antd: 'switch-text',
+    targets: [
+      { name: 'root', ignore: ['width', 'transform-origin'] },
+      { name: 'handle', ignore: ['left', 'right', 'transform-origin'] },
+    ],
+  },
 
   // ---- Field ----
   // 只比 label，且跳过盒子模型相关的几项：antd 的 label 被包在一层 block 容器里，

@@ -9,6 +9,18 @@
 switch/basic
 
 :::
+
+:::demo `size` 只改轨道与滑块的尺寸，不影响语义。
+
+switch/sizes
+
+:::
+
+:::demo 开启/关闭的文字放在滑块内部（`children`），尺寸与轨道同步缩放。
+
+switch/text
+
+:::
 ### 禁用与加载
 
 :::demo 禁用用原生 `disabled`；加载态下不可切换，但仍保留 `role="switch"`。

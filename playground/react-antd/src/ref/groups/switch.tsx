@@ -46,4 +46,19 @@ export const switchCases: RefCase[] = [
     render: () => <Switch size="sm" />,
     assert: [{ k: 'data', key: 'size', value: 'sm' }],
   },
+  {
+    id: 'ref-switch-disabled-on',
+    component: 'Switch',
+    render: () => <Switch defaultChecked disabled />,
+    assert: [
+      { k: 'data', key: 'state', value: 'on' },
+      { k: 'data', key: 'disabled', value: 'true' },
+    ],
+  },
+  {
+    id: 'ref-switch-text',
+    component: 'Switch',
+    render: () => <Switch defaultChecked>开</Switch>,
+    assert: [{ k: 'part', name: 'inner' }],
+  },
 ]
