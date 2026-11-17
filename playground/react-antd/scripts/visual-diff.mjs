@@ -163,6 +163,16 @@ const RESOLVE = {
       antd: (all) =>
         all.find((n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-loader-2')),
     },
+    // 槽位盒子对不代表里面的字形对：lucide 的 1em 曾在 Vue 侧回落成 24px
+    spinnerSvg: {
+      ref: (all) => partByClass(all, 'sm-btn__spinner')?.children?.find((c) => c.tag === 'svg') ?? null,
+      antd: (all) => {
+        const wrap = all.find(
+          (n) => n.classes.includes('ant-btn-icon') && hasDescendantClass(n, 'lucide-loader-2'),
+        )
+        return wrap?.children?.find((c) => c.tag === 'svg') ?? null
+      },
+    },
   },
   Select: {
     root: { ref: (all) => partByClass(all, 'sm-select'), antd: (all) => all.find((n) => n.classes.includes('ant-select')) },
@@ -685,8 +695,8 @@ const PAIRS = [
   { component: 'Button', ref: 'ref-button-size-lg', antd: 'button-size-lg', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-circle', antd: 'button-shape-circle', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-icon', antd: 'button-icon', targets: ['root', 'icon', 'label'] },
-  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner'] },
-  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', 'spinner'] },
+  { component: 'Button', ref: 'ref-button-loading', antd: 'button-loading', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
+  { component: 'Button', ref: 'ref-button-loading-icon', antd: 'button-loading-icon', targets: ['root', 'spinner', { name: 'spinnerSvg', ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'] }] },
   { component: 'Button', ref: 'ref-button-disabled', antd: 'button-disabled', targets: ['root'] },
   { component: 'Button', ref: 'ref-button-round', antd: 'button-shape-round', targets: ['root', 'label'] },
   { component: 'Button', ref: 'ref-button-block', antd: 'button-block', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }, 'label'] },
