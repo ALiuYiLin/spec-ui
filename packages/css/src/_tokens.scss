@@ -15,6 +15,8 @@
   --color-sm-primary-active: #0958d9;
   --color-sm-primary-bg: #e6f4ff;
   --color-sm-ring: #91caff;
+  --color-sm-info-bg: #e6f4ff;
+  --color-sm-info-border: #91caff;
 
   /* 功能色 */
   --color-sm-success: #52c41a;
@@ -38,6 +40,7 @@
 
   /* 背景 */
   --color-sm-bg: #ffffff;
+  --color-sm-bg-base: #ffffff;
   --color-sm-bg-elevated: #ffffff;
   --color-sm-bg-layout: #f5f5f5;
   --color-sm-bg-spotlight: rgba(0, 0, 0, 0.85);
@@ -53,6 +56,10 @@
   --color-sm-border-secondary: #f0f0f0;
   --color-sm-split: rgba(5, 5, 5, 0.06);
   --color-sm-tag-bg: #fafafa;
+
+  /* 阴影：暗色下 antd 换成白/更高饱和的投影 */
+  --color-sm-shadow-btn: rgba(0, 0, 0, 0.02);
+  --color-sm-shadow-primary: rgba(5, 145, 255, 0.1);
 }
 
 /* 暗色：颜色值等于 theme.darkAlgorithm(defaultSeed) 的输出。
@@ -63,6 +70,8 @@
   --color-sm-primary-active: #1554ad;
   --color-sm-primary-bg: #15325b;
   --color-sm-ring: #15325b;
+  --color-sm-info-bg: #111a2c;
+  --color-sm-info-border: #15325b;
 
   --color-sm-success: #49aa19;
   --color-sm-success-bg: #162312;
@@ -74,7 +83,7 @@
   --color-sm-danger-bg: #2c1618;
   --color-sm-danger-border: #5b2526;
 
-  --color-sm-text-base: #fff;
+
   --color-sm-text: rgba(255, 255, 255, 0.85);
   --color-sm-text-secondary: rgba(255, 255, 255, 0.65);
   --color-sm-text-tertiary: rgba(255, 255, 255, 0.45);
@@ -82,6 +91,7 @@
   --color-sm-text-disabled: rgba(255, 255, 255, 0.25);
 
   --color-sm-bg: #141414;
+  --color-sm-bg-base: #000000;
   --color-sm-bg-elevated: #1f1f1f;
   --color-sm-bg-layout: #000000;
   --color-sm-bg-spotlight: #424242;
@@ -94,6 +104,8 @@
   --color-sm-fill-quaternary: rgba(255, 255, 255, 0.04);
   --color-sm-border: #424242;
   --color-sm-border-secondary: #303030;
-  --color-sm-split: rgba(255, 255, 255, 0.12);
-  --color-sm-tag-bg: #1f1f1f;
+  --color-sm-split: rgba(253, 253, 253, 0.12);
+  --color-sm-tag-bg: #1d1d1d;
+  --color-sm-shadow-btn: rgba(255, 255, 255, 0.04);
+  --color-sm-shadow-primary: rgba(23, 117, 249, 0.31);
 }

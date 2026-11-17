@@ -92,7 +92,7 @@
     line-height: 38px;
   }
   .sm-select__placeholder {
-    color: rgba(0, 0, 0, 0.25);
+    color: var(--color-sm-text-quaternary);
   }
 
   .sm-select__arrow {
@@ -140,7 +140,7 @@
   .sm-select:hover .sm-select__clear,
   .sm-select:focus-within .sm-select__clear {
     opacity: 1;
-    background: var(--color-sm-bg);
+    background: var(--color-sm-bg-base);
     border-radius: 50%;
   }
   /* 与 antd 的 .anticon 对齐：图标本体是按基线摆放的 */
@@ -175,7 +175,7 @@
   }
   .sm-select__control:focus-within {
     border-color: var(--color-sm-primary);
-    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    box-shadow: 0 0 0 2px var(--color-sm-shadow-primary);
     outline-width: 0;
   }
 
@@ -186,7 +186,7 @@
     overflow: hidden;
     padding: 4px;
     border: 0;
-    background: var(--color-sm-bg);
+    background: var(--color-sm-bg-elevated);
     color: var(--color-sm-text);
     font-family: var(--font-sm);
     font-size: 14px;

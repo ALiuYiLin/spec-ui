@@ -35,7 +35,8 @@ const PAIRS = {
   '--color-sm-danger': ['colorError', 'colorError'],
   '--color-sm-danger-bg': ['colorErrorBg', 'colorErrorBg'],
   '--color-sm-danger-border': ['colorErrorBorder', 'colorErrorBorder'],
-  '--color-sm-text-base': ['colorTextBase', 'colorTextBase'],
+  // --color-sm-text-base 故意不进对账：它是 antd 容器元素在两种主题下都继承到的 #000，
+  // 不是 antd 的 colorTextBase（后者暗色为 #fff）。证据见 Empty / Result / Image 的 root color。
   '--color-sm-text': ['colorText', 'colorText'],
   '--color-sm-text-secondary': ['colorTextSecondary', 'colorTextSecondary'],
   '--color-sm-text-tertiary': ['colorTextTertiary', 'colorTextTertiary'],

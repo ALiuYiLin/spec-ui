@@ -8,7 +8,10 @@ import { STYLE_PROPS, kebab } from './props.mjs'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PKG_ROOT = path.resolve(__dirname, '..')
 const DIST = path.join(PKG_ROOT, 'dist')
-const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', 'artifacts')
+/** --theme=dark 时采集暗色证据，单独落到 artifacts-dark/，不覆盖亮色基线 */
+const THEME = (process.argv.find((a) => a.startsWith('--theme=')) ?? '--theme=light').slice('--theme='.length)
+const THEME_QUERY = THEME === 'dark' ? '&theme=dark' : ''
+const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', THEME === 'dark' ? 'artifacts-dark' : 'artifacts')
 const VIEWPORT = { width: 1280, height: 800 }
 
 const PSEUDOS = ['::before', '::after']
@@ -196,7 +199,7 @@ async function main() {
 
     const t0 = Date.now()
     try {
-      await page.goto(`${base}?case=${encodeURIComponent(c.id)}`, { waitUntil: 'load' })
+      await page.goto(`${base}?case=${encodeURIComponent(c.id)}${THEME_QUERY}`, { waitUntil: 'load' })
       await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
       await page.evaluate(() => document.fonts.ready.then(() => undefined))
 

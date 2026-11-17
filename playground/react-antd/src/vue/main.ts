@@ -4,6 +4,10 @@ import '../ref/harness.css'
 import { renders } from './cases'
 
 const params = new URLSearchParams(window.location.search)
+if (params.get('theme') === 'dark') {
+  document.documentElement.dataset.theme = 'dark'
+}
+
 const requested = params.get('case')
 const activeId = requested && renders[requested] ? requested : Object.keys(renders)[0]
 const active = renders[activeId]

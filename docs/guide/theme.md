@@ -102,12 +102,28 @@ VitePress 的暗色是给 `<html>` 加/删 `class="dark"`（不刷新页面）�
    而不是 `--color-sm-text-tertiary`，尽管亮色下两者都是 `rgba(0,0,0,.45)`）
 3. 阴影目前仍是亮色固定值，暗色下几乎不可见，暂未令牌化
 
-## 已知边界
+## 暗色也有 L3 证据
 
-暗色**尚未接入 L3 视觉比对**。当前证据链是：
+暗色不只是一套变量——它同样跑了与 antd 的逐属性比对：
 
-- 亮色：L3 与 antd 逐属性比对（168 个目标全绿）
-- 暗色：令牌值与 antd 的 `darkAlgorithm` 逐项对账
+```bash
+pnpm --filter @specmark/playground-react-antd run extract:dark   # 用 darkAlgorithm 采集证据
+pnpm --filter @specmark/playground-react-antd run diff:dark      # React 实现对比
+pnpm --filter @specmark/playground-react-antd run diff:dark:vue  # Vue 实现对比
+```
 
-也就是说暗色证明了「变量值完全一致」，但没有证明「每个组件的暗色渲染与 antd 一致」。
-要做到后者，需要给 antd 证据台加一套暗色算法配置并重新采集证据。
+暗色证据单独落在 `artifacts-dark/`，不覆盖亮色基线；`pnpm verify` 会同时跑亮/暗共四轮比对。
+
+这条链路抓到过一批真实问题，例如：
+
+| 现象 | 根因 |
+|---|---|
+| Popover / Modal / Drawer / Dropdown 底色偏暗 | 用了 `--color-sm-bg`（container），应该用 `--color-sm-bg-elevated` |
+| Switch 关闭态、Avatar 底色偏黑 | 写死 `rgba(0,0,0,.25)`，应是 `--color-sm-text-quaternary` |
+| Alert info 底色偏蓝 | 用了 primary 令牌，antd 用的是 info 令牌 |
+| 按钮投影在暗色下消失 | 阴影未令牌化，暗色是白色投影 |
+
+## 仍然存在的边界
+
+- 阴影只令牌化了按钮与聚焦环两类，其余阴影（弹层三层投影）仍是亮色固定值
+- `prefers-color-scheme` 不自动生效，必须显式设置 `data-theme`

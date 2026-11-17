@@ -21,7 +21,7 @@
     text-align: center;
     white-space: nowrap;
     cursor: pointer;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 2px 0 var(--color-sm-shadow-btn);
   }
 
   .sm-btn[data-size='xs'] {
@@ -52,7 +52,7 @@
     color: var(--color-sm-white);
     background: var(--color-sm-primary);
     border-color: transparent;
-    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+    box-shadow: 0 2px 0 var(--color-sm-shadow-primary);
   }
   .sm-btn[data-variant='dashed'] {
     border-style: dashed;

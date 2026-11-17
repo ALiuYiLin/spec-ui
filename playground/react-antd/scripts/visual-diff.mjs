@@ -1,5 +1,6 @@
 import http from 'node:http'
 import fsp from 'node:fs/promises'
+import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-core'
@@ -16,7 +17,17 @@ import { STYLE_PROPS, kebab } from './props.mjs'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PKG_ROOT = path.resolve(__dirname, '..')
 const DIST = path.join(PKG_ROOT, 'dist')
-const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', 'artifacts')
+/** --theme=dark 时对比 artifacts-dark/ 里的暗色证据 */
+const THEME = (process.argv.find((a) => a.startsWith('--theme=')) ?? '--theme=light').slice('--theme='.length)
+const THEME_QUERY = THEME === 'dark' ? '&theme=dark' : ''
+const ARTIFACTS = path.resolve(PKG_ROOT, '..', '..', THEME === 'dark' ? 'artifacts-dark' : 'artifacts')
+if (!fs.existsSync(ARTIFACTS)) {
+  console.error(
+    `缺少${THEME === 'dark' ? '暗色' : '亮色'}证据目录：${ARTIFACTS}\n` +
+      (THEME === 'dark' ? '先跑 pnpm extract:dark' : '先跑 pnpm extract'),
+  )
+  process.exit(1)
+}
 const VIEWPORT = { width: 1280, height: 800 }
 
 /** 用 --page=vue.html 可以让另一套实现跑同一份比对 */
@@ -1058,7 +1069,7 @@ async function main() {
       continue
     }
 
-    await page.goto(`${base}${PAGE}?case=${encodeURIComponent(pair.ref)}`, { waitUntil: 'load' })
+    await page.goto(`${base}${PAGE}?case=${encodeURIComponent(pair.ref)}${THEME_QUERY}`, { waitUntil: 'load' })
     await page.waitForFunction(() => document.querySelector('[data-case-root] > *') || document.body.querySelector('[class^="sm-"], [class*=" sm-"]'), { timeout: 20000 })
     for (const a of rc.actions ?? []) {
       if (a.type === 'focus') await page.focus(a.selector)
