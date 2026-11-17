@@ -2,8 +2,6 @@
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
-  /** 演示标题，来自 ::: demo 后的文字 */
-  title?: string
   /** 构建期高亮好的 HTML（encodeURIComponent） */
   code?: string
   /** 原始源码（encodeURIComponent），用于复制 */
@@ -30,8 +28,6 @@ async function copyCode() {
 
 <template>
   <div class="sm-demo">
-    <div v-if="title" class="sm-demo__title">{{ title }}</div>
-
     <div class="sm-demo__stage">
       <slot />
     </div>
@@ -39,12 +35,7 @@ async function copyCode() {
     <div class="sm-demo__toolbar">
       <button type="button" class="sm-demo__btn" :aria-label="copied ? '已复制' : '复制代码'" @click="copyCode">
         <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-          <path
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            d="M9 9h9v11H9zM6 15H5V4h9v1"
-          />
+          <path fill="none" stroke="currentColor" stroke-width="1.6" d="M9 9h9v11H9zM6 15H5V4h9v1" />
         </svg>
         <span>{{ copied ? '已复制' : '复制' }}</span>
       </button>

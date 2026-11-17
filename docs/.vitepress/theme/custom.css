@@ -5,12 +5,12 @@
   overflow: hidden;
 }
 
-.sm-demo__title {
-  padding: 12px 16px 0;
+/* 描述在卡片上方，按正文排版，与 element-plus 的 demo 描述一致 */
+.sm-demo__desc {
+  margin: 8px 0;
   font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--vp-c-text-1);
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
 }
 
 .sm-demo__stage {

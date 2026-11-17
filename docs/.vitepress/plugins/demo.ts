@@ -2,17 +2,19 @@ import container from 'markdown-it-container'
 import type { MarkdownRenderer } from 'vitepress'
 
 /**
- * `::: demo 标题` 容器。
+ * `::: demo 描述` 容器，用法对齐 element-plus：
  *
- * 与 element-plus 的做法一致：源码在**构建期**用 markdown-it 渲染成高亮 HTML，
- * 再作为参数交给 Demo 组件；组件只负责展示与折叠，不做任何解析。
+ *   :::demo 通过 `tone` 与 `variant` 组合出不同颜色与形态。
+ *   <SmButton tone="success" variant="solid" label="实心" />
+ *   :::
  *
- * 好处是：高亮主题跟随 VitePress（明暗两套）、不引入运行时高亮库、源码就是作者写的那段。
+ * - info 部分是**描述**，按行内 markdown 渲染在演示卡上方
+ * - 容器体是示例源码，构建期用 markdown-it 渲染成高亮 HTML 交给 Demo 组件
+ *
+ * 与 element-plus 的差别只有一处：它把示例写在独立文件里、容器体只放路径，
+ * 我们的示例直接内联在 markdown 中，所以容器体本身就是源码。
  */
 export default function demoPlugin(md: MarkdownRenderer) {
-  // 容器体是原始文本，render 回调里拿不到。
-  // 注意：container 的 close token 不一定带 map，所以不能靠 map 切片，
-  // 直接从原文按行扫出每个 `::: demo` 块，再按出现顺序分配给 open token。
   md.core.ruler.push('sm_demo_source', (state) => {
     const lines = state.src.split(/\r?\n/)
     const blocks: string[] = []
@@ -41,26 +43,17 @@ export default function demoPlugin(md: MarkdownRenderer) {
 
       if (token.nesting !== 1) return '</Demo>\n'
 
-      const title = token.info.trim().replace(/^demo\b/, '').trim()
+      const description = token.info.trim().replace(/^demo\b/, '').trim()
       const body: string = token.meta?.body ?? ''
 
-      // 用同一个 md 渲染一段 vue 代码围栏：拿到 VitePress 的 shiki 高亮结果
       const highlighted = md.render(`\`\`\`vue\n${body}\n\`\`\``)
-
-      // VitePress 会在代码块里塞一个自己的复制按钮，这里去掉，避免和演示卡工具栏重复
       const cleaned = highlighted.replace(/<button[^>]*class="copy"[^>]*>[\s\S]*?<\/button>/g, '')
 
-      const attrs = [
-        `title="${escapeAttr(title)}"`,
-        `code="${encodeURIComponent(cleaned)}"`,
-        `raw="${encodeURIComponent(body)}"`,
-      ].join(' ')
+      const descHtml = description
+        ? `<p class="sm-demo__desc">${md.renderInline(description)}</p>\n`
+        : ''
 
-      return `<Demo ${attrs}>\n`
+      return `${descHtml}<Demo code="${encodeURIComponent(cleaned)}" raw="${encodeURIComponent(body)}">\n`
     },
   })
-}
-
-function escapeAttr(value: string): string {
-  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 }
