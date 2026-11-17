@@ -9,6 +9,7 @@ docs/.vitepress/dist/
 
 # 证据与报告：可由 pnpm extract / report 重新生成
 artifacts/
+artifacts-dark/
 
 # 权限修复留下的备份与报告（临时文件）
 .acl-recovery/
