@@ -210,6 +210,8 @@
   .sm-btn__icon > svg {
     vertical-align: -0.125em;
   }
+  /* 槽位保持 14×19 的行盒（与 antd 的 .ant-btn-loading-icon 一致），
+     但旋转必须交给 14×14 的 svg：在 14×19 的非方形盒子上转会绕错中心、视觉发抖 */
   .sm-btn__spinner {
     display: block;
     box-sizing: border-box;
@@ -218,5 +220,10 @@
     font-size: 14px;
     line-height: normal;
     text-align: center;
+  }
+  .sm-btn__spinner > svg {
+    display: block;
+    margin: 2.5px auto 0;
+    transform-origin: center;
     animation: sm-spin 1s linear infinite;
   }
