@@ -9,6 +9,42 @@
 select/basic
 
 :::
+
+:::demo `size` 只影响高度、内边距与字号，不改变交互。
+
+select/sizes
+
+:::
+
+:::demo 三种形态由 `variant` 决定：`outlined` / `filled` / `borderless`。
+
+select/variants
+
+:::
+
+:::demo `status` 表达校验态，与 Input 共用同一套语义。
+
+select/status
+
+:::
+
+:::demo `allowClear` 在有值时把箭头位置让给清除按钮；`showArrow=false` 可彻底隐藏箭头。
+
+select/clearable
+
+:::
+
+:::demo 禁用态不可展开，也不响应键盘。
+
+select/disabled
+
+:::
+
+:::demo `open` 受控时组件不自己改状态——展开态可以直接由 props 指定，便于截图与对拍。
+
+select/open
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |
