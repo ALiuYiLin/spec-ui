@@ -121,12 +121,25 @@
     min-width: 40px;
     width: 40px;
   }
+  /* antd 的 round 取控制高度的一半，不是 9999px —— 逐项比对时值会不一样 */
   .sm-btn[data-shape='round'] {
-    border-radius: 9999px;
+    border-radius: 32px;
+  }
+  .sm-btn[data-shape='round'][data-size='xs'] {
+    border-radius: 16px;
+  }
+  .sm-btn[data-shape='round'][data-size='sm'] {
+    border-radius: 24px;
+  }
+  .sm-btn[data-shape='round'][data-size='lg'] {
+    border-radius: 40px;
+  }
+  .sm-btn[data-shape='round'][data-size='xl'] {
+    border-radius: 48px;
   }
 
   .sm-btn[data-block='true'] {
-    display: flex;
+    display: inline-flex;
     width: 100%;
   }
 
@@ -170,6 +183,14 @@
     background: var(--color-sm-fill);
     border-color: var(--color-sm-border);
     box-shadow: none;
+  }
+  .sm-btn[data-disabled='true'] {
+    cursor: not-allowed;
+  }
+  .sm-btn[data-disabled='true'][data-variant='text'],
+  .sm-btn[data-disabled='true'][data-variant='link'] {
+    background: transparent;
+    border-color: transparent;
     cursor: not-allowed;
   }
 

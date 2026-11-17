@@ -30,6 +30,11 @@ const icon = () =>
 
 /** id 与 React 用例一一对应，这样 L3 的 pair 表可以原样复用 */
 export const renders: Record<string, { component: VueCase['component']; actions?: VueAction[]; render: () => VNodeChild }> = {
+  'ref-button-round': { component: 'Button', render: () => h(Button, { variant: 'solid', shape: 'round' }, { default: () => '圆角' }) },
+  'ref-button-block': { component: 'Button', render: () => h(Button, { variant: 'solid', block: true }, { default: () => '块级' }) },
+  'ref-button-disabled-dashed': { component: 'Button', render: () => h(Button, { variant: 'dashed', disabled: true }, { default: () => '提交' }) },
+  'ref-button-disabled-text': { component: 'Button', render: () => h(Button, { variant: 'text', disabled: true }, { default: () => '提交' }) },
+  'ref-button-disabled-link': { component: 'Button', render: () => h(Button, { variant: 'link', disabled: true }, { default: () => '提交' }) },
   'ref-button-default': { component: 'Button', render: () => h(Button, { label: '默认' }) },
   'ref-button-tone-success': { component: 'Button', render: () => h(Button, { tone: 'success', variant: 'solid' }, { default: () => '提交' }) },
   'ref-button-tone-warning': { component: 'Button', render: () => h(Button, { tone: 'warning', variant: 'solid' }, { default: () => '提交' }) },

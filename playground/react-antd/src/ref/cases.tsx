@@ -51,6 +51,56 @@ const INPUT = '.sm-select__input'
 export const cases: RefCase[] = [
   // ---------------- Button ----------------
   {
+    id: 'ref-button-round',
+    component: 'Button',
+    render: () => (
+      <Button variant="solid" shape="round">
+              圆角
+            </Button>
+    ),
+    assert: [{ k: 'data', key: 'shape', value: 'round' }],
+  },
+  {
+    id: 'ref-button-block',
+    component: 'Button',
+    render: () => (
+      <Button variant="solid" block>
+              块级
+            </Button>
+    ),
+    assert: [{ k: 'data', key: 'block', value: 'true' }],
+  },
+  {
+    id: 'ref-button-disabled-dashed',
+    component: 'Button',
+    render: () => (
+      <Button variant="dashed" disabled>
+              提交
+            </Button>
+    ),
+    assert: [{ k: 'data', key: 'disabled', value: 'true' }],
+  },
+  {
+    id: 'ref-button-disabled-text',
+    component: 'Button',
+    render: () => (
+      <Button variant="text" disabled>
+              提交
+            </Button>
+    ),
+    assert: [{ k: 'data', key: 'disabled', value: 'true' }],
+  },
+  {
+    id: 'ref-button-disabled-link',
+    component: 'Button',
+    render: () => (
+      <Button variant="link" disabled>
+              提交
+            </Button>
+    ),
+    assert: [{ k: 'data', key: 'disabled', value: 'true' }],
+  },
+  {
     id: 'ref-button-default',
     component: 'Button',
     render: () => <Button>默认</Button>,
