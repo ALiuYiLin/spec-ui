@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { CloseIcon } from './icons'
 import { createPortal } from 'react-dom'
 
 export type DrawerSide = 'right' | 'left' | 'top' | 'bottom'
@@ -39,10 +40,13 @@ export function Drawer({
         aria-label={typeof title === 'string' ? title : undefined}
         style={geometry}
       >
-        {closable ? (
-          <button type="button" className="sm-drawer__close" aria-label="关闭" onClick={onClose} />
-        ) : null}
+        {/* HANDLER_IN_HEADER */}
         <div className="sm-drawer__header">
+          {closable ? (
+            <button type="button" className="sm-drawer__close" aria-label="关闭" onClick={onClose}>
+              <CloseIcon />
+            </button>
+          ) : null}
           {title != null ? <div className="sm-drawer__title">{title}</div> : null}
         </div>
         <div className="sm-drawer__body">{children}</div>

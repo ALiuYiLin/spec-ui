@@ -390,11 +390,19 @@
     },
     "item": {
       "ref": ".sm-breadcrumb__item",
-      "antd": ".ant-breadcrumb-link"
+      "antd": ".ant-breadcrumb-item"
     },
     "separator": {
       "ref": ".sm-breadcrumb__separator",
       "antd": ".ant-breadcrumb-separator"
+    },
+    "link": {
+      "ref": ".sm-breadcrumb__link",
+      "antd": ".ant-breadcrumb-link"
+    },
+    "list": {
+      "ref": ".sm-breadcrumb__list",
+      "antd": ".ant-breadcrumb ol"
     }
   },
   "Space": {

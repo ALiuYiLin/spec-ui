@@ -14,13 +14,21 @@
         "state": {
           "kind": "state",
           "domain": "visibility",
-          "enum": ["open", "closed"],
+          "enum": [
+            "open",
+            "closed"
+          ],
           "required": true,
           "default": "closed"
         },
         "side": {
           "kind": "config",
-          "enum": ["right", "left", "top", "bottom"],
+          "enum": [
+            "right",
+            "left",
+            "top",
+            "bottom"
+          ],
           "required": true,
           "default": "right"
         }
@@ -33,7 +41,15 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "panel": {
         "class": "sm-drawer__panel",
@@ -42,10 +58,22 @@
         "order": 2,
         "geometry": true,
         "attrs": {
-          "role": { "required": true, "default": "dialog" },
-          "aria-modal": { "required": true, "default": "true" }
+          "role": {
+            "required": true,
+            "default": "dialog"
+          },
+          "aria-modal": {
+            "required": true,
+            "default": "true"
+          }
         },
-        "notes": "宽度由 props 决定，走几何内联样式。"
+        "notes": "宽度由 props 决定，走几何内联样式。",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "close": {
         "class": "sm-drawer__close",
@@ -53,26 +81,68 @@
         "required": false,
         "order": 1,
         "condition": "closable 不为 false",
-        "aria": { "aria-label": "必填" }
+        "aria": {
+          "aria-label": "必填"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "header": {
         "class": "sm-drawer__header",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "panel",
+          "lane": {
+            "name": "panel-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-column"
+          }
+        }
       },
       "title": {
         "class": "sm-drawer__title",
         "tag": "div",
         "required": false,
         "order": 1,
-        "condition": "传入 title"
+        "condition": "传入 title",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "body": {
         "class": "sm-drawer__body",
         "tag": "div",
         "required": true,
-        "order": 3
+        "order": 3,
+        "requires": {
+          "inside": "panel",
+          "lane": {
+            "name": "panel-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-column"
+          }
+        }
       }
     }
   },

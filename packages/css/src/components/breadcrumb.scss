@@ -9,14 +9,14 @@
 }
 .sm-breadcrumb__item {
   box-sizing: border-box;
-  display: inline;
+  display: list-item;
   color: var(--color-sm-text-tertiary);
   font-size: 14px;
   line-height: 22px;
 }
 .sm-breadcrumb__separator {
   box-sizing: border-box;
-  display: inline;
+  display: list-item;
   margin-inline: 8px;
   min-height: auto;
   color: var(--color-sm-text-tertiary);
@@ -24,3 +24,18 @@
   line-height: 22px;
 }
 
+/* antd 的结构：nav(block) > ol(flex-row) > li */
+.sm-breadcrumb__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* antd 的 item 是 li（list-item），链接文字在 .ant-breadcrumb-link 里 */
+.sm-breadcrumb__link {
+  display: inline;
+  color: inherit;
+}

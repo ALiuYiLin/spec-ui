@@ -1,4 +1,5 @@
 import { Teleport, defineComponent, h } from 'vue'
+import { CloseIcon } from './icons'
 import type { PropType, VNode } from 'vue'
 
 export type DrawerSide = 'right' | 'left' | 'top' | 'bottom'
@@ -39,15 +40,15 @@ export const Drawer = defineComponent({
               style: geometry,
             },
             [
-              props.closable
-                ? h('button', {
-                    type: 'button',
-                    class: 'sm-drawer__close',
-                    'aria-label': '关闭',
-                    onClick: () => emit('close'),
-                  })
-                : null,
               h('div', { class: 'sm-drawer__header' }, [
+                props.closable
+                  ? h('button', {
+                      type: 'button',
+                      class: 'sm-drawer__close',
+                      'aria-label': '关闭',
+                      onClick: () => emit('close'),
+                    }, [h(CloseIcon)])
+                  : null,
                 props.title ? h('div', { class: 'sm-drawer__title' }, [props.title]) : null,
               ]),
               h('div', { class: 'sm-drawer__body' }, content ? (Array.isArray(content) ? content : [content]) : []),

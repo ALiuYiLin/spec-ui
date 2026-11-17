@@ -14,12 +14,15 @@ export function Field({ label, required, status = 'default', error, children }: 
   return (
     <div className="sm-field" data-status={status} {...(required ? { 'data-required': 'true' } : null)}>
       {label != null ? <label className="sm-field__label">{label}</label> : null}
-      <div className="sm-field__control">{children}</div>
-      {error != null ? (
-        <div className="sm-field__error" role="alert">
-          {error}
-        </div>
-      ) : null}
+      {/* ERROR_IN_CONTROL */}
+      <div className="sm-field__control">
+        {children}
+        {error != null ? (
+          <div className="sm-field__error" role="alert">
+            {error}
+          </div>
+        ) : null}
+      </div>
     </div>
   )
 }

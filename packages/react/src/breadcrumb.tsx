@@ -10,16 +10,20 @@ export type BreadcrumbProps = {
 export function Breadcrumb({ items, label = '面包屑' }: BreadcrumbProps) {
   return (
     <nav className="sm-breadcrumb" aria-label={label}>
-      {items.map((item, index) => (
+      <ol className="sm-breadcrumb__list">
+        {items.map((item, index) => (
         <Fragment key={index}>
-          <span className="sm-breadcrumb__item">{item.title}</span>
+          <li className="sm-breadcrumb__item">
+            <span className="sm-breadcrumb__link">{item.title}</span>
+          </li>
           {index < items.length - 1 ? (
-            <span className="sm-breadcrumb__separator" aria-hidden="true">
+            <li className="sm-breadcrumb__separator" aria-hidden="true">
               /
-            </span>
+            </li>
           ) : null}
         </Fragment>
-      ))}
+        ))}
+      </ol>
     </nav>
   )
 }

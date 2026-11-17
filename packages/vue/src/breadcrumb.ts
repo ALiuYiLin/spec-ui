@@ -14,13 +14,25 @@ export const Breadcrumb = defineComponent({
       h(
         'nav',
         { class: 'sm-breadcrumb', 'aria-label': props.label },
-        props.items.flatMap((item, index) => {
-          const nodes = [h('span', { class: 'sm-breadcrumb__item', key: `i${index}` }, [item.title])]
-          if (index < props.items.length - 1) {
-            nodes.push(h('span', { class: 'sm-breadcrumb__separator', 'aria-hidden': 'true', key: `s${index}` }, ['/']))
-          }
-          return nodes
-        }),
+        [
+          h(
+            'ol',
+            { class: 'sm-breadcrumb__list' },
+            props.items.flatMap((item, index) => {
+              const nodes = [
+                h('li', { class: 'sm-breadcrumb__item', key: `i${index}` }, [
+                  h('span', { class: 'sm-breadcrumb__link' }, [item.title]),
+                ]),
+              ]
+              if (index < props.items.length - 1) {
+                nodes.push(
+                  h('li', { class: 'sm-breadcrumb__separator', 'aria-hidden': 'true', key: `s${index}` }, ['/']),
+                )
+              }
+              return nodes
+            }),
+          ),
+        ],
       )
   },
 })

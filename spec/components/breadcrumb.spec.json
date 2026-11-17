@@ -9,14 +9,20 @@
       "class": "sm-breadcrumb",
       "tag": "nav",
       "required": true,
-      "aria": { "aria-label": "必填，例如「面包屑」" }
+      "aria": {
+        "aria-label": "必填，例如「面包屑」"
+      }
     },
     "parts": {
       "item": {
         "class": "sm-breadcrumb__item",
         "tag": "span",
         "required": true,
-        "order": 1
+        "order": 1,
+        "requires": {
+          "inside": "root"
+        },
+        "many": true
       },
       "separator": {
         "class": "sm-breadcrumb__separator",
@@ -24,7 +30,36 @@
         "required": false,
         "order": 2,
         "condition": "不是最后一项",
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
+      },
+      "link": {
+        "class": "sm-breadcrumb__link",
+        "tag": "span",
+        "required": false,
+        "condition": "每个 item 内部渲染链接文字",
+        "requires": {
+          "inside": "item"
+        }
+      },
+      "list": {
+        "class": "sm-breadcrumb__list",
+        "tag": "ol",
+        "required": true,
+        "condition": "面包屑列表容器，items 都在它里面",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },
@@ -34,6 +69,8 @@
     "separator 必须 aria-hidden。",
     "当前页（最后一项）不得是链接。"
   ],
-  "a11y": ["最后一个 item 表示当前页，不能用 link 角色。"],
+  "a11y": [
+    "最后一个 item 表示当前页，不能用 link 角色。"
+  ],
   "notes": "第一个 root 使用 nav 语义的组件。"
 }

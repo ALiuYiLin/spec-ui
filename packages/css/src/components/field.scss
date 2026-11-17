@@ -38,3 +38,14 @@
   line-height: 22px;
 }
 
+/* antd 的结构：control 内含控件与错误文案，纵向排列 */
+.sm-field__control {
+  display: flex;
+  flex-direction: column;
+}
+
+/* antd 的表单项纵向排列：label → control */
+.sm-field {
+  display: flex;
+  flex-direction: column;
+}

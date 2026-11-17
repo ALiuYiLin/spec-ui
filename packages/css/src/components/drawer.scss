@@ -80,3 +80,9 @@
   cursor: pointer;
 }
 
+/* antd 的结构：header(flex-row) > (title, close) */
+.sm-drawer__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
