@@ -14,6 +14,36 @@ input/basic
 input/sizes
 
 :::
+
+:::demo `allowClear` 在**有值且未禁用**时才出现，清空后自动隐藏。
+
+input/allow-clear
+
+:::
+
+:::demo 前缀与后缀通过 `prefix` / `suffix` 插槽传入，根节点会从 `<input>` 变成 `<span>` 包裹。
+
+input/affix
+
+:::
+
+:::demo 三种形态只由 `data-variant` 决定：`outlined` / `filled` / `borderless`。
+
+input/variants
+
+:::
+
+:::demo `status` 表达校验态。`error` 时输入框必须同时带 `aria-invalid="true"`，不能只改颜色。
+
+input/status
+
+:::
+
+:::demo 禁用与只读是两件事：禁用不可聚焦、不提交；只读可聚焦、可复制。
+
+input/disabled
+
+:::
 ## 结构
 
 | 形态 | 根节点 | 说明 |
