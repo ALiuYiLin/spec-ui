@@ -16,13 +16,33 @@
         "tag": "div",
         "required": false,
         "order": 1,
-        "condition": "传入 title"
+        "condition": "传入 title",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "value": {
         "class": "sm-statistic__value",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },
@@ -31,6 +51,8 @@
     "title 若存在必须位于 value 之前。",
     "数值格式化（千分位、小数位）由实现负责，不体现在 DOM 契约里。"
   ],
-  "a11y": ["数值应有可读文本；纯图标指标需要 title 提供上下文。"],
+  "a11y": [
+    "数值应有可读文本；纯图标指标需要 title 提供上下文。"
+  ],
   "notes": "第一个「大号数值」组件。"
 }

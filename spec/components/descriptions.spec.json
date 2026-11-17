@@ -15,19 +15,42 @@
         "class": "sm-descriptions__item",
         "tag": "div",
         "required": true,
-        "order": 1
+        "order": 1,
+        "requires": {
+          "inside": "root"
+        }
       },
       "label": {
         "class": "sm-descriptions__label",
         "tag": "div",
         "required": true,
-        "order": 1
+        "order": 1,
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "content": {
         "class": "sm-descriptions__content",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },
@@ -35,6 +58,8 @@
     "item 必须是 root 的直接子节点；label 与 content 必须是 item 的直接子节点，且 label 在前。",
     "每个 item 必须有 label 与 content。"
   ],
-  "a11y": ["成对信息建议用 dl/dt/dd 语义；本版为简化使用 div，后续可升级。"],
+  "a11y": [
+    "成对信息建议用 dl/dt/dd 语义；本版为简化使用 div，后续可升级。"
+  ],
   "notes": "antd 用 table 实现，我们用 div + flex；L3 只比根节点，理由写在文档里。"
 }

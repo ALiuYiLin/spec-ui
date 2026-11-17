@@ -13,13 +13,22 @@
         "state": {
           "kind": "state",
           "domain": "selection",
-          "enum": ["checked", "unchecked", "indeterminate"],
+          "enum": [
+            "checked",
+            "unchecked",
+            "indeterminate"
+          ],
           "required": true,
           "default": "unchecked"
         },
-        "disabled": { "kind": "boolean" }
+        "disabled": {
+          "kind": "boolean"
+        }
       },
-      "interaction": ["hover", "focus-within"]
+      "interaction": [
+        "hover",
+        "focus-within"
+      ]
     },
     "parts": {
       "control": {
@@ -27,7 +36,17 @@
         "tag": "span",
         "required": true,
         "order": 1,
-        "notes": "16×16 的定位容器，input 绝对定位在其中，视觉方框也在里面。勾号由样式层绘制。"
+        "notes": "16×16 的定位容器，input 绝对定位在其中，视觉方框也在里面。勾号由样式层绘制。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "input": {
         "class": "sm-checkbox__input",
@@ -35,24 +54,59 @@
         "required": true,
         "order": 1,
         "attrs": {
-          "type": { "required": true, "default": "checkbox" }
+          "type": {
+            "required": true,
+            "default": "checkbox"
+          }
         },
-        "notes": "视觉上不可见但必须可聚焦；indeterminate 是 JS 属性，不体现在 attribute 上。"
+        "notes": "视觉上不可见但必须可聚焦；indeterminate 是 JS 属性，不体现在 attribute 上。",
+        "requires": {
+          "inside": "control",
+          "lane": {
+            "name": "control-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "box": {
         "class": "sm-checkbox__box",
         "tag": "span",
         "required": true,
         "order": 2,
-        "aria": { "aria-hidden": "true" },
-        "notes": "纯视觉方框。勾号与半选横线由样式层绘制，不占用 DOM。"
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "notes": "纯视觉方框。勾号与半选横线由样式层绘制，不占用 DOM。",
+        "requires": {
+          "inside": "control",
+          "lane": {
+            "name": "control-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "label": {
         "class": "sm-checkbox__label",
         "tag": "span",
         "required": false,
         "order": 2,
-        "condition": "存在文本内容"
+        "condition": "存在文本内容",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },

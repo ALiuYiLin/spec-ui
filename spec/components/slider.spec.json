@@ -12,13 +12,21 @@
       "data": {
         "orientation": {
           "kind": "config",
-          "enum": ["horizontal", "vertical"],
+          "enum": [
+            "horizontal",
+            "vertical"
+          ],
           "required": true,
           "default": "horizontal"
         },
-        "disabled": { "kind": "boolean" }
+        "disabled": {
+          "kind": "boolean"
+        }
       },
-      "interaction": ["hover", "focus-within"]
+      "interaction": [
+        "hover",
+        "focus-within"
+      ]
     },
     "parts": {
       "rail": {
@@ -26,7 +34,19 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "track": {
         "class": "sm-slider__track",
@@ -34,8 +54,20 @@
         "required": true,
         "order": 2,
         "geometry": true,
-        "aria": { "aria-hidden": "true" },
-        "notes": "选中区间的填充；横向时只写 width，纵向时只写 height。"
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "notes": "选中区间的填充；横向时只写 width，纵向时只写 height。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "handle": {
         "class": "sm-slider__handle",
@@ -44,8 +76,14 @@
         "order": 3,
         "geometry": true,
         "attrs": {
-          "role": { "required": true, "default": "slider" },
-          "tabindex": { "required": true, "default": "0" }
+          "role": {
+            "required": true,
+            "default": "slider"
+          },
+          "tabindex": {
+            "required": true,
+            "default": "0"
+          }
         },
         "aria": {
           "aria-valuenow": "必填，与当前值同步",
@@ -53,7 +91,17 @@
           "aria-valuemax": "必填",
           "aria-orientation": "竖向时为 vertical"
         },
-        "notes": "滑块手柄；横向时只写 left，纵向时只写 bottom。"
+        "notes": "滑块手柄；横向时只写 left，纵向时只写 bottom。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 3
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },

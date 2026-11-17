@@ -12,13 +12,20 @@
       "data": {
         "orientation": {
           "kind": "config",
-          "enum": ["horizontal", "vertical"],
+          "enum": [
+            "horizontal",
+            "vertical"
+          ],
           "required": true,
           "default": "horizontal"
         },
         "variant": {
           "kind": "variant",
-          "enum": ["solid", "dashed", "dotted"],
+          "enum": [
+            "solid",
+            "dashed",
+            "dotted"
+          ],
           "required": true,
           "default": "solid"
         }
@@ -30,7 +37,13 @@
         "tag": "span",
         "required": false,
         "order": 1,
-        "condition": "有文字内容"
+        "condition": "有文字内容",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },
@@ -39,6 +52,8 @@
     "线条不得作为独立 DOM 节点出现——必须用伪元素绘制。",
     "vertical 时 root 必须带 aria-orientation=\"vertical\"，horizontal 时可省略。"
   ],
-  "a11y": ["分隔线是纯视觉元素，不需要 role；语义分隔应使用标题层级。"],
+  "a11y": [
+    "分隔线是纯视觉元素，不需要 role；语义分隔应使用标题层级。"
+  ],
   "notes": "第一个“零部件”组件（无文字时）。"
 }

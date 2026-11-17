@@ -10,30 +10,47 @@
       "tag": "button",
       "required": true,
       "attrs": {
-        "type": { "required": true, "default": "button" }
+        "type": {
+          "required": true,
+          "default": "button"
+        }
       },
       "data": {
         "state": {
           "kind": "state",
           "domain": "toggle",
-          "enum": ["on", "off"],
+          "enum": [
+            "on",
+            "off"
+          ],
           "required": true,
           "default": "off"
         },
         "size": {
           "kind": "variant",
-          "enum": ["sm", "md"],
+          "enum": [
+            "sm",
+            "md"
+          ],
           "required": true,
           "default": "md"
         },
-        "disabled": { "kind": "boolean" },
-        "loading": { "kind": "boolean" }
+        "disabled": {
+          "kind": "boolean"
+        },
+        "loading": {
+          "kind": "boolean"
+        }
       },
       "aria": {
         "role": "switch",
         "aria-checked": "与 data-state 同步：on → true，off → false"
       },
-      "interaction": ["hover", "focus", "focus-visible"]
+      "interaction": [
+        "hover",
+        "focus",
+        "focus-visible"
+      ]
     },
     "parts": {
       "handle": {
@@ -41,8 +58,17 @@
         "tag": "span",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" },
-        "notes": "滑动的圆点；位移由样式层根据 data-state 决定。"
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "notes": "滑动的圆点；位移由样式层根据 data-state 决定。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          }
+        }
       },
       "inner": {
         "class": "sm-switch__inner",
@@ -50,7 +76,14 @@
         "required": false,
         "order": 2,
         "condition": "存在轨道内文本",
-        "notes": "轨道内的状态文案，可省略。"
+        "notes": "轨道内的状态文案，可省略。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          }
+        }
       }
     }
   },

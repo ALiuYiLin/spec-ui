@@ -12,7 +12,12 @@
       "data": {
         "status": {
           "kind": "variant",
-          "enum": ["success", "info", "warning", "error"],
+          "enum": [
+            "success",
+            "info",
+            "warning",
+            "error"
+          ],
           "required": true,
           "default": "info"
         }
@@ -24,20 +29,52 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 1
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "title": {
         "class": "sm-result__title",
         "tag": "div",
         "required": true,
-        "order": 2
+        "order": 2,
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       },
       "subtitle": {
         "class": "sm-result__subtitle",
         "tag": "div",
         "required": false,
         "order": 3,
-        "condition": "传入 subtitle"
+        "condition": "传入 subtitle",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 3
+          },
+          "parent": {
+            "layout": "block"
+          }
+        }
       }
     }
   },
@@ -46,6 +83,8 @@
     "subtitle 若存在必须位于 title 之后。",
     "状态只由 data-status 决定。"
   ],
-  "a11y": ["图标是装饰性的，必须 aria-hidden；语义由标题文字承担。"],
+  "a11y": [
+    "图标是装饰性的，必须 aria-hidden；语义由标题文字承担。"
+  ],
   "notes": "第一个「图标 + 标题 + 副标题」的静态页。"
 }

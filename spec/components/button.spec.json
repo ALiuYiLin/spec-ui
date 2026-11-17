@@ -11,7 +11,11 @@
       "required": true,
       "attrs": {
         "type": {
-          "enum": ["button", "submit", "reset"],
+          "enum": [
+            "button",
+            "submit",
+            "reset"
+          ],
           "required": true,
           "default": "button",
           "notes": "必须显式设置，避免在 form 内意外提交。"
@@ -20,34 +24,69 @@
       "data": {
         "tone": {
           "kind": "variant",
-          "enum": ["default", "primary", "success", "warning", "danger"],
+          "enum": [
+            "default",
+            "primary",
+            "success",
+            "warning",
+            "danger"
+          ],
           "required": true,
           "default": "default"
         },
         "variant": {
           "kind": "variant",
-          "enum": ["default", "solid", "dashed", "text", "link"],
+          "enum": [
+            "default",
+            "solid",
+            "dashed",
+            "text",
+            "link"
+          ],
           "required": true,
           "default": "default"
         },
         "size": {
           "kind": "variant",
-          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "enum": [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl"
+          ],
           "required": true,
           "default": "md"
         },
         "shape": {
           "kind": "variant",
-          "enum": ["default", "round", "circle"],
+          "enum": [
+            "default",
+            "round",
+            "circle"
+          ],
           "required": true,
           "default": "default"
         },
-        "danger": { "kind": "boolean" },
-        "block": { "kind": "boolean" },
-        "loading": { "kind": "boolean" },
-        "disabled": { "kind": "boolean" }
+        "danger": {
+          "kind": "boolean"
+        },
+        "block": {
+          "kind": "boolean"
+        },
+        "loading": {
+          "kind": "boolean"
+        },
+        "disabled": {
+          "kind": "boolean"
+        }
       },
-      "interaction": ["hover", "active", "focus", "focus-visible"],
+      "interaction": [
+        "hover",
+        "active",
+        "focus",
+        "focus-visible"
+      ],
       "aria": {
         "aria-busy": "loading 为 true 时必填 true"
       }
@@ -59,7 +98,9 @@
         "required": false,
         "order": 1,
         "condition": "传入图标且 loading 不为 true",
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        }
       },
       "label": {
         "class": "sm-btn__label",
@@ -73,7 +114,15 @@
         "required": false,
         "order": 1,
         "condition": "loading 为 true",
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },

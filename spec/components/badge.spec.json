@@ -10,10 +10,17 @@
       "tag": "span",
       "required": true,
       "data": {
-        "dot": { "kind": "boolean" },
+        "dot": {
+          "kind": "boolean"
+        },
         "status": {
           "kind": "config",
-          "enum": ["default", "success", "warning", "error"],
+          "enum": [
+            "default",
+            "success",
+            "warning",
+            "error"
+          ],
           "required": false
         }
       }
@@ -24,7 +31,10 @@
         "tag": "sup",
         "required": false,
         "order": 2,
-        "condition": "count 有值或 dot 为 true"
+        "condition": "count 有值或 dot 为 true",
+        "requires": {
+          "inside": "root"
+        }
       }
     }
   },
@@ -33,6 +43,8 @@
     "dot 为 true 时 count 不显示数字，但仍必须存在（用于绘制小圆点）。",
     "超过 overflowCount 时显示为 `${overflowCount}+`，由上层的文案决定，不由样式决定。"
   ],
-  "a11y": ["计数需要有可读文本；纯圆点应带 aria-label 说明含义。"],
+  "a11y": [
+    "计数需要有可读文本；纯圆点应带 aria-label 说明含义。"
+  ],
   "notes": "第一个“包裹型”展示组件：root 同时承载子内容与浮层计数。"
 }

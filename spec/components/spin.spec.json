@@ -12,13 +12,24 @@
       "data": {
         "size": {
           "kind": "variant",
-          "enum": ["sm", "md", "lg"],
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ],
           "required": true,
           "default": "md"
         }
       },
-      "attrs": { "role": { "required": true, "default": "status" } },
-      "aria": { "aria-label": "必填，例如「加载中」" }
+      "attrs": {
+        "role": {
+          "required": true,
+          "default": "status"
+        }
+      },
+      "aria": {
+        "aria-label": "必填，例如「加载中」"
+      }
     },
     "parts": {
       "dot": {
@@ -26,7 +37,12 @@
         "tag": "span",
         "required": true,
         "order": 1,
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root"
+        }
       },
       "tip": {
         "class": "sm-spin__tip",
@@ -42,6 +58,8 @@
     "dot 必须存在且只出现一次，并带 aria-hidden。",
     "动画必须尊重 prefers-reduced-motion。"
   ],
-  "a11y": ["role=\"status\" 会让加载状态被读屏播报；纯装饰的转圈不要用这个角色。"],
+  "a11y": [
+    "role=\"status\" 会让加载状态被读屏播报；纯装饰的转圈不要用这个角色。"
+  ],
   "notes": "第一个需要处理 prefers-reduced-motion 的组件。"
 }

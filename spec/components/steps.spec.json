@@ -12,7 +12,10 @@
       "data": {
         "direction": {
           "kind": "config",
-          "enum": ["horizontal", "vertical"],
+          "enum": [
+            "horizontal",
+            "vertical"
+          ],
           "required": true,
           "default": "horizontal"
         }
@@ -28,17 +31,37 @@
           "status": {
             "kind": "state",
             "domain": "selection",
-            "enum": ["wait", "process", "finish", "error"],
+            "enum": [
+              "wait",
+              "process",
+              "finish",
+              "error"
+            ],
             "required": true,
             "default": "wait"
           }
-        }
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "root-row",
+            "order": 2
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        },
+        "many": true
       },
       "title": {
         "class": "sm-steps__title",
         "tag": "div",
         "required": true,
-        "order": 1
+        "order": 1,
+        "requires": {
+          "inside": "root"
+        },
+        "many": true
       }
     }
   },
@@ -47,6 +70,8 @@
     "当前步骤必须恰好有一个 item 带 data-status=\"process\"。",
     "已完成步骤带 data-status=\"finish\"，未开始为 wait。"
   ],
-  "a11y": ["当前步骤要通过 aria-current=\"step\" 表达，不能只靠颜色。"],
+  "a11y": [
+    "当前步骤要通过 aria-current=\"step\" 表达，不能只靠颜色。"
+  ],
   "notes": "第一个在部件（item）上使用状态值域的组件。"
 }
