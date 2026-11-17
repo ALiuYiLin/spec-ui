@@ -12,26 +12,42 @@
       "data": {
         "type": {
           "kind": "variant",
-          "enum": ["success", "info", "warning", "error"],
+          "enum": [
+            "success",
+            "info",
+            "warning",
+            "error"
+          ],
           "required": true,
           "default": "info"
         }
       },
-      "attrs": { "role": { "required": true, "default": "alert" } }
+      "attrs": {
+        "role": {
+          "required": true,
+          "default": "alert"
+        }
+      }
     },
     "parts": {
       "message": {
         "class": "sm-alert__message",
         "tag": "div",
         "required": true,
-        "order": 1
+        "order": 1,
+        "requires": {
+          "inside": "content"
+        }
       },
       "description": {
         "class": "sm-alert__description",
         "tag": "div",
         "required": false,
         "order": 2,
-        "condition": "传入 description"
+        "condition": "传入 description",
+        "requires": {
+          "inside": "content"
+        }
       },
       "close": {
         "class": "sm-alert__close",
@@ -39,8 +55,27 @@
         "required": false,
         "order": 3,
         "condition": "closable",
-        "attrs": { "type": { "required": true, "default": "button" } },
-        "aria": { "aria-label": "必填" }
+        "attrs": {
+          "type": {
+            "required": true,
+            "default": "button"
+          }
+        },
+        "aria": {
+          "aria-label": "必填"
+        }
+      },
+      "content": {
+        "class": "sm-alert__content",
+        "tag": "div",
+        "required": false,
+        "condition": "有 message 或 description 时渲染",
+        "requires": {
+          "inside": "root",
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       }
     }
   },
@@ -50,6 +85,8 @@
     "close 若存在必须是 button，且位于最后。",
     "语义类型只由 data-type 决定。"
   ],
-  "a11y": ["role=\"alert\" 会打断读屏，仅在需要即时播报时使用。"],
+  "a11y": [
+    "role=\"alert\" 会打断读屏，仅在需要即时播报时使用。"
+  ],
   "notes": "第一个带 role=\"alert\" 的容器。"
 }

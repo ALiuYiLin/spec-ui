@@ -48,3 +48,9 @@
   height: 12px;
   display: block;
 }
+
+.sm-alert__content {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}

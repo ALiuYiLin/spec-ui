@@ -441,6 +441,10 @@
     "description": {
       "ref": ".sm-alert__description",
       "antd": ".ant-alert-description"
+    },
+    "content": {
+      "ref": ".sm-alert__content",
+      "antd": ".ant-alert-content"
     }
   },
   "Spin": {
