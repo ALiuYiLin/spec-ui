@@ -18,8 +18,8 @@
   min-height: 32px;
   padding: 6px 8px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
+  background: var(--color-sm-bg-spotlight);
+  color: var(--color-sm-white);
   font-size: 14px;
   line-height: 22px;
   white-space: normal;
@@ -29,7 +29,7 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  background: rgba(0, 0, 0, 0.85);
+  background: var(--color-sm-bg-spotlight);
   transform: rotate(45deg);
   pointer-events: none;
 }

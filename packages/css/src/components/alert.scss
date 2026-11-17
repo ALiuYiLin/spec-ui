@@ -7,23 +7,23 @@
   padding: 8px 12px;
   border: 1px solid var(--color-sm-ring);
   border-radius: 8px;
-  background: #e6f4ff;
+  background: var(--color-sm-primary-bg);
   color: var(--color-sm-text);
   font-family: var(--font-sm);
   font-size: 14px;
   line-height: 22px;
 }
 .sm-alert[data-type='success'] {
-  border-color: #b7eb8f;
-  background: #f6ffed;
+  border-color: var(--color-sm-success-border);
+  background: var(--color-sm-success-bg);
 }
 .sm-alert[data-type='warning'] {
-  border-color: #ffe58f;
-  background: #fffbe6;
+  border-color: var(--color-sm-warning-border);
+  background: var(--color-sm-warning-bg);
 }
 .sm-alert[data-type='error'] {
-  border-color: #ffccc7;
-  background: #fff2f0;
+  border-color: var(--color-sm-danger-border);
+  background: var(--color-sm-danger-bg);
 }
 .sm-alert__message {
   box-sizing: border-box;

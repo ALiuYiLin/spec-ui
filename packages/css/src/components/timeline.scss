@@ -25,10 +25,10 @@
   height: 10px;
   border: 3px solid var(--color-sm-primary);
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-sm-white);
 }
 .sm-timeline__item[data-tone='success'] .sm-timeline__dot {
-  border-color: #52c41a;
+  border-color: var(--color-sm-success);
 }
 .sm-timeline__item[data-tone='warning'] .sm-timeline__dot {
   border-color: var(--color-sm-warning);

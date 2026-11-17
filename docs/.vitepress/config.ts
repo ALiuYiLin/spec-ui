@@ -18,7 +18,8 @@ export default defineConfig({
       '/guide/': [
         {
           text: '指南',
-          items: [{ text: '协议分层', link: '/guide/protocol' }],
+          items: [{ text: '协议分层', link: '/guide/protocol' },
+          { text: '主题与暗色', link: '/guide/theme' }],
         },
       ],
       '/components/': [

@@ -22,7 +22,7 @@
   border-radius: 10px;
   background: var(--color-sm-danger);
   box-shadow: 0 0 0 1px var(--color-sm-bg);
-  color: #fff;
+  color: var(--color-sm-white);
   font-size: 12px;
   line-height: 20px;
   text-align: center;
@@ -31,7 +31,7 @@
   transform-origin: 100% 0%;
 }
 .sm-badge[data-status='success'] .sm-badge__count {
-  background: #52c41a;
+  background: var(--color-sm-success);
 }
 .sm-badge[data-status='warning'] .sm-badge__count {
   background: var(--color-sm-warning);

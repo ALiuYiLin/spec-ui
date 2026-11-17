@@ -3,7 +3,7 @@
   display: block;
   box-sizing: border-box;
   margin: 0 8px;
-  color: rgb(0, 0, 0);
+  color: var(--color-sm-text-base);
   font-family: var(--font-sm);
   font-size: 14px;
   line-height: 22px;
@@ -15,7 +15,7 @@
 }
 .sm-empty__description {
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--color-sm-text-tertiary);
   font-size: 14px;
   line-height: 22px;
   text-align: center;

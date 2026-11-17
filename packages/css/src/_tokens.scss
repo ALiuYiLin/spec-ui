@@ -1,19 +1,99 @@
-/* 设计令牌：只放变量，不放规则。 */
+/* 设计令牌。
+ *
+ * 亮色值全部对齐 antd 的 defaultAlgorithm，暗色值全部对齐 darkAlgorithm——
+ * 两者都由 antd 自己的主题函数算出，不是手调的近似值。
+ * 组件只允许引用这里的变量，不写死颜色。
+ */
 
 :root {
   --font-sm: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
+  /* 品牌色 */
   --color-sm-primary: #1677ff;
   --color-sm-primary-hover: #4096ff;
   --color-sm-primary-active: #0958d9;
   --color-sm-primary-bg: #e6f4ff;
-  --color-sm-danger: #ff4d4f;
-  --color-sm-warning: #faad14;
-  --color-sm-text: rgba(0, 0, 0, 0.88);
-  --color-sm-text-disabled: rgba(0, 0, 0, 0.25);
-  --color-sm-border: #d9d9d9;
-  --color-sm-fill: rgba(0, 0, 0, 0.04);
-  --color-sm-bg: #ffffff;
   --color-sm-ring: #91caff;
+
+  /* 功能色 */
+  --color-sm-success: #52c41a;
+  --color-sm-success-bg: #f6ffed;
+  --color-sm-success-border: #b7eb8f;
+  --color-sm-warning: #faad14;
+  --color-sm-warning-bg: #fffbe6;
+  --color-sm-warning-border: #ffe58f;
+  --color-sm-danger: #ff4d4f;
+  --color-sm-danger-bg: #fff2f0;
+  --color-sm-danger-border: #ffccc7;
+
+  /* 文字 */
+  --color-sm-text-base: #000;
+  --color-sm-text: rgba(0, 0, 0, 0.88);
+  --color-sm-text-secondary: rgba(0, 0, 0, 0.65);
+  --color-sm-text-tertiary: rgba(0, 0, 0, 0.45);
+  --color-sm-text-quaternary: rgba(0, 0, 0, 0.25);
+  --color-sm-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-sm-white: #fff;
+
+  /* 背景 */
+  --color-sm-bg: #ffffff;
+  --color-sm-bg-elevated: #ffffff;
+  --color-sm-bg-layout: #f5f5f5;
+  --color-sm-bg-spotlight: rgba(0, 0, 0, 0.85);
+  --color-sm-bg-disabled: rgba(0, 0, 0, 0.04);
+  --color-sm-mask: rgba(0, 0, 0, 0.45);
+
+  /* 填充与描边 */
+  --color-sm-fill: rgba(0, 0, 0, 0.04);
+  --color-sm-fill-secondary: rgba(0, 0, 0, 0.06);
+  --color-sm-fill-tertiary: rgba(0, 0, 0, 0.04);
+  --color-sm-fill-quaternary: rgba(0, 0, 0, 0.02);
+  --color-sm-border: #d9d9d9;
+  --color-sm-border-secondary: #f0f0f0;
+  --color-sm-split: rgba(5, 5, 5, 0.06);
+  --color-sm-tag-bg: #fafafa;
+}
+
+/* 暗色：颜色值等于 theme.darkAlgorithm(defaultSeed) 的输出。
+   通过 <html data-theme="dark"> 或任意祖先元素的 data-theme 切换。 */
+[data-theme='dark'] {
+  --color-sm-primary: #1668dc;
+  --color-sm-primary-hover: #3c89e8;
+  --color-sm-primary-active: #1554ad;
+  --color-sm-primary-bg: #15325b;
+  --color-sm-ring: #15325b;
+
+  --color-sm-success: #49aa19;
+  --color-sm-success-bg: #162312;
+  --color-sm-success-border: #274916;
+  --color-sm-warning: #d89614;
+  --color-sm-warning-bg: #2b2111;
+  --color-sm-warning-border: #594214;
+  --color-sm-danger: #dc4446;
+  --color-sm-danger-bg: #2c1618;
+  --color-sm-danger-border: #5b2526;
+
+  --color-sm-text-base: #fff;
+  --color-sm-text: rgba(255, 255, 255, 0.85);
+  --color-sm-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-sm-text-tertiary: rgba(255, 255, 255, 0.45);
+  --color-sm-text-quaternary: rgba(255, 255, 255, 0.25);
+  --color-sm-text-disabled: rgba(255, 255, 255, 0.25);
+
+  --color-sm-bg: #141414;
+  --color-sm-bg-elevated: #1f1f1f;
+  --color-sm-bg-layout: #000000;
+  --color-sm-bg-spotlight: #424242;
+  --color-sm-bg-disabled: rgba(255, 255, 255, 0.04);
+  --color-sm-mask: rgba(0, 0, 0, 0.45);
+
+  --color-sm-fill: rgba(255, 255, 255, 0.08);
+  --color-sm-fill-secondary: rgba(255, 255, 255, 0.12);
+  --color-sm-fill-tertiary: rgba(255, 255, 255, 0.08);
+  --color-sm-fill-quaternary: rgba(255, 255, 255, 0.04);
+  --color-sm-border: #424242;
+  --color-sm-border-secondary: #303030;
+  --color-sm-split: rgba(255, 255, 255, 0.12);
+  --color-sm-tag-bg: #1f1f1f;
 }

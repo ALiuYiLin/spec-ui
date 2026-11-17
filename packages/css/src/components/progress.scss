@@ -17,7 +17,7 @@
   box-sizing: border-box;
   height: 8px;
   border-radius: 100px;
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--color-sm-fill-secondary);
   overflow: hidden;
 }
 .sm-progress__bar {
@@ -34,7 +34,7 @@
   background: var(--color-sm-primary);
 }
 .sm-progress[data-status='success'] .sm-progress__bar {
-  background: #52c41a;
+  background: var(--color-sm-success);
 }
 .sm-progress[data-status='exception'] .sm-progress__bar {
   background: var(--color-sm-danger);
