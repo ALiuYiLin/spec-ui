@@ -152,4 +152,12 @@ export const selectCases: RefCase[] = [
     ),
     assert: [{ k: 'data', key: 'size', value: 'lg' }],
   },
+  {
+    id: 'ref-select-no-arrow',
+    component: 'Select',
+    render: () => <Select options={OPTIONS} showArrow={false} placeholder="请选择" />,
+    assert: [
+      { k: 'absent', name: 'arrow' },
+    ],
+  },
 ]

@@ -802,6 +802,7 @@ const PAIRS = [
   { component: 'Select', ref: 'ref-select-variant-borderless', antd: 'select-variant-borderless', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-status-warning', antd: 'select-status-warning', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-size-lg', antd: 'select-size-lg', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-no-arrow', antd: 'select-no-arrow', targets: ['root', 'control'] },
 
   // ---- Select：交互态 ----
   {

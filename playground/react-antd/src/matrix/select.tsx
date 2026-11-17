@@ -70,4 +70,5 @@ export const cases: CaseDef[] = [
   { id: 'select-size-lg', state: 'closed', render: () => <Select {...P} size="large" placeholder="请选择" /> },
   { id: 'select-variant-borderless', state: 'closed', render: () => <Select {...P} variant="borderless" placeholder="请选择" /> },
   { id: 'select-variant-filled', state: 'closed', render: () => <Select {...P} variant="filled" placeholder="请选择" /> },
+  { id: 'select-no-arrow', state: 'closed', render: () => <Select {...P} showArrow={false} placeholder="请选择" /> },
 ]

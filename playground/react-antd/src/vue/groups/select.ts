@@ -54,4 +54,5 @@ export const selectRenders: Record<string, VueCase> = {
   'ref-select-variant-borderless': { component: 'Select', render: () => h(Select, { options: OPTIONS, variant: 'borderless', placeholder: '请选择' }) },
   'ref-select-status-warning': { component: 'Select', render: () => h(Select, { options: OPTIONS, status: 'warning', placeholder: '请选择' }) },
   'ref-select-size-lg': { component: 'Select', render: () => h(Select, { options: OPTIONS, size: 'lg', placeholder: '请选择' }) },
+  'ref-select-no-arrow': { component: 'Select', render: () => h(Select, { options: OPTIONS, showArrow: false, placeholder: '请选择' }) },
 }
