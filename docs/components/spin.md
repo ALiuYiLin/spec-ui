@@ -9,6 +9,15 @@
   <SmSpin size="lg" />
 :::
 
+
+### 尺寸
+
+:::demo `size` 只改变指示器外观，不影响 `role="status"` 的播报。
+<SmSpin size="sm" />
+<SmSpin />
+<SmSpin size="lg" />
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

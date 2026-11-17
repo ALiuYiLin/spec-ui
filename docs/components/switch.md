@@ -11,6 +11,15 @@
   <SmSwitch size="sm" aria-label="小号" />
 :::
 
+
+### 禁用与加载
+
+:::demo 禁用用原生 `disabled`；加载态下不可切换，但仍保留 `role="switch"`。
+<SmSwitch :disabled="true" aria-label="禁用" />
+<SmSwitch :model-value="true" :disabled="true" aria-label="禁用且开启" />
+<SmSwitch :loading="true" aria-label="加载中" />
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

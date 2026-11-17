@@ -10,6 +10,16 @@
   <SmAlert type="warning" message="请检查输入" />
 :::
 
+
+### 四种类型
+
+:::demo `type` 同时决定颜色与语义：`success` / `info` / `warning` / `error`。
+<SmAlert type="success" message="操作成功" />
+<SmAlert type="info" message="这是一条提示信息" />
+<SmAlert type="warning" message="请检查输入" />
+<SmAlert type="error" message="提交失败" />
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

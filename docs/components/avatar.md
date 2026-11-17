@@ -11,6 +11,16 @@
   <SmAvatar size="lg" label="大">L</SmAvatar>
 :::
 
+
+### 尺寸与形状
+
+:::demo `size` 控制尺寸，`shape` 控制圆角。
+<SmAvatar size="sm" label="小">S</SmAvatar>
+<SmAvatar label="中">M</SmAvatar>
+<SmAvatar size="lg" label="大">L</SmAvatar>
+<SmAvatar shape="square" size="lg" label="方形">Q</SmAvatar>
+:::
+
 ## 结构
 
 没有部件——只有一个根节点，内容直接作为子节点。这是协议里第一个「空 parts」组件，

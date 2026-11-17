@@ -99,6 +99,51 @@
 </div>
 :::
 
+
+### 全部尺寸
+
+:::demo `xs` 只用于表格内的紧凑场景，`xl` 用于营销页的主行动点。
+<SmButton variant="solid" size="xs" label="极小" />
+<SmButton variant="solid" size="sm" label="小" />
+<SmButton variant="solid" label="中" />
+<SmButton variant="solid" size="lg" label="大" />
+<SmButton variant="solid" size="xl" label="极大" />
+:::
+
+### 禁用状态
+
+:::demo 每种形态都有对应的禁用样式，用的是原生 `disabled`，不是只降透明度。
+<SmButton :disabled="true" label="描边" />
+<SmButton variant="dashed" :disabled="true" label="虚线" />
+<SmButton variant="solid" :disabled="true" label="实心" />
+<SmButton variant="text" :disabled="true" label="文本" />
+<SmButton variant="link" :disabled="true" label="链接" />
+:::
+
+### 图标按钮
+
+:::demo `icon` 与 `loading` 互斥：加载态下图标会被 spinner 顶替。
+<IconDemo />
+:::
+
+### 按钮组
+
+:::demo 一组相关操作并排时保持 8px 间距即可，不需要额外的容器组件。
+<div style="display: flex; gap: 8px">
+  <SmButton label="取消" />
+  <SmButton label="保存草稿" />
+  <SmButton variant="solid" label="提交" />
+</div>
+:::
+
+### 两字标签
+
+:::demo 两个 CJK 字之间会自动插入空隙（`提 交`），这是 DOM 文本改写而非样式，两套实现口径一致。
+<SmButton variant="solid" label="提交" />
+<SmButton tone="danger" label="删除" />
+<SmButton variant="dashed" label="确定" />
+:::
+
 ## 协议 {#protocol}
 
 ### 结构

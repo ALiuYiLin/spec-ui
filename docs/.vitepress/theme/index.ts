@@ -6,6 +6,7 @@ import Demo from './Demo.vue'
 import ModalDemo from './ModalDemo.vue'
 import DrawerDemo from './DrawerDemo.vue'
 import DropdownDemo from './DropdownDemo.vue'
+import IconDemo from './IconDemo.vue'
 import * as SpecMark from '@specmark/vue'
 
 /**
@@ -28,6 +29,7 @@ export default {
     app.component('ModalDemo', ModalDemo)
     app.component('DrawerDemo', DrawerDemo)
     app.component('DropdownDemo', DropdownDemo)
+    app.component('IconDemo', IconDemo)
 
     for (const [name, component] of components) {
       app.component(`Sm${name}`, component as never)

@@ -10,6 +10,14 @@
   </div>
 :::
 
+
+### 行数
+
+:::demo `rows` 控制段落行数，`title` 控制是否渲染标题占位。
+<SmSkeleton :rows="3" />
+<SmSkeleton :title="false" :rows="2" />
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

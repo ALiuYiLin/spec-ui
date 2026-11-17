@@ -11,6 +11,17 @@
   </div>
 :::
 
+
+### 状态
+
+:::demo `status` 切换语义色：`normal` / `success` / `exception`。
+<div style="display: grid; gap: 12px; width: 200px">
+  <SmProgress :percent="40" />
+  <SmProgress :percent="100" status="success" />
+  <SmProgress :percent="70" status="exception" />
+</div>
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |

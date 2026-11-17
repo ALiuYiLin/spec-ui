@@ -10,6 +10,14 @@
   <SmRadio :disabled="true" label="禁用" name="demo" />
 :::
 
+
+### 禁用
+
+:::demo 禁用态用原生 `disabled`，`data-state` 仍然保留。
+<SmRadio label="可选" name="demo-disabled" />
+<SmRadio :disabled="true" label="禁用" name="demo-disabled" />
+:::
+
 ## 结构
 
 | 槽位 | 类名 | 说明 |
