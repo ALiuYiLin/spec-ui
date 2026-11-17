@@ -555,6 +555,10 @@ const RESOLVE = {
   },
 
   Tag: {
+    close: {
+      ref: (all) => partByClass(all, 'sm-tag__close'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-tag-close-icon')),
+    },
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-tag')),
       antd: (all) => all.find((n) => n.classes.includes('ant-tag')),
@@ -595,6 +599,10 @@ const RESOLVE = {
   },
 
   Drawer: {
+    close: {
+      ref: (all) => partByClass(all, 'sm-drawer__close'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-drawer-close')),
+    },
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-drawer')),
       antd: (all) => all.find((n) => n.classes.includes('ant-drawer')),
@@ -618,6 +626,10 @@ const RESOLVE = {
   },
 
   Modal: {
+    close: {
+      ref: (all) => partByClass(all, 'sm-modal__close'),
+      antd: (all) => all.find((n) => n.classes.includes('ant-modal-close')),
+    },
     root: {
       ref: (all) => all.find((n) => n.classes.includes('sm-modal')),
       antd: (all) => all.find((n) => n.classes.includes('ant-modal-wrap')),
@@ -936,6 +948,7 @@ const PAIRS = [
       'header',
       'body',
       { name: 'footer', ignore: ['height', 'transform-origin'] },
+      { name: 'close', center: true, relativeTo: 'dialog', ignore: ['*'] },
     ],
   },
   // ---- Drawer ----
@@ -967,6 +980,12 @@ const PAIRS = [
   // ---- Divider / Tag / Avatar / Badge ----
   { component: 'Divider', ref: 'ref-divider-basic', antd: 'divider-basic', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }] },
   { component: 'Tag', ref: 'ref-tag-basic', antd: 'tag-basic', targets: ['root'] },
+  {
+    component: 'Tag',
+    ref: 'ref-tag-closable',
+    antd: 'tag-closable',
+    targets: ['root', { name: 'close', center: true, ignore: ['*'] }],
+  },
   { component: 'Avatar', ref: 'ref-avatar-basic', antd: 'avatar-basic', targets: ['root'] },
   { component: 'Badge', ref: 'ref-badge-basic', antd: 'badge-basic', targets: ['root', { name: 'count', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'position'] }] },
   // ---- Space / Card / Alert / Spin / Empty ----
@@ -1185,7 +1204,9 @@ async function main() {
       }
 
       const diffs = []
-      for (const p of PROPS) {
+      // ignore: ['*'] 表示不比样式、只比中心点（用于结构与 antd 不同的小块，比如关闭按钮）
+      const ignoreAll = ignore.has('*')
+      for (const p of ignoreAll ? [] : PROPS) {
         if (ignore.has(p) || IGNORE_ALWAYS.has(p)) continue
         const a = antdEl.style[p]
         const b = refEl.style[p]
@@ -1199,12 +1220,20 @@ async function main() {
       // 可选：比对元素中心相对 case 根节点的偏移。
       // 计算样式全对但位置错了（例如空 label 把图标挤偏 gap/2）只有这里能发现。
       if (target.center) {
+        // antd 与我们浮层的根节点不同（.ant-modal-root vs .sm-modal），
+        // 这类目标要相对同一个基准部件比，比如对话框本身
+        const refBase = target.relativeTo
+          ? resolveTarget(pair.component, target.relativeTo, 'ref', refs)
+          : refSnap.tree
+        const antdBase = target.relativeTo
+          ? resolveTarget(pair.component, target.relativeTo, 'antd', refs)
+          : antdRecord.tree
         const rel = (node, root) => ({
           x: +(node.rect.x + node.rect.w / 2 - (root.rect.x + root.rect.w / 2)).toFixed(2),
           y: +(node.rect.y + node.rect.h / 2 - (root.rect.y + root.rect.h / 2)).toFixed(2),
         })
-        const a = rel(antdEl, antdRecord.tree)
-        const b = rel(refEl, refSnap.tree)
+        const a = rel(antdEl, antdBase)
+        const b = rel(refEl, refBase)
         const dx = +(b.x - a.x).toFixed(2)
         const dy = +(b.y - a.y).toFixed(2)
         if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
@@ -1212,7 +1241,7 @@ async function main() {
         }
       }
 
-      const compared = PROPS.length - ignore.size - IGNORE_ALWAYS.size + (target.center ? 1 : 0)
+      const compared = (ignoreAll ? 0 : PROPS.length - ignore.size - IGNORE_ALWAYS.size) + (target.center ? 1 : 0)
       if (diffs.length === 0) {
         cleanTargets += 1
         console.log(`  ${target.name.padEnd(12)} ✓ ${compared} 项一致`)

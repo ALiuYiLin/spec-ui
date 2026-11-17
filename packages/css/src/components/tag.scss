@@ -36,10 +36,32 @@
   color: var(--color-sm-danger);
 }
 .sm-tag__close {
-  margin-inline-start: 4px;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin-inline-start: 3px;
   padding: 0;
   border: 0;
   background: transparent;
   color: inherit;
   cursor: pointer;
+  vertical-align: middle;
+  top: -0.75px;
+}
+/* 图标本体由伪元素画：两个 45° 的细线组成 ×，与 antd 的 10×10 图标同尺寸 */
+.sm-tag__close::before,
+.sm-tag__close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 1px;
+  background: currentColor;
+}
+.sm-tag__close::before {
+  transform: rotate(45deg);
+}
+.sm-tag__close::after {
+  transform: rotate(-45deg);
 }
