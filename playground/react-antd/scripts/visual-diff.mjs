@@ -775,7 +775,7 @@ const PAIRS = [
     ],
   },
   { component: 'Select', ref: 'ref-select-filled', antd: 'select-closed-filled', targets: ['root', 'control', 'value'] },
-  { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: ['clear', 'arrow'] },
+  { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: [{ name: 'clear', center: true }, { name: 'arrow', center: true }] },
   {
     component: 'Select',
     ref: 'ref-select-open',
@@ -793,7 +793,7 @@ const PAIRS = [
     ref: 'ref-select-clear',
     antd: 'select-closed-filled-hover',
     pseudo: ['hover'],
-    targets: ['root', 'control', 'clear', 'arrow'],
+    targets: ['root', 'control', { name: 'clear', center: true }, { name: 'arrow', center: true }],
   },
   { component: 'Select', ref: 'ref-select-focused', antd: 'select-focused', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-open-highlighted', antd: 'select-open-highlighted', targets: ['option0'] },
@@ -807,7 +807,7 @@ const PAIRS = [
   { component: 'Input', ref: 'ref-input-lg', antd: 'input-lg', targets: ['root'] },
   { component: 'Input', ref: 'ref-input-basic', antd: 'input-hover', pseudo: ['hover'], targets: ['root'] },
   { component: 'Input', ref: 'ref-input-focus', antd: 'input-focus', targets: ['root'] },
-  { component: 'Input', ref: 'ref-input-prefix', antd: 'input-prefix', targets: ['root', 'prefix'] },
+  { component: 'Input', ref: 'ref-input-prefix', antd: 'input-prefix', targets: ['root', { name: 'prefix', center: true }] },
   {
     component: 'Input',
     ref: 'ref-input-clear',
@@ -824,19 +824,19 @@ const PAIRS = [
   },
 
   // ---- Checkbox ----
-  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-unchecked', targets: ['root', 'control', 'box', 'label'] },
-  { component: 'Checkbox', ref: 'ref-checkbox-checked', antd: 'checkbox-checked', targets: ['box'] },
-  { component: 'Checkbox', ref: 'ref-checkbox-indeterminate', antd: 'checkbox-indeterminate', targets: ['box'] },
-  { component: 'Checkbox', ref: 'ref-checkbox-disabled', antd: 'checkbox-disabled', targets: ['root', 'box'] },
-  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-hover', pseudo: ['hover'], targets: ['box'] },
-  { component: 'Checkbox', ref: 'ref-checkbox-focus', antd: 'checkbox-focus', targets: ['box'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-unchecked', targets: ['root', 'control', { name: 'box', center: true }, 'label'] },
+  { component: 'Checkbox', ref: 'ref-checkbox-checked', antd: 'checkbox-checked', targets: [{ name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-indeterminate', antd: 'checkbox-indeterminate', targets: [{ name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-disabled', antd: 'checkbox-disabled', targets: ['root', { name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-unchecked', antd: 'checkbox-hover', pseudo: ['hover'], targets: [{ name: 'box', center: true }] },
+  { component: 'Checkbox', ref: 'ref-checkbox-focus', antd: 'checkbox-focus', targets: [{ name: 'box', center: true }] },
 
   // ---- Radio ----
-  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-unchecked', targets: ['root', 'control', 'box', 'label'] },
-  { component: 'Radio', ref: 'ref-radio-checked', antd: 'radio-checked', targets: ['box'] },
-  { component: 'Radio', ref: 'ref-radio-disabled', antd: 'radio-disabled', targets: ['root', 'box'] },
-  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-hover', pseudo: ['hover'], targets: ['box'] },
-  { component: 'Radio', ref: 'ref-radio-focus', antd: 'radio-focus', targets: ['box'] },
+  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-unchecked', targets: ['root', 'control', { name: 'box', center: true }, 'label'] },
+  { component: 'Radio', ref: 'ref-radio-checked', antd: 'radio-checked', targets: [{ name: 'box', center: true }] },
+  { component: 'Radio', ref: 'ref-radio-disabled', antd: 'radio-disabled', targets: ['root', { name: 'box', center: true }] },
+  { component: 'Radio', ref: 'ref-radio-unchecked', antd: 'radio-hover', pseudo: ['hover'], targets: [{ name: 'box', center: true }] },
+  { component: 'Radio', ref: 'ref-radio-focus', antd: 'radio-focus', targets: [{ name: 'box', center: true }] },
 
   // ---- Switch ----
   { component: 'Switch', ref: 'ref-switch-off', antd: 'switch-off', targets: ['root', 'handle'] },
