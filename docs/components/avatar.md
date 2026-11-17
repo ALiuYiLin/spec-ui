@@ -5,22 +5,17 @@
 ## 代码演示
 
 :::demo 圆形与方形、三种尺寸；内容可以是文字或图标。
-  <SmAvatar label="用户">U</SmAvatar>
-  <SmAvatar shape="square" label="用户">U</SmAvatar>
-  <SmAvatar size="sm" label="小">S</SmAvatar>
-  <SmAvatar size="lg" label="大">L</SmAvatar>
+
+avatar/demo-1
+
 :::
-
-
 ### 尺寸与形状
 
 :::demo `size` 控制尺寸，`shape` 控制圆角。
-<SmAvatar size="sm" label="小">S</SmAvatar>
-<SmAvatar label="中">M</SmAvatar>
-<SmAvatar size="lg" label="大">L</SmAvatar>
-<SmAvatar shape="square" size="lg" label="方形">Q</SmAvatar>
-:::
 
+avatar/demo-2
+
+:::
 ## 结构
 
 没有部件——只有一个根节点，内容直接作为子节点。这是协议里第一个「空 parts」组件，

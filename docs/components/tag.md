@@ -5,25 +5,17 @@
 ## 代码演示
 
 :::demo 语义色由 `data-tone` 表达，`closable` 时渲染关闭按钮。
-  <SmTag>默认</SmTag>
-  <SmTag tone="primary">主要</SmTag>
-  <SmTag tone="success">成功</SmTag>
-  <SmTag tone="warning">警告</SmTag>
-  <SmTag tone="danger" :closable="true">可关闭</SmTag>
+
+tag/demo-1
+
 :::
-
-
 ### 语义色与关闭
 
 :::demo 颜色由 `data-tone` 表达；`closable` 时渲染关闭按钮。
-<SmTag>默认</SmTag>
-<SmTag tone="primary">主要</SmTag>
-<SmTag tone="success">成功</SmTag>
-<SmTag tone="warning">警告</SmTag>
-<SmTag tone="danger">危险</SmTag>
-<SmTag tone="success" :closable="true">可关闭</SmTag>
-:::
 
+tag/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

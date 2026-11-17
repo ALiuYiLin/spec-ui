@@ -5,9 +5,10 @@
 ## 代码演示
 
 :::demo 成对的「标签 / 内容」，适合详情页的信息陈列。
-  <SmDescriptions :items="[{ label: '姓名', content: '张三' }, { label: '部门', content: '设计' }]" />
-:::
 
+descriptions/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

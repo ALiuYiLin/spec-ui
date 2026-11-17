@@ -5,9 +5,10 @@
 ## 代码演示
 
 :::demo 结果页：状态图标 + 标题 + 可选的副标题。
-  <SmResult status="info" title="标题" subtitle="这是副标题" />
-:::
 
+result/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

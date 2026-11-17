@@ -5,19 +5,17 @@
 ## 代码演示
 
 :::demo 同组 `name` 互斥；选中态由 `data-state` 表达，不靠类名。
-  <SmRadio label="未选" name="demo" />
-  <SmRadio :model-value="true" label="已选" name="demo" />
-  <SmRadio :disabled="true" label="禁用" name="demo" />
+
+radio/demo-1
+
 :::
-
-
 ### 禁用
 
 :::demo 禁用态用原生 `disabled`，`data-state` 仍然保留。
-<SmRadio label="可选" name="demo-disabled" />
-<SmRadio :disabled="true" label="禁用" name="demo-disabled" />
-:::
 
+radio/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

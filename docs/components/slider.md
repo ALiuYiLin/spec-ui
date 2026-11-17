@@ -5,10 +5,10 @@
 ## 代码演示
 
 :::demo 轨道宽度与手柄位移由数值算出，方向键步进，Home / End 跳到两端。
-  <SmSlider :model-value="40" style="width: 200px" aria-label="音量" />
-  <SmSlider :model-value="70" :disabled="true" style="width: 200px" aria-label="禁用" />
-:::
 
+slider/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

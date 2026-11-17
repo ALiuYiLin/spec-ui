@@ -5,28 +5,10 @@
 ## 代码演示
 
 :::demo 点击展开浮层；`status` 表达校验态，`clearable` 允许清空当前值。
-  <SmSelect
-    :options="[
-      { value: 'a', label: '选项 A' },
-      { value: 'b', label: '选项 B' },
-      { value: 'c', label: '选项 C' },
-    ]"
-    placeholder="请选择"
-  />
-  <SmSelect
-    :options="[
-      { value: 'a', label: '选项 A' },
-      { value: 'b', label: '选项 B' },
-    ]"
-    model-value="b"
-  />
-  <SmSelect
-    :options="[{ value: 'a', label: '选项 A' }]"
-    :disabled="true"
-    placeholder="禁用"
-  />
-:::
 
+select/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

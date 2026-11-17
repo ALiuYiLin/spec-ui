@@ -5,13 +5,10 @@
 ## 代码演示
 
 :::demo 横线用于分隔内容块，也可以带一段文字。
-  <div style="width: 240px">
-    <SmDivider />
-    <SmDivider variant="dashed" />
-    <SmDivider>文本</SmDivider>
-  </div>
-:::
 
+divider/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

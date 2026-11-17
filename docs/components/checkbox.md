@@ -5,21 +5,17 @@
 ## 代码演示
 
 :::demo 受控组件：`checked` 决定状态，禁用使用原生 `disabled`。
-  <SmCheckbox label="未选" />
-  <SmCheckbox :model-value="true" label="已选" />
-  <SmCheckbox :indeterminate="true" label="半选" />
-  <SmCheckbox :disabled="true" label="禁用" />
+
+checkbox/demo-1
+
 :::
-
-
 ### 半选与禁用
 
 :::demo `indeterminate` 用于「部分选中」的父级复选框。
-<SmCheckbox :indeterminate="true" label="半选" />
-<SmCheckbox :model-value="true" label="已选" />
-<SmCheckbox :disabled="true" label="禁用" />
-:::
 
+checkbox/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

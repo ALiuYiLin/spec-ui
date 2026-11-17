@@ -1,37 +1,51 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import container from 'markdown-it-container'
 import type { MarkdownRenderer } from 'vitepress'
 
 /**
- * `::: demo 描述` 容器，用法对齐 element-plus：
+ * `::: demo 描述` 容器，用法与 element-plus 一致：
  *
- *   :::demo 通过 `tone` 与 `variant` 组合出不同颜色与形态。
- *   <SmButton tone="success" variant="solid" label="实心" />
+ *   :::demo 用 `tone` 与 `variant` 组合出颜色与形态。
+ *
+ *   button/demo-1
+ *
  *   :::
  *
- * - info 部分是**描述**，按行内 markdown 渲染在演示卡上方
- * - 容器体是示例源码，构建期用 markdown-it 渲染成高亮 HTML 交给 Demo 组件
+ * 容器体是一行**示例路径**（`docs/examples/button/demo-1.vue`），插件在构建期：
+ *   1. 读文件内容
+ *   2. 用同一个 md 渲染成 shiki 高亮 HTML，交给 Demo 组件展示
+ *   3. 插槽里放同名示例组件（由 theme 里的 import.meta.glob 全局注册）
  *
- * 与 element-plus 的差别只有一处：它把示例写在独立文件里、容器体只放路径，
- * 我们的示例直接内联在 markdown 中，所以容器体本身就是源码。
+ * 这样示例是真正的 .vue 文件，编辑器里有语法高亮与类型提示，也方便单独复用。
  */
+const DOCS_ROOT = path.resolve(import.meta.dirname, '../..')
+
+const pascal = (s: string) =>
+  s
+    .split(/[-_/]/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join('')
+
 export default function demoPlugin(md: MarkdownRenderer) {
   md.core.ruler.push('sm_demo_source', (state) => {
     const lines = state.src.split(/\r?\n/)
-    const blocks: string[] = []
+    const bodies: string[] = []
 
     for (let i = 0; i < lines.length; i += 1) {
       if (!/^:::\s*demo\b/.test(lines[i])) continue
 
       let j = i + 1
       while (j < lines.length && !/^:::\s*$/.test(lines[j])) j += 1
-      blocks.push(lines.slice(i + 1, j).join('\n').trimEnd())
+      bodies.push(lines.slice(i + 1, j).join('\n').trim())
       i = j
     }
 
     let cursor = 0
     for (const token of state.tokens) {
       if (token.type !== 'container_demo_open') continue
-      token.meta = { ...(token.meta ?? {}), body: blocks[cursor++] ?? '' }
+      token.meta = { ...(token.meta ?? {}), body: bodies[cursor++] ?? '' }
     }
   })
 
@@ -46,14 +60,20 @@ export default function demoPlugin(md: MarkdownRenderer) {
       const description = token.info.trim().replace(/^demo\b/, '').trim()
       const body: string = token.meta?.body ?? ''
 
-      const highlighted = md.render(`\`\`\`vue\n${body}\n\`\`\``)
+      // 容器体是一行路径，例如 button/demo-1
+      const relative = body.replace(/^\.\//, '').trim()
+      const file = path.join(DOCS_ROOT, 'examples', `${relative}.vue`)
+      if (!fs.existsSync(file)) throw new Error(`demo 路径不存在：${relative}（找的是 ${file}）`)
+
+      const source = fs.readFileSync(file, 'utf8')
+      const highlighted = md.render(`\`\`\`vue\n${source}\n\`\`\``)
       const cleaned = highlighted.replace(/<button[^>]*class="copy"[^>]*>[\s\S]*?<\/button>/g, '')
 
-      const descHtml = description
-        ? `<p class="sm-demo__desc">${md.renderInline(description)}</p>\n`
-        : ''
+      const descHtml = description ? `<p class="sm-demo__desc">${md.renderInline(description)}</p>\n` : ''
+      const component = `Example${pascal(relative)}`
 
-      return `${descHtml}<Demo code="${encodeURIComponent(cleaned)}" raw="${encodeURIComponent(body)}">\n`
+      // 开标签保持未闭合，由 close token 输出 </Demo>（与 element-plus 一致）
+      return `${descHtml}<Demo code="${encodeURIComponent(cleaned)}" raw="${encodeURIComponent(source)}"><${component} />\n`
     },
   })
 }

@@ -5,28 +5,17 @@
 ## 代码演示
 
 :::demo 在被包裹元素的右上角叠加计数，`overflowCount` 控制何时显示 `+`。
-  <SmBadge :count="5">
-    <span style="display: inline-block; width: 40px; height: 40px; background: #ddd"></span>
-  </SmBadge>
-  <SmBadge :count="120" :overflow-count="99">
-    <span style="display: inline-block; width: 40px; height: 40px; background: #ddd"></span>
-  </SmBadge>
+
+badge/demo-1
+
 :::
-
-
 ### 圆点与上限
 
 :::demo `dot` 只显示小圆点；计数超过 `overflowCount` 时显示 `99+`。
-<div style="display: flex; gap: 24px; align-items: center">
-  <SmBadge :dot="true">
-    <span style="display: inline-block; width: 40px; height: 40px; background: #ddd"></span>
-  </SmBadge>
-  <SmBadge :count="120" :overflow-count="99">
-    <span style="display: inline-block; width: 40px; height: 40px; background: #ddd"></span>
-  </SmBadge>
-</div>
-:::
 
+badge/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

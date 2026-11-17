@@ -5,9 +5,10 @@
 ## 代码演示
 
 :::demo 标题 + 大号数值，`precision` 控制小数位。
-  <SmStatistic title="总访问量" :value="1234" />
-:::
 
+statistic/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

@@ -5,16 +5,10 @@
 ## 代码演示
 
 :::demo 表单项外壳：标签在上、控件居中、错误在下，控件由使用方通过插槽传入。
-  <div style="display: grid; gap: 8px; width: 240px">
-    <SmField label="用户名">
-      <SmInput placeholder="请输入" />
-    </SmField>
-    <SmField label="邮箱" required status="error" error="邮箱格式不正确">
-      <SmInput status="error" model-value="not-an-email" />
-    </SmField>
-  </div>
-:::
 
+field/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

@@ -5,19 +5,17 @@
 ## 代码演示
 
 :::demo 步骤条；当前步骤由 `data-status` 表达，`aria-current="step"` 标记位置。
-  <SmSteps :current="1" :items="[{ title: '第一步' }, { title: '第二步' }]" />
+
+steps/demo-1
+
 :::
-
-
 ### 状态
 
 :::demo `current` 之前的步骤是 `finish`，当前是 `process`，之后是 `wait`。
-<div style="display: grid; gap: 24px; width: 100%">
-  <SmSteps :current="0" :items="[{ title: '第一步' }, { title: '第二步' }]" />
-  <SmSteps :current="1" :items="[{ title: '第一步' }, { title: '第二步' }]" />
-</div>
-:::
 
+steps/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

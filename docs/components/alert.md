@@ -5,21 +5,17 @@
 ## 代码演示
 
 :::demo 四种语义类型，通过 `type` 切换，颜色与图标随之变化。
-  <SmAlert type="info" message="这是一条提示信息" />
-  <SmAlert type="success" message="操作成功" />
-  <SmAlert type="warning" message="请检查输入" />
+
+alert/demo-1
+
 :::
-
-
 ### 四种类型
 
 :::demo `type` 同时决定颜色与语义：`success` / `info` / `warning` / `error`。
-<SmAlert type="success" message="操作成功" />
-<SmAlert type="info" message="这是一条提示信息" />
-<SmAlert type="warning" message="请检查输入" />
-<SmAlert type="error" message="提交失败" />
-:::
 
+alert/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

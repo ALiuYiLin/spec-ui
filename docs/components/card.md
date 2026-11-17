@@ -5,11 +5,10 @@
 ## 代码演示
 
 :::demo 标题区可选，主体承载任意内容。
-  <div style="width: 240px">
-    <SmCard title="标题">卡片内容</SmCard>
-  </div>
-:::
 
+card/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

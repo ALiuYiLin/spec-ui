@@ -5,21 +5,17 @@
 ## 代码演示
 
 :::demo 开关是 `button[role="switch"]`，没有原生 input，状态由 `aria-checked` 表达。
-  <SmSwitch aria-label="关" />
-  <SmSwitch :model-value="true" aria-label="开" />
-  <SmSwitch :disabled="true" aria-label="禁用" />
-  <SmSwitch size="sm" aria-label="小号" />
+
+switch/demo-1
+
 :::
-
-
 ### 禁用与加载
 
 :::demo 禁用用原生 `disabled`；加载态下不可切换，但仍保留 `role="switch"`。
-<SmSwitch :disabled="true" aria-label="禁用" />
-<SmSwitch :model-value="true" :disabled="true" aria-label="禁用且开启" />
-<SmSwitch :loading="true" aria-label="加载中" />
-:::
 
+switch/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

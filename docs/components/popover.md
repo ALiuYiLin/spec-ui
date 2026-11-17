@@ -5,14 +5,10 @@
 ## 代码演示
 
 :::demo 与 Tooltip 同构，但内容是白底卡片，可以放交互元素。
-  <SmPopover title="标题" content="这是一段说明文字" side="top">
-    <SmButton label="悬停我" />
-  </SmPopover>
-  <SmPopover content="没有标题的版本" side="bottom">
-    <SmButton variant="text" label="也可以是文字" />
-  </SmPopover>
-:::
 
+popover/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

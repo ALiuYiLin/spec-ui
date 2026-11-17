@@ -5,19 +5,17 @@
 ## 代码演示
 
 :::demo 加载指示器；`role="status"` 会被读屏播报，纯装饰场景不要用它。
-  <SmSpin />
-  <SmSpin size="lg" />
+
+spin/demo-1
+
 :::
-
-
 ### 尺寸
 
 :::demo `size` 只改变指示器外观，不影响 `role="status"` 的播报。
-<SmSpin size="sm" />
-<SmSpin />
-<SmSpin size="lg" />
-:::
 
+spin/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

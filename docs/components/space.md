@@ -5,13 +5,10 @@
 ## 代码演示
 
 :::demo 给一组子元素统一间距，`direction` 控制横排或竖排。
-  <SmSpace>
-    <SmTag>一</SmTag>
-    <SmTag>二</SmTag>
-    <SmTag>三</SmTag>
-  </SmSpace>
-:::
 
+space/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

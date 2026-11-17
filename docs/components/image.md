@@ -5,13 +5,10 @@
 ## 代码演示
 
 :::demo 图片容器：`src` 与 `alt` 必填，装饰性图片用空 `alt`。
-  <SmImage
-    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-    :width="40"
-    alt=""
-  />
-:::
 
+image/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

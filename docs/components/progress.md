@@ -5,23 +5,17 @@
 ## 代码演示
 
 :::demo 填充宽度由 `percent` 决定，`status` 切换语义色。
-  <div style="width: 200px">
-    <SmProgress :percent="40" />
-    <SmProgress :percent="100" status="success" />
-  </div>
+
+progress/demo-1
+
 :::
-
-
 ### 状态
 
 :::demo `status` 切换语义色：`normal` / `success` / `exception`。
-<div style="display: grid; gap: 12px; width: 200px">
-  <SmProgress :percent="40" />
-  <SmProgress :percent="100" status="success" />
-  <SmProgress :percent="70" status="exception" />
-</div>
-:::
 
+progress/demo-2
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

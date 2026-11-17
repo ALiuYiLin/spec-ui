@@ -5,9 +5,10 @@
 ## 代码演示
 
 :::demo 用分隔符连接层级，最后一项是当前页，不再渲染分隔符。
-  <SmBreadcrumb :items="[{ title: '首页' }, { title: '列表' }]" />
-:::
 
+breadcrumb/demo-1
+
+:::
 ## 结构
 
 | 槽位 | 类名 | 说明 |

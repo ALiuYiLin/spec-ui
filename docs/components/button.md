@@ -18,132 +18,99 @@
 用 `variant` 决定按钮的形态：`solid` 实心、`default` 描边、`dashed` 虚线、`text` 文本、`link` 链接。
 
 :::demo 实心用于最重要的动作，描边用于次要动作，虚线常用于「新增」类入口。
-<SmButton variant="solid" label="主按钮" />
-<SmButton label="默认按钮" />
-<SmButton variant="dashed" label="虚线按钮" />
-<SmButton variant="text" label="文本按钮" />
-<SmButton variant="link" label="链接按钮" />
-:::
 
+button/demo-1
+
+:::
 ### 颜色
 
 用 `tone` 决定语义色，与 `variant` 正交组合。默认 `tone="default"` 表示中性色。
 
 :::demo `tone="primary"` 是品牌主色。
-<SmButton tone="primary" variant="solid" label="实心" />
-<SmButton tone="primary" label="描边" />
-<SmButton tone="primary" variant="dashed" label="虚线" />
-<SmButton tone="primary" variant="text" label="文本" />
-<SmButton tone="primary" variant="link" label="链接" />
-:::
 
+button/demo-2
+
+:::
 :::demo `tone="success"` 用于正向操作。
-<SmButton tone="success" variant="solid" label="实心" />
-<SmButton tone="success" label="描边" />
-<SmButton tone="success" variant="dashed" label="虚线" />
-<SmButton tone="success" variant="text" label="文本" />
-<SmButton tone="success" variant="link" label="链接" />
-:::
 
+button/demo-3
+
+:::
 :::demo `tone="warning"` 用于需要谨慎的操作。
-<SmButton tone="warning" variant="solid" label="实心" />
-<SmButton tone="warning" label="描边" />
-<SmButton tone="warning" variant="dashed" label="虚线" />
-<SmButton tone="warning" variant="text" label="文本" />
-<SmButton tone="warning" variant="link" label="链接" />
-:::
 
+button/demo-4
+
+:::
 :::demo `tone="danger"` 用于删除、不可逆的操作。
-<SmButton tone="danger" variant="solid" label="实心" />
-<SmButton tone="danger" label="描边" />
-<SmButton tone="danger" variant="dashed" label="虚线" />
-<SmButton tone="danger" variant="text" label="文本" />
-<SmButton tone="danger" variant="link" label="链接" />
-:::
 
+button/demo-5
+
+:::
 ### 尺寸
 
 尺寸只由 `data-size` 决定，不通过额外类名切换。
 
 :::demo 三种常用尺寸。
-<SmButton size="sm" label="小" />
-<SmButton label="中" />
-<SmButton size="lg" label="大" />
-:::
 
+button/demo-6
+
+:::
 ### 形状
 
 :::demo 圆角用于胶囊形入口，圆形用于只放图标的按钮。
-<SmButton shape="round" label="圆角" />
-<SmButton shape="circle" label="A" />
-<SmButton tone="primary" variant="solid" shape="round" label="圆角主色" />
-<SmButton tone="primary" variant="solid" shape="circle" label="B" />
-:::
 
+button/demo-7
+
+:::
 ### 加载与禁用
 
 :::demo 加载中的按钮不可点击；禁用使用原生 `disabled`，不是只改颜色。
-<SmButton variant="solid" :loading="true" label="提交" />
-<SmButton :loading="true" label="提交" />
-<SmButton variant="solid" :disabled="true" label="提交" />
-<SmButton :disabled="true" label="提交" />
-:::
 
+button/demo-8
+
+:::
 ### 块级
 
 :::demo `block` 让按钮占满容器宽度。
-<div style="width: 100%">
-  <SmButton variant="solid" :block="true" label="提交" />
-  <div style="height: 8px"></div>
-  <SmButton :block="true" label="取消" />
-</div>
+
+button/demo-9
+
 :::
-
-
 ### 全部尺寸
 
 :::demo `xs` 只用于表格内的紧凑场景，`xl` 用于营销页的主行动点。
-<SmButton variant="solid" size="xs" label="极小" />
-<SmButton variant="solid" size="sm" label="小" />
-<SmButton variant="solid" label="中" />
-<SmButton variant="solid" size="lg" label="大" />
-<SmButton variant="solid" size="xl" label="极大" />
-:::
 
+button/demo-10
+
+:::
 ### 禁用状态
 
 :::demo 每种形态都有对应的禁用样式，用的是原生 `disabled`，不是只降透明度。
-<SmButton :disabled="true" label="描边" />
-<SmButton variant="dashed" :disabled="true" label="虚线" />
-<SmButton variant="solid" :disabled="true" label="实心" />
-<SmButton variant="text" :disabled="true" label="文本" />
-<SmButton variant="link" :disabled="true" label="链接" />
-:::
 
+button/demo-11
+
+:::
 ### 图标按钮
 
 :::demo `icon` 与 `loading` 互斥：加载态下图标会被 spinner 顶替。
-<IconDemo />
-:::
 
+button/demo-12
+
+:::
 ### 按钮组
 
 :::demo 一组相关操作并排时保持 8px 间距即可，不需要额外的容器组件。
-<div style="display: flex; gap: 8px">
-  <SmButton label="取消" />
-  <SmButton label="保存草稿" />
-  <SmButton variant="solid" label="提交" />
-</div>
-:::
 
+button/demo-13
+
+:::
 ### 两字标签
 
 :::demo 两个 CJK 字之间会自动插入空隙（`提 交`），这是 DOM 文本改写而非样式，两套实现口径一致。
-<SmButton variant="solid" label="提交" />
-<SmButton tone="danger" label="删除" />
-<SmButton variant="dashed" label="确定" />
-:::
 
+button/demo-14
+
+:::
 ## 协议 {#protocol}
 
 ### 结构
