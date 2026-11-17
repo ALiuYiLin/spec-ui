@@ -1,7 +1,33 @@
 {
   "$comment": "尺寸令牌。按组件与档位展开；协议里用 { \"$token\": \"input.clear.size\" } 引用。",
-  "control.height": { "sm": "24px", "md": "32px", "lg": "40px" },
-  "control.lineHeight": { "sm": "22px", "md": "22px", "lg": "25.14px" },
-  "input.clear.size": { "sm": "12px", "md": "12px", "lg": "12px" },
-  "input.affix.slot.height": { "sm": "22px", "md": "22px", "lg": "22px" }
+  "control.height": {
+    "sm": "24px",
+    "md": "32px",
+    "lg": "40px"
+  },
+  "control.lineHeight": {
+    "sm": "22px",
+    "md": "22px",
+    "lg": "25.14px"
+  },
+  "input.clear.size": {
+    "sm": "12px",
+    "md": "12px",
+    "lg": "12px"
+  },
+  "input.affix.slot.height": {
+    "sm": "22px",
+    "md": "22px",
+    "lg": "22px"
+  },
+  "select.arrow.size": {
+    "sm": "12px",
+    "md": "12px",
+    "lg": "12px"
+  },
+  "select.clear.size": {
+    "sm": "12px",
+    "md": "12px",
+    "lg": "12px"
+  }
 }

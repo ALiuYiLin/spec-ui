@@ -12,32 +12,51 @@
       "data": {
         "variant": {
           "kind": "variant",
-          "enum": ["outlined", "filled", "borderless"],
+          "enum": [
+            "outlined",
+            "filled",
+            "borderless"
+          ],
           "required": true,
           "default": "outlined"
         },
         "size": {
           "kind": "variant",
-          "enum": ["sm", "md", "lg"],
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ],
           "required": true,
           "default": "md"
         },
         "status": {
           "kind": "config",
-          "enum": ["default", "error", "warning"],
+          "enum": [
+            "default",
+            "error",
+            "warning"
+          ],
           "required": true,
           "default": "default"
         },
-        "disabled": { "kind": "boolean" },
+        "disabled": {
+          "kind": "boolean"
+        },
         "state": {
           "kind": "state",
           "domain": "visibility",
-          "enum": ["open", "closed"],
+          "enum": [
+            "open",
+            "closed"
+          ],
           "required": true,
           "default": "closed"
         }
       },
-      "interaction": ["hover"]
+      "interaction": [
+        "hover"
+      ]
     },
     "parts": {
       "control": {
@@ -45,15 +64,42 @@
         "tag": "div",
         "required": true,
         "order": 1,
-        "interaction": ["hover", "active", "focus-within"],
-        "notes": "视觉边框盒。焦点反馈走 :focus-within，不允许用 JS 类名。"
+        "interaction": [
+          "hover",
+          "active",
+          "focus-within"
+        ],
+        "notes": "视觉边框盒。焦点反馈走 :focus-within，不允许用 JS 类名。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "select-row",
+            "order": 1,
+            "container": "root"
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        }
       },
       "search": {
         "class": "sm-select__search",
         "tag": "span",
         "required": true,
         "order": 1,
-        "notes": "input 的定位容器，负责把 input 叠在 value 上而不占额外宽度。"
+        "notes": "input 的定位容器，负责把 input 叠在 value 上而不占额外宽度。",
+        "requires": {
+          "inside": "control",
+          "lane": {
+            "name": "control-row",
+            "order": 1,
+            "container": "control"
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "input": {
         "class": "sm-select__input",
@@ -61,9 +107,18 @@
         "required": true,
         "order": 1,
         "attrs": {
-          "role": { "required": true, "default": "combobox" },
-          "type": { "required": true, "default": "text" },
-          "autocomplete": { "required": true, "default": "off" },
+          "role": {
+            "required": true,
+            "default": "combobox"
+          },
+          "type": {
+            "required": true,
+            "default": "text"
+          },
+          "autocomplete": {
+            "required": true,
+            "default": "off"
+          },
           "readonly": {
             "required": true,
             "notes": "非搜索模式必须 readonly：输入框只用于接收焦点与键盘事件，不承载文字。"
@@ -76,7 +131,10 @@
           "aria-autocomplete": "list",
           "aria-label": "无关联 label 时必填"
         },
-        "notes": "整个控件唯一的可访问入口；根节点不加 role。"
+        "notes": "整个控件唯一的可访问入口；根节点不加 role。",
+        "requires": {
+          "inside": "search"
+        }
       },
       "value": {
         "class": "sm-select__value",
@@ -84,14 +142,46 @@
         "required": false,
         "order": 2,
         "condition": "存在选中项",
-        "attrs": { "title": { "required": false } }
+        "attrs": {
+          "title": {
+            "required": false
+          }
+        },
+        "requires": {
+          "inside": "control",
+          "lane": {
+            "name": "control-row",
+            "order": 2,
+            "container": "control",
+            "exclusiveWith": [
+              "placeholder"
+            ]
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "placeholder": {
         "class": "sm-select__placeholder",
         "tag": "span",
         "required": false,
         "order": 2,
-        "condition": "无选中项"
+        "condition": "无选中项",
+        "requires": {
+          "inside": "control",
+          "lane": {
+            "name": "control-row",
+            "order": 2,
+            "container": "control",
+            "exclusiveWith": [
+              "value"
+            ]
+          },
+          "parent": {
+            "layout": "flex-row"
+          }
+        }
       },
       "clear": {
         "class": "sm-select__clear",
@@ -99,7 +189,27 @@
         "required": false,
         "order": 3,
         "condition": "allowClear 且存在选中项",
-        "notes": "不可聚焦、不进入 Tab 序列；键盘清除走 Delete / Backspace。"
+        "notes": "不可聚焦、不进入 Tab 序列；键盘清除走 Delete / Backspace。",
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "select-row",
+            "order": 2,
+            "container": "root"
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        },
+        "box": {
+          "width": {
+            "$token": "select.clear.size"
+          },
+          "height": {
+            "$token": "select.clear.size"
+          }
+        }
       },
       "arrow": {
         "class": "sm-select__arrow",
@@ -107,7 +217,29 @@
         "required": false,
         "order": 4,
         "condition": "showArrow 且非 loading",
-        "aria": { "aria-hidden": "true" }
+        "aria": {
+          "aria-hidden": "true"
+        },
+        "requires": {
+          "inside": "root",
+          "lane": {
+            "name": "select-row",
+            "order": 2,
+            "container": "root"
+          },
+          "parent": {
+            "layout": "flex-row",
+            "align-items": "normal"
+          }
+        },
+        "box": {
+          "width": {
+            "$token": "select.arrow.size"
+          },
+          "height": {
+            "$token": "select.arrow.size"
+          }
+        }
       },
       "dropdown": {
         "class": "sm-select__dropdown",
@@ -115,9 +247,12 @@
         "required": false,
         "order": 0,
         "condition": "state=open",
-        "mirror": ["state"],
+        "mirror": [
+          "state"
+        ],
         "portal": true,
-        "notes": "逻辑上是 root 的子节点，物理上必须 portal 到 document.body；宽度需与根节点一致。"
+        "notes": "逻辑上是 root 的子节点，物理上必须 portal 到 document.body；宽度需与根节点一致。",
+        "attach": "body"
       },
       "listbox": {
         "class": "sm-select__listbox",
@@ -125,8 +260,18 @@
         "required": false,
         "order": 1,
         "condition": "state=open",
-        "attrs": { "role": { "required": true, "default": "listbox" } },
-        "aria": { "id": "供 input 的 aria-controls 引用" }
+        "attrs": {
+          "role": {
+            "required": true,
+            "default": "listbox"
+          }
+        },
+        "aria": {
+          "id": "供 input 的 aria-controls 引用"
+        },
+        "requires": {
+          "inside": "dropdown"
+        }
       },
       "option": {
         "class": "sm-select__option",
@@ -134,24 +279,42 @@
         "required": false,
         "order": 1,
         "condition": "state=open 且存在选项",
-        "attrs": { "role": { "required": true, "default": "option" } },
+        "attrs": {
+          "role": {
+            "required": true,
+            "default": "option"
+          }
+        },
         "data": {
-          "selected": { "kind": "boolean" },
-          "highlighted": { "kind": "boolean" },
-          "disabled": { "kind": "boolean" }
+          "selected": {
+            "kind": "boolean"
+          },
+          "highlighted": {
+            "kind": "boolean"
+          },
+          "disabled": {
+            "kind": "boolean"
+          }
         },
         "aria": {
           "aria-selected": "与 data-selected 同步",
           "id": "供 input 的 aria-activedescendant 引用，不得用于样式"
         },
-        "notes": "selected 与 highlighted 正交：选中是持久态，高亮是键盘游标，两者可同时成立。"
+        "notes": "selected 与 highlighted 正交：选中是持久态，高亮是键盘游标，两者可同时成立。",
+        "many": true,
+        "requires": {
+          "inside": "listbox"
+        }
       },
       "empty": {
         "class": "sm-select__empty",
         "tag": "div",
         "required": false,
         "order": 2,
-        "condition": "state=open 且无选项"
+        "condition": "state=open 且无选项",
+        "requires": {
+          "inside": "listbox"
+        }
       }
     }
   },
@@ -168,7 +331,9 @@
     "无选项时渲染 empty，且 empty 文案必须能被辅助技术读到。",
     "clear 在 allowClear 且有值时始终渲染（可见性由样式层控制，不作为 DOM 契约）。",
     "clear 与 arrow 共用右侧槽位，同一时刻只允许一个可见（样式层约束，见 notes）。",
-    "control 的焦点反馈只能由 :focus-within 驱动；任何节点不得出现 focus / hover / active 等状态类名（通用规则已禁止未声明类名）。"
+    "control 的焦点反馈只能由 :focus-within 驱动；任何节点不得出现 focus / hover / active 等状态类名（通用规则已禁止未声明类名）。",
+    "浮层必须 portal 到 body（attach: body），不得留在 root 子树内。",
+    "实现可以在 root / control 与部件之间插入包裹元素，但该包裹必须承担布局职责且不携带类名、状态、语义或文本。"
   ],
   "a11y": [
     "键盘契约：ArrowDown / ArrowUp 移动 highlighted，Enter 选中，Esc 关闭并把焦点还给 input，Delete 清除。",
@@ -176,5 +341,5 @@
     "empty 文案需要能被辅助技术读到（放在 listbox 内）。",
     "列表项 id 由实现生成，只需在 input 与 option 之间保持一致。"
   ],
-  "notes": "多选（multiple / tags）会引入 tag 列表与 backspace 删除逻辑，结构差异过大，另立协议。样式层约束（不参与 L2 校验）：clear 常态 opacity:0 且背景透明；根节点 hover 或 focus-within 时 opacity:1 并转为不透明底色，借此完全遮住同槽位的 arrow（实测 antd 即为此行为，arrow 始终 opacity:1）。"
+  "notes": "多选（multiple / tags）会引入 tag 列表与 backspace 删除逻辑，结构差异过大，另立协议。样式层约束（不参与 L2 校验）：clear 常态 opacity:0 且背景透明；根节点 hover 或 focus-within 时 opacity:1 并转为不透明底色，借此完全遮住同槽位的 arrow（实测 antd 即为此行为，arrow 始终 opacity:1）。 关系约束表达「结构等价」：control / arrow / clear 是同一 lane 的三个成员（都在 root 这一行），arrow 与 clear 不是 control 的子节点；dropdown 通过 attach: body 声明为 portal。 arrow 与 clear 的 order 相同：两者都是绝对定位在同一角落的图标，彼此的先后不影响任何可见结果，因此不约束相对顺序。"
 }

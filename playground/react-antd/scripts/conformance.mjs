@@ -273,7 +273,24 @@ function relationsChecks(snap, spec) {
     const lane = decl.requires?.lane
     if (!lane) continue
     if (!lanes.has(lane.name)) lanes.set(lane.name, [])
-    lanes.get(lane.name).push({ name, ...lane, nodes: find(name) })
+    lanes.get(lane.name).push({
+        partName: name,
+        order: lane.order,
+        exclusiveWith: lane.exclusiveWith,
+        container: lane.container,
+        nodes: find(name),
+      })
+  }
+
+  const lca = (nodes) => {
+    if (!nodes.length) return null
+    const chains = nodes.map((n) => [n, ...ancestors(n)])
+    let result = null
+    for (const node of chains[0]) {
+      if (chains.every((chain) => chain.some((x) => x.uid === node.uid))) result = node
+      else break
+    }
+    return result
   }
 
   for (const [laneName, members] of lanes) {
@@ -283,22 +300,32 @@ function relationsChecks(snap, spec) {
     // 互斥
     for (const m of present) {
       for (const other of m.exclusiveWith ?? []) {
-        if (present.some((x) => x.name === other)) {
-          fails.push(`lane ${laneName} 里 ${m.name} 与 ${other} 应互斥，实际同时存在`)
+        if (present.some((x) => x.partName === other)) {
+          fails.push(`lane ${laneName} 里 ${m.partName} 与 ${other} 应互斥，实际同时存在`)
         }
       }
     }
 
-    // 顺序 + 互不嵌套
+    // lane 的所有成员必须落在同一个容器里（最近公共祖先 = 声明的 container）
+    const laneContainer = present[0]?.container
+    if (laneContainer && present.length > 1) {
+      const wantNode = laneContainer === 'root' ? rootNode : find(laneContainer)[0]
+      const got = lca(present.map((m) => m.nodes[0]))
+      if (wantNode && got && got.uid !== wantNode.uid) {
+        fails.push(`lane ${laneName} 的成员不在同一个容器里（应属于 ${laneContainer}）`)
+      }
+    }
+
+    // 顺序 + 互不嵌套（order 相同表示相对顺序不约束，如两个绝对定位的图标）
     for (let i = 1; i < present.length; i += 1) {
       const prev = present[i - 1]
       const cur = present[i]
       const a = prev.nodes[0]
       const b = cur.nodes[0]
       if (isAncestor(a, b) || isAncestor(b, a)) {
-        fails.push(`lane ${laneName} 里 ${prev.name} 与 ${cur.name} 不能互相嵌套`)
-      } else if (a.seq > b.seq) {
-        fails.push(`lane ${laneName} 的文档顺序应为 ${prev.name} → ${cur.name}，实际相反`)
+        fails.push(`lane ${laneName} 里 ${prev.partName} 与 ${cur.partName} 不能互相嵌套`)
+      } else if (prev.order !== cur.order && a.seq > b.seq) {
+        fails.push(`lane ${laneName} 的文档顺序应为 ${prev.partName} → ${cur.partName}，实际相反`)
       }
     }
   }
