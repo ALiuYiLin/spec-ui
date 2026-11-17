@@ -13,4 +13,14 @@ export const badgeCases: RefCase[] = [
     ),
     assert: [{ k: 'part', name: 'count' }],
   },
+  {
+    id: 'ref-badge-dot',
+    component: 'Badge',
+    render: () => (
+      <Badge dot>
+        <span style={{ display: 'inline-block', width: 40, height: 40, background: '#ddd' }} />
+      </Badge>
+    ),
+    assert: [],
+  },
 ]

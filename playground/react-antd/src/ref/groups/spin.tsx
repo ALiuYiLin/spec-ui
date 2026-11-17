@@ -14,4 +14,16 @@ export const spinCases: RefCase[] = [
       { k: 'absent', name: 'tip' },
     ],
   },
+  {
+    id: 'ref-spin-sm',
+    component: 'Spin',
+    render: () => (<Spin size="sm" />),
+    assert: [],
+  },
+  {
+    id: 'ref-spin-lg',
+    component: 'Spin',
+    render: () => (<Spin size="lg" />),
+    assert: [],
+  },
 ]

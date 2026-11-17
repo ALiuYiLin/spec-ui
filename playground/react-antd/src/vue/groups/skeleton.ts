@@ -4,5 +4,5 @@ import { Skeleton } from '@specmark/vue'
 
 /*** Skeleton */
 export const skeletonRenders: Record<string, VueCase> = {
-  'ref-skeleton-basic': { component: 'Skeleton', render: () => h(Skeleton) },
+  'ref-skeleton-basic': { component: 'Skeleton', render: () => h('div', { style: { width: '256px' } }, h(Skeleton)) },
 }

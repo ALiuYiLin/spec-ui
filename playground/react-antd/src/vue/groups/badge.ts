@@ -9,4 +9,5 @@ export const badgeRenders: Record<string, VueCase> = {
     render: () =>
       h(Badge, { count: 5 }, { default: () => h('span', { style: 'display:inline-block;width:40px;height:40px' }) }),
   },
+  'ref-badge-dot': { component: 'Badge', render: () => h(Badge, { dot: true }, { default: () => h('span', { style: 'display:inline-block;width:40px;height:40px;background:#ddd' }) }) },
 }

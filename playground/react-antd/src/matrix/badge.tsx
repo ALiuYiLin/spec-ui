@@ -13,4 +13,6 @@ export const cases: CaseDef[] = [
       </Badge>
     ),
   },
+  { id: 'badge-dot', state: 'base', render: () => <Badge dot><span style={{ display: 'inline-block', width: 40, height: 40, background: '#ddd' }} /></Badge> },
+  { id: 'badge-status', state: 'base', render: () => <Badge status="success" text="成功" /> },
 ]

@@ -783,8 +783,8 @@ const PAIRS = [
       {
         name: 'arrowSvg',
         ignore: ['display', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'vertical-align', 'position'],
-      },
-    ],
+      }
+],
   },
   { component: 'Select', ref: 'ref-select-filled', antd: 'select-closed-filled', targets: ['root', 'control', 'value'] },
   { component: 'Select', ref: 'ref-select-clear', antd: 'select-closed-filled-clear', targets: [{ name: 'clear', center: true }, { name: 'arrow', center: true }] },
@@ -881,8 +881,8 @@ const PAIRS = [
     antd: 'switch-text',
     targets: [
       { name: 'root', ignore: ['width', 'transform-origin'] },
-      { name: 'handle', ignore: ['left', 'right', 'transform-origin'] },
-    ],
+      { name: 'handle', ignore: ['left', 'right', 'transform-origin'] }
+],
   },
 
   // ---- Field ----
@@ -926,8 +926,8 @@ const PAIRS = [
     antd: 'tooltip-top',
     targets: [
       { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
-      'inner',
-    ],
+      'inner'
+],
   },
   {
     component: 'Tooltip',
@@ -935,8 +935,8 @@ const PAIRS = [
     antd: 'tooltip-bottom',
     targets: [
       { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
-      'inner',
-    ],
+      'inner'
+],
   },
 
   // ---- Popover ----
@@ -948,8 +948,8 @@ const PAIRS = [
       { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
       'inner',
       'title',
-      'content',
-    ],
+      'content'
+],
   },
   {
     component: 'Popover',
@@ -958,8 +958,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['left', 'right', 'top', 'bottom', 'transform', 'transform-origin', 'width', 'height'] },
       'inner',
-      'content',
-    ],
+      'content'
+],
   },
   // ---- Modal ----
   {
@@ -975,8 +975,8 @@ const PAIRS = [
       'header',
       'body',
       { name: 'footer', ignore: ['height', 'transform-origin'] },
-      { name: 'close', center: true, relativeTo: 'dialog', ignore: ['*'] },
-    ],
+      { name: 'close', center: true, relativeTo: 'dialog', ignore: ['*'] }
+],
   },
   // ---- Drawer ----
   {
@@ -990,8 +990,8 @@ const PAIRS = [
         ignore: ['box-shadow', 'top', 'right', 'bottom', 'left', 'height', 'width', 'max-width', 'position', 'z-index'],
       },
       'header',
-      'body',
-    ],
+      'body'
+],
   },
   // ---- Dropdown ----
   {
@@ -1001,8 +1001,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['left', 'top', 'right', 'bottom', 'transform', 'transform-origin', 'width', 'height', 'min-width'] },
       'menu',
-      'item',
-    ],
+      'item'
+],
   },
   // ---- Divider / Tag / Avatar / Badge ----
   { component: 'Divider', ref: 'ref-divider-basic', antd: 'divider-basic', targets: [{ name: 'root', ignore: ['width', 'transform-origin'] }] },
@@ -1054,8 +1054,8 @@ const PAIRS = [
       { name: 'root', ignore: ['width', 'height', 'min-width', 'transform-origin', 'display', 'align-items'] },
       { name: 'rail', ignore: ['width', 'min-width', 'transform-origin', 'flex-basis', 'vertical-align'] },
       { name: 'bar', ignore: ['width', 'transform-origin'] },
-      { name: 'text', ignore: ['width', 'height', 'min-width', 'transform-origin'] },
-    ],
+      { name: 'text', ignore: ['width', 'height', 'min-width', 'transform-origin'] }
+],
   },
   {
     component: 'Skeleton',
@@ -1063,8 +1063,8 @@ const PAIRS = [
     antd: 'skeleton-basic',
     targets: [
       { name: 'root', ignore: ['width', 'height', 'min-width', 'transform-origin', 'display'] },
-      { name: 'title', ignore: ['width', 'margin-top', 'margin-bottom', 'font-size', 'line-height', 'font-weight', 'transform-origin'] },
-    ],
+      { name: 'title', ignore: ['width', 'margin-top', 'margin-bottom', 'font-size', 'line-height', 'font-weight', 'transform-origin'] }
+],
   },
   {
     component: 'Result',
@@ -1073,8 +1073,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
       { name: 'icon', ignore: ['width', 'height', 'transform-origin'] },
-      { name: 'title', ignore: ['width', 'transform-origin'] },
-    ],
+      { name: 'title', ignore: ['width', 'transform-origin'] }
+],
   },
   {
     component: 'Statistic',
@@ -1083,8 +1083,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
       { name: 'title', ignore: ['width', 'transform-origin'] },
-      { name: 'value', ignore: ['width', 'height', 'transform-origin'] },
-    ],
+      { name: 'value', ignore: ['width', 'height', 'transform-origin'] }
+],
   },
   {
     component: 'Breadcrumb',
@@ -1093,8 +1093,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['width', 'transform-origin'] },
       { name: 'item', ignore: ['width', 'height', 'transform-origin'] },
-      { name: 'separator', ignore: ['width', 'transform-origin', 'display', 'height', 'min-width', 'min-height'] },
-    ],
+      { name: 'separator', ignore: ['width', 'transform-origin', 'display', 'height', 'min-width', 'min-height'] }
+],
   },
   // ---- Image / Steps / Timeline / Descriptions ----
   {
@@ -1103,8 +1103,8 @@ const PAIRS = [
     antd: 'image-basic',
     targets: [
       { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
-      { name: 'img', ignore: ['width', 'height', 'transform-origin'] },
-    ],
+      { name: 'img', ignore: ['width', 'height', 'transform-origin'] }
+],
   },
   {
     component: 'Steps',
@@ -1113,8 +1113,8 @@ const PAIRS = [
     targets: [
       { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
       { name: 'item', ignore: ['width', 'height', 'transform-origin'] },
-      { name: 'title', ignore: ['width', 'transform-origin'] },
-    ],
+      { name: 'title', ignore: ['width', 'transform-origin'] }
+],
   },
   {
     component: 'Timeline',
@@ -1124,8 +1124,8 @@ const PAIRS = [
       { name: 'root', ignore: ['width', 'height', 'transform-origin'] },
       { name: 'item', ignore: ['width', 'height', 'transform-origin', 'display'] },
       { name: 'dot', ignore: ['left', 'top', 'right', 'bottom', 'transform-origin'] },
-      { name: 'content', ignore: ['width', 'margin-left', 'transform-origin', 'top', 'bottom'] },
-    ],
+      { name: 'content', ignore: ['width', 'margin-left', 'transform-origin', 'top', 'bottom'] }
+],
   },
   {
     component: 'Descriptions',
@@ -1147,6 +1147,12 @@ const PAIRS = [
   { component: 'Slider', ref: 'ref-slider-focus', antd: 'slider-focus', targets: ['root'] },
   { component: 'Slider', ref: 'ref-slider-max', antd: 'slider-max', targets: ['root'] },
   { component: 'Slider', ref: 'ref-slider-min', antd: 'slider-min', targets: ['root'] },
+  { component: 'Alert', ref: 'ref-alert-success', antd: 'alert-success', targets: ['root'] },
+  { component: 'Alert', ref: 'ref-alert-warning', antd: 'alert-warning', targets: ['root'] },
+  { component: 'Alert', ref: 'ref-alert-error', antd: 'alert-error', targets: ['root'] },
+  { component: 'Spin', ref: 'ref-spin-sm', antd: 'spin-sm', targets: ['root'] },
+  { component: 'Spin', ref: 'ref-spin-lg', antd: 'spin-lg', targets: ['root'] },
+  { component: 'Statistic', ref: 'ref-statistic-precision', antd: 'statistic-precision', targets: ['root'] }
 ]
 
 

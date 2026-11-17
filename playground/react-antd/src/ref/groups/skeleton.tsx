@@ -6,7 +6,11 @@ export const skeletonCases: RefCase[] = [
 {
     id: 'ref-skeleton-basic',
     component: 'Skeleton',
-    render: () => <Skeleton />,
+    render: () => (
+      <div style={{ width: 256 }}>
+        <Skeleton />
+      </div>
+    ),
     assert: [
       { k: 'attr', on: 'root', key: 'aria-busy', value: 'true' },
       { k: 'part', name: 'title' },
