@@ -798,6 +798,10 @@ const PAIRS = [
   { component: 'Select', ref: 'ref-select-disabled', antd: 'select-disabled', targets: ['root', 'control'] },
   { component: 'Select', ref: 'ref-select-status-error', antd: 'select-status-error', targets: ['control'] },
   { component: 'Select', ref: 'ref-select-size-sm', antd: 'select-size-sm', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-variant-filled', antd: 'select-variant-filled', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-variant-borderless', antd: 'select-variant-borderless', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-status-warning', antd: 'select-status-warning', targets: ['root', 'control'] },
+  { component: 'Select', ref: 'ref-select-size-lg', antd: 'select-size-lg', targets: ['root', 'control'] },
 
   // ---- Select：交互态 ----
   {

@@ -120,4 +120,36 @@ export const selectCases: RefCase[] = [
     render: () => <Select options={OPTIONS} size="sm" />,
     assert: [{ k: 'data', key: 'size', value: 'sm' }],
   },
+  {
+    id: 'ref-select-variant-filled',
+    component: 'Select',
+    render: () => (
+      <Select options={OPTIONS} variant="filled" placeholder="请选择" />
+    ),
+    assert: [{ k: 'data', key: 'variant', value: 'filled' }],
+  },
+  {
+    id: 'ref-select-variant-borderless',
+    component: 'Select',
+    render: () => (
+      <Select options={OPTIONS} variant="borderless" placeholder="请选择" />
+    ),
+    assert: [{ k: 'data', key: 'variant', value: 'borderless' }],
+  },
+  {
+    id: 'ref-select-status-warning',
+    component: 'Select',
+    render: () => (
+      <Select options={OPTIONS} status="warning" placeholder="请选择" />
+    ),
+    assert: [{ k: 'data', key: 'status', value: 'warning' }],
+  },
+  {
+    id: 'ref-select-size-lg',
+    component: 'Select',
+    render: () => (
+      <Select options={OPTIONS} size="lg" placeholder="请选择" />
+    ),
+    assert: [{ k: 'data', key: 'size', value: 'lg' }],
+  },
 ]

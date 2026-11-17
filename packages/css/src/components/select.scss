@@ -16,6 +16,9 @@
   }
   .sm-select[data-size='lg'] {
     height: 40px;
+    /* 大尺寸的字号与行高跟着放大，antd 是 16px / 25.14px */
+    font-size: 16px;
+    line-height: 1.5714;
   }
 
   .sm-select__control {
@@ -40,6 +43,8 @@
   }
   .sm-select[data-size='lg'] .sm-select__control {
     border-radius: 8px;
+    /* control 上写死了 22px 行高，大尺寸要按 16px 字号重算 */
+    line-height: 1.5714;
   }
 
   .sm-select__search {
