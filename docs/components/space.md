@@ -6,7 +6,7 @@
 
 :::demo 给一组子元素统一间距，`direction` 控制横排或竖排。
 
-space/demo-1
+space/basic
 
 :::
 ## 结构

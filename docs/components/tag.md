@@ -6,14 +6,14 @@
 
 :::demo 语义色由 `data-tone` 表达，`closable` 时渲染关闭按钮。
 
-tag/demo-1
+tag/basic
 
 :::
 ### 语义色与关闭
 
 :::demo 颜色由 `data-tone` 表达；`closable` 时渲染关闭按钮。
 
-tag/demo-2
+tag/tones
 
 :::
 ## 结构

@@ -6,7 +6,7 @@
 
 :::demo 图片容器：`src` 与 `alt` 必填，装饰性图片用空 `alt`。
 
-image/demo-1
+image/basic
 
 :::
 ## 结构

@@ -6,7 +6,7 @@
 
 :::demo 与 Tooltip 同构，但内容是白底卡片，可以放交互元素。
 
-popover/demo-1
+popover/basic
 
 :::
 ## 结构

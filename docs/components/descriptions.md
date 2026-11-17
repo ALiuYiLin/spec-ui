@@ -6,7 +6,7 @@
 
 :::demo 成对的「标签 / 内容」，适合详情页的信息陈列。
 
-descriptions/demo-1
+descriptions/basic
 
 :::
 ## 结构

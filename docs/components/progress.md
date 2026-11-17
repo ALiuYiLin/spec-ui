@@ -6,14 +6,14 @@
 
 :::demo 填充宽度由 `percent` 决定，`status` 切换语义色。
 
-progress/demo-1
+progress/basic
 
 :::
 ### 状态
 
 :::demo `status` 切换语义色：`normal` / `success` / `exception`。
 
-progress/demo-2
+progress/status
 
 :::
 ## 结构

@@ -6,7 +6,7 @@
 
 :::demo 标题 + 大号数值，`precision` 控制小数位。
 
-statistic/demo-1
+statistic/basic
 
 :::
 ## 结构

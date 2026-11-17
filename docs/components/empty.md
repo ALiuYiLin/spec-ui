@@ -6,7 +6,7 @@
 
 :::demo 无数据时的占位，包含插图与一句说明。
 
-empty/demo-1
+empty/basic
 
 :::
 ## 结构

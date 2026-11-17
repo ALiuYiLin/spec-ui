@@ -6,7 +6,7 @@
 
 :::demo 从右侧滑出，面板宽度可通过 `width` 指定。
 
-drawer/demo-1
+drawer/basic
 
 :::
 ## 结构

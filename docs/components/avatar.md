@@ -6,14 +6,14 @@
 
 :::demo 圆形与方形、三种尺寸；内容可以是文字或图标。
 
-avatar/demo-1
+avatar/basic
 
 :::
 ### 尺寸与形状
 
 :::demo `size` 控制尺寸，`shape` 控制圆角。
 
-avatar/demo-2
+avatar/sizes
 
 :::
 ## 结构

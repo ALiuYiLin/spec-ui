@@ -6,14 +6,14 @@
 
 :::demo 内容加载前的占位条，`rows` 控制段落行数。
 
-skeleton/demo-1
+skeleton/basic
 
 :::
 ### 行数
 
 :::demo `rows` 控制段落行数，`title` 控制是否渲染标题占位。
 
-skeleton/demo-2
+skeleton/rows
 
 :::
 ## 结构

@@ -6,7 +6,7 @@
 
 :::demo hover 或 focus 触发；浮层通过 `side` 决定出现在哪一侧。
 
-tooltip/demo-1
+tooltip/basic
 
 :::
 ## 结构

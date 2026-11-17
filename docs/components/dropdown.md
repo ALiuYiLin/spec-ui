@@ -6,7 +6,7 @@
 
 :::demo 点击触发器展开菜单，条目支持禁用状态。
 
-dropdown/demo-1
+dropdown/basic
 
 :::
 ## 结构

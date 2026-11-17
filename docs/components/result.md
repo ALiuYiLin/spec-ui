@@ -6,7 +6,7 @@
 
 :::demo 结果页：状态图标 + 标题 + 可选的副标题。
 
-result/demo-1
+result/basic
 
 :::
 ## 结构

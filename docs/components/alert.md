@@ -6,14 +6,14 @@
 
 :::demo 四种语义类型，通过 `type` 切换，颜色与图标随之变化。
 
-alert/demo-1
+alert/basic
 
 :::
 ### 四种类型
 
 :::demo `type` 同时决定颜色与语义：`success` / `info` / `warning` / `error`。
 
-alert/demo-2
+alert/types
 
 :::
 ## 结构

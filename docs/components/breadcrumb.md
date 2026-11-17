@@ -6,7 +6,7 @@
 
 :::demo 用分隔符连接层级，最后一项是当前页，不再渲染分隔符。
 
-breadcrumb/demo-1
+breadcrumb/basic
 
 :::
 ## 结构

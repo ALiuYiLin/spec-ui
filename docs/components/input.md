@@ -6,12 +6,12 @@
 
 :::demo 通过 `v-model` 绑定值；`status` 表达校验态，`prefix` / `suffix` 放图标。
 
-input/demo-1
+input/basic
 
 :::
 :::demo `size` 只影响高度、内边距与字号，不改变交互。
 
-input/demo-2
+input/sizes
 
 :::
 ## 结构

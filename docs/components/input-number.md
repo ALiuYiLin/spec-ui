@@ -6,7 +6,7 @@
 
 :::demo `min` / `max` / `step` 约束取值范围，步进按钮与方向键等价。
 
-input-number/demo-1
+input-number/basic
 
 :::
 ## 结构

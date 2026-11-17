@@ -6,7 +6,7 @@
 
 :::demo 轨道宽度与手柄位移由数值算出，方向键步进，Home / End 跳到两端。
 
-slider/demo-1
+slider/basic
 
 :::
 ## 结构

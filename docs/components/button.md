@@ -19,7 +19,7 @@
 
 :::demo 实心用于最重要的动作，描边用于次要动作，虚线常用于「新增」类入口。
 
-button/demo-1
+button/variants
 
 :::
 ### 颜色
@@ -28,22 +28,22 @@ button/demo-1
 
 :::demo `tone="primary"` 是品牌主色。
 
-button/demo-2
+button/tone-primary
 
 :::
 :::demo `tone="success"` 用于正向操作。
 
-button/demo-3
+button/tone-success
 
 :::
 :::demo `tone="warning"` 用于需要谨慎的操作。
 
-button/demo-4
+button/tone-warning
 
 :::
 :::demo `tone="danger"` 用于删除、不可逆的操作。
 
-button/demo-5
+button/tone-danger
 
 :::
 ### 尺寸
@@ -52,63 +52,63 @@ button/demo-5
 
 :::demo 三种常用尺寸。
 
-button/demo-6
+button/sizes
 
 :::
 ### 形状
 
 :::demo 圆角用于胶囊形入口，圆形用于只放图标的按钮。
 
-button/demo-7
+button/shapes
 
 :::
 ### 加载与禁用
 
 :::demo 加载中的按钮不可点击；禁用使用原生 `disabled`，不是只改颜色。
 
-button/demo-8
+button/loading-disabled
 
 :::
 ### 块级
 
 :::demo `block` 让按钮占满容器宽度。
 
-button/demo-9
+button/block
 
 :::
 ### 全部尺寸
 
 :::demo `xs` 只用于表格内的紧凑场景，`xl` 用于营销页的主行动点。
 
-button/demo-10
+button/all-sizes
 
 :::
 ### 禁用状态
 
 :::demo 每种形态都有对应的禁用样式，用的是原生 `disabled`，不是只降透明度。
 
-button/demo-11
+button/disabled-states
 
 :::
 ### 图标按钮
 
 :::demo `icon` 与 `loading` 互斥：加载态下图标会被 spinner 顶替。
 
-button/demo-12
+button/icon
 
 :::
 ### 按钮组
 
 :::demo 一组相关操作并排时保持 8px 间距即可，不需要额外的容器组件。
 
-button/demo-13
+button/group
 
 :::
 ### 两字标签
 
 :::demo 两个 CJK 字之间会自动插入空隙（`提 交`），这是 DOM 文本改写而非样式，两套实现口径一致。
 
-button/demo-14
+button/cjk-spacing
 
 :::
 ## 协议 {#protocol}

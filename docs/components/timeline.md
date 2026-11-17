@@ -6,7 +6,7 @@
 
 :::demo 每个节点由圆点与内容组成，竖线用伪元素绘制。
 
-timeline/demo-1
+timeline/basic
 
 :::
 ## 结构

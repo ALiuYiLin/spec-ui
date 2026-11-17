@@ -6,14 +6,14 @@
 
 :::demo 加载指示器；`role="status"` 会被读屏播报，纯装饰场景不要用它。
 
-spin/demo-1
+spin/basic
 
 :::
 ### 尺寸
 
 :::demo `size` 只改变指示器外观，不影响 `role="status"` 的播报。
 
-spin/demo-2
+spin/sizes
 
 :::
 ## 结构

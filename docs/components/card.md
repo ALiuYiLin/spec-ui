@@ -6,7 +6,7 @@
 
 :::demo 标题区可选，主体承载任意内容。
 
-card/demo-1
+card/basic
 
 :::
 ## 结构

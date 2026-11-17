@@ -6,14 +6,14 @@
 
 :::demo 开关是 `button[role="switch"]`，没有原生 input，状态由 `aria-checked` 表达。
 
-switch/demo-1
+switch/basic
 
 :::
 ### 禁用与加载
 
 :::demo 禁用用原生 `disabled`；加载态下不可切换，但仍保留 `role="switch"`。
 
-switch/demo-2
+switch/disabled-loading
 
 :::
 ## 结构

@@ -6,7 +6,7 @@
 
 :::demo 横线用于分隔内容块，也可以带一段文字。
 
-divider/demo-1
+divider/basic
 
 :::
 ## 结构

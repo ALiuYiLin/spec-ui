@@ -6,14 +6,14 @@
 
 :::demo 同组 `name` 互斥；选中态由 `data-state` 表达，不靠类名。
 
-radio/demo-1
+radio/basic
 
 :::
 ### 禁用
 
 :::demo 禁用态用原生 `disabled`，`data-state` 仍然保留。
 
-radio/demo-2
+radio/disabled
 
 :::
 ## 结构

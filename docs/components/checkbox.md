@@ -6,14 +6,14 @@
 
 :::demo 受控组件：`checked` 决定状态，禁用使用原生 `disabled`。
 
-checkbox/demo-1
+checkbox/basic
 
 :::
 ### 半选与禁用
 
 :::demo `indeterminate` 用于「部分选中」的父级复选框。
 
-checkbox/demo-2
+checkbox/indeterminate
 
 :::
 ## 结构

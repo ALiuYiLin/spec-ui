@@ -6,14 +6,14 @@
 
 :::demo 在被包裹元素的右上角叠加计数，`overflowCount` 控制何时显示 `+`。
 
-badge/demo-1
+badge/basic
 
 :::
 ### 圆点与上限
 
 :::demo `dot` 只显示小圆点；计数超过 `overflowCount` 时显示 `99+`。
 
-badge/demo-2
+badge/dot-overflow
 
 :::
 ## 结构

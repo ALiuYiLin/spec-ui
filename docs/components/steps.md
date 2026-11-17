@@ -6,14 +6,14 @@
 
 :::demo 步骤条；当前步骤由 `data-status` 表达，`aria-current="step"` 标记位置。
 
-steps/demo-1
+steps/basic
 
 :::
 ### 状态
 
 :::demo `current` 之前的步骤是 `finish`，当前是 `process`，之后是 `wait`。
 
-steps/demo-2
+steps/status
 
 :::
 ## 结构
