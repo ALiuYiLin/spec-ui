@@ -17,12 +17,17 @@ card/extra
 
 ## 结构
 
-| 槽位 | 类名 | 说明 |
-|---|---|---|
-| 根 | `sm-card` | 必填 |
-| header | `sm-card__header` | 可选 |
-| title | `sm-card__title` | 可选 |
-| body | `sm-card__body` | 必填 |
+```text
+sm-card                         根，必填
+├── sm-card__header             可选（传入 title 或 extra）
+│   └── sm-card__head-wrapper   可选（header 内部的一层）
+│       ├── sm-card__title      可选（传入 title）
+│       └── extra 插槽           可选（调用方传入的节点）
+└── sm-card__body               必填
+```
+
+三层嵌套是为了对齐 antd：`head` 是 `flex-column`，真正分列两端的 `flex-row` 在
+`head-wrapper` 上，`title` 与 `extra` 都是它的子节点。
 
 ## 状态
 
@@ -33,7 +38,7 @@ card/extra
 ## 不变量
 
 - body 必须存在且只出现一次。
-- header 若存在必须位于 body 之前；title 若存在必须是 header 的直接子节点。
+- header 若存在必须位于 body 之前；title 若存在必须在 head-wrapper 里。
 - 圆角只在 root 上；header 不做独立圆角。
 
 ## 源码
