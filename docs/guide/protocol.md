@@ -125,7 +125,95 @@ pnpm --filter @specmark/playground-react-antd run infer:relations -- --component
 ```
 
 从 antd 证据反推 `requires` 草稿：跨用例一致的关系才写进 draft，不一致的进 `issues`；
-部件映射来自 `visual-diff.mjs` 的 `RESOLVE`（那是「我们的部件 ↔ antd 类名」的唯一真相）。
+部件映射来自仓库根的 `antd-map.json`（「我们的部件 ↔ antd 选择器」的唯一真相，`visual-diff` 与推断器共用）。
 
 用途是**减少手写量**，不是替代裁决：推断器给草稿，人判断哪些是契约、哪些是实现细节。
 `draft`/`issues`/`diff` 三块分别对应「推出来的」「推断不了的」「与手写 spec 不一致的」。
+
+## 对齐 antd 结构的操作手册
+
+把一个组件的结构对齐到 antd，按这个顺序做，别跳步。
+
+### 1. 先把 antd 的真实层级和盒模型量出来
+
+不要凭 antd 的类名猜结构。直接读证据里的树，带上 `display` / `flex-direction` / 宽高 / padding：
+
+```bash
+node -e "
+const fs=require('fs');
+const flat=(n,o=[],d=0)=>{o.push([n,d]);(n.children||[]).forEach(k=>flat(k,o,d+1));return o};
+const r=JSON.parse(fs.readFileSync('artifacts/card/card-basic.json','utf8'));
+for (const [n,d] of flat(r.tree)) {
+  const c=(n.classes||[]).filter(x=>!x.startsWith('css-')).join('.');
+  console.log('  '.repeat(d)+n.tag+'.'+c, n.rect.w+'x'+n.rect.h, n.style.display, n.style['flex-direction']);
+}"
+```
+
+**几个反直觉的事实**（都是量出来的，不是读文档得来的）：
+
+| 组件 | 反直觉之处 |
+|---|---|
+| Card | `head` 是 `flex-column`，`flex-row` 在下一层 `head-wrapper` 上 |
+| Field | `flex-column` 在 `ant-row` 上；`control` 本身是 `block` |
+| Field | 错误文案在 `additional > explain > explain-error` 三层里，全是 block |
+| Breadcrumb | 根是 `block`，`flex-row` 在内层 `<ol>`；`item` 是 `li`（`list-item`） |
+| Alert | 根是 `flex-row`，但 message 的父级是 `content`（block） |
+| Timeline | 根是 `<ol>`，`li` 的 computed display 是 `list-item` |
+
+### 2. 改结构前，先查有没有同名 CSS 规则
+
+这是**最耗时的坑**，也是唯一一个 L3 抓不到的坑。
+
+```bash
+grep -n '^\.sm-<component>' packages/css/src/components/<component>.scss
+```
+
+`field.scss` 里曾经躺着两条实验遗留的规则：
+
+```scss
+.sm-field { display: flex; flex-direction: column; }
+.sm-field__control { display: flex; flex-direction: column; }
+```
+
+它们让新写的 `display: block` 永远不生效。**L3 是绿的**（几何没变），
+只有 L2 的「父级布局」断言会报红——所以看到「父级布局不符」而 CSS 明明写了，
+第一反应应该是「是不是有旧规则在后面覆盖」。
+
+### 3. 结构改动要 React / Vue 同步，断言也要跟着改
+
+三处必须一起改，漏一处就是红的：
+
+1. 组件实现（`packages/react/src/*.tsx` 与 `packages/vue/src/*.ts`）
+2. 参考用例的断言（`playground/react-antd/src/ref/groups/*.tsx`）——
+   父级变了，`childOf` 的目标也要变
+3. `spec` 的部件清单与 `antd-map.json` 的映射
+
+### 4. 用例内容也要对齐 antd，不只是结构
+
+Card 卡了很久，最后发现**不是结构问题**：antd 的 `card-basic` 只有标题，
+我们的参考用例多给了一个 `extra`，标题因此窄了 32px。
+
+对比宽度类的差异时，先确认**两边渲染的内容是否一致**，再看 CSS。
+
+### 5. 每改一层就跑一次验证，不要攒
+
+```bash
+node scripts/conformance.mjs --component=Card
+node scripts/visual-diff.mjs --component=Card
+```
+
+攒到最后一起跑，出红时分不清是哪一层引入的。
+
+### 6. 能用推断器验证就别手写
+
+结构改完后重跑推断器，`diff` 为空说明我们的实现和 antd 的结构一致：
+
+```bash
+pnpm --filter @specmark/playground-react-antd run infer:relations -- --component=Card
+```
+
+### 7. 改错了就整体回滚，不要留半成品
+
+半成品会破坏已经验证过的 L3 目标，而且下一次改动会分不清新旧问题。
+`git checkout` 相关文件 + 删掉 spec/map 里新增的条目，比「修到能过」更快也更安全。
+
