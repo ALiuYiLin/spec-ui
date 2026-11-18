@@ -34,31 +34,15 @@
   list-style: none;
 }
 
-/* antd 的 item 是 li（list-item），链接文字在 .ant-breadcrumb-link 里 */
-.sm-breadcrumb__link {
-  display: inline;
-  color: inherit;
-}
-
-/* 文档站或第三方样式常给 ol 加 list-style 与 padding（.vp-doc ol 的优先级高于单个类名），
-   li 的 display:list-item 就会画出 1. 2. 这样的标记。这里用更高优先级显式压掉。 */
-.sm-breadcrumb .sm-breadcrumb__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+/* item / separator 是 li（computed 为 list-item，与 antd 对齐），列表标记一律不显示 */
 .sm-breadcrumb__item,
 .sm-breadcrumb__separator {
   list-style: none;
   padding: 0;
 }
 
-/* 宿主（如 VitePress 的 .vp-doc li + li）会给相邻 li 加 margin-top，
-   在 flex 行里会把后几项往下推。用更高优先级清掉块方向的 margin。 */
-.sm-breadcrumb .sm-breadcrumb__item {
-  margin-block: 0;
-  margin-inline: 0;
-}
-.sm-breadcrumb .sm-breadcrumb__separator {
-  margin-block: 0;
+/* antd 的 item 是 li（list-item），链接文字在 .ant-breadcrumb-link 里 */
+.sm-breadcrumb__link {
+  display: inline;
+  color: inherit;
 }

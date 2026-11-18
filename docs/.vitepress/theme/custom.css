@@ -105,3 +105,23 @@
 .sm-state-table code {
   white-space: nowrap;
 }
+
+/*
+ * 组件内的原生列表标签
+ *
+ * .vp-doc 会给 ol 加 list-style: decimal / padding-left，给相邻 li 加 margin-top。
+ * 这些是「文档正文」的排版规则，不该作用到组件内部的 li 上——在组件里补高优先级
+ * 规则等于把宿主的样式泄漏进组件库。统一在这里用 .vp-doc 前缀复位。
+ */
+.vp-doc .sm-breadcrumb__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vp-doc .sm-breadcrumb__list > li {
+  list-style: none;
+  /* 只复位块方向：横向间距由组件的 margin-inline 决定（分隔符 8px） */
+  margin-block: 0;
+  padding: 0;
+}
