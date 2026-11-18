@@ -1,6 +1,8 @@
 /* Skeleton */
 .sm-skeleton {
-  display: block;
+  /* antd：根是 table + 100%，content 是 table-cell，这样默认占满整行 */
+  display: table;
+  width: 100%;
   box-sizing: border-box;
   color: #000;
   font-size: 14px;
@@ -23,4 +25,8 @@
   margin-bottom: 14px;
   border-radius: 4px;
   background: var(--color-sm-fill-secondary);
+}
+
+.sm-skeleton__content {
+  display: table-cell;
 }

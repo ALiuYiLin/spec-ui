@@ -357,6 +357,10 @@
     "paragraph": {
       "ref": ".sm-skeleton__paragraph",
       "antd": ".ant-skeleton-paragraph"
+    },
+    "content": {
+      "ref": ".sm-skeleton__content",
+      "antd": ".ant-skeleton-content"
     }
   },
   "Result": {

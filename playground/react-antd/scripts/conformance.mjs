@@ -223,32 +223,32 @@ function relationsChecks(snap, spec) {
         } else {
           for (const [prop, value] of Object.entries(want)) {
             if (prop === 'layout') {
+              // flex-row / flex-column 比 display + flex-direction；其余按 display 关键字直接比
               const isFlex = parent.computed.display === 'flex' || parent.computed.display === 'inline-flex'
-              const wantRow = value === 'flex-row'
-              const wantColumn = value === 'flex-column'
-              const wantBlock = value === 'block' || value === 'inline-block' || value === 'list-item'
-              const wantInlineFlex = value === 'inline-flex'
-              if (wantBlock) {
-                const okBlock = parent.computed.display === value
-                if (!okBlock) {
+              if (value === 'flex-row' || value === 'flex-column') {
+                const wantRow = value === 'flex-row'
+                if (!isFlex || parent.computed.flexDirection !== (wantRow ? 'row' : 'column')) {
                   fails.push(
                     `${name} 要求父级是 ${value}，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
                   )
                 }
                 continue
               }
-              if (wantInlineFlex) {
-                if (parent.computed.display !== 'inline-flex') {
-                  fails.push(`${name} 要求父级是 inline-flex，实际 ${parent.computed.display}`)
-                }
-                continue
-              }
-              if (!wantRow && !wantColumn) {
+              const DISPLAY_KEYWORDS = new Set([
+                'block',
+                'inline',
+                'inline-block',
+                'inline-flex',
+                'flex',
+                'table',
+                'table-cell',
+                'table-row',
+                'list-item',
+              ])
+              if (!DISPLAY_KEYWORDS.has(value)) {
                 fails.push(`${name} 声明了未知的父级布局 ${value}`)
-              } else if (!isFlex || parent.computed.flexDirection !== (wantRow ? 'row' : 'column')) {
-                fails.push(
-                  `${name} 要求父级是 ${value}，实际 ${parent.computed.display}/${parent.computed.flexDirection}`,
-                )
+              } else if (parent.computed.display !== value) {
+                fails.push(`${name} 要求父级是 ${value}，实际 ${parent.computed.display}`)
               }
               continue
             }
