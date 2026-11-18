@@ -52,3 +52,13 @@
   list-style: none;
   padding: 0;
 }
+
+/* 宿主（如 VitePress 的 .vp-doc li + li）会给相邻 li 加 margin-top，
+   在 flex 行里会把后几项往下推。用更高优先级清掉块方向的 margin。 */
+.sm-breadcrumb .sm-breadcrumb__item {
+  margin-block: 0;
+  margin-inline: 0;
+}
+.sm-breadcrumb .sm-breadcrumb__separator {
+  margin-block: 0;
+}
