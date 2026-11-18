@@ -17,19 +17,17 @@ card/extra
 
 ## 结构
 
-| 第 1 层 | 第 2 层 | 第 3 层 | 第 4 层 | 说明 |
-|---|---|---|---|---|
-| `sm-card` |  |  |  | 根 |
-|  | `sm-card__header` |  |  | 可选：传入 title 或 extra |
-|  |  | `sm-card__head-wrapper` |  | 可选：header 内部的一层，包住 title 与 extra |
-|  |  |  | `sm-card__title` | 可选：传入 title |
-|  | `sm-card__body` |  |  | 必填 |
-
-每一列代表一层 DOM 深度；某行的类名出现在第 N 列，说明它在第 N 层（往上找最近的非空列就是它的父级）。
-这张表由 `spec-tree.mjs --component=Card` 从 spec 的 `inside` 关系生成，不手工数层级。
+| 槽位 | 类名 | 说明 |
+|---|---|---|
+| 根 | `sm-card` | 必填 |
+| header | `sm-card__header` | 可选 |
+| head-wrapper | `sm-card__head-wrapper` | 可选，header 内部的一层 |
+| title | `sm-card__title` | 可选，在 head-wrapper 里 |
+| body | `sm-card__body` | 必填 |
 
 三层嵌套是为了对齐 antd：`head` 是 `flex-column`，真正分列两端的 `flex-row` 在
 `head-wrapper` 上，`title` 与 `extra` 都是它的子节点。
+
 
 
 
