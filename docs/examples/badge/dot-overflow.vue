@@ -8,3 +8,7 @@
   </SmBadge>
 </div>
 </template>
+
+<script setup lang="ts">
+import { Badge as SmBadge } from '@specmark/vue'
+</script>

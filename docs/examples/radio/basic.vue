@@ -3,3 +3,7 @@
   <SmRadio :model-value="true" label="已选" name="demo" />
   <SmRadio :disabled="true" label="禁用" name="demo" />
 </template>
+
+<script setup lang="ts">
+import { Radio as SmRadio } from '@specmark/vue'
+</script>

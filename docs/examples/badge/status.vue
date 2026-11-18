@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+import { Badge as SmBadge } from '@specmark/vue'
 import { h } from 'vue'
 
 const text = (v: string) => h('span', { style: 'margin-inline-start: 8px' }, v)

@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+import { Button as SmButton, Drawer as SmDrawer } from '@specmark/vue'
 import { ref } from 'vue'
 
 const left = ref(false)

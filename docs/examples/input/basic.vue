@@ -5,3 +5,7 @@
   </SmInput>
   <SmInput model-value="内容" :allow-clear="true" style="width: 200px" />
 </template>
+
+<script setup lang="ts">
+import { Input as SmInput } from '@specmark/vue'
+</script>

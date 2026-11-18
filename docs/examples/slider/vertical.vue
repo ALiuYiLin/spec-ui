@@ -4,3 +4,7 @@
     <SmSlider :model-value="70" orientation="vertical" :disabled="true" aria-label="纵向禁用" />
   </div>
 </template>
+
+<script setup lang="ts">
+import { Slider as SmSlider } from '@specmark/vue'
+</script>

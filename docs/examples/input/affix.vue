@@ -10,3 +10,7 @@
     <template #suffix>.com</template>
   </SmInput>
 </template>
+
+<script setup lang="ts">
+import { Input as SmInput } from '@specmark/vue'
+</script>

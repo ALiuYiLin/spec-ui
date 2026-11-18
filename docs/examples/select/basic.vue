@@ -20,3 +20,7 @@
     placeholder="禁用"
   />
 </template>
+
+<script setup lang="ts">
+import { Select as SmSelect } from '@specmark/vue'
+</script>

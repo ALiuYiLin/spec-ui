@@ -6,3 +6,7 @@
     <SmButton variant="text" label="也可以是文字" />
   </SmPopover>
 </template>
+
+<script setup lang="ts">
+import { Popover as SmPopover, Button as SmButton } from '@specmark/vue'
+</script>

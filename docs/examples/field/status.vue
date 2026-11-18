@@ -5,3 +5,7 @@
     <SmField label="警告" status="warning" error="建议填写"><SmInput status="warning" placeholder="请输入" /></SmField>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Field as SmField, Input as SmInput } from '@specmark/vue'
+</script>

@@ -4,3 +4,7 @@
   <SmRadio name="demo" label="选项 B" />
   <SmRadio name="demo" label="选项 C（禁用）" :disabled="true" />
 </template>
+
+<script setup lang="ts">
+import { Radio as SmRadio } from '@specmark/vue'
+</script>

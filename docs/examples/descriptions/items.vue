@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { Descriptions as SmDescriptions } from '@specmark/vue'
 const items = [
   { label: '用户名', content: 'zhang' },
   { label: '状态', content: '启用' },

@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { Timeline as SmTimeline } from '@specmark/vue'
 const items = [
   { content: '默认节点' },
   { content: '成功节点', tone: 'success' },

@@ -5,3 +5,7 @@
     <SmDivider>文本</SmDivider>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Divider as SmDivider } from '@specmark/vue'
+</script>

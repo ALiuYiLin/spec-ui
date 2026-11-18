@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { Button as SmButton, Modal as SmModal } from '@specmark/vue'
 import { ref } from 'vue'
 
 const noFooter = ref(false)

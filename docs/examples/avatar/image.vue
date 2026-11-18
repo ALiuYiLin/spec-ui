@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { Avatar as SmAvatar } from '@specmark/vue'
 import { h } from 'vue'
 
 const img = h('img', {

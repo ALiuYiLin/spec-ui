@@ -4,6 +4,7 @@
 </template>
 
 <script setup lang="ts">
+import { Select as SmSelect } from '@specmark/vue'
 // open 由 props 决定：受控展开时组件不自己改状态，方便截图与对拍
 const options = [
   { value: 'a', label: '选项 A' },

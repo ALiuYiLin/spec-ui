@@ -5,3 +5,7 @@
 <SmButton variant="solid" size="lg" label="大" />
 <SmButton variant="solid" size="xl" label="极大" />
 </template>
+
+<script setup lang="ts">
+import { Button as SmButton } from '@specmark/vue'
+</script>

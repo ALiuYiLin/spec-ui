@@ -4,3 +4,7 @@
   <SmTag tone="success" closable>成功</SmTag>
   <SmTag tone="danger" closable>危险</SmTag>
 </template>
+
+<script setup lang="ts">
+import { Tag as SmTag } from '@specmark/vue'
+</script>

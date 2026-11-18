@@ -4,3 +4,7 @@
   <SmInput status="error" model-value="错误" style="width: 140px" />
   <SmInput :disabled="true" model-value="禁用" style="width: 140px" />
 </template>
+
+<script setup lang="ts">
+import { Input as SmInput } from '@specmark/vue'
+</script>

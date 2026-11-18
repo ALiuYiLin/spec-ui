@@ -3,3 +3,7 @@
   <SmAlert type="success" message="操作成功" />
   <SmAlert type="warning" message="请检查输入" />
 </template>
+
+<script setup lang="ts">
+import { Alert as SmAlert } from '@specmark/vue'
+</script>

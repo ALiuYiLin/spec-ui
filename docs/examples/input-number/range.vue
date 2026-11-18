@@ -3,3 +3,7 @@
   <SmInputNumber :model-value="10" :min="0" :max="10" style="width: 120px" aria-label="上限" />
   <SmInputNumber :model-value="5" :read-only="true" style="width: 120px" aria-label="只读" />
 </template>
+
+<script setup lang="ts">
+import { InputNumber as SmInputNumber } from '@specmark/vue'
+</script>

@@ -5,3 +5,7 @@
   <SmButton variant="solid" label="提交" />
 </div>
 </template>
+
+<script setup lang="ts">
+import { Button as SmButton } from '@specmark/vue'
+</script>

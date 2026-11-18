@@ -4,3 +4,7 @@
     正文内容，标题与操作分列两端。
   </SmCard>
 </template>
+
+<script setup lang="ts">
+import { Card as SmCard, Button as SmButton } from '@specmark/vue'
+</script>

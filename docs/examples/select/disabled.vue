@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { Select as SmSelect } from '@specmark/vue'
 const options = [
   { value: 'a', label: '选项 A' },
   { value: 'b', label: '选项 B' },

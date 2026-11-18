@@ -6,3 +6,7 @@
     <SmButton variant="text" label="也可以是文字" />
   </SmTooltip>
 </template>
+
+<script setup lang="ts">
+import { Tooltip as SmTooltip, Button as SmButton } from '@specmark/vue'
+</script>

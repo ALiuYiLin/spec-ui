@@ -5,3 +5,7 @@
 <SmButton tone="danger" variant="text" label="文本" />
 <SmButton tone="danger" variant="link" label="链接" />
 </template>
+
+<script setup lang="ts">
+import { Button as SmButton } from '@specmark/vue'
+</script>

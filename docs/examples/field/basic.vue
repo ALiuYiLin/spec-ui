@@ -8,3 +8,7 @@
     </SmField>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Field as SmField, Input as SmInput } from '@specmark/vue'
+</script>

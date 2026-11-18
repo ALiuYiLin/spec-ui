@@ -4,3 +4,7 @@
   <SmSwitch>关</SmSwitch>
   <SmSwitch :model-value="true" :disabled="true">开</SmSwitch>
 </template>
+
+<script setup lang="ts">
+import { Switch as SmSwitch } from '@specmark/vue'
+</script>

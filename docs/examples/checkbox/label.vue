@@ -4,6 +4,7 @@
 </template>
 
 <script setup lang="ts">
+import { Checkbox as SmCheckbox } from '@specmark/vue'
 import { h } from 'vue'
 
 // content 用来放富文本节点：文字仍然是 label 槽的一部分，可访问名称取它的文本

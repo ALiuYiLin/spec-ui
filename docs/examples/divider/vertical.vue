@@ -7,3 +7,7 @@
     <span>第三项</span>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Divider as SmDivider } from '@specmark/vue'
+</script>

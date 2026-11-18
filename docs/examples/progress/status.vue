@@ -5,3 +5,7 @@
   <SmProgress :percent="70" status="exception" />
 </div>
 </template>
+
+<script setup lang="ts">
+import { Progress as SmProgress } from '@specmark/vue'
+</script>

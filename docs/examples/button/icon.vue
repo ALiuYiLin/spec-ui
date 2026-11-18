@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+import { Button as SmButton } from '@specmark/vue'
 import { h } from 'vue'
 import { Search } from 'lucide-vue-next'
 

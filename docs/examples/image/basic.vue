@@ -5,3 +5,7 @@
     alt=""
   />
 </template>
+
+<script setup lang="ts">
+import { Image as SmImage } from '@specmark/vue'
+</script>
