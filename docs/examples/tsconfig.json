@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "types": ["vite/client"],
+    "paths": {
+      "@specmark/react": ["../../packages/react/src/index.ts"],
+      "@specmark/vue": ["../../packages/vue/src/index.ts"],
+      "@specmark/css/*": ["../../packages/css/dist/*"]
+    }
+  },
+  "include": ["./**/*.vue", "./**/*.ts"],
+  "exclude": ["../../node_modules"]
+}
